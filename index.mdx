@@ -1,0 +1,434 @@
+---
+mode: "custom"
+title: "Build the future of Reddit"
+---
+
+{/* Replica of the developers.reddit.com landing page: same section order, copy,
+    card structure, CTA labels, and brand assets, extended with a docs-first
+    "Start building" section. Source tokens: primary #115BCA, hero H1 64/700,
+    pill buttons (radius 999px), card border rgba(0,0,0,.2), game tiles
+    #00aeff / #55fe89 / #355000 at radius 32px. */}
+
+{/* Top nav, replicating the source landing page header: 56px tall, white in
+    light mode, logo left, then Browse apps / r/GamesOnReddit / Docs / Blog at
+    600/14px in #5C6C74, then the Sign up (#E5EBEE) and Log in (#D93900) pills
+    at radius 999px. Mintlify's own navbar is hidden on `/` in custom.css so
+    the homepage shows one header, the way the source site does. Pinned to the
+    top so it stays reachable as the page scrolls. */}
+<div role="banner" className="sticky top-0 z-40 border-b border-black/10 bg-white dark:border-white/10 dark:bg-[#0B1416]">
+  <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
+    <a href="/" className="flex shrink-0 items-center no-underline">
+      <img
+        src="/images/brand/logo.svg"
+        alt="Reddit for Developers"
+        className="m-0 h-7 w-auto"
+        noZoom
+      />
+      <span className="sr-only">Reddit for Developers home</span>
+    </a>
+
+    {/* Product switcher: the same two products as the docs navbar, so the
+        homepage you land on follows the docs you pick. A hidden checkbox plus
+        its label opens the menu on click with no scripting -- a docs page
+        cannot run any. See `.rdt-menu` in custom.css. */}
+    <div className="rdt-menu relative shrink-0">
+      <input type="checkbox" id="rdt-product" className="peer sr-only" aria-label="Switch product" />
+      <label
+        htmlFor="rdt-product"
+        className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-semibold text-[#181C1F] hover:bg-black/5 peer-focus-visible:ring-2 peer-focus-visible:ring-[#D93900] dark:text-[#EEF1F3] dark:hover:bg-white/10"
+      >
+        <Icon icon="code" size={14} />
+        <span className="hidden sm:inline">Developer Platform</span>
+        <Icon icon="chevron-down" size={11} className="rdt-chevron" />
+      </label>
+      <div className="rdt-menu-panel invisible absolute left-0 top-full mt-1 w-60 rounded-2xl border border-black/10 bg-white p-2 opacity-0 shadow-xl transition-opacity peer-checked:visible peer-checked:opacity-100 dark:border-white/10 dark:bg-[#181C1F]">
+        <a
+          href="/"
+          aria-current="page"
+          className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-[#D93900] no-underline hover:bg-black/5 dark:hover:bg-white/10"
+        >
+          <Icon icon="code" size={15} />
+          Developer Platform
+          <Icon icon="check" size={14} className="ml-auto" />
+        </a>
+        <a
+          href="/ads-api"
+          className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-[#181C1F] no-underline hover:bg-black/5 dark:text-[#EEF1F3] dark:hover:bg-white/10"
+        >
+          <Icon icon="bullhorn" size={15} />
+          Ads API
+        </a>
+      </div>
+    </div>
+
+    <div role="navigation" className="ml-auto flex items-center gap-4 sm:gap-6">
+      <a
+        href="https://developers.reddit.com/apps"
+        className="hidden text-sm font-semibold text-[#5C6C74] no-underline hover:text-[#181C1F] sm:inline dark:text-[#8BA2AD] dark:hover:text-[#EEF1F3]"
+      >
+        Browse apps
+      </a>
+      <a
+        href="https://www.reddit.com/r/gamesOnReddit"
+        className="hidden text-sm font-semibold text-[#5C6C74] no-underline hover:text-[#181C1F] lg:inline dark:text-[#8BA2AD] dark:hover:text-[#EEF1F3]"
+      >
+        r/GamesOnReddit
+      </a>
+      <a
+        href="/introduction/introduction"
+        className="text-sm font-semibold text-[#5C6C74] no-underline hover:text-[#181C1F] dark:text-[#8BA2AD] dark:hover:text-[#EEF1F3]"
+      >
+        Docs
+      </a>
+      <a
+        href="/blog"
+        className="text-sm font-semibold text-[#5C6C74] no-underline hover:text-[#181C1F] dark:text-[#8BA2AD] dark:hover:text-[#EEF1F3]"
+      >
+        Blog
+      </a>
+      <a
+        href="https://www.reddit.com/register/?dest=https%3A%2F%2Fdevelopers.reddit.com%2F"
+        className="inline-flex items-center justify-center rounded-full bg-[#E5EBEE] px-4 py-1.5 text-sm font-semibold text-black no-underline transition-colors hover:bg-[#D8E0E5] dark:bg-[#2A3236] dark:text-white dark:hover:bg-[#333D42]"
+      >
+        Sign up
+      </a>
+      <a
+        href="https://www.reddit.com/login/?dest=https%3A%2F%2Fdevelopers.reddit.com%2F"
+        className="inline-flex items-center justify-center rounded-full bg-[#D93900] px-4 py-1.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-[#AE2C00]"
+      >
+        Log in
+      </a>
+    </div>
+  </div>
+</div>
+
+<section className="px-4 pt-12 pb-4 sm:px-6 lg:px-8">
+  <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
+    <img
+      src="/images/brand/flying-snoo.png"
+      alt="Snoo, the Reddit mascot, flying in a red cape"
+      width="196"
+      height="196"
+      className="m-0 w-[148px] sm:w-[180px] lg:w-[196px]"
+      noZoom
+    />
+    <h1 className="m-0 text-[36px] font-bold leading-tight tracking-tight text-[#181C1F] sm:text-[48px] lg:text-[64px] dark:text-[#D7DADC]">
+      Build the future of Reddit
+    </h1>
+    <p className="m-0 max-w-[520px] text-lg leading-7 text-[#5C6C74] sm:text-xl lg:text-2xl dark:text-[#8BA2AD]">
+      Powerful interactive experiences that take your communities to the next level.
+    </p>
+    <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
+      <a
+        href="/introduction/intro-games"
+        className="inline-flex items-center justify-center rounded-full bg-[#115BCA] px-6 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-[#0A449B]"
+      >
+        Build a Game
+      </a>
+      <a
+        href="/introduction/intro-mod-tools"
+        className="inline-flex items-center justify-center rounded-full bg-[#115BCA] px-6 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-[#0A449B]"
+      >
+        Build a Mod Tool
+      </a>
+    </div>
+    <a
+      href="/introduction/introduction"
+      className="text-sm font-semibold text-[#115BCA] no-underline hover:underline dark:text-[#648EFC]"
+    >
+      Browse the Docs
+    </a>
+  </div>
+</section>
+
+<div className="mx-auto my-12 h-px max-w-[600px] bg-black/10 dark:bg-white/20" />
+
+{/* Docs-first section: the marketing site links out to the docs here, so the
+    docs homepage leads with the first task instead of repeating the link. */}
+<div className="px-4 sm:px-6 lg:px-8">
+  <div className="mx-auto max-w-5xl">
+    <div className="flex flex-col items-center gap-3 text-center">
+      <h2 className="m-0 text-[22px] font-bold text-[#181C1F] sm:text-[26px] lg:text-[32px] dark:text-[#D7DADC]">
+        Start building
+      </h2>
+      <p className="m-0 text-base leading-6 text-[#5C6C74] sm:text-lg lg:text-[22px] dark:text-[#8BA2AD]">
+        Ship your first app in about a minute, then go deeper.
+      </p>
+    </div>
+    <div className="mt-10">
+      <Columns cols={3}>
+        <Card title="App quickstart" href="/quickstart">
+          Build and playtest your first Devvit app in a Reddit post.
+        </Card>
+        <Card title="Devvit Technical Overview" href="/capabilities/devvit-web/devvit_web_overview">
+          How Devvit Web splits your app into a client and a server.
+        </Card>
+        <Card title="Devvit CLI" href="/guides/tools/devvit_cli">
+          Create, upload, and manage your apps from the command line.
+        </Card>
+        <Card title="Reddit API" href="/capabilities/server/reddit-api">
+          Read and write posts, comments, and votes from your app.
+        </Card>
+        <Card title="In-app purchases" href="/earn-money/payments/payments_overview">
+          Sell premium features with Reddit Gold payments.
+        </Card>
+        <Card title="Launch your app" href="/guides/launch/launch-guide">
+          What launch-ready means and how to submit for review.
+        </Card>
+      </Columns>
+    </div>
+  </div>
+</div>
+
+<div className="mx-auto my-12 h-px max-w-[600px] bg-black/10 dark:bg-white/20" />
+
+<div className="px-4 sm:px-6 lg:px-8">
+  <div className="mx-auto flex max-w-5xl flex-col items-center gap-4">
+    <h2 className="m-0 text-center text-[22px] font-bold text-[#181C1F] sm:text-[26px] lg:text-[32px] dark:text-[#D7DADC]">
+      Games for Redditors, by Redditors
+    </h2>
+    <p className="m-0 text-center text-base leading-6 text-[#5C6C74] sm:text-lg lg:text-[22px] dark:text-[#8BA2AD]">
+      Reddit's most engaging content, built by your favorite communities.
+    </p>
+
+    <div className="mt-10 grid w-full gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-col gap-4 border border-black/20 bg-black/[0.02] p-6 dark:border-white/20 dark:bg-white/[0.04]">
+        <div className="w-full overflow-hidden rounded-[32px] bg-[#00aeff]">
+          <img
+            src="/images/brand/honk.gif"
+            loading="lazy"
+            alt="Animated goose from the Honk game"
+            className="m-0 aspect-square w-full object-contain"
+            noZoom
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="m-0 text-xl font-bold leading-6 text-[#181C1F] dark:text-[#EEF1F3]">Honk</h3>
+          <p className="m-0 text-base leading-6 text-[#5C6C74] dark:text-[#8BA2AD]">
+            Complete levels to earn loot &amp; climb the leaderboard
+          </p>
+        </div>
+        <div className="mt-auto flex flex-col gap-2">
+          <a
+            href="/blog#october-10-2025"
+            className="inline-flex items-center justify-center rounded-full bg-[#EEF1F3] px-4 py-2 text-sm font-semibold text-[#181C1F] no-underline transition-colors hover:bg-[#E5EBEE] dark:bg-[#2A3236] dark:text-white dark:hover:bg-[#333D42]"
+          >
+            Learn more
+          </a>
+          <a
+            href="https://www.reddit.com/r/honk/"
+            className="inline-flex items-center justify-center rounded-full bg-[#115BCA] px-4 py-2 text-sm font-semibold text-white no-underline transition-colors hover:bg-[#0A449B]"
+          >
+            Play on Reddit
+          </a>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-4 border border-black/20 bg-black/[0.02] p-6 dark:border-white/20 dark:bg-white/[0.04]">
+        <div className="w-full overflow-hidden rounded-[32px] bg-[#55fe89]">
+          <img
+            src="/images/brand/sword-and-supper.gif"
+            loading="lazy"
+            alt="Animated frog warrior from Sword and Supper"
+            className="m-0 aspect-square w-full object-contain"
+            noZoom
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="m-0 text-xl font-bold leading-6 text-[#181C1F] dark:text-[#EEF1F3]">Sword and Supper</h3>
+          <p className="m-0 text-base leading-6 text-[#5C6C74] dark:text-[#8BA2AD]">
+            Cook up wild dishes while you battle beasts and beat the nightly rush.
+          </p>
+        </div>
+        <div className="mt-auto flex flex-col gap-2">
+          <a
+            href="/blog#august-11-2025"
+            className="inline-flex items-center justify-center rounded-full bg-[#EEF1F3] px-4 py-2 text-sm font-semibold text-[#181C1F] no-underline transition-colors hover:bg-[#E5EBEE] dark:bg-[#2A3236] dark:text-white dark:hover:bg-[#333D42]"
+          >
+            Learn more
+          </a>
+          <a
+            href="https://www.reddit.com/r/SwordAndSupper/"
+            className="inline-flex items-center justify-center rounded-full bg-[#115BCA] px-4 py-2 text-sm font-semibold text-white no-underline transition-colors hover:bg-[#0A449B]"
+          >
+            Play on Reddit
+          </a>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-4 border border-black/20 bg-black/[0.02] p-6 dark:border-white/20 dark:bg-white/[0.04]">
+        <div className="w-full overflow-hidden rounded-[32px] bg-[#355000]">
+          <img
+            src="/images/brand/riddonkulous.gif"
+            loading="lazy"
+            alt="Animated detective Donk from Riddonkulous"
+            className="m-0 aspect-square w-full object-contain"
+            noZoom
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="m-0 text-xl font-bold leading-6 text-[#181C1F] dark:text-[#EEF1F3]">Riddonkulous</h3>
+          <p className="m-0 text-base leading-6 text-[#5C6C74] dark:text-[#8BA2AD]">
+            Solve daily riddles, collect outfits, and help Donk crack the case.
+          </p>
+        </div>
+        <div className="mt-auto flex flex-col gap-2">
+          <a
+            href="/blog#june-17-2025"
+            className="inline-flex items-center justify-center rounded-full bg-[#EEF1F3] px-4 py-2 text-sm font-semibold text-[#181C1F] no-underline transition-colors hover:bg-[#E5EBEE] dark:bg-[#2A3236] dark:text-white dark:hover:bg-[#333D42]"
+          >
+            Learn more
+          </a>
+          <a
+            href="https://www.reddit.com/r/Riddonkulous/"
+            className="inline-flex items-center justify-center rounded-full bg-[#115BCA] px-4 py-2 text-sm font-semibold text-white no-underline transition-colors hover:bg-[#0A449B]"
+          >
+            Play on Reddit
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p className="mt-8 mb-0 text-center text-base leading-6 text-[#5C6C74] sm:text-lg lg:text-[22px] dark:text-[#8BA2AD]">
+      Discover more apps in the catalog
+    </p>
+    <div className="w-full max-w-sm">
+      <a
+        href="https://developers.reddit.com/apps"
+        className="inline-flex w-full items-center justify-center rounded-full bg-[#115BCA] px-6 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-[#0A449B]"
+      >
+        Browse apps
+      </a>
+    </div>
+  </div>
+</div>
+
+<div className="mx-auto my-12 h-px max-w-[600px] bg-black/10 dark:bg-white/20" />
+
+<div className="px-4 pb-20 sm:px-6 lg:px-8">
+  <div className="mx-auto flex max-w-5xl flex-col items-center gap-4">
+    <h2 className="m-0 text-center text-[22px] font-bold text-[#181C1F] sm:text-[26px] lg:text-[32px] dark:text-[#D7DADC]">
+      Powerful tools.
+      <br />
+      Engaged community.
+    </h2>
+
+    <div className="mt-8 grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-col items-center text-center">
+        <img src="/images/brand/powerful.png" loading="lazy" alt="A 3D rocket on an orange tile" className="m-0 mb-4 w-full max-w-[260px]" noZoom />
+        <span className="text-xl font-semibold text-[#181C1F] dark:text-[#EEF1F3]">Powerful</span>
+        <p className="m-0 text-[#5C6C74] dark:text-[#8BA2AD]">Create personalized, interactive, and realtime experiences</p>
+      </div>
+      <div className="flex flex-col items-center text-center">
+        <img src="/images/brand/cross-platform.png" loading="lazy" alt="A 3D laptop on a teal tile" className="m-0 mb-4 w-full max-w-[260px]" noZoom />
+        <span className="text-xl font-semibold text-[#181C1F] dark:text-[#EEF1F3]">Cross platform</span>
+        <p className="m-0 text-[#5C6C74] dark:text-[#8BA2AD]">Build once, supported on all Reddit devices</p>
+      </div>
+      <div className="flex flex-col items-center text-center">
+        <img src="/images/brand/global.png" loading="lazy" alt="A 3D globe on a green tile" className="m-0 mb-4 w-full max-w-[260px]" noZoom />
+        <span className="text-xl font-semibold text-[#181C1F] dark:text-[#EEF1F3]">Global reach</span>
+        <p className="m-0 text-[#5C6C74] dark:text-[#8BA2AD]">Distribute to millions of users in passionate communities</p>
+      </div>
+      <div className="flex flex-col items-center text-center">
+        <img src="/images/brand/hosting.png" loading="lazy" alt="A 3D server chip on a blue tile" className="m-0 mb-4 w-full max-w-[260px]" noZoom />
+        <span className="text-xl font-semibold text-[#181C1F] dark:text-[#EEF1F3]">Free hosting</span>
+        <p className="m-0 text-[#5C6C74] dark:text-[#8BA2AD]">Your apps run and automatically scale on Reddit servers</p>
+      </div>
+      <div className="flex flex-col items-center text-center">
+        <img src="/images/brand/community.png" loading="lazy" alt="A 3D rubber duck on a peach tile" className="m-0 mb-4 w-full max-w-[260px]" noZoom />
+        <span className="text-xl font-semibold text-[#181C1F] dark:text-[#EEF1F3]">Active community</span>
+        <p className="m-0 text-[#5C6C74] dark:text-[#8BA2AD]">Leverage the power of r/Devvit for support and inspiration</p>
+      </div>
+      <div className="flex flex-col items-center text-center">
+        <img src="/images/brand/payments.png" loading="lazy" alt="A 3D stack of coins on a lavender tile" className="m-0 mb-4 w-full max-w-[260px]" noZoom />
+        <span className="text-xl font-semibold text-[#181C1F] dark:text-[#EEF1F3]">Payments support</span>
+        <p className="m-0 text-[#5C6C74] dark:text-[#8BA2AD]">Enhance your app's experience by adding in-app purchases</p>
+      </div>
+    </div>
+
+    <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/quickstart"
+        className="inline-flex items-center justify-center rounded-full bg-[#115BCA] px-6 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-[#0A449B]"
+      >
+        Get started
+      </a>
+      <a
+        href="/introduction/introduction"
+        className="inline-flex items-center justify-center rounded-full bg-[#EEF1F3] px-6 py-2.5 text-sm font-semibold text-[#181C1F] no-underline transition-colors hover:bg-[#E5EBEE] dark:bg-[#2A3236] dark:text-white dark:hover:bg-[#333D42]"
+      >
+        Documentation
+      </a>
+    </div>
+  </div>
+</div>
+
+{/* Footer, replicating the source landing page footer: solid #000000 (pixel
+    sampled), Reddit wordmark plus social icons on the left, three link columns
+    with #D93900 700/18px headings and white 14px links, then the terms link and
+    copyright line. `mode: "custom"` hides Mintlify's own footer on `/`. */}
+<div role="contentinfo" className="mt-20 bg-black px-4 py-12 sm:px-6 lg:px-8">
+  <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_2fr]">
+    <div className="flex flex-col gap-6">
+      <img
+        src="/images/brand/reddit-lockup.png"
+        alt="Reddit"
+        className="m-0 h-8 w-auto self-start"
+        noZoom
+      />
+      <div className="flex items-center gap-4 text-white">
+        <a href="https://www.facebook.com/reddit" aria-label="Reddit on Facebook" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="facebook" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">Reddit on Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/reddit/" aria-label="Reddit on Instagram" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="instagram" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">Reddit on Instagram</span>
+        </a>
+        <a href="https://twitter.com/reddit" aria-label="Reddit on X" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="x-twitter" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">Reddit on X</span>
+        </a>
+        <a href="https://www.youtube.com/c/reddit" aria-label="Reddit on YouTube" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="youtube" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">Reddit on YouTube</span>
+        </a>
+        <a href="https://www.linkedin.com/company/reddit-com/" aria-label="Reddit on LinkedIn" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="linkedin" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">Reddit on LinkedIn</span>
+        </a>
+      </div>
+    </div>
+
+    <div className="grid gap-10 sm:grid-cols-3">
+      <div className="flex flex-col gap-3">
+        <h4 className="m-0 text-lg font-bold text-[#D93900]">Company</h4>
+        <a href="https://www.redditinc.com/" className="text-sm text-white no-underline hover:underline">Reddit, Inc.</a>
+        <a href="https://www.redditforbusiness.com/" className="text-sm text-white no-underline hover:underline">Reddit for Business</a>
+        <a href="https://www.redditinc.com/careers" className="text-sm text-white no-underline hover:underline">Careers</a>
+        <a href="https://www.redditinc.com/press" className="text-sm text-white no-underline hover:underline">Press Contact</a>
+        <a href="https://www.redditinc.com/blog" className="text-sm text-white no-underline hover:underline">Blog</a>
+      </div>
+      <div className="flex flex-col gap-3">
+        <h4 className="m-0 text-lg font-bold text-[#D93900]">Community</h4>
+        <a href="https://www.reddit.com/r/reddit" className="text-sm text-white no-underline hover:underline">Reddit.com</a>
+        <a href="https://redditforcommunity.com/" className="text-sm text-white no-underline hover:underline">Reddit for Community</a>
+        <a href="https://www.redditinc.com/policies/content-policy" className="text-sm text-white no-underline hover:underline">Content Policy</a>
+        <a href="https://support.reddithelp.com/hc/" className="text-sm text-white no-underline hover:underline">Help Center</a>
+        <a href="https://www.redditinc.com/policies/moderator-code-of-conduct" className="text-sm text-white no-underline hover:underline">Moderator Code of Conduct</a>
+      </div>
+      <div className="flex flex-col gap-3">
+        <h4 className="m-0 text-lg font-bold text-[#D93900]">Privacy &amp; Safety</h4>
+        <a href="https://www.reddit.com/policies/privacy-policy" className="text-sm text-white no-underline hover:underline">Privacy Policy</a>
+        <a href="https://www.redditinc.com/policies/user-agreement" className="text-sm text-white no-underline hover:underline">User agreement</a>
+        <a href="https://www.redditinc.com/policies/transparency" className="text-sm text-white no-underline hover:underline">Transparency Report</a>
+        <a href="https://www.reddit.com/r/redditsecurity" className="text-sm text-white no-underline hover:underline">r/redditsecurity</a>
+      </div>
+    </div>
+  </div>
+
+  <div className="mx-auto mt-10 max-w-7xl border-t border-white/15 pt-6">
+    <a href="https://www.redditinc.com/policies" className="text-sm text-white no-underline hover:underline">Other Terms and Policies</a>
+    <p className="mt-3 mb-0 text-xs text-white/60">Copyright 2026 Reddit Inc. All rights reserved.</p>
+  </div>
+</div>

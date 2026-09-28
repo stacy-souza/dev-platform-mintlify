@@ -1,0 +1,133 @@
+# Reddit for Developers
+
+> Build powerful apps and immersive experiences to enhance the communities you love. Devvit is Reddit's developer platform for interactive games, mod tools, and apps that run natively on Reddit.
+
+## Docs
+
+- [Reddit for Developers](/index.md): Landing page for the Devvit developer documentation.
+
+## Introduction
+
+- [Devvit Web](/capabilities/devvit-web/devvit_web_overview.md): Devvit Web includes an easy way to build Devvit apps using a standard web stack.
+- [App Showcase](/examples/app-showcase.md): Reddit-y experiences
+- [Devvit: Reddit's Developer Platform](/introduction/introduction.md): Devvit allows you to build interactive games and apps that live on Reddit. Build experiences that can earn up to $167,000 per app with our Reddit Developer Funds.
+
+## Build Your App
+
+- [Games on Reddit](/introduction/intro-games.md): Unleash your creativity and build engaging games inside Reddit communities with Devvit's powerful platform. Earn money as players engage with your games.
+- [Mod Tools on Reddit](/introduction/intro-mod-tools.md): Empower your community and streamline moderation with custom tools built on Devvit’s powerful platform.
+- [App quickstart](/quickstart.md): This tutorial takes you through the step-by-step process of building your first app with Devvit. It should take you about 1 minute to complete. Once complete, you'll be able to see your app in a Reddit post
+- [GameMaker Quickstart](/quickstart/quickstart-gamemaker.md): This page walks you through building a GameMaker app for Devvit. Once complete, you'll see your GameMaker game running directly within a Reddit post.
+- [Mod tool quickstart](/quickstart/quickstart-mod-tool.md): Devvit allows you to build Mod Tools - subreddit-installed applications that help moderators of that community to take action on conversations, keeping their communities safe and engaged.
+- [Unity quickstart](/quickstart/quickstart-unity.md): This tutorial walks you through building a Unity app for Devvit. Once complete, you'll see your Unity game running directly within a Reddit post.
+
+## Launch Your App
+
+- [Reddit Developer Funds](/earn-money/reddit_developer_funds.md): Redirecting to Reddit Developer Funds...
+- [Get featured](/guides/launch/feature-guide.md): Reddit celebrates creative games and experiences built by developers from our global community. Our Featuring Program does this by connecting exciting new apps with millions of active redditors.
+- [Launch your app](/guides/launch/launch-guide.md): Once your app is ready, you can launch it to users and moderators across Reddit. This guide outlines what “launch-ready” means and the steps you need to take to submit your app for review.
+
+## Capabilities
+
+- [Devvit Journeys](/capabilities/analytics/devvit-journeys.md): Devvit Journeys adds a telemetry stream to your app that tracks the entire lifecycle of a user session. With journeys, you can:
+- [Journeys Dashboard](/capabilities/analytics/journeys-dashboard.md): Once you’ve implemented Devvit Journeys, you’ll be able to see how users are engaging with your app.  You’ll find Journeys analytics on the App Details page, under the Analytics tab.
+- [Journeys Receipts](/capabilities/analytics/journeys-receipts.md): The Devvit Journeys API responses include a receipt: a small feedback object that tells you what happened to a telemetry event.
+- [Push Notifications](/capabilities/analytics/pn-analytics.md): Push notification analytics help you understand how frequently users receive notifications from your app and how often those notifications lead to clicks.
+- [Forms](/capabilities/client/forms.md): A form lets your app ask users to input and submit data. Forms can be defined with a simple form object that takes a list of fields, and return user responses directly as promises.
+- [Menu actions](/capabilities/client/menu-actions.md): Add an item to the three dot menu for posts, comments, or subreddits. Menu actions can perform immediate client effects or trigger server processing followed by client effects.
+- [Navigation](/capabilities/client/navigation.md): Use navigation functions to redirect users to Reddit content or external websites in response to user actions, such as button clicks. You can redirect to a url string or to objects such as Subreddit, Post, or Comment.
+- [Client Overview](/capabilities/client/overview.md): Client-side effects enable your Devvit app to provide interactive feedback and navigation to users. These effects include showing toasts, displaying forms, navigating to different pages, and more.
+- [Toasts](/capabilities/client/toasts.md): Display temporary notification messages to users at the bottom of the screen.
+- [Creating a Custom Post](/capabilities/creating_custom_post.md): Redditors interact with your app through custom posts. To create a custom post, you’ll define the entry points in devvit.json, then use submitCustomPost to create a post that references one of those entry points.
+- [Configure your app](/capabilities/devvit-web/devvit_web_configuration.md): The devvit.json file serves as your app's configuration file. Use it to specify entry points, configure features like event triggers and scheduled actions, and enable app functionality such as image uploads. This page summarizes the schema-supported configuration options; the published JSON Schema remains authoritative. A representative devvit.json example is provided here.
+- [HTTP Fetch](/capabilities/http-fetch.md): Make requests to allow-listed external domains.
+- [Overview](/capabilities/interactive-posts/interactive_posts_overview.md): Interactive posts are the core of Reddit Dev Platform apps, enabling rich, engaging experiences that go beyond static content. There are three essential features for creating an interactive post using the Reddit API :
+- [Adding Streaks](/capabilities/notifications/adding-streaks.md): Streaks are valuable to app developers because they turn occasional use into habitual behavior. By rewarding consecutive days of activity, streaks increase retention, strengthen user identity and investment in the app, and make push notifications more effective through loss aversion (“don’t break your streak”). For devs, that usually translates into higher engagement, lower churn, and better long-term monetization.
+- [Overview](/capabilities/notifications/notifications-overview.md): Push notifications are an experimental engagement feature designed to help bring players back into your game at the right moments.
+- [Best Practices](/capabilities/notifications/pn-best-practices.md): Push notifications can help drive engagement, increase player retention, and build habit loops for players—all good things for your game. The examples below are from Syllo, a word game that integrated Push Notifications into the game experience.
+- [Overview](/capabilities/realtime/overview.md): Create live and event-driven interactive posts. Realtime provides a set of primitives that lets you build interactive posts that are:
+- [Blob Storage](/capabilities/server/blob-storage.md): Binary Large Object Storage (aka “Blob”) is a way for your app to store data—like images, videos, and logs—in a scalable, cloud-based system. You can treat it like a cloud file system. Objects are similar to files and are stored at unique keys (for example, path/to/my-object.json).
+- [Cache Helper](/capabilities/server/cache-helper.md): Cache helper lets you build a more performant app by reducing the number of server side calls for the same data. You can create a short-term cache that stores JSON objects in your Devvit app for a limited amount of time. This is valuable when you have many clients trying to get the same data, for example a stock ticker value or a sports score.
+- [External Endpoints](/capabilities/server/external-endpoints.md): External endpoints provide a secure way for external services to communicate with your Devvit app.
+- [App Mention Triggers](/capabilities/server/global-triggers.md): App mention triggers let your app respond to Reddit events even when those events happen outside the subreddit where your app is installed. App mention triggers are limited to app usernames.
+- [HTTP Fetch Policy](/capabilities/server/http-fetch-policy.md): When requesting domains to be allow-listed, they fall into three categories:
+- [View Modes, Launch Screens, and Entry Points](/capabilities/server/launch_screen_and_entry_points/launch_overview.md): Devvit’s interactive framework gives you powerful ways to shape how users experience apps, from launch screen to expanded screen viewing. With view modes, HTML-based launch screens, and multiple entry points, you can design apps that feel native and respond to how users interact across the Reddit platform.
+- [Launch Screen Customization](/capabilities/server/launch_screen_and_entry_points/launch_screen_customization.md): Creating Your Launch (Preview) Screen
+- [Migrating from Splash Screens](/capabilities/server/launch_screen_and_entry_points/splash_migration.md): If you're updating an existing app that used the deprecated splash parameter in submitCustomPost(), you'll need to migrate to HTML-based launch screens with multiple entry points.
+- [View Modes & Entry Points](/capabilities/server/launch_screen_and_entry_points/view_modes_entry_points.md): View modes
+- [Media Uploads](/capabilities/server/media-uploads.md): Apps can only display media hosted on Reddit
+- [Server Overview](/capabilities/server/overview.md): Devvit offers a wide variety of features that help you integrate your app with Reddit's APIs, scale your app free of charge using Reddit's backend, and more. The features in this section are executed on the server side. They can be imported in Devvit Web applications, as well as Mod Tools.
+- [Post Data](/capabilities/server/post-data.md): You can attach small amounts of data (2KB) to a post when creating it and update this data using the postData capability. This enables dynamic, stateful experiences available on posts without a server call. Post data is scoped to the post, not users.
+- [Reddit API Overview](/capabilities/server/reddit-api.md): The Reddit API allows you to read and write Reddit content such as posts / comments / upvotes, in order to integrate your app's behavior with the content of the community it's installed in.
+- [Redis](/capabilities/server/redis.md): You can add a database to your app to store and retrieve data. The Redis plugin is designed to be fast, scalable, and secure. It supports a subset of the full Redis API, including:
+- [Scheduler](/capabilities/server/scheduler.md): The scheduler allows your app to perform actions at specific times, such as sending private messages, tracking upvotes, or scheduling timeouts for user actions. You can schedule both recurring and one-off jobs using the scheduler.
+- [Settings & Secrets](/capabilities/server/settings-and-secrets.md): Configure your app with settings that can be customized per subreddit or globally across all installations. Settings allow moderators to customize app behavior for their subreddit, while secrets enable secure storage of sensitive data like API keys.
+- [Splash Screens](/capabilities/server/splash-screen.md): Splash screens provide a personalized entry point for your Reddit Dev Platform apps, displaying a customized loading view before users interact with your post. A well-designed splash screen improves first impressions and drives better user engagement.
+- [Triggers](/capabilities/server/triggers.md): Triggers allow your app to automatically respond to specific events or actions within a Reddit community. Use triggers to build automation, moderation, and engagement features that react to user or moderator activity.
+- [User Actions](/capabilities/server/userActions.md): User actions allow your app to submit posts, submit comments, and subscribe to the current subreddit on behalf of the logged in user. These actions occur on the logged in user's account instead of the app account. This enables stronger user engagement while ensuring user control and transparency.
+- [Add Payments](/earn-money/payments/payments_add.md): The Devvit payments API is available in Devvit Web. Keep reading to learn how to configure your products and accept payments.
+- [Manage Payments](/earn-money/payments/payments_manage.md): Once your app and products have been approved, you’re ready to use Reddit’s production payments system. Real payments will be triggered automatically when invoked from approved app versions. No code changes are required.
+- [Overview](/earn-money/payments/payments_overview.md): Add products to your app and get paid for what you sell. The payments plugin lets you prompt users to buy premium features that you build into your app, like in-game items, additional lives, or exclusive features into your app.
+- [Publish Your App](/earn-money/payments/payments_publish.md): The Developer Platform team reviews and approves apps and their products before products can be sold.
+- [Test Payments](/earn-money/payments/payments_test.md): Use the payments sandbox environment to simulate payment transactions. All apps automatically start in the payments sandbox.
+- [Support This App](/earn-money/payments/support_this_app.md): You can ask users to contribute to your app’s development by adding the “support this app” feature. This allows users to support your app with Reddit Gold in exchange for some kind of award or recognition.
+
+## Guides
+
+- [Text Fallback](/capabilities/server/text_fallback.md): Text fallback lets you specify alternative text content for your interactive post, enabling:
+- [Template library](/examples/template-library.md): Here are some starter projects and templates for your Devvit projects
+- [AI Tools](/guides/ai.md): Devvit ships with first class support for common AI tools and patterns.
+- [Building Community Games](/guides/best-practices/community_games.md): Community games are multiplayer experiences that tap into Reddit’s unique social dynamics.
+- [Mod Resources](/guides/best-practices/mod_resources.md): Devvit apps are programs hosted and run on Reddit’s Developer Platform. Moderators can install an app on their subreddits to customize a community with bespoke mod tools, discussion bots, new governance tools, games, leaderboards, and more.
+- [Avoid Scroll Traps in Inline Apps](/guides/best-practices/scroll-traps.md): Inline apps appear inside the Reddit feed. Users must be able to scroll past
+- [FAQ](/guides/faq.md): Getting Started
+- [Building for Logged Out Players](/guides/logged-out-users.md): Reddit has a large base of logged out users who arrive through SEO, shared links, or directly on reddit.com. Your game should support logged out users so that you can reach a larger audience, and you can create a path to convert those users into Reddit accounts who can subscribe to your game and come back to play more.
+- [Migrating Blocks/Mod Tools to Devvit Web](/guides/migrate/devvit-singleton.md): This guide covers migrating traditional Devvit apps (using only Blocks or Mod Tools, without web views) to the Devvit Web setup. This is a straightforward migration that requires minimal changes.
+- [Migrating from Devvit Web Experimental to Devvit Web](/guides/migrate/devvit-web-experimental.md): This guide will help you migrate from the experimental version of Devvit Web to the official Devvit Web setup. You must complete this migration to publish and grow your app.
+- [Migrating from useWebView to Devvit Web](/guides/migrate/inline-web-view.md): This guide will migrate your legacy webview implementation (using useWebView inside of Blocks) to the official Devvit Web setup.
+- [Migrating apps from the Data API to Devvit](/guides/migrate/public-api.md): Reddit’s Developer Platform is the most modern way to build apps for Reddit. Devvit is now the primary way to develop Reddit extensions and ensures automations are more supported, secure, policy-compliant, and deeply integrated with Reddit. The platform includes many new features not available with the Public Data API, such as new custom menu actions, interactive posts, event-based triggers, Reddit-hosted storage, app settings for one-to-many configurations, and more.
+- [Migrating with AI](/guides/migrate/public-api/ai-migration.md): Use an AI coding assistant to port a PRAW or Async PRAW app to Devvit Web. You do not need to know TypeScript or
+- [Migrating from PRAW to Devvit Web](/guides/migrate/public-api/basics.md): Devvit Web is how
+- [Devvit CLI](/guides/tools/devvit_cli.md): The Devvit CLI enables you to create, upload, and manage your apps. It's the bridge between your codebase and Reddit.
+- [Testing Your App](/guides/tools/devvit_test.md): The @devvit/test package provides utilities to write unit and integration tests for your backend logic with Vitest.
+- [Logs and Debugging](/guides/tools/logs.md): Stream log events from your installed app to your command line to troubleshoot your app. You can see 5,000 logs or up to 7 days of log events.
+- [Multiple Developers](/guides/tools/multiple_developers.md): Multiple developers working on a single app can clash with each other's uploads during playtesting. This is due to the same playtest subreddit and app name being used.
+- [Playtest](/guides/tools/playtest.md): You can use playtest to see how your app works on Reddit.
+- [UI Simulator](/guides/tools/ui_simulator.md): Overview
+- [Vite Plugin](/guides/tools/vite.md): The Devvit Vite plugin is an opinionated (and 100% optional) plugin for Devvit Web that unifies your client and server builds into a single command using Vite's Environment API.
+
+## Resources
+
+- [A November to Remember - Developer Funds Edition](/blog.md): Last month saw an incredible jump in payouts from Reddit’s Developer Funds!
+- [Changelog](/changelog.md): While we're always shipping fixes and improvements, our team bundles new features, breaking changes, and other user-facing updates into regular releases.
+- [Devvit Rules](/devvit_rules.md): Welcome to Reddit’s Developer Platform (or “Devvit”)!
+
+## (hidden — matches source)
+
+- [HTTP Fetch](/capabilities/server/http-fetch.md): Make requests to allow-listed external domains.
+
+## (redirect to /capabilities/analytics/journeys-dashboard)
+
+- [Journeys Dashboard](/earn-money/payments/analytics/journeys-dashboard.md): Once you’ve implemented Devvit Journeys, you’ll be able to see how users are engaging with your app.  You’ll find Journeys analytics on the App Details page, under the Analytics tab.
+
+## (hidden — matches source)
+
+- [Build a Mod Tool - Three Strikes](/examples/tutorials/mod-tool.md)
+
+## API playground
+
+- [Devvit HTTP endpoints](/api-playground/overview.md): Every HTTP route a Devvit Web app exposes, and which of them the Reddit platform, your own client, or an external service calls.
+- [Call an external endpoint](/api-playground/external-endpoint.md): POST /external/{path} -- invoke an endpoint declared under server.externalEndpoints with a callback or managed token.
+- [Handle a menu action](/api-playground/menu-action.md): POST /internal/menu/{action} -- the request and response shapes Reddit sends when a user picks one of your menu actions.
+- [Handle a trigger event](/api-playground/trigger-event.md): POST /internal/on-{trigger} -- the request and response shapes Reddit sends when a subscribed event fires.
+- [Run a scheduled task](/api-playground/scheduled-task.md): POST /internal/scheduler/{task} -- the endpoint Reddit calls on your cron schedule.
+- [Handle a form submission](/api-playground/form-submit.md): POST /internal/form/{form} -- the endpoint Reddit calls when a user submits one of your forms.
+- [Call your app's own endpoint](/api-playground/app-endpoint.md): POST /api/{path} -- the conventional routes your app's web client calls.
+
+## API reference
+
+- [Generated API reference index](/llms-api.txt): Every `@devvit/public-api` and `@devvit/reddit` class, interface, enumeration, function, variable, and type alias.
+
+## Optional
+
+- [Full documentation corpus](/llms-full.txt)
