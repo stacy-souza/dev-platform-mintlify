@@ -1,0 +1,1608 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "luma",
+  "name": "Reddit for Developers",
+  "description": "Build powerful apps and immersive experiences to enhance the communities you love.",
+  "colors": {
+    "primary": "#FF4500",
+    "light": "#FE7C53",
+    "dark": "#D93A00"
+  },
+  "appearance": {
+    "default": "system"
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#0B1416"
+    }
+  },
+  "logo": {
+    "light": "/images/brand/logo.svg",
+    "dark": "/images/brand/logo.svg",
+    "href": "https://developers.reddit.com/"
+  },
+  "favicon": "/images/brand/devvit-icon.png",
+  "navigation": {
+    "products": [
+      {
+        "product": "Developer Platform",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "introduction/introduction",
+              "capabilities/devvit-web/devvit_web_overview",
+              "examples/app-showcase"
+            ]
+          },
+          {
+            "group": "Build Your App",
+            "pages": [
+              {
+                "group": "Build Games",
+                "expanded": false,
+                "pages": [
+                  "introduction/intro-games",
+                  "quickstart",
+                  "quickstart/quickstart-unity",
+                  "quickstart/quickstart-gamemaker"
+                ]
+              },
+              {
+                "group": "Build Mod Tools",
+                "expanded": false,
+                "pages": [
+                  "introduction/intro-mod-tools",
+                  "quickstart/quickstart-mod-tool"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Launch Your App",
+            "pages": [
+              "guides/launch/launch-guide",
+              "guides/launch/feature-guide",
+              "earn-money/reddit_developer_funds",
+              "resources/developer-funds-h2-2026"
+            ]
+          },
+          {
+            "group": "Capabilities",
+            "pages": [
+              {
+                "group": "Devvit Setup Overview",
+                "expanded": false,
+                "pages": [
+                  "capabilities/devvit-web/devvit_web_configuration",
+                  "capabilities/client/overview",
+                  "capabilities/server/overview"
+                ]
+              },
+              {
+                "group": "Analytics",
+                "expanded": false,
+                "pages": [
+                  "capabilities/analytics/devvit-journeys",
+                  "capabilities/analytics/journeys-dashboard",
+                  "capabilities/analytics/journeys-receipts",
+                  "capabilities/analytics/pn-analytics"
+                ]
+              },
+              {
+                "group": "Automation & Triggers",
+                "expanded": false,
+                "pages": [
+                  "capabilities/server/scheduler",
+                  "capabilities/server/triggers",
+                  "capabilities/server/global-triggers"
+                ]
+              },
+              "capabilities/server/external-endpoints",
+              {
+                "group": "HTTP Fetch",
+                "expanded": false,
+                "pages": [
+                  "capabilities/http-fetch",
+                  "capabilities/server/http-fetch-policy"
+                ]
+              },
+              {
+                "group": "In-App Purchases",
+                "expanded": false,
+                "pages": [
+                  "earn-money/payments/payments_overview",
+                  "earn-money/payments/payments_add",
+                  "earn-money/payments/payments_test",
+                  "earn-money/payments/payments_publish",
+                  "earn-money/payments/payments_manage",
+                  "earn-money/payments/support_this_app"
+                ]
+              },
+              {
+                "group": "Notifications",
+                "expanded": false,
+                "pages": [
+                  "capabilities/notifications/notifications-overview",
+                  "capabilities/notifications/pn-best-practices",
+                  "capabilities/notifications/adding-streaks"
+                ]
+              },
+              {
+                "group": "Post Creation & Navigation",
+                "expanded": false,
+                "pages": [
+                  "capabilities/interactive-posts/interactive_posts_overview",
+                  "capabilities/creating_custom_post",
+                  "capabilities/client/navigation",
+                  "capabilities/client/toasts",
+                  "capabilities/client/menu-actions",
+                  {
+                    "group": "Launch Screen",
+                    "expanded": false,
+                    "pages": [
+                      "capabilities/server/launch_screen_and_entry_points/launch_overview",
+                      "capabilities/server/launch_screen_and_entry_points/view_modes_entry_points",
+                      "capabilities/server/launch_screen_and_entry_points/launch_screen_customization",
+                      "capabilities/server/splash-screen",
+                      "capabilities/server/launch_screen_and_entry_points/splash_migration"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Realtime Apps",
+                "expanded": false,
+                "pages": [
+                  "capabilities/realtime/overview"
+                ]
+              },
+              {
+                "group": "Reddit API",
+                "expanded": false,
+                "pages": [
+                  "capabilities/server/reddit-api",
+                  "api/redditapi/RedditClient/classes/RedditClient",
+                  {
+                    "group": "Classes",
+                    "expanded": false,
+                    "pages": [
+                      "api/redditapi/models/classes/AuthorFlairSettings",
+                      "api/redditapi/models/classes/ButtonWidget",
+                      "api/redditapi/models/classes/CalendarWidget",
+                      "api/redditapi/models/classes/Comment",
+                      "api/redditapi/models/classes/CommunityListWidget",
+                      "api/redditapi/models/classes/CustomWidget",
+                      "api/redditapi/models/classes/Flair",
+                      "api/redditapi/models/classes/FlairTemplate",
+                      "api/redditapi/models/classes/ImageWidget",
+                      "api/redditapi/models/classes/Listing",
+                      "api/redditapi/models/classes/ModMailService",
+                      "api/redditapi/models/classes/ModNote",
+                      "api/redditapi/models/classes/Post",
+                      "api/redditapi/models/classes/PostFlairSettings",
+                      "api/redditapi/models/classes/PostFlairWidget",
+                      "api/redditapi/models/classes/PrivateMessage",
+                      "api/redditapi/models/classes/Rule",
+                      "api/redditapi/models/classes/Subreddit",
+                      "api/redditapi/models/classes/SubredditBannedUser",
+                      "api/redditapi/models/classes/SubredditContributorUser",
+                      "api/redditapi/models/classes/SubredditDescription",
+                      "api/redditapi/models/classes/SubredditModeratorUser",
+                      "api/redditapi/models/classes/SubredditMutedUser",
+                      "api/redditapi/models/classes/SubredditRulesWidget",
+                      "api/redditapi/models/classes/SubredditWikiBannedUser",
+                      "api/redditapi/models/classes/SubredditWikiContributorUser",
+                      "api/redditapi/models/classes/SubredditWikiSettings",
+                      "api/redditapi/models/classes/TextAreaWidget",
+                      "api/redditapi/models/classes/User",
+                      "api/redditapi/models/classes/Widget",
+                      "api/redditapi/models/classes/WikiPage",
+                      "api/redditapi/models/classes/WikiPageRevision",
+                      "api/redditapi/models/classes/WikiPageSettings"
+                    ]
+                  },
+                  {
+                    "group": "Interfaces",
+                    "expanded": false,
+                    "pages": [
+                      "api/redditapi/models/interfaces/ModAction"
+                    ]
+                  }
+                ]
+              },
+              "capabilities/server/settings-and-secrets",
+              {
+                "group": "Storing Data",
+                "expanded": false,
+                "pages": [
+                  "capabilities/server/blob-storage",
+                  "capabilities/server/redis",
+                  "capabilities/server/cache-helper",
+                  "capabilities/server/post-data"
+                ]
+              },
+              {
+                "group": "User Input",
+                "expanded": false,
+                "pages": [
+                  "capabilities/server/media-uploads",
+                  "capabilities/client/forms",
+                  "capabilities/server/userActions"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              {
+                "group": "Best Practices",
+                "expanded": false,
+                "pages": [
+                  "guides/best-practices/community_games",
+                  "guides/best-practices/scroll-traps",
+                  "guides/best-practices/mod_resources",
+                  "capabilities/server/text_fallback"
+                ]
+              },
+              {
+                "group": "Development Tools",
+                "expanded": false,
+                "pages": [
+                  "guides/tools/devvit_cli",
+                  "guides/tools/devvit_test",
+                  "guides/tools/logs",
+                  "guides/tools/playtest",
+                  "guides/tools/ui_simulator",
+                  "guides/tools/multiple_developers",
+                  "guides/tools/vite"
+                ]
+              },
+              {
+                "group": "Migration Guides",
+                "expanded": false,
+                "pages": [
+                  "guides/migrate/devvit-singleton",
+                  "guides/migrate/devvit-web-experimental",
+                  "guides/migrate/inline-web-view",
+                  {
+                    "group": "Migrating from PRAW to Devvit Web",
+                    "expanded": false,
+                    "pages": [
+                      "guides/migrate/public-api",
+                      "guides/migrate/public-api/basics",
+                      "guides/migrate/public-api/ai-migration"
+                    ]
+                  }
+                ]
+              },
+              "guides/logged-out-users",
+              "examples/template-library",
+              "guides/ai",
+              "guides/faq"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "blog",
+              "changelog",
+              "devvit_rules",
+              "resources/discord",
+              "resources/devvit-subreddit"
+            ]
+          },
+          {
+            "group": "API reference",
+            "pages": [
+              {
+                "group": "API playground",
+                "expanded": false,
+                "pages": [
+                  "api-playground/overview",
+                  "api-playground/external-endpoint",
+                  "api-playground/menu-action",
+                  "api-playground/trigger-event",
+                  "api-playground/scheduled-task",
+                  "api-playground/form-submit",
+                  "api-playground/app-endpoint"
+                ]
+              },
+              {
+                "group": "@devvit/public-api",
+                "expanded": false,
+                "pages": [
+                  "api/public-api",
+                  {
+                    "group": "Classes",
+                    "expanded": false,
+                    "pages": [
+                      "api/public-api/classes/AuthorFlairSettings",
+                      "api/public-api/classes/ButtonWidget",
+                      "api/public-api/classes/CalendarWidget",
+                      "api/public-api/classes/Comment",
+                      "api/public-api/classes/CommunityListWidget",
+                      "api/public-api/classes/CustomWidget",
+                      "api/public-api/classes/Devvit",
+                      "api/public-api/classes/Flair",
+                      "api/public-api/classes/FlairTemplate",
+                      "api/public-api/classes/ImageWidget",
+                      "api/public-api/classes/Listing",
+                      "api/public-api/classes/ModMailService",
+                      "api/public-api/classes/ModNote",
+                      "api/public-api/classes/Post",
+                      "api/public-api/classes/PostFlairSettings",
+                      "api/public-api/classes/PostFlairWidget",
+                      "api/public-api/classes/PrivateMessage",
+                      "api/public-api/classes/RedditAPIClient",
+                      "api/public-api/classes/RedditClient",
+                      "api/public-api/classes/RichTextBuilder",
+                      "api/public-api/classes/Rule",
+                      "api/public-api/classes/SettingsClient",
+                      "api/public-api/classes/Subreddit",
+                      "api/public-api/classes/SubredditBannedUser",
+                      "api/public-api/classes/SubredditContributorUser",
+                      "api/public-api/classes/SubredditDescription",
+                      "api/public-api/classes/SubredditModeratorUser",
+                      "api/public-api/classes/SubredditMutedUser",
+                      "api/public-api/classes/SubredditRulesWidget",
+                      "api/public-api/classes/SubredditWikiBannedUser",
+                      "api/public-api/classes/SubredditWikiContributorUser",
+                      "api/public-api/classes/SubredditWikiSettings",
+                      "api/public-api/classes/TextAreaWidget",
+                      "api/public-api/classes/User",
+                      "api/public-api/classes/Widget",
+                      "api/public-api/classes/WikiPage",
+                      "api/public-api/classes/WikiPageRevision",
+                      "api/public-api/classes/WikiPageSettings"
+                    ]
+                  },
+                  {
+                    "group": "Interfaces",
+                    "expanded": false,
+                    "pages": [
+                      "api/public-api/interfaces/BlockQuoteContext",
+                      "api/public-api/interfaces/CodeBlockContext",
+                      "api/public-api/interfaces/HeadingContext",
+                      "api/public-api/interfaces/ListContext",
+                      "api/public-api/interfaces/ListItemContext",
+                      "api/public-api/interfaces/ModAction",
+                      "api/public-api/interfaces/ParagraphContext",
+                      "api/public-api/interfaces/SpoilerContext",
+                      "api/public-api/interfaces/TableCellContext",
+                      "api/public-api/interfaces/TableContext",
+                      "api/public-api/interfaces/TableRowContext",
+                      "api/public-api/interfaces/TxClientLike"
+                    ]
+                  },
+                  {
+                    "group": "Enumerations",
+                    "expanded": false,
+                    "pages": [
+                      "api/public-api/enumerations/AboutLocations",
+                      "api/public-api/enumerations/DeletionReason",
+                      "api/public-api/enumerations/EntrypointHeight",
+                      "api/public-api/enumerations/EventSource",
+                      "api/public-api/enumerations/FlairType",
+                      "api/public-api/enumerations/FormattingFlag",
+                      "api/public-api/enumerations/ModMailActionType",
+                      "api/public-api/enumerations/ModMailConversationState",
+                      "api/public-api/enumerations/SettingScope",
+                      "api/public-api/enumerations/SocialLinkType",
+                      "api/public-api/enumerations/WikiPagePermissionLevel"
+                    ]
+                  },
+                  {
+                    "group": "Functions",
+                    "expanded": false,
+                    "pages": [
+                      "api/public-api/functions/getModerationLog",
+                      "api/public-api/functions/getSubredditInfoById",
+                      "api/public-api/functions/getSubredditInfoByName",
+                      "api/public-api/functions/getSubredditLeaderboard",
+                      "api/public-api/functions/getSubredditStyles",
+                      "api/public-api/functions/getVaultByAddress",
+                      "api/public-api/functions/getVaultByUserId"
+                    ]
+                  },
+                  {
+                    "group": "Variables",
+                    "expanded": false,
+                    "pages": [
+                      "api/public-api/variables/ANIMATED_IMAGE_ELEMENT",
+                      "api/public-api/variables/BLOCK_QUOTE_ELEMENT",
+                      "api/public-api/variables/CODE_BLOCK_ELEMENT",
+                      "api/public-api/variables/COLUMN_ALIGN_CENTER",
+                      "api/public-api/variables/COLUMN_ALIGN_LEFT",
+                      "api/public-api/variables/COLUMN_ALIGN_RIGHT",
+                      "api/public-api/variables/COMMENT_LINK_ELEMENT",
+                      "api/public-api/variables/EMBED_ELEMENT",
+                      "api/public-api/variables/GalleryMediaStatus",
+                      "api/public-api/variables/HEADING_ELEMENT",
+                      "api/public-api/variables/HORIZONTAL_RULE_ELEMENT",
+                      "api/public-api/variables/IMAGE_ELEMENT",
+                      "api/public-api/variables/LINEBREAK_ELEMENT",
+                      "api/public-api/variables/LINK_ELEMENT",
+                      "api/public-api/variables/LIST_ELEMENT",
+                      "api/public-api/variables/LIST_ITEM_ELEMENT",
+                      "api/public-api/variables/PARAGRAPH_ELEMENT",
+                      "api/public-api/variables/POST_LINK_ELEMENT",
+                      "api/public-api/variables/RAW_TEXT_ELEMENT",
+                      "api/public-api/variables/SPOILER_TEXT_ELEMENT",
+                      "api/public-api/variables/SUBREDDIT_LINK_ELEMENT",
+                      "api/public-api/variables/TABLE_ELEMENT",
+                      "api/public-api/variables/TEXT_ELEMENT",
+                      "api/public-api/variables/USER_LINK_ELEMENT",
+                      "api/public-api/variables/USER_MENTION_ELEMENT",
+                      "api/public-api/variables/VIDEO_ELEMENT",
+                      "api/public-api/variables/reddit"
+                    ]
+                  },
+                  {
+                    "group": "Type aliases",
+                    "expanded": false,
+                    "pages": [
+                      {
+                        "group": "A\u2013C",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/type-aliases/AboutSubredditTypes",
+                          "api/public-api/type-aliases/AddRemovalNoteOptions",
+                          "api/public-api/type-aliases/AddWidgetData",
+                          "api/public-api/type-aliases/AllowableFlairContent",
+                          "api/public-api/type-aliases/AnimatedImage",
+                          "api/public-api/type-aliases/AppInstall",
+                          "api/public-api/type-aliases/AppInstallDefinition",
+                          "api/public-api/type-aliases/AppUpgrade",
+                          "api/public-api/type-aliases/AppUpgradeDefinition",
+                          "api/public-api/type-aliases/AutomoderatorFilterComment",
+                          "api/public-api/type-aliases/AutomoderatorFilterPost",
+                          "api/public-api/type-aliases/BackgroundImagePosition",
+                          "api/public-api/type-aliases/BanUserOptions",
+                          "api/public-api/type-aliases/BanWikiContributorOptions",
+                          "api/public-api/type-aliases/BannerHeight",
+                          "api/public-api/type-aliases/BaseContext",
+                          "api/public-api/type-aliases/BaseField",
+                          "api/public-api/type-aliases/BitfieldCommand",
+                          "api/public-api/type-aliases/BlockQuote",
+                          "api/public-api/type-aliases/BlockQuoteContainer",
+                          "api/public-api/type-aliases/BlockQuoteNode",
+                          "api/public-api/type-aliases/BlockQuoteOptions",
+                          "api/public-api/type-aliases/BooleanField",
+                          "api/public-api/type-aliases/CancelJob",
+                          "api/public-api/type-aliases/CodeBlock",
+                          "api/public-api/type-aliases/CodeBlockContainer",
+                          "api/public-api/type-aliases/CodeBlockOptions",
+                          "api/public-api/type-aliases/ColumnAlignment",
+                          "api/public-api/type-aliases/CommentCreate",
+                          "api/public-api/type-aliases/CommentCreateDefinition",
+                          "api/public-api/type-aliases/CommentDelete",
+                          "api/public-api/type-aliases/CommentDeleteDefinition",
+                          "api/public-api/type-aliases/CommentLink",
+                          "api/public-api/type-aliases/CommentLinkOptions",
+                          "api/public-api/type-aliases/CommentMediaTypes",
+                          "api/public-api/type-aliases/CommentReport",
+                          "api/public-api/type-aliases/CommentReportDefinition",
+                          "api/public-api/type-aliases/CommentSort",
+                          "api/public-api/type-aliases/CommentSubmissionOptions",
+                          "api/public-api/type-aliases/CommentSubmit",
+                          "api/public-api/type-aliases/CommentSubmitDefinition",
+                          "api/public-api/type-aliases/CommentUpdate",
+                          "api/public-api/type-aliases/CommentUpdateDefinition",
+                          "api/public-api/type-aliases/CommonFlair",
+                          "api/public-api/type-aliases/CommonSubmitPostOptions",
+                          "api/public-api/type-aliases/CommunityNameFormat",
+                          "api/public-api/type-aliases/Configuration",
+                          "api/public-api/type-aliases/Context",
+                          "api/public-api/type-aliases/ContextAPIClients",
+                          "api/public-api/type-aliases/ContextDebugInfo",
+                          "api/public-api/type-aliases/ConversationData",
+                          "api/public-api/type-aliases/ConversationResponse",
+                          "api/public-api/type-aliases/ConversationStateFilter",
+                          "api/public-api/type-aliases/ConversationUserData",
+                          "api/public-api/type-aliases/CreateFlairTemplateOptions",
+                          "api/public-api/type-aliases/CreateModNoteOptions",
+                          "api/public-api/type-aliases/CreateRelationshipOptions",
+                          "api/public-api/type-aliases/CreateRuleOptions",
+                          "api/public-api/type-aliases/CreateWikiPageOptions",
+                          "api/public-api/type-aliases/CrosspostOptions",
+                          "api/public-api/type-aliases/CrowdControlLevel",
+                          "api/public-api/type-aliases/CustomPostRichTextFallback",
+                          "api/public-api/type-aliases/CustomPostTextFallbackOptions",
+                          "api/public-api/type-aliases/CustomizationFlag"
+                        ]
+                      },
+                      {
+                        "group": "D\u2013G",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/type-aliases/Data",
+                          "api/public-api/type-aliases/DeleteNotesOptions",
+                          "api/public-api/type-aliases/DevvitDebug",
+                          "api/public-api/type-aliases/Document",
+                          "api/public-api/type-aliases/DocumentNode",
+                          "api/public-api/type-aliases/EditCommentOptions",
+                          "api/public-api/type-aliases/EditFlairTemplateOptions",
+                          "api/public-api/type-aliases/Embed",
+                          "api/public-api/type-aliases/EmbedContainer",
+                          "api/public-api/type-aliases/EmbedOptions",
+                          "api/public-api/type-aliases/EnrichedThumbnail",
+                          "api/public-api/type-aliases/FilterOptions",
+                          "api/public-api/type-aliases/FlairBackgroundColor",
+                          "api/public-api/type-aliases/FlairSettings",
+                          "api/public-api/type-aliases/FlairTextColor",
+                          "api/public-api/type-aliases/Form",
+                          "api/public-api/type-aliases/FormDefinition",
+                          "api/public-api/type-aliases/FormField",
+                          "api/public-api/type-aliases/FormFieldGroup",
+                          "api/public-api/type-aliases/FormFunction",
+                          "api/public-api/type-aliases/FormKey",
+                          "api/public-api/type-aliases/FormOnSubmitEvent",
+                          "api/public-api/type-aliases/FormOnSubmitEventHandler",
+                          "api/public-api/type-aliases/FormToFormValues",
+                          "api/public-api/type-aliases/FormValues",
+                          "api/public-api/type-aliases/FormatOptions",
+                          "api/public-api/type-aliases/FormatRange",
+                          "api/public-api/type-aliases/FormattingSpecification",
+                          "api/public-api/type-aliases/GalleryMedia",
+                          "api/public-api/type-aliases/GalleryMediaStatus",
+                          "api/public-api/type-aliases/GetBestPostsOptions",
+                          "api/public-api/type-aliases/GetCommentsByUserOptions",
+                          "api/public-api/type-aliases/GetCommentsOptions",
+                          "api/public-api/type-aliases/GetConversationResponse",
+                          "api/public-api/type-aliases/GetConversationsRequest",
+                          "api/public-api/type-aliases/GetConversationsResponse",
+                          "api/public-api/type-aliases/GetDuplicatesOptions",
+                          "api/public-api/type-aliases/GetHotPostsOptions",
+                          "api/public-api/type-aliases/GetModNotesOptions",
+                          "api/public-api/type-aliases/GetModerationLogOptions",
+                          "api/public-api/type-aliases/GetPageRevisionsOptions",
+                          "api/public-api/type-aliases/GetPostsByUserOptions",
+                          "api/public-api/type-aliases/GetPostsOptions",
+                          "api/public-api/type-aliases/GetPostsOptionsWithTimeframe",
+                          "api/public-api/type-aliases/GetPrivateMessagesOptions",
+                          "api/public-api/type-aliases/GetSortedPostsOptions",
+                          "api/public-api/type-aliases/GetSubredditUsersByTypeOptions",
+                          "api/public-api/type-aliases/GetSubscribedSubredditsForCurrentUserOptions",
+                          "api/public-api/type-aliases/GetUserFlairBySubredditOptions",
+                          "api/public-api/type-aliases/GetUserFlairBySubredditResponse",
+                          "api/public-api/type-aliases/GetUserFlairOptions",
+                          "api/public-api/type-aliases/GetUserOverviewOptions",
+                          "api/public-api/type-aliases/GetWikiPageOptions"
+                        ]
+                      },
+                      {
+                        "group": "H\u2013M",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/type-aliases/Heading",
+                          "api/public-api/type-aliases/HeadingContainer",
+                          "api/public-api/type-aliases/HeadingLevel",
+                          "api/public-api/type-aliases/HeadingOptions",
+                          "api/public-api/type-aliases/HeadingText",
+                          "api/public-api/type-aliases/HorizontalRule",
+                          "api/public-api/type-aliases/HorizontalRuleContainer",
+                          "api/public-api/type-aliases/Image",
+                          "api/public-api/type-aliases/ImageContainer",
+                          "api/public-api/type-aliases/ImageField",
+                          "api/public-api/type-aliases/ImageOptions",
+                          "api/public-api/type-aliases/ImagePosition",
+                          "api/public-api/type-aliases/InternalSetPostFlairOptions",
+                          "api/public-api/type-aliases/JSONArray",
+                          "api/public-api/type-aliases/JSONObject",
+                          "api/public-api/type-aliases/JSONPrimitive",
+                          "api/public-api/type-aliases/JSONValue",
+                          "api/public-api/type-aliases/JobContext",
+                          "api/public-api/type-aliases/LineBreak",
+                          "api/public-api/type-aliases/LineBreakContainer",
+                          "api/public-api/type-aliases/Link",
+                          "api/public-api/type-aliases/LinkContainer",
+                          "api/public-api/type-aliases/LinkFlair",
+                          "api/public-api/type-aliases/LinkOptions",
+                          "api/public-api/type-aliases/List",
+                          "api/public-api/type-aliases/ListChild",
+                          "api/public-api/type-aliases/ListContainer",
+                          "api/public-api/type-aliases/ListItem",
+                          "api/public-api/type-aliases/ListItemContainer",
+                          "api/public-api/type-aliases/ListOptions",
+                          "api/public-api/type-aliases/ListingFetchOptions",
+                          "api/public-api/type-aliases/ListingFetchResponse",
+                          "api/public-api/type-aliases/Media",
+                          "api/public-api/type-aliases/MediaAsset",
+                          "api/public-api/type-aliases/MediaAssetId",
+                          "api/public-api/type-aliases/MediaOptions",
+                          "api/public-api/type-aliases/MediaPlugin",
+                          "api/public-api/type-aliases/MentionInCommentCreate",
+                          "api/public-api/type-aliases/MentionInCommentCreateDefinition",
+                          "api/public-api/type-aliases/MenuItem",
+                          "api/public-api/type-aliases/MenuItemLocation",
+                          "api/public-api/type-aliases/MenuItemOnPressEvent",
+                          "api/public-api/type-aliases/MenuItemPostFilter",
+                          "api/public-api/type-aliases/MenuItemUserType",
+                          "api/public-api/type-aliases/MenuPosition",
+                          "api/public-api/type-aliases/MessageData",
+                          "api/public-api/type-aliases/Metadata",
+                          "api/public-api/type-aliases/ModActionData",
+                          "api/public-api/type-aliases/ModActionDefinition",
+                          "api/public-api/type-aliases/ModActionTarget",
+                          "api/public-api/type-aliases/ModActionTrigger",
+                          "api/public-api/type-aliases/ModActionType",
+                          "api/public-api/type-aliases/ModLogOptions",
+                          "api/public-api/type-aliases/ModMailDefinition",
+                          "api/public-api/type-aliases/ModMailTrigger",
+                          "api/public-api/type-aliases/ModNoteType",
+                          "api/public-api/type-aliases/ModeratorPermission",
+                          "api/public-api/type-aliases/ModeratorReport",
+                          "api/public-api/type-aliases/MoreObject",
+                          "api/public-api/type-aliases/MultiTriggerDefinition"
+                        ]
+                      },
+                      {
+                        "group": "N\u2013R",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/type-aliases/NumberField",
+                          "api/public-api/type-aliases/ObfuscationReason",
+                          "api/public-api/type-aliases/Oembed",
+                          "api/public-api/type-aliases/OnAutomoderatorFilterCommentDefinition",
+                          "api/public-api/type-aliases/OnAutomoderatorFilterPostDefinition",
+                          "api/public-api/type-aliases/OnTriggerRequest",
+                          "api/public-api/type-aliases/OnValidateHandler",
+                          "api/public-api/type-aliases/Paragraph",
+                          "api/public-api/type-aliases/ParagraphContainer",
+                          "api/public-api/type-aliases/ParagraphContentNode",
+                          "api/public-api/type-aliases/ParagraphField",
+                          "api/public-api/type-aliases/PartialJSONArray",
+                          "api/public-api/type-aliases/PartialJSONObject",
+                          "api/public-api/type-aliases/PartialJSONPrimitive",
+                          "api/public-api/type-aliases/PartialJSONValue",
+                          "api/public-api/type-aliases/Participant",
+                          "api/public-api/type-aliases/PlainText",
+                          "api/public-api/type-aliases/PluginSettings",
+                          "api/public-api/type-aliases/PollData",
+                          "api/public-api/type-aliases/PollOption",
+                          "api/public-api/type-aliases/PositionedImagePosition",
+                          "api/public-api/type-aliases/PostCapabilities",
+                          "api/public-api/type-aliases/PostCreate",
+                          "api/public-api/type-aliases/PostCreateDefinition",
+                          "api/public-api/type-aliases/PostDelete",
+                          "api/public-api/type-aliases/PostDeleteDefinition",
+                          "api/public-api/type-aliases/PostFlairUpdate",
+                          "api/public-api/type-aliases/PostFlairUpdateDefinition",
+                          "api/public-api/type-aliases/PostLink",
+                          "api/public-api/type-aliases/PostLinkOptions",
+                          "api/public-api/type-aliases/PostNsfwUpdate",
+                          "api/public-api/type-aliases/PostNsfwUpdateDefinition",
+                          "api/public-api/type-aliases/PostReport",
+                          "api/public-api/type-aliases/PostReportDefinition",
+                          "api/public-api/type-aliases/PostSpoilerUpdate",
+                          "api/public-api/type-aliases/PostSpoilerUpdateDefinition",
+                          "api/public-api/type-aliases/PostSubmit",
+                          "api/public-api/type-aliases/PostSubmitDefinition",
+                          "api/public-api/type-aliases/PostSuggestedCommentSort",
+                          "api/public-api/type-aliases/PostTextOptions",
+                          "api/public-api/type-aliases/PostType",
+                          "api/public-api/type-aliases/PostUpdate",
+                          "api/public-api/type-aliases/PostUpdateDefinition",
+                          "api/public-api/type-aliases/PrefixedRedditLinkOptions",
+                          "api/public-api/type-aliases/RawText",
+                          "api/public-api/type-aliases/RawTextContainer",
+                          "api/public-api/type-aliases/RawTextOptions",
+                          "api/public-api/type-aliases/RedditLink",
+                          "api/public-api/type-aliases/RedditLinkContainer",
+                          "api/public-api/type-aliases/RedditPermalinkOptions",
+                          "api/public-api/type-aliases/RedditVideo",
+                          "api/public-api/type-aliases/RedisClient",
+                          "api/public-api/type-aliases/RelationshipType",
+                          "api/public-api/type-aliases/RemovalReason",
+                          "api/public-api/type-aliases/RemoveRelationshipOptions",
+                          "api/public-api/type-aliases/ReplyToCommentOptions",
+                          "api/public-api/type-aliases/RichTextContent",
+                          "api/public-api/type-aliases/RunJob"
+                        ]
+                      },
+                      {
+                        "group": "S\u2013T",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/type-aliases/ScheduledCronJob",
+                          "api/public-api/type-aliases/ScheduledCronJobOptions",
+                          "api/public-api/type-aliases/ScheduledJob",
+                          "api/public-api/type-aliases/ScheduledJobEvent",
+                          "api/public-api/type-aliases/ScheduledJobHandler",
+                          "api/public-api/type-aliases/ScheduledJobOptions",
+                          "api/public-api/type-aliases/ScheduledJobType",
+                          "api/public-api/type-aliases/Scheduler",
+                          "api/public-api/type-aliases/SearchPostsOptions",
+                          "api/public-api/type-aliases/SecureMedia",
+                          "api/public-api/type-aliases/SelectField",
+                          "api/public-api/type-aliases/SendPrivateMessageAsSubredditOptions",
+                          "api/public-api/type-aliases/SendPrivateMessageOptions",
+                          "api/public-api/type-aliases/SetCustomPostTextFallbackOptions",
+                          "api/public-api/type-aliases/SetFlairOptions",
+                          "api/public-api/type-aliases/SetOptions",
+                          "api/public-api/type-aliases/SetPostFlairOptions",
+                          "api/public-api/type-aliases/SetUserFlairBatchConfig",
+                          "api/public-api/type-aliases/SetUserFlairOptions",
+                          "api/public-api/type-aliases/SettingScopeType",
+                          "api/public-api/type-aliases/SettingsFormField",
+                          "api/public-api/type-aliases/SettingsFormFieldGroup",
+                          "api/public-api/type-aliases/SettingsFormFieldValidatorEvent",
+                          "api/public-api/type-aliases/SettingsValues",
+                          "api/public-api/type-aliases/SpoilerContainer",
+                          "api/public-api/type-aliases/SpoilerText",
+                          "api/public-api/type-aliases/StringField",
+                          "api/public-api/type-aliases/SubmitCustomPostOptions",
+                          "api/public-api/type-aliases/SubmitLinkOptions",
+                          "api/public-api/type-aliases/SubmitMediaOptions",
+                          "api/public-api/type-aliases/SubmitPostOptions",
+                          "api/public-api/type-aliases/SubmitSelfPostOptions",
+                          "api/public-api/type-aliases/SubredditData",
+                          "api/public-api/type-aliases/SubredditInfo",
+                          "api/public-api/type-aliases/SubredditLeaderboard",
+                          "api/public-api/type-aliases/SubredditLeaderboardSummary",
+                          "api/public-api/type-aliases/SubredditLeaderboardSummaryRow",
+                          "api/public-api/type-aliases/SubredditLink",
+                          "api/public-api/type-aliases/SubredditLinkOptions",
+                          "api/public-api/type-aliases/SubredditOptions",
+                          "api/public-api/type-aliases/SubredditSettings",
+                          "api/public-api/type-aliases/SubredditSettingsOptions",
+                          "api/public-api/type-aliases/SubredditStyles",
+                          "api/public-api/type-aliases/SubredditType",
+                          "api/public-api/type-aliases/Table",
+                          "api/public-api/type-aliases/TableCell",
+                          "api/public-api/type-aliases/TableCellContainer",
+                          "api/public-api/type-aliases/TableCellText",
+                          "api/public-api/type-aliases/TableContainer",
+                          "api/public-api/type-aliases/TableContentContainer",
+                          "api/public-api/type-aliases/TableHeaderCell",
+                          "api/public-api/type-aliases/TableHeaderCellContext",
+                          "api/public-api/type-aliases/TableHeaderCellOptions",
+                          "api/public-api/type-aliases/TableHeaderRow",
+                          "api/public-api/type-aliases/TableRow",
+                          "api/public-api/type-aliases/Text",
+                          "api/public-api/type-aliases/TextContainer",
+                          "api/public-api/type-aliases/TextNode",
+                          "api/public-api/type-aliases/TextOptions",
+                          "api/public-api/type-aliases/Toast",
+                          "api/public-api/type-aliases/TriggerContext",
+                          "api/public-api/type-aliases/TriggerDefinition",
+                          "api/public-api/type-aliases/TriggerEvent",
+                          "api/public-api/type-aliases/TriggerEventType",
+                          "api/public-api/type-aliases/TriggerOnEventHandler",
+                          "api/public-api/type-aliases/Trophy"
+                        ]
+                      },
+                      {
+                        "group": "U\u2013Z",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/type-aliases/UIClient",
+                          "api/public-api/type-aliases/UnreadCountResponse",
+                          "api/public-api/type-aliases/UpdatePageSettingsOptions",
+                          "api/public-api/type-aliases/UpdateRuleOptions",
+                          "api/public-api/type-aliases/UpdateWidgetData",
+                          "api/public-api/type-aliases/UpdateWikiPageOptions",
+                          "api/public-api/type-aliases/UploadMediaOptions",
+                          "api/public-api/type-aliases/UrlString",
+                          "api/public-api/type-aliases/UserFlair",
+                          "api/public-api/type-aliases/UserFlairPageOptions",
+                          "api/public-api/type-aliases/UserLink",
+                          "api/public-api/type-aliases/UserLinkOptions",
+                          "api/public-api/type-aliases/UserMention",
+                          "api/public-api/type-aliases/UserMentionOptions",
+                          "api/public-api/type-aliases/UserNote",
+                          "api/public-api/type-aliases/UserNoteLabel",
+                          "api/public-api/type-aliases/UserSocialLink",
+                          "api/public-api/type-aliases/ValidatedBooleanField",
+                          "api/public-api/type-aliases/ValidatedFormField",
+                          "api/public-api/type-aliases/ValidatedNumberField",
+                          "api/public-api/type-aliases/ValidatedParagraphField",
+                          "api/public-api/type-aliases/ValidatedSelectField",
+                          "api/public-api/type-aliases/ValidatedStringField",
+                          "api/public-api/type-aliases/Vault",
+                          "api/public-api/type-aliases/Video",
+                          "api/public-api/type-aliases/VideoContainer",
+                          "api/public-api/type-aliases/VideoOptions",
+                          "api/public-api/type-aliases/Visibility",
+                          "api/public-api/type-aliases/WikiEditMode",
+                          "api/public-api/type-aliases/WikiPageRevisionId",
+                          "api/public-api/type-aliases/WikiVersion",
+                          "api/public-api/type-aliases/WikiVersionOptions",
+                          "api/public-api/type-aliases/WithUserData",
+                          "api/public-api/type-aliases/ZMember",
+                          "api/public-api/type-aliases/ZRangeByScoreOptions",
+                          "api/public-api/type-aliases/ZRangeOptions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Devvit namespace",
+                    "expanded": false,
+                    "pages": [
+                      "api/public-api/@devvit/namespaces/Devvit",
+                      {
+                        "group": "Type aliases",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/@devvit/namespaces/Devvit/type-aliases/Context"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "EventTypes namespace",
+                    "expanded": false,
+                    "pages": [
+                      "api/public-api/@devvit/namespaces/EventTypes",
+                      {
+                        "group": "Interfaces",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/AccountDelete",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/AppInstall",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/AppUpgrade",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/AutomoderatorFilterComment",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/AutomoderatorFilterPost",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/CommentApprove",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/CommentCreate",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/CommentDelete",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/CommentReport",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/CommentSubmit",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/CommentUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/MentionInCommentCreate",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostApprove",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostCreate",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostDelete",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostFlairUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostNsfwUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostReport",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostSpoilerUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostSubmit",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/PostUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/SubredditSubscribe",
+                          "api/public-api/@devvit/namespaces/EventTypes/interfaces/Vote"
+                        ]
+                      },
+                      {
+                        "group": "Enumerations",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/@devvit/namespaces/EventTypes/enumerations/DeletionReason",
+                          "api/public-api/@devvit/namespaces/EventTypes/enumerations/EventSource"
+                        ]
+                      },
+                      {
+                        "group": "Functions",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/@devvit/namespaces/EventTypes/functions/deletionReasonFromJSON",
+                          "api/public-api/@devvit/namespaces/EventTypes/functions/deletionReasonToJSON",
+                          "api/public-api/@devvit/namespaces/EventTypes/functions/eventSourceFromJSON",
+                          "api/public-api/@devvit/namespaces/EventTypes/functions/eventSourceToJSON"
+                        ]
+                      },
+                      {
+                        "group": "Variables",
+                        "expanded": false,
+                        "pages": [
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/AccountDelete",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/AppInstall",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/AppUpgrade",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/AutomoderatorFilterComment",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/AutomoderatorFilterPost",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/CommentApprove",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/CommentCreate",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/CommentDelete",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/CommentReport",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/CommentSubmit",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/CommentUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/MentionInCommentCreate",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostApprove",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostCreate",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostDelete",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostFlairUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostNsfwUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostReport",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostSpoilerUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostSubmit",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/PostUpdate",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/SubredditSubscribe",
+                          "api/public-api/@devvit/namespaces/EventTypes/variables/Vote"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "@devvit/reddit",
+                "expanded": false,
+                "pages": [
+                  "api/redditapi",
+                  {
+                    "group": "RedditClient",
+                    "expanded": false,
+                    "pages": [
+                      "api/redditapi/RedditClient",
+                      {
+                        "group": "Type aliases",
+                        "expanded": false,
+                        "pages": [
+                          "api/redditapi/RedditClient/type-aliases/CustomPostStyles",
+                          "api/redditapi/RedditClient/type-aliases/InviteModeratorOptions",
+                          "api/redditapi/RedditClient/type-aliases/MuteUserOptions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "models",
+                    "expanded": false,
+                    "pages": [
+                      "api/redditapi/models",
+                      {
+                        "group": "Enumerations",
+                        "expanded": false,
+                        "pages": [
+                          "api/redditapi/models/enumerations/AboutLocations",
+                          "api/redditapi/models/enumerations/FlairType",
+                          "api/redditapi/models/enumerations/ModMailActionType",
+                          "api/redditapi/models/enumerations/ModMailConversationState",
+                          "api/redditapi/models/enumerations/SocialLinkType",
+                          "api/redditapi/models/enumerations/WikiPagePermissionLevel"
+                        ]
+                      },
+                      {
+                        "group": "Functions",
+                        "expanded": false,
+                        "pages": [
+                          "api/redditapi/models/functions/getModerationLog",
+                          "api/redditapi/models/functions/getSubredditInfoById",
+                          "api/redditapi/models/functions/getSubredditInfoByName",
+                          "api/redditapi/models/functions/getSubredditLeaderboard",
+                          "api/redditapi/models/functions/getSubredditStyles",
+                          "api/redditapi/models/functions/getVaultByAddress",
+                          "api/redditapi/models/functions/getVaultByUserId"
+                        ]
+                      },
+                      {
+                        "group": "Variables",
+                        "expanded": false,
+                        "pages": [
+                          "api/redditapi/models/variables/GalleryMediaStatus"
+                        ]
+                      },
+                      {
+                        "group": "Type aliases",
+                        "expanded": false,
+                        "pages": [
+                          {
+                            "group": "A\u2013G",
+                            "expanded": false,
+                            "pages": [
+                              "api/redditapi/models/type-aliases/AboutSubredditTypes",
+                              "api/redditapi/models/type-aliases/AddRemovalNoteOptions",
+                              "api/redditapi/models/type-aliases/AddWidgetData",
+                              "api/redditapi/models/type-aliases/AllowableFlairContent",
+                              "api/redditapi/models/type-aliases/BackgroundImagePosition",
+                              "api/redditapi/models/type-aliases/BanUserOptions",
+                              "api/redditapi/models/type-aliases/BanWikiContributorOptions",
+                              "api/redditapi/models/type-aliases/BannerHeight",
+                              "api/redditapi/models/type-aliases/CommentMediaTypes",
+                              "api/redditapi/models/type-aliases/CommentSort",
+                              "api/redditapi/models/type-aliases/CommentSubmissionOptions",
+                              "api/redditapi/models/type-aliases/CommonFlair",
+                              "api/redditapi/models/type-aliases/CommonSubmitPostOptions",
+                              "api/redditapi/models/type-aliases/CommunityNameFormat",
+                              "api/redditapi/models/type-aliases/ConversationData",
+                              "api/redditapi/models/type-aliases/ConversationResponse",
+                              "api/redditapi/models/type-aliases/ConversationStateFilter",
+                              "api/redditapi/models/type-aliases/ConversationUserData",
+                              "api/redditapi/models/type-aliases/CreateFlairTemplateOptions",
+                              "api/redditapi/models/type-aliases/CreateModNoteOptions",
+                              "api/redditapi/models/type-aliases/CreateRelationshipOptions",
+                              "api/redditapi/models/type-aliases/CreateRuleOptions",
+                              "api/redditapi/models/type-aliases/CreateWikiPageOptions",
+                              "api/redditapi/models/type-aliases/CrosspostOptions",
+                              "api/redditapi/models/type-aliases/CrowdControlLevel",
+                              "api/redditapi/models/type-aliases/CustomPostRichTextFallback",
+                              "api/redditapi/models/type-aliases/CustomPostTextFallbackOptions",
+                              "api/redditapi/models/type-aliases/CustomizationFlag",
+                              "api/redditapi/models/type-aliases/DeleteNotesOptions",
+                              "api/redditapi/models/type-aliases/EditCommentOptions",
+                              "api/redditapi/models/type-aliases/EditFlairTemplateOptions",
+                              "api/redditapi/models/type-aliases/EnrichedThumbnail",
+                              "api/redditapi/models/type-aliases/FlairBackgroundColor",
+                              "api/redditapi/models/type-aliases/FlairSettings",
+                              "api/redditapi/models/type-aliases/FlairTextColor",
+                              "api/redditapi/models/type-aliases/GalleryMedia",
+                              "api/redditapi/models/type-aliases/GalleryMediaStatus",
+                              "api/redditapi/models/type-aliases/GetBestPostsOptions",
+                              "api/redditapi/models/type-aliases/GetCommentsByUserOptions",
+                              "api/redditapi/models/type-aliases/GetCommentsOptions",
+                              "api/redditapi/models/type-aliases/GetConversationResponse",
+                              "api/redditapi/models/type-aliases/GetConversationsRequest",
+                              "api/redditapi/models/type-aliases/GetConversationsResponse",
+                              "api/redditapi/models/type-aliases/GetDuplicatesOptions",
+                              "api/redditapi/models/type-aliases/GetHotPostsOptions",
+                              "api/redditapi/models/type-aliases/GetModNotesOptions",
+                              "api/redditapi/models/type-aliases/GetModerationLogOptions",
+                              "api/redditapi/models/type-aliases/GetPageRevisionsOptions",
+                              "api/redditapi/models/type-aliases/GetPostsByUserOptions",
+                              "api/redditapi/models/type-aliases/GetPostsOptions",
+                              "api/redditapi/models/type-aliases/GetPostsOptionsWithTimeframe",
+                              "api/redditapi/models/type-aliases/GetPrivateMessagesOptions",
+                              "api/redditapi/models/type-aliases/GetSortedPostsOptions",
+                              "api/redditapi/models/type-aliases/GetSubredditUsersByTypeOptions",
+                              "api/redditapi/models/type-aliases/GetSubscribedSubredditsForCurrentUserOptions",
+                              "api/redditapi/models/type-aliases/GetUserFlairBySubredditOptions",
+                              "api/redditapi/models/type-aliases/GetUserFlairBySubredditResponse",
+                              "api/redditapi/models/type-aliases/GetUserFlairOptions",
+                              "api/redditapi/models/type-aliases/GetUserOverviewOptions",
+                              "api/redditapi/models/type-aliases/GetWikiPageOptions"
+                            ]
+                          },
+                          {
+                            "group": "I\u2013S",
+                            "expanded": false,
+                            "pages": [
+                              "api/redditapi/models/type-aliases/ImagePosition",
+                              "api/redditapi/models/type-aliases/InternalSetPostFlairOptions",
+                              "api/redditapi/models/type-aliases/LinkFlair",
+                              "api/redditapi/models/type-aliases/ListingFetchOptions",
+                              "api/redditapi/models/type-aliases/ListingFetchResponse",
+                              "api/redditapi/models/type-aliases/MenuPosition",
+                              "api/redditapi/models/type-aliases/MessageData",
+                              "api/redditapi/models/type-aliases/ModActionData",
+                              "api/redditapi/models/type-aliases/ModActionTarget",
+                              "api/redditapi/models/type-aliases/ModActionType",
+                              "api/redditapi/models/type-aliases/ModLogOptions",
+                              "api/redditapi/models/type-aliases/ModNoteType",
+                              "api/redditapi/models/type-aliases/ModeratorPermission",
+                              "api/redditapi/models/type-aliases/ModeratorReport",
+                              "api/redditapi/models/type-aliases/MoreObject",
+                              "api/redditapi/models/type-aliases/Oembed",
+                              "api/redditapi/models/type-aliases/Participant",
+                              "api/redditapi/models/type-aliases/PollData",
+                              "api/redditapi/models/type-aliases/PollOption",
+                              "api/redditapi/models/type-aliases/PositionedImagePosition",
+                              "api/redditapi/models/type-aliases/PostCapabilities",
+                              "api/redditapi/models/type-aliases/PostSuggestedCommentSort",
+                              "api/redditapi/models/type-aliases/PostTextOptions",
+                              "api/redditapi/models/type-aliases/PostType",
+                              "api/redditapi/models/type-aliases/RedditVideo",
+                              "api/redditapi/models/type-aliases/RelationshipType",
+                              "api/redditapi/models/type-aliases/RemovalReason",
+                              "api/redditapi/models/type-aliases/RemoveRelationshipOptions",
+                              "api/redditapi/models/type-aliases/ReplyToCommentOptions",
+                              "api/redditapi/models/type-aliases/SearchPostsOptions",
+                              "api/redditapi/models/type-aliases/SecureMedia",
+                              "api/redditapi/models/type-aliases/SendPrivateMessageAsSubredditOptions",
+                              "api/redditapi/models/type-aliases/SendPrivateMessageOptions",
+                              "api/redditapi/models/type-aliases/SetCustomPostTextFallbackOptions",
+                              "api/redditapi/models/type-aliases/SetFlairOptions",
+                              "api/redditapi/models/type-aliases/SetPostFlairOptions",
+                              "api/redditapi/models/type-aliases/SetUserFlairBatchConfig",
+                              "api/redditapi/models/type-aliases/SetUserFlairOptions",
+                              "api/redditapi/models/type-aliases/SubmitCustomPostOptions",
+                              "api/redditapi/models/type-aliases/SubmitLinkOptions",
+                              "api/redditapi/models/type-aliases/SubmitMediaOptions",
+                              "api/redditapi/models/type-aliases/SubmitPostOptions",
+                              "api/redditapi/models/type-aliases/SubmitSelfPostOptions",
+                              "api/redditapi/models/type-aliases/SubredditData",
+                              "api/redditapi/models/type-aliases/SubredditInfo",
+                              "api/redditapi/models/type-aliases/SubredditLeaderboard",
+                              "api/redditapi/models/type-aliases/SubredditLeaderboardSummary",
+                              "api/redditapi/models/type-aliases/SubredditLeaderboardSummaryRow",
+                              "api/redditapi/models/type-aliases/SubredditOptions",
+                              "api/redditapi/models/type-aliases/SubredditSettings",
+                              "api/redditapi/models/type-aliases/SubredditSettingsOptions",
+                              "api/redditapi/models/type-aliases/SubredditStyles",
+                              "api/redditapi/models/type-aliases/SubredditType"
+                            ]
+                          },
+                          {
+                            "group": "T\u2013W",
+                            "expanded": false,
+                            "pages": [
+                              "api/redditapi/models/type-aliases/Trophy",
+                              "api/redditapi/models/type-aliases/UnreadCountResponse",
+                              "api/redditapi/models/type-aliases/UpdatePageSettingsOptions",
+                              "api/redditapi/models/type-aliases/UpdateRuleOptions",
+                              "api/redditapi/models/type-aliases/UpdateWidgetData",
+                              "api/redditapi/models/type-aliases/UpdateWikiPageOptions",
+                              "api/redditapi/models/type-aliases/UserFlair",
+                              "api/redditapi/models/type-aliases/UserFlairPageOptions",
+                              "api/redditapi/models/type-aliases/UserNote",
+                              "api/redditapi/models/type-aliases/UserNoteLabel",
+                              "api/redditapi/models/type-aliases/UserSocialLink",
+                              "api/redditapi/models/type-aliases/Vault",
+                              "api/redditapi/models/type-aliases/Visibility",
+                              "api/redditapi/models/type-aliases/WikiEditMode",
+                              "api/redditapi/models/type-aliases/WikiPageRevisionId",
+                              "api/redditapi/models/type-aliases/WikiVersion",
+                              "api/redditapi/models/type-aliases/WikiVersionOptions",
+                              "api/redditapi/models/type-aliases/WithUserData"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "global": {
+          "versions": [
+            {
+              "version": "Next",
+              "href": "https://developers.reddit.com/docs/next"
+            },
+            {
+              "version": "0.14",
+              "href": "/introduction/introduction",
+              "default": true
+            },
+            {
+              "version": "0.13",
+              "href": "https://developers.reddit.com/docs/0.13"
+            },
+            {
+              "version": "0.12",
+              "href": "https://developers.reddit.com/docs/0.12"
+            },
+            {
+              "version": "0.11",
+              "href": "https://developers.reddit.com/docs/0.11"
+            }
+          ]
+        }
+      },
+      {
+        "product": "Ads API",
+        "icon": "bullhorn",
+        "tabs": [
+          {
+            "tab": "API",
+            "groups": [
+              {
+                "group": "API",
+                "openapi": {
+                  "source": "openapi/reddit-ads-api-v3.json",
+                  "directory": "ads-api/reference"
+                },
+                "pages": [
+                  "ads-api/api/introduction"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Get started",
+                "pages": [
+                  "ads-api/guides/quick-start",
+                  "ads-api/guides/quick-start/create-dev-app",
+                  "ads-api/guides/quick-start/authenticate",
+                  "ads-api/guides/quick-start/rate-limiting"
+                ]
+              },
+              {
+                "group": "Guides",
+                "pages": [
+                  {
+                    "group": "Campaign Management",
+                    "expanded": false,
+                    "pages": [
+                      "ads-api/guides/programs/campaign",
+                      "ads-api/guides/programs/campaign/campaign-setup",
+                      "ads-api/guides/programs/campaign/max-campaign-setup",
+                      "ads-api/guides/programs/campaign/campaign-objective-migration",
+                      "ads-api/guides/programs/campaign/match-destination-and-click-url",
+                      "ads-api/guides/programs/campaign/preview-an-ad"
+                    ]
+                  },
+                  {
+                    "group": "Conversions API",
+                    "expanded": false,
+                    "pages": [
+                      "ads-api/guides/programs/capi",
+                      "ads-api/guides/programs/capi/direct-integration",
+                      "ads-api/guides/programs/capi/best-practices",
+                      "ads-api/guides/programs/capi/click-id-persistence",
+                      "ads-api/guides/programs/capi/verify-events",
+                      "ads-api/guides/programs/capi/error-handling",
+                      "ads-api/guides/programs/capi/migration"
+                    ]
+                  },
+                  {
+                    "group": "Reporting",
+                    "expanded": false,
+                    "pages": [
+                      "ads-api/guides/programs/reporting",
+                      "ads-api/guides/programs/reporting/filter-metrics",
+                      "ads-api/guides/programs/reporting/add-adaptive-time",
+                      "ads-api/guides/programs/reporting/get-custom-event-report",
+                      "ads-api/guides/programs/reporting/upcoming-reporting-api-changes"
+                    ]
+                  },
+                  {
+                    "group": "Data Deletion",
+                    "expanded": false,
+                    "pages": [
+                      "ads-api/guides/programs/data-deletion",
+                      "ads-api/guides/programs/data-deletion/delete-user-data"
+                    ]
+                  },
+                  {
+                    "group": "Product Catalogs",
+                    "expanded": false,
+                    "pages": [
+                      "ads-api/guides/programs/product-catalogs",
+                      "ads-api/guides/programs/product-catalogs/catalog-setup",
+                      "ads-api/guides/programs/product-catalogs/filter-products"
+                    ]
+                  },
+                  {
+                    "group": "Targeting",
+                    "expanded": false,
+                    "pages": [
+                      "ads-api/guides/programs/targeting",
+                      "ads-api/guides/programs/targeting/manage-customer-lists"
+                    ]
+                  },
+                  {
+                    "group": "Business Management",
+                    "expanded": false,
+                    "pages": [
+                      "ads-api/guides/programs/business",
+                      "ads-api/guides/programs/business/fetch-accounts",
+                      "ads-api/guides/programs/business/system-users"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "What's New",
+            "pages": [
+              "ads-api/whats-new"
+            ]
+          },
+          {
+            "tab": "Blog",
+            "pages": [
+              "ads-api/blog"
+            ]
+          }
+        ],
+        "global": {
+          "versions": [
+            {
+              "version": "v3",
+              "href": "/ads-api/api/introduction",
+              "default": true
+            },
+            {
+              "version": "v2 (Deprecated)",
+              "href": "https://ads-api.reddit.com/docs/v2/api/reddit-advertising-api"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "api": {
+    "playground": {
+      "display": "interactive",
+      "proxy": false
+    },
+    "mdx": {
+      "server": "https://{appSlug}-{subredditId}-external.devvit.net",
+      "auth": {
+        "method": "key",
+        "name": "externalToken"
+      }
+    },
+    "examples": {
+      "languages": [
+        "curl",
+        "typescript",
+        "python"
+      ],
+      "defaults": "required"
+    }
+  },
+  "footer": {
+    "links": [
+      {
+        "items": [
+          {
+            "label": "Blog",
+            "href": "/blog"
+          },
+          {
+            "label": "The Reddit Developer Fund",
+            "href": "https://support.reddithelp.com/hc/en-us/articles/27958169342996-Reddit-Developer-Funds-2025-Terms"
+          },
+          {
+            "label": "r/Devvit",
+            "href": "https://www.reddit.com/r/devvit"
+          },
+          {
+            "label": "r/GamesOnReddit",
+            "href": "https://www.reddit.com/r/GamesOnReddit"
+          },
+          {
+            "label": "Join our Discord",
+            "href": "https://developers.reddit.com/discord"
+          }
+        ]
+      }
+    ]
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "assistant",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "grok",
+      "aistudio",
+      "devin",
+      "windsurf",
+      "mcp",
+      "add-mcp",
+      "cursor",
+      "vscode",
+      "devin-mcp"
+    ]
+  },
+  "seo": {
+    "metatags": {
+      "robots": "noindex"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/introduction/introduction"
+    },
+    {
+      "source": "/docs/introduction/introduction",
+      "destination": "/introduction/introduction"
+    },
+    {
+      "source": "/ads-api/overview",
+      "destination": "/ads-api"
+    },
+    {
+      "source": "/blog/2025/12/18/november-payouts",
+      "destination": "/blog#december-18-2025"
+    },
+    {
+      "source": "/docs/blog/2025/12/18/november-payouts",
+      "destination": "/blog#december-18-2025"
+    },
+    {
+      "source": "/blog/fun-and-game-hackathon-winners",
+      "destination": "/blog#october-1-2025"
+    },
+    {
+      "source": "/docs/blog/fun-and-game-hackathon-winners",
+      "destination": "/blog#october-1-2025"
+    },
+    {
+      "source": "/blog/hackathon-inspiration",
+      "destination": "/blog#september-11-2025"
+    },
+    {
+      "source": "/docs/blog/hackathon-inspiration",
+      "destination": "/blog#september-11-2025"
+    },
+    {
+      "source": "/blog/honk",
+      "destination": "/blog#october-10-2025"
+    },
+    {
+      "source": "/docs/blog/honk",
+      "destination": "/blog#october-10-2025"
+    },
+    {
+      "source": "/blog/mobile-first-development",
+      "destination": "/blog#august-28-2025"
+    },
+    {
+      "source": "/docs/blog/mobile-first-development",
+      "destination": "/blog#august-28-2025"
+    },
+    {
+      "source": "/blog/pixelary",
+      "destination": "/blog#july-15-2025"
+    },
+    {
+      "source": "/docs/blog/pixelary",
+      "destination": "/blog#july-15-2025"
+    },
+    {
+      "source": "/blog/riddonkulous",
+      "destination": "/blog#june-17-2025"
+    },
+    {
+      "source": "/docs/blog/riddonkulous",
+      "destination": "/blog#june-17-2025"
+    },
+    {
+      "source": "/blog/skyboard-wins",
+      "destination": "/blog#july-30-2025"
+    },
+    {
+      "source": "/docs/blog/skyboard-wins",
+      "destination": "/blog#july-30-2025"
+    },
+    {
+      "source": "/blog/sword-and-supper",
+      "destination": "/blog#august-11-2025"
+    },
+    {
+      "source": "/docs/blog/sword-and-supper",
+      "destination": "/blog#august-11-2025"
+    },
+    {
+      "source": "/blog/welcome",
+      "destination": "/blog#may-9-2025"
+    },
+    {
+      "source": "/docs/blog/welcome",
+      "destination": "/blog#may-9-2025"
+    },
+    {
+      "source": "/blog/archive",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/archive",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/bolt",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/bolt",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/cabbage-systems",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/cabbage-systems",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/cross-platform",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/cross-platform",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/design",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/design",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/devvit",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/devvit",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/game",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/game",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/hackathon",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/hackathon",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/hello",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/hello",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/honk",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/honk",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/mobile",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/mobile",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/pixelary",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/pixelary",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/riddonkulous",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/riddonkulous",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/skyboard",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/skyboard",
+      "destination": "/blog"
+    },
+    {
+      "source": "/blog/tags/sword-and-supper",
+      "destination": "/blog"
+    },
+    {
+      "source": "/docs/blog/tags/sword-and-supper",
+      "destination": "/blog"
+    },
+    {
+      "source": "/earn-money/payments/analytics/journeys-dashboard",
+      "destination": "/capabilities/analytics/journeys-dashboard"
+    },
+    {
+      "source": "/docs/:slug*",
+      "destination": "/:slug*"
+    }
+  ]
+}

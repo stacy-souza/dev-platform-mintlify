@@ -1,0 +1,314 @@
+/* Source-parity overrides for developers.reddit.com/docs.
+ *
+ * Everything that docs.json can express (theme, brand ramp, background tone,
+ * logo, favicon, footer, contextual menu) lives there. Only the four things
+ * below need CSS, and each one mirrors a measured value from the live source.
+ * Selectors were read off the running `mint dev` DOM, not from memory.
+ */
+
+/* 1. Navbar logo height.
+ *    The source renders its `reddit developers` lockup at 32px (measured:
+ *    177.6 x 32). Mintlify's default `img.nav-logo` is 24px, which shrinks the
+ *    wordmark noticeably next to the Snoo mark. */
+img.nav-logo {
+  height: 2rem;
+}
+
+/* 2. In-content link color.
+ *    Docusaurus sets `--ifm-link-color: #ff4500` (and `#fe7c53` in dark mode),
+ *    so body links on the source are brand orangered rather than body text
+ *    color. Mintlify colors prose links with the text color by default.
+ *
+ *    The `:not([class*="mint-"])` guard matters: Mintlify tags every MDX anchor
+ *    with `.link`, including hand-styled JSX anchors on the landing page, and
+ *    `.mdx-content a.link` outranks a single compiled Tailwind utility. Without
+ *    the guard this rule repaints the landing page's blue pill buttons orange. */
+.mdx-content a.link:not([class*="mint-"]) {
+  color: #ff4500;
+}
+
+.mdx-content a.link:not([class*="mint-"]):hover {
+  color: #d93a00;
+}
+
+html.dark .mdx-content a.link:not([class*="mint-"]) {
+  color: #fe7c53;
+}
+
+html.dark .mdx-content a.link:not([class*="mint-"]):hover {
+  color: #ffd5c6;
+}
+
+/* 3. Dark-mode chrome tones.
+ *    docs.json `background.color` sets exactly one tone. The source's dark mode
+ *    is layered: page #0B1416 (from docs.json), navbar #0F1A1C, footer #131F23.
+ *    Measured with a pixel sample on the live source at 1440px. */
+html.dark #navbar {
+  background-color: #0f1a1c;
+}
+
+html.dark footer.advanced-footer {
+  background-color: #131f23;
+}
+
+/* 4. Markdown paragraphs nested inside JSX.
+ *    Mintlify renders a markdown block inside a raw JSX element as
+ *    `<span data-as="p">`, which is inline, so a two-column layout whose left
+ *    column holds prose runs every paragraph together. The source's intro
+ *    pages use exactly that layout, so restore block flow and paragraph
+ *    spacing for those spans. */
+.mdx-content span[data-as="p"] {
+  display: block;
+}
+
+.mdx-content span[data-as="p"]:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+/* 5. Homepage chrome.
+ *    The source site runs two different headers: a marketing header on the
+ *    landing page (logo, Browse apps / r/GamesOnReddit / Docs / Blog, Sign up,
+ *    Log in) and the docs header everywhere else. index.mdx now carries that
+ *    marketing header itself, so Mintlify's navbar is hidden on the two
+ *    landing pages and the content offsets it reserves are zeroed, letting the
+ *    header and the black footer run edge to edge. Every other page keeps the
+ *    docs navbar. Section 10 puts part of it back on `/ads-api`. */
+html[data-current-path="/"] #navbar,
+html[data-current-path="/"] .nav-tabs,
+html[data-current-path="/"] div:has(> .nav-tabs),
+html[data-current-path="/ads-api"] #navbar,
+html[data-current-path="/ads-api"] .nav-tabs,
+html[data-current-path="/ads-api"] div:has(> .nav-tabs) {
+  display: none !important;
+}
+
+html[data-current-path="/"] #content-container,
+html[data-current-path="/ads-api"] #content-container {
+  margin-left: 0 !important;
+  padding-top: 0 !important;
+  gap: 0 !important;
+  min-height: 0 !important;
+}
+
+html[data-current-path="/"] #content-area,
+html[data-current-path="/"] #content,
+html[data-current-path="/ads-api"] #content-area,
+html[data-current-path="/ads-api"] #content {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 6. Homepage media.
+ *    `mode: "custom"` strips Mintlify's prose rules, so the landing page's
+ *    game tiles and illustrations need their own reset to sit flush inside
+ *    their containers. */
+html[data-current-path="/"] .mdx-content img,
+html[data-current-path="/ads-api"] .mdx-content img {
+  margin: 0;
+}
+
+/* 7. Homepage menus.
+ *    Both landing pages carry their own header, so the product switcher and
+ *    the Ads API version and "More" menus have to open without scripting,
+ *    which a docs page cannot run. Each is a visually hidden checkbox plus its
+ *    label: the label toggles the checkbox, and `peer-checked` reveals the
+ *    panel. Mintlify's MDX pipeline drops `<details>`, so that route is out. */
+.rdt-menu label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.rdt-menu .rdt-chevron {
+  transition: transform 150ms ease;
+}
+
+.rdt-menu input:checked ~ label .rdt-chevron {
+  transform: rotate(180deg);
+}
+
+/* Menu panels sit above the sticky header and the hero band below it. */
+.rdt-menu .rdt-menu-panel {
+  z-index: 60;
+}
+
+/* 8. Inline prose inside JSX.
+ *    Rule 4 makes every `<span data-as="p">` a block so two-column prose
+ *    layouts keep their paragraph breaks. A hand-written paragraph that mixes
+ *    text and links is split into several of those spans too, which would put
+ *    each fragment on its own line, so opt those paragraphs back into inline
+ *    flow. */
+.mdx-content .rdt-inline span[data-as="p"] {
+  display: inline;
+  margin-bottom: 0;
+}
+
+/* A menu label is a flex row of an icon, its text and a chevron. Rule 4 gives
+ * the text span a bottom margin whenever something follows it, which pushed
+ * the text up off the row's centre line and left the chevron sitting low. */
+.mdx-content .rdt-menu span[data-as="p"] {
+  display: inline;
+  margin-bottom: 0;
+}
+
+/* 9. Ads API notice bar.
+ *    The source rotates two notices and can be dismissed. Scripting is out, so
+ *    two radios pick the slide and a checkbox hides the bar; all three are
+ *    siblings of the bar, and their labels are the dots and the close button.
+ *    Dots: 8px, active #FF4500, inactive #181C1F at 65%, pixel sampled. */
+.rdt-notice-slide {
+  display: none;
+}
+
+#rdt-notice-1:checked ~ .rdt-notice .rdt-notice-slide-1,
+#rdt-notice-2:checked ~ .rdt-notice .rdt-notice-slide-2 {
+  display: block;
+}
+
+.rdt-notice-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: #181c1f;
+  opacity: 0.65;
+  cursor: pointer;
+}
+
+.dark .rdt-notice-dot {
+  background-color: #eef1f3;
+}
+
+#rdt-notice-1:checked ~ .rdt-notice .rdt-notice-dot-1,
+#rdt-notice-2:checked ~ .rdt-notice .rdt-notice-dot-2 {
+  background-color: #ff4500;
+  opacity: 1;
+}
+
+#rdt-notice-dismiss:checked ~ .rdt-notice {
+  display: none;
+}
+
+/* 10. Borrowed docs-navbar controls on the Ads API landing page.
+ *     The source header ends in a theme menu, a search box and the assistant
+ *     entry. None of those can be rebuilt in a page: they need scripting.
+ *     Mintlify already renders working ones in `.topbar-right-container`, so
+ *     rather than hiding its navbar here, everything in the navbar except that
+ *     control group is hidden and the group is floated into the page's own
+ *     header row. Below `lg` the group is display:none in Mintlify's own
+ *     layout and the header has no room for it, so the navbar stays hidden by
+ *     rule 5 and this section only applies from `lg` up. */
+@media (min-width: 1024px) {
+  html[data-current-path="/ads-api"] #navbar {
+    display: flex !important;
+    position: fixed !important;
+    /* Level with the header row, which sits under the 52px notice bar. */
+    top: 52px;
+    right: 0;
+    bottom: auto;
+    left: auto !important;
+    width: auto !important;
+    height: 64px;
+    align-items: center;
+    padding-right: 16px;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    z-index: 50 !important;
+    /* Only the control group itself should swallow clicks. */
+    pointer-events: none;
+    /* The navbar is a size container, so its own inline size ignores its
+       contents. Shrink-to-fit needs that off to wrap the control group. */
+    container-type: normal !important;
+  }
+
+  /* Dismissing the notice moves the header row, and the controls with it. */
+  html[data-current-path="/ads-api"]:has(#rdt-notice-dismiss:checked) #navbar {
+    top: 0;
+  }
+
+  /* Hide every part of the navbar that is neither the control group nor one of
+     its ancestors: the painted background layers, the logo and version and
+     product cluster, and the narrow-viewport row. */
+  html[data-current-path="/ads-api"]
+    #navbar
+    :not(:has(.topbar-right-container)):not(.topbar-right-container):not(.topbar-right-container *) {
+    display: none !important;
+  }
+
+  /* The ancestors are full-width flex rows; collapse them onto the controls. */
+  html[data-current-path="/ads-api"] #navbar div:has(.topbar-right-container) {
+    display: flex !important;
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  html[data-current-path="/ads-api"] #navbar .topbar-right-container,
+  html[data-current-path="/ads-api"] #navbar .topbar-right-container > div {
+    flex: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Mintlify folds the tab row into an overflow menu once the navbar is under
+     1100px wide. Turning the size container off above means that never
+     resolves, so the overflow button shows even though this page hides the
+     tabs. Keep only the three controls this header is borrowing. */
+  html[data-current-path="/ads-api"]
+    #navbar
+    .topbar-right-container
+    > *:not(:has(#search-bar-entry)):not(:has(#assistant-entry)):not(#theme-preference-menu-trigger) {
+    display: none !important;
+  }
+
+  /* Mintlify orders these search-then-theme; the source puts the theme menu
+     before the search box, so lay the group out in reverse. */
+  html[data-current-path="/ads-api"] #navbar .topbar-right-container {
+    flex-direction: row-reverse;
+    gap: 10px;
+    pointer-events: auto;
+  }
+
+  /* Mintlify collapses search to a 36px circle until the navbar is 1500px
+     wide, and this one is only as wide as its contents. The source shows the
+     full box, so restore the label and the shortcut hint and match its tokens:
+     169x38, radius 8px, #F6F8F9 on a #D6D6E7 hairline. The width and padding
+     Mintlify sets are `!important` inside a cascade layer, which outranks an
+     unlayered `!important`, so widen with `min-width` and pad the inner row
+     instead of fighting those two declarations. */
+  html[data-current-path="/ads-api"] #search-bar-entry {
+    min-width: 169px;
+    height: 38px;
+    border-radius: 8px;
+    background-color: #f6f8f9;
+    border: 1px solid #d6d6e7;
+  }
+
+  html[data-current-path="/ads-api"] #search-bar-entry > div {
+    display: flex !important;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    padding-left: 12px;
+  }
+
+  html[data-current-path="/ads-api"] #search-bar-entry > div > div {
+    display: block !important;
+  }
+
+  html[data-current-path="/ads-api"] #search-bar-entry > span {
+    display: inline-flex !important;
+    margin-right: 8px;
+  }
+
+  .dark html[data-current-path="/ads-api"] #search-bar-entry,
+  html[data-current-path="/ads-api"].dark #search-bar-entry {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+}
