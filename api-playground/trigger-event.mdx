@@ -1,0 +1,101 @@
+---
+title: "Handle a trigger event"
+sidebarTitle: "Trigger event"
+api: "POST /internal/on-{trigger}"
+playground: "simple"
+authMethod: "none"
+---
+
+Reddit calls this endpoint when an event you subscribed to fires in a community
+where your app is installed. You declare the route in `devvit.json` under
+`triggers`.
+
+<Note>
+  This route is invoked by the Reddit platform, so this page shows the endpoint
+  and its shapes rather than a send button. Triggers are exercised with
+  `devvit playtest`.
+</Note>
+
+## Path
+
+<ParamField path="trigger" type="string" required>
+  The trigger's path segment, for example `comment-create` for the route
+  `/internal/on-comment-create`. Supported triggers include `onPostCreate`,
+  `onPostSubmit`, `onCommentCreate`, `onCommentSubmit`, `onCommentUpdate`,
+  `onCommentDelete`, `onCommentReport`, `onPostFlairUpdate`,
+  `onPostNsfwUpdate`, `onPostSpoilerUpdate`, `onAppInstall`, `onAppUpgrade`,
+  `onModAction`, `onModMail`, `onAutomoderatorFilterPost`, and
+  `onAutomoderatorFilterComment`.
+</ParamField>
+
+## Body
+
+Each trigger sends its own request type — `OnCommentCreateRequest`,
+`OnPostSubmitRequest`, `OnAppUpgradeRequest`, and so on. The fields differ per
+event; the comment and post events carry the affected object plus its author.
+
+<ParamField body="comment" type="object">
+  The comment the event fired on, for comment triggers.
+</ParamField>
+
+<ParamField body="post" type="object">
+  The post the event fired on, for post triggers.
+</ParamField>
+
+<ParamField body="author" type="object">
+  The user who caused the event.
+</ParamField>
+
+<ParamField body="installer" type="object">
+  The user who installed or upgraded the app, for `onAppInstall` and
+  `onAppUpgrade`.
+</ParamField>
+
+Every event and its full payload is listed in the
+[EventTypes reference](/api/public-api/@devvit/namespaces/EventTypes).
+
+## Response
+
+<ResponseField name="status" type="string" required>
+  Return a `TriggerResponse` with `status` set to `ok` once you have handled the
+  event.
+</ResponseField>
+
+<RequestExample>
+
+```json devvit.json
+{
+  "triggers": {
+    "onAppUpgrade": "/internal/on-app-upgrade",
+    "onCommentCreate": "/internal/on-comment-create",
+    "onPostSubmit": "/internal/on-post-submit"
+  }
+}
+```
+
+```ts server/index.ts
+app.post('/internal/on-comment-create', async (c) => {
+  const input = await c.req.json<OnCommentCreateRequest>();
+  const comment = input.comment;
+  const author = input.author;
+  console.log('Comment:', JSON.stringify(comment, null, 2));
+  console.log('Author:', JSON.stringify(author, null, 2));
+  return c.json<TriggerResponse>({ status: 'ok' });
+});
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "status": "ok"
+}
+```
+
+</ResponseExample>
+
+See [Triggers](/capabilities/server/triggers) for the full setup, and
+[App Mention Triggers](/capabilities/server/global-triggers) for events outside
+the subreddit your app is installed in.

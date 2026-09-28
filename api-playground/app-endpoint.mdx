@@ -1,0 +1,70 @@
+---
+title: "Call your app's own endpoint"
+sidebarTitle: "App endpoint"
+api: "POST /api/{path}"
+playground: "simple"
+authMethod: "none"
+---
+
+Routes under `/api/` are the conventional endpoints your app's own web client
+calls. You define them in your server code rather than in `devvit.json`, and
+they are served on the app's own origin, so the client can call them with a
+relative path.
+
+<Note>
+  These routes are served to your app's web view on its own origin, so there is
+  no public host for a playground to send to. Use `devvit playtest` to exercise
+  them.
+</Note>
+
+## Path
+
+<ParamField path="path" type="string" required>
+  The route you defined in your server code, for example `subscribe` for the
+  route `/api/subscribe`.
+</ParamField>
+
+## Body
+
+The request and response bodies are entirely up to your app.
+
+<ParamField body="body" type="object">
+  Any JSON your client needs to send.
+</ParamField>
+
+## Response
+
+<ResponseField name="status" type="string">
+  The example handlers in the docs return a status field, but the shape is
+  yours to choose.
+</ResponseField>
+
+<RequestExample>
+
+```ts server/index.ts
+app.post('/api/subscribe', async (c) => {
+  await reddit.subscribeToCurrentSubreddit();
+  return c.json({ status: 'ok' });
+});
+```
+
+```ts client
+const rsp = await fetch('/api/subscribe', { method: 'POST' });
+const body = await rsp.json();
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "status": "ok"
+}
+```
+
+</ResponseExample>
+
+Prefer `/api/` routes over `/external/` routes for anything your own client
+calls — see [External Endpoints](/capabilities/server/external-endpoints) for
+why.

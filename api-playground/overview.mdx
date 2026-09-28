@@ -1,0 +1,65 @@
+---
+title: "Devvit HTTP endpoints"
+sidebarTitle: "Overview"
+---
+
+Devvit Web apps are ordinary HTTP servers. Reddit's platform, your app's client,
+and approved external services all reach your app over HTTP, and every route is
+declared in `devvit.json`. This section documents those routes as interactive
+API reference pages.
+
+<Note>
+  The rest of the API reference documents the `@devvit/public-api` and
+  `@devvit/reddit` packages, which are TypeScript libraries you import rather
+  than endpoints you call. Only the routes below are HTTP endpoints, so only
+  these pages have a playground.
+</Note>
+
+## Endpoint families
+
+| Family | Declared in `devvit.json` | Called by | Playground |
+| :--- | :--- | :--- | :--- |
+| `/internal/menu/…` | `menu.items[].endpoint` | Reddit, when a user picks your menu action | Copyable endpoint |
+| `/internal/on-…` | `triggers` | Reddit, when a subscribed event fires | Copyable endpoint |
+| `/internal/scheduler/…` | `scheduler.tasks[].endpoint` | Reddit, on your `cron` schedule | Copyable endpoint |
+| `/internal/form/…` | `forms` | Reddit, when a user submits your form | Copyable endpoint |
+| `/api/…` | your server code | your app's own web client | Copyable endpoint |
+| `/external/…` | `server.externalEndpoints` | a trusted external service | Interactive |
+
+Routes under `/internal/` are invoked by the Reddit platform with a request
+context you cannot reproduce by hand, and `/api/` routes are served to your
+app's own web view on its own origin. Those pages show a copyable endpoint and
+the request and response shapes rather than a send button.
+
+External endpoints are different: they have a documented public host and are
+authenticated with a token, so the playground on that page sends a real request.
+
+## Base URL
+
+Only external endpoints have a publicly addressable host:
+
+```
+https://<app_slug>-<subreddit_id>-external.devvit.net/external/<your_app_defined_path>?externalToken=devvit_at_<token>
+```
+
+Fill in your own `app_slug` and `subreddit_id` in the playground's server
+fields, and paste a callback or managed token as the `externalToken`.
+
+## Limits
+
+- External endpoints accept request bodies up to 10 megabytes.
+- External endpoints are limited to 5 requests per second.
+- Callback tokens expire after 10 minutes and are intended for single use.
+
+Both limits are current at time of writing and may change at any time.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="External Endpoints" href="/capabilities/server/external-endpoints">
+    Callback and managed tokens, scopes, and the full external endpoint flow.
+  </Card>
+  <Card title="Configure your app" href="/capabilities/devvit-web/devvit_web_configuration">
+    The `devvit.json` schema that declares every route on this page.
+  </Card>
+</Columns>

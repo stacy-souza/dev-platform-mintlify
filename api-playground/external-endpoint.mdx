@@ -1,0 +1,104 @@
+---
+title: "Call an external endpoint"
+sidebarTitle: "External endpoint"
+api: "POST /external/{path}"
+authMethod: "key"
+---
+
+Invoke an endpoint your app declared under `server.externalEndpoints` in
+`devvit.json`. This is how a trusted external service calls back into your
+Devvit app after finishing work, and how a service holding a managed token
+initiates a request.
+
+<Warning>
+  External endpoints are for trusted services only. Never call an `/external/`
+  endpoint from a Devvit app's frontend — the token cannot be hidden in a post.
+  Use an `/api/` route instead.
+</Warning>
+
+## Server
+
+Replace the two server variables with your own values before sending a request:
+
+<ParamField path="appSlug" type="string" required>
+  Your app's slug, as shown in Developer Settings.
+</ParamField>
+
+<ParamField path="subredditId" type="string" required>
+  The ID of the subreddit the app is installed in, for example `abc123`.
+</ParamField>
+
+## Authorization
+
+<ParamField query="externalToken" type="string" required>
+  A callback token or a managed token. Every token starts with `devvit_at_`.
+  Callback tokens are generated at runtime by `externalEndpoints.getCallbackUrl()`,
+  expire after 10 minutes, and are intended for single use. Managed tokens are
+  long-lived and managed in Developer Settings.
+</ParamField>
+
+## Path
+
+<ParamField path="path" type="string" required>
+  The public route your app declared for this endpoint. For the
+  `onCommentProcessed` example in the docs this is `on/comment/processed`.
+</ParamField>
+
+## Body
+
+The request body is defined entirely by your app — Devvit passes it through to
+your handler, which reads it with `await c.req.json<YourExternalRequest>()`.
+
+<ParamField body="body" type="object">
+  Any JSON your external service needs to send back to the app. Bodies up to 10
+  megabytes are accepted.
+</ParamField>
+
+## Response
+
+The response is whatever your handler returns. The docs' example handler
+returns a status field:
+
+<ResponseField name="status" type="string">
+  Set to `ok` by the example handler once the callback has been processed.
+</ResponseField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://foobar-abc123-external.devvit.net/external/on/comment/processed?externalToken=devvit_at_def456" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{ "summary": "Comment processed" }'
+```
+
+```ts TypeScript
+const rsp = await fetch(
+  `https://${appSlug}-${subredditId}-external.devvit.net/external/on/comment/processed?externalToken=${token}`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      // Whatever data your app wants from your external service.
+    }),
+  },
+);
+if (!rsp.ok) {
+  throw Error(`HTTP status ${rsp.status}: ${rsp.statusText}`);
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "status": "ok"
+}
+```
+
+</ResponseExample>

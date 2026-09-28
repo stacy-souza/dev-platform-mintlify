@@ -1,0 +1,84 @@
+---
+title: "Handle a form submission"
+sidebarTitle: "Form submission"
+api: "POST /internal/form/{form}"
+playground: "simple"
+authMethod: "none"
+---
+
+Reddit calls this endpoint when a user submits one of your app's forms. You
+declare the route in `devvit.json` under `forms`, keyed by the form name your
+client passes to `showForm`.
+
+<Note>
+  This route is invoked by the Reddit platform when a user submits the form, so
+  this page shows the endpoint and its shapes rather than a send button.
+</Note>
+
+## Path
+
+<ParamField path="form" type="string" required>
+  The form's path segment, for example `name-submit` for the route
+  `/internal/form/name-submit`.
+</ParamField>
+
+## Body
+
+The platform posts the submitted field values, typed per form — the docs' name
+form handler reads a `NameFormRequest`. Field names match the `name` of each
+field you defined in the form.
+
+<ParamField body="values" type="object" required>
+  The submitted field values, keyed by field name.
+</ParamField>
+
+## Response
+
+Return a `UiResponse`, the same shape a menu action returns.
+
+<ResponseField name="showToast" type="string">
+  Text to show in a toast once the submission is handled.
+</ResponseField>
+
+<ResponseField name="showForm" type="object">
+  Another form to open, for multi-step flows.
+</ResponseField>
+
+<ResponseField name="navigateTo" type="string">
+  A URL or Reddit object to send the user to.
+</ResponseField>
+
+<RequestExample>
+
+```json devvit.json
+{
+  "forms": {
+    "nameForm": "/internal/form/name-submit",
+    "reviewForm": "/internal/form/review-submit"
+  }
+}
+```
+
+```ts server/index.ts
+app.post('/internal/form/name-submit', async (c) => {
+  const request = await c.req.json<NameFormRequest>();
+  return c.json<UiResponse>({
+    showToast: `Thanks, ${request.values.name}!`,
+  });
+});
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "showToast": "Thanks!"
+}
+```
+
+</ResponseExample>
+
+See [Forms](/capabilities/client/forms) for every supported field type and for
+multi-step form flows.

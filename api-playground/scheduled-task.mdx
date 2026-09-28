@@ -1,0 +1,81 @@
+---
+title: "Run a scheduled task"
+sidebarTitle: "Scheduled task"
+api: "POST /internal/scheduler/{task}"
+playground: "simple"
+authMethod: "none"
+---
+
+Reddit calls this endpoint on the schedule you declare, or when your app queues
+a one-off job. You declare the route in `devvit.json` under `scheduler.tasks`,
+and the endpoint must match `/internal/.+`.
+
+<Note>
+  This route is invoked by the Reddit platform on your schedule, so this page
+  shows the endpoint and its shapes rather than a send button. Use
+  `devvit playtest` and the logs to watch a task fire.
+</Note>
+
+## Path
+
+<ParamField path="task" type="string" required>
+  The task's path segment, for example `regular-interval-task-example` for the
+  route `/internal/scheduler/regular-interval-task-example`.
+</ParamField>
+
+## Declaring the task
+
+<ParamField body="endpoint" type="string" required>
+  The route Reddit should call. Must start with `/internal/`.
+</ParamField>
+
+<ParamField body="cron" type="string">
+  A standard UNIX cron expression, for example `*/1 * * * *` for every minute.
+  Omit `cron` for a task you queue yourself as a one-off job.
+</ParamField>
+
+## Response
+
+<ResponseField name="status" type="string" required>
+  Return `ok` once the job has been handled.
+</ResponseField>
+
+<RequestExample>
+
+```json devvit.json
+{
+  "scheduler": {
+    "tasks": {
+      "regularIntervalTaskExample": {
+        "endpoint": "/internal/scheduler/regular-interval-task-example",
+        "cron": "*/1 * * * *"
+      },
+      "oneOffTaskExample": {
+        "endpoint": "/internal/scheduler/one-off-task-example"
+      }
+    }
+  }
+}
+```
+
+```ts server/index.ts
+app.post("/internal/scheduler/regular-interval-task-example", async (c) => {
+  console.log(`Handle event for cron example at ${new Date().toISOString()}!`);
+  return c.json({ status: "ok" });
+});
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "status": "ok"
+}
+```
+
+</ResponseExample>
+
+See [Scheduler](/capabilities/server/scheduler) for cron formats, one-off jobs,
+and cancelling scheduled work.

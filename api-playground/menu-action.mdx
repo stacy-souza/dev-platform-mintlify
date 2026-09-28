@@ -1,0 +1,94 @@
+---
+title: "Handle a menu action"
+sidebarTitle: "Menu action"
+api: "POST /internal/menu/{action}"
+playground: "simple"
+authMethod: "none"
+---
+
+Reddit calls this endpoint when a user picks one of your app's menu actions from
+the three dot menu on a post, comment, or subreddit. You declare the route in
+`devvit.json` under `menu.items[].endpoint`.
+
+<Note>
+  This route is invoked by the Reddit platform with a request context you cannot
+  reproduce by hand, so this page shows the endpoint and its shapes rather than
+  a send button. Menu actions are exercised with `devvit playtest`.
+</Note>
+
+## Path
+
+<ParamField path="action" type="string" required>
+  The path segment you chose for this menu item, for example `show-info` for the
+  route `/internal/menu/show-info`.
+</ParamField>
+
+## Body
+
+The platform sends a `MenuItemRequest`, which your handler reads with
+`await c.req.json<MenuItemRequest>()`.
+
+<ParamField body="targetId" type="string">
+  The fullname of the post, comment, or subreddit the action was taken on. Which
+  target you receive depends on the item's `location`.
+</ParamField>
+
+## Response
+
+Return a `UiResponse` to tell the client what to do next. Every field is
+optional — return an empty object to do nothing.
+
+<ResponseField name="showToast" type="string">
+  Text to show in a toast at the bottom of the screen.
+</ResponseField>
+
+<ResponseField name="showForm" type="object">
+  A form to open, identified by the form name you declared in `devvit.json`.
+</ResponseField>
+
+<ResponseField name="navigateTo" type="string">
+  A URL or Reddit object to send the user to.
+</ResponseField>
+
+## Declaring the menu item
+
+<RequestExample>
+
+```json devvit.json
+{
+  "menu": {
+    "items": [
+      {
+        "description": "Show user information",
+        "endpoint": "/internal/menu/show-info",
+        "location": "post"
+      }
+    ]
+  }
+}
+```
+
+```ts server/index.ts
+app.post("/internal/menu/show-info", async (c) => {
+  const _input = await c.req.json<MenuItemRequest>();
+  // Simple actions don't need server processing
+  return c.json<UiResponse>({
+    showToast: "Menu action clicked!",
+  });
+});
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "showToast": "Menu action clicked!"
+}
+```
+
+</ResponseExample>
+
+See [Menu actions](/capabilities/client/menu-actions) for supported locations,
+user types, and the full set of client effects.
