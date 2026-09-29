@@ -1,0 +1,123 @@
+---
+title: "RedditVideo"
+---
+
+## Type Alias: RedditVideo
+
+> **RedditVideo** = `object`
+
+Contains the data for a video hosted on Reddit that is in a post
+
+## Properties
+
+
+### bitrateKbps?
+
+> `optional` **bitrateKbps**: `number`
+
+The bitrate of the video in kilobits per second. E.g. 450
+
+***
+
+
+### dashUrl?
+
+> `optional` **dashUrl**: `string`
+
+The URL to the DASH playlist file.
+
+#### Example
+
+```ts
+"https://v.redd.it/abc123/DASHPlaylist.mpd"
+```
+
+***
+
+
+### duration?
+
+> `optional` **duration**: `number`
+
+The duration of the video in seconds. E.g. 30
+
+***
+
+
+### fallbackUrl?
+
+> `optional` **fallbackUrl**: `string`
+
+The direct URL to the video.
+
+#### Example
+
+```ts
+"https://v.redd.it/abc123/DASH_1080.mp4?source=fallback"
+```
+
+***
+
+
+### height?
+
+> `optional` **height**: `number`
+
+The height of the video in pixels. E.g. 1080
+
+***
+
+
+### hlsUrl?
+
+> `optional` **hlsUrl**: `string`
+
+The URL to the HLS playlist file.
+
+#### Example
+
+```ts
+"https://v.redd.it/abc123/HLSPlaylist.m3u8"
+```
+
+***
+
+
+### isGif?
+
+> `optional` **isGif**: `boolean`
+
+If `true`, the video is a GIF
+
+***
+
+
+### scrubberMediaUrl?
+
+> `optional` **scrubberMediaUrl**: `string`
+
+The URL to the scrubber media file.
+
+#### Example
+
+```ts
+"https://v.redd.it/abc123/DASH_96.mp4"
+```
+
+***
+
+
+### transcodingStatus?
+
+> `optional` **transcodingStatus**: `string`
+
+The status of the transcoding process. E.g. "completed"
+
+***
+
+
+### width?
+
+> `optional` **width**: `number`
+
+The width of the video in pixels. E.g. 1920

@@ -1,0 +1,137 @@
+---
+title: "Oembed"
+---
+
+## Type Alias: Oembed
+
+> **Oembed** = `object`
+
+oEmbed is a format for allowing an embedded representation of a URL on
+third-party sites. The API lets a website display embedded content, such as
+photos or videos, without parsing the resource directly.
+See: https://oembed.com/
+
+## Properties
+
+
+### authorName?
+
+> `optional` **authorName**: `string`
+
+The name of the author/owner of the resource. E.g. "Reddit"
+
+***
+
+
+### authorUrl?
+
+> `optional` **authorUrl**: `string`
+
+A URL for the resource's author or owner.
+
+#### Example
+
+```ts
+"https://www.youtube.com/@Reddit"
+```
+
+***
+
+
+### height?
+
+> `optional` **height**: `number`
+
+The height in pixels required to display the HTML.
+
+***
+
+
+### html
+
+> **html**: `string`
+
+The HTML required to embed a video player. It should have no padding or
+margins. Consider loading it in a separate-origin iframe to avoid XSS
+vulnerabilities.
+
+***
+
+
+### providerName?
+
+> `optional` **providerName**: `string`
+
+A URL for the author/owner of the resource. E.g. "YouTube"
+
+***
+
+
+### providerUrl?
+
+> `optional` **providerUrl**: `string`
+
+The name of the resource provider. E.g "https://www.youtube.com/"
+
+***
+
+
+### thumbnailHeight?
+
+> `optional` **thumbnailHeight**: `number`
+
+The height of the optional thumbnail in pixels
+
+***
+
+
+### thumbnailUrl?
+
+> `optional` **thumbnailUrl**: `string`
+
+A URL to a thumbnail image representing the resource.
+
+***
+
+
+### thumbnailWidth?
+
+> `optional` **thumbnailWidth**: `number`
+
+The width of the optional thumbnail in pixels
+
+***
+
+
+### title?
+
+> `optional` **title**: `string`
+
+A text title, describing the resource.
+
+***
+
+
+### type
+
+> **type**: `string`
+
+The resource type and its type-specific parameters, such as `"video"`.
+
+***
+
+
+### version
+
+> **version**: `string`
+
+The oEmbed version number. This must be 1.0.
+
+***
+
+
+### width?
+
+> `optional` **width**: `number`
+
+The width in pixels required to display the HTML.
