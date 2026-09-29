@@ -1,0 +1,155 @@
+---
+title: "PostFlairWidget"
+---
+
+## Class: PostFlairWidget
+
+## Extends
+
+- [`Widget`](/api/redditapi/models/classes/Widget)
+
+## Constructors
+
+<span id="constructor" />
+
+### new PostFlairWidget()
+
+> **new PostFlairWidget**(`widgetData`, `subredditName`): `PostFlairWidget`
+
+#### Parameters
+
+##### widgetData
+
+`GetWidgetsResponse_WidgetItem`
+
+##### subredditName
+
+`string`
+
+#### Returns
+
+`PostFlairWidget`
+
+#### Overrides
+
+[`Widget`](/api/redditapi/models/classes/Widget).[`constructor`](/api/redditapi/models/classes/Widget#constructor)
+
+## Accessors
+
+
+### display
+
+#### Get Signature
+
+> **get** **display**(): `"list"` \| `"cloud"`
+
+##### Returns
+
+`"list"` \| `"cloud"`
+
+***
+
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/api/redditapi/models/classes/Widget).[`id`](/api/redditapi/models/classes/Widget#id)
+
+***
+
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/api/redditapi/models/classes/Widget).[`name`](/api/redditapi/models/classes/Widget#name)
+
+***
+
+
+### styles
+
+#### Get Signature
+
+> **get** **styles**(): `WidgetStyles`
+
+##### Returns
+
+`WidgetStyles`
+
+***
+
+
+### subredditName
+
+#### Get Signature
+
+> **get** **subredditName**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/api/redditapi/models/classes/Widget).[`subredditName`](/api/redditapi/models/classes/Widget#subredditname)
+
+***
+
+
+### templates
+
+#### Get Signature
+
+> **get** **templates**(): `GetWidgetsResponse_WidgetItem_PostFlairTemplate`[]
+
+##### Returns
+
+`GetWidgetsResponse_WidgetItem_PostFlairTemplate`[]
+
+## Methods
+
+
+### delete()
+
+> **delete**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Inherited from
+
+[`Widget`](/api/redditapi/models/classes/Widget).[`delete`](/api/redditapi/models/classes/Widget#delete)
+
+***
+
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<[`Widget`](/api/redditapi/models/classes/Widget), `"name"` \| `"id"` \| `"subredditName"`\> & `Pick`\<`PostFlairWidget`, `"styles"` \| `"templates"` \| `"display"`\>
+
+#### Returns
+
+`Pick`\<[`Widget`](/api/redditapi/models/classes/Widget), `"name"` \| `"id"` \| `"subredditName"`\> & `Pick`\<`PostFlairWidget`, `"styles"` \| `"templates"` \| `"display"`\>
+
+#### Overrides
+
+[`Widget`](/api/redditapi/models/classes/Widget).[`toJSON`](/api/redditapi/models/classes/Widget#tojson)
