@@ -1,0 +1,54 @@
+---
+title: "CreateModNoteOptions"
+---
+
+## Type Alias: CreateModNoteOptions
+
+> **CreateModNoteOptions** = `object`
+
+Options for adding a moderation note to a user.
+
+## Properties
+
+
+### label?
+
+> `optional` **label**: [`UserNoteLabel`](/api/redditapi/models/type-aliases/UserNoteLabel)
+
+A label that categorizes the moderation note.
+
+***
+
+
+### note
+
+> **note**: `string`
+
+The text of the moderation note. The maximum length is 250 characters.
+
+***
+
+
+### redditId?
+
+> `optional` **redditId**: `T1` \| `T3`
+
+The comment or post associated with the moderation note.
+
+***
+
+
+### subreddit
+
+> **subreddit**: `string`
+
+The subreddit name without the leading `r/`.
+
+***
+
+
+### user
+
+> **user**: `string`
+
+The username without the leading `u/`.
