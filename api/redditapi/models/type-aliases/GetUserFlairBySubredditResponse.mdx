@@ -1,0 +1,38 @@
+---
+title: "GetUserFlairBySubredditResponse"
+---
+
+## Type Alias: GetUserFlairBySubredditResponse
+
+> **GetUserFlairBySubredditResponse** = `object`
+
+## Properties
+
+
+### next?
+
+> `optional` **next**: `string`
+
+The user id of the last user flair in this slice. Its presence indicates
+that there are more items that can be fetched. Pass this into the "after" parameter
+in the next call to get the next slice of data
+
+***
+
+
+### prev?
+
+> `optional` **prev**: `string`
+
+The user id of the first user flair in this slice. Its presence indicates
+that there are items before this item that can be fetched. Pass this into the "before" parameter
+in the next call to get the previous slice of data
+
+***
+
+
+### users
+
+> **users**: [`UserFlair`](/api/redditapi/models/type-aliases/UserFlair)[]
+
+The list of user flair

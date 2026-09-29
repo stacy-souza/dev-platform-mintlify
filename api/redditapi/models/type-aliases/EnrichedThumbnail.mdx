@@ -1,0 +1,69 @@
+---
+title: "EnrichedThumbnail"
+---
+
+## Type Alias: EnrichedThumbnail
+
+> **EnrichedThumbnail** = `object`
+
+Contains a post's thumbnail and, for NSFW content, its blurred version.
+
+## Properties
+
+
+### attribution?
+
+> `optional` **attribution**: `string`
+
+Attribution text for the thumbnail
+
+***
+
+
+### image
+
+> **image**: `object`
+
+The thumbnail image. Its resolution can differ from [Post.thumbnail](/api/redditapi/models/classes/Post#thumbnail).
+
+#### height
+
+> **height**: `number`
+
+#### url
+
+> **url**: `string`
+
+#### width
+
+> **width**: `number`
+
+***
+
+
+### isObfuscatedDefault
+
+> **isObfuscatedDefault**: `boolean`
+
+Whether this thumbnail appears blurred by default
+
+***
+
+
+### obfuscatedImage?
+
+> `optional` **obfuscatedImage**: `object`
+
+The blurred image for NSFW thumbnails
+
+#### height
+
+> **height**: `number`
+
+#### url
+
+> **url**: `string`
+
+#### width
+
+> **width**: `number`

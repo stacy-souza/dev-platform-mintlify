@@ -1,0 +1,57 @@
+---
+title: "GetModNotesOptions"
+---
+
+## Type Alias: GetModNotesOptions
+
+> **GetModNotesOptions** = `object`
+
+Options for retrieving a user's moderation notes from a subreddit.
+
+## Properties
+
+
+### before?
+
+> `optional` **before**: `string`
+
+The pagination cursor before which results should be returned.
+
+***
+
+
+### filter?
+
+> `optional` **filter**: [`ModNoteType`](/api/redditapi/models/type-aliases/ModNoteType)
+
+The type of moderation notes to return. Defaults to all types.
+
+***
+
+
+### limit?
+
+> `optional` **limit**: `number`
+
+The maximum total number of moderation notes to return.
+
+Accepts at most 100 notes per request. Omit this option to allow the
+listing to paginate beyond the first 100 notes.
+
+***
+
+
+### subreddit
+
+> **subreddit**: `string`
+
+The subreddit name without the leading `r/`.
+
+***
+
+
+### user
+
+> **user**: `string`
+
+The username without the leading `u/`.

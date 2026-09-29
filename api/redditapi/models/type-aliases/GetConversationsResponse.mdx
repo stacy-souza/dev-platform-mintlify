@@ -1,0 +1,36 @@
+---
+title: "GetConversationsResponse"
+---
+
+## Type Alias: GetConversationsResponse
+
+> **GetConversationsResponse** = `object`
+
+## Properties
+
+
+### conversationIds
+
+> **conversationIds**: `string`[]
+
+Array of conversation ids, ordered by the sort parameter specified in [GetConversationsRequest](/api/redditapi/models/type-aliases/GetConversationsRequest).
+
+***
+
+
+### conversations
+
+> **conversations**: `object`
+
+Conversations key-value map
+
+#### Index Signature
+
+\[`id`: `string`\]: [`ConversationData`](/api/redditapi/models/type-aliases/ConversationData)
+
+***
+
+
+### viewerId?
+
+> `optional` **viewerId**: `T2`
