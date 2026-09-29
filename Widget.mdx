@@ -1,0 +1,99 @@
+---
+title: "Widget"
+---
+
+## Class: Widget
+
+## Extended by
+
+- [`ImageWidget`](/api/redditapi/models/classes/ImageWidget)
+- [`CalendarWidget`](/api/redditapi/models/classes/CalendarWidget)
+- [`TextAreaWidget`](/api/redditapi/models/classes/TextAreaWidget)
+- [`ButtonWidget`](/api/redditapi/models/classes/ButtonWidget)
+- [`CommunityListWidget`](/api/redditapi/models/classes/CommunityListWidget)
+- [`PostFlairWidget`](/api/redditapi/models/classes/PostFlairWidget)
+- [`CustomWidget`](/api/redditapi/models/classes/CustomWidget)
+- [`SubredditRulesWidget`](/api/redditapi/models/classes/SubredditRulesWidget)
+
+## Constructors
+
+<span id="constructor" />
+
+### new Widget()
+
+> **new Widget**(`widgetData`, `subredditName`): `Widget`
+
+#### Parameters
+
+##### widgetData
+
+`GetWidgetsResponse_WidgetItem`
+
+##### subredditName
+
+`string`
+
+#### Returns
+
+`Widget`
+
+## Accessors
+
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+***
+
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string`
+
+##### Returns
+
+`string`
+
+***
+
+
+### subredditName
+
+#### Get Signature
+
+> **get** **subredditName**(): `string`
+
+##### Returns
+
+`string`
+
+## Methods
+
+
+### delete()
+
+> **delete**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+***
+
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<`Widget`, `"name"` \| `"id"` \| `"subredditName"`\>
+
+#### Returns
+
+`Pick`\<`Widget`, `"name"` \| `"id"` \| `"subredditName"`\>

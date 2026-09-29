@@ -1,0 +1,301 @@
+---
+title: "WikiPage"
+---
+
+## Class: WikiPage
+
+## Accessors
+
+
+### content
+
+#### Get Signature
+
+> **get** **content**(): `string`
+
+The Markdown content of the page.
+
+##### Returns
+
+`string`
+
+***
+
+
+### contentHtml
+
+#### Get Signature
+
+> **get** **contentHtml**(): `string`
+
+The HTML content of the page.
+
+##### Returns
+
+`string`
+
+***
+
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string`
+
+The name of the page.
+
+##### Returns
+
+`string`
+
+***
+
+
+### revisionAuthor
+
+#### Get Signature
+
+> **get** **revisionAuthor**(): `undefined` \| [`User`](/api/redditapi/models/classes/User)
+
+The author of this revision.
+
+##### Deprecated
+
+Use revisionAuthorId instead.
+
+##### Returns
+
+`undefined` \| [`User`](/api/redditapi/models/classes/User)
+
+***
+
+
+### revisionAuthorId
+
+#### Get Signature
+
+> **get** **revisionAuthorId**(): `undefined` \| `` `t2_${string}` ``
+
+The ID of the author of this revision.
+
+##### Returns
+
+`undefined` \| `` `t2_${string}` ``
+
+***
+
+
+### revisionDate
+
+#### Get Signature
+
+> **get** **revisionDate**(): `Date`
+
+The date of the revision.
+
+##### Returns
+
+`Date`
+
+***
+
+
+### revisionId
+
+#### Get Signature
+
+> **get** **revisionId**(): `` `${string}-${string}-${string}-${string}-${string}` ``
+
+The ID of the revision.
+
+##### Returns
+
+`` `${string}-${string}-${string}-${string}-${string}` ``
+
+***
+
+
+### revisionReason
+
+#### Get Signature
+
+> **get** **revisionReason**(): `string`
+
+The reason for the revision.
+
+##### Returns
+
+`string`
+
+***
+
+
+### subredditName
+
+#### Get Signature
+
+> **get** **subredditName**(): `string`
+
+The name of the subreddit the page is in.
+
+##### Returns
+
+`string`
+
+***
+
+
+### wikiVersion
+
+#### Get Signature
+
+> **get** **wikiVersion**(): [`WikiVersion`](/api/redditapi/models/type-aliases/WikiVersion)
+
+The wiki version this page belongs to.
+
+##### Returns
+
+[`WikiVersion`](/api/redditapi/models/type-aliases/WikiVersion)
+
+## Methods
+
+
+### addEditor()
+
+> **addEditor**(`username`): `Promise`\<`void`\>
+
+Add an editor to this page.
+
+#### Parameters
+
+##### username
+
+`string`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+***
+
+
+### getRevisions()
+
+> **getRevisions**(`options`): `Promise`\<[`Listing`](/api/redditapi/models/classes/Listing)\<[`WikiPageRevision`](/api/redditapi/models/classes/WikiPageRevision)\>\>
+
+Get the revisions for this page.
+
+#### Parameters
+
+##### options
+
+`Omit`\<[`GetPageRevisionsOptions`](/api/redditapi/models/type-aliases/GetPageRevisionsOptions), `"subredditName"` \| `"wikiVersion"` \| `"page"`\>
+
+#### Returns
+
+`Promise`\<[`Listing`](/api/redditapi/models/classes/Listing)\<[`WikiPageRevision`](/api/redditapi/models/classes/WikiPageRevision)\>\>
+
+***
+
+
+### getSettings()
+
+> **getSettings**(): `Promise`\<[`WikiPageSettings`](/api/redditapi/models/classes/WikiPageSettings)\>
+
+Get the settings for this page.
+
+#### Returns
+
+`Promise`\<[`WikiPageSettings`](/api/redditapi/models/classes/WikiPageSettings)\>
+
+***
+
+
+### removeEditor()
+
+> **removeEditor**(`username`): `Promise`\<`void`\>
+
+Remove an editor from this page.
+
+#### Parameters
+
+##### username
+
+`string`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+***
+
+
+### revertTo()
+
+> **revertTo**(`revisionId`): `Promise`\<`void`\>
+
+Revert this page to a previous revision.
+
+#### Parameters
+
+##### revisionId
+
+`` `${string}-${string}-${string}-${string}-${string}` ``
+
+#### Returns
+
+`Promise`\<`void`\>
+
+***
+
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<`WikiPage`, `"name"` \| `"subredditName"` \| `"content"` \| `"contentHtml"` \| `"revisionId"` \| `"revisionDate"` \| `"revisionReason"`\> & `object`
+
+#### Returns
+
+`Pick`\<`WikiPage`, `"name"` \| `"subredditName"` \| `"content"` \| `"contentHtml"` \| `"revisionId"` \| `"revisionDate"` \| `"revisionReason"`\> & `object`
+
+***
+
+
+### update()
+
+> **update**(`content`, `reason`?): `Promise`\<`WikiPage`\>
+
+Update this page.
+
+#### Parameters
+
+##### content
+
+`string`
+
+##### reason?
+
+`string`
+
+#### Returns
+
+`Promise`\<`WikiPage`\>
+
+***
+
+
+### updateSettings()
+
+> **updateSettings**(`options`): `Promise`\<[`WikiPageSettings`](/api/redditapi/models/classes/WikiPageSettings)\>
+
+Update the settings for this page.
+
+#### Parameters
+
+##### options
+
+`Omit`\<[`UpdatePageSettingsOptions`](/api/redditapi/models/type-aliases/UpdatePageSettingsOptions), `"subredditName"` \| `"wikiVersion"` \| `"page"`\>
+
+#### Returns
+
+`Promise`\<[`WikiPageSettings`](/api/redditapi/models/classes/WikiPageSettings)\>
