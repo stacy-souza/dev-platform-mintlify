@@ -1,0 +1,79 @@
+---
+title: "ModNote"
+sidebarTitle: "ModNote"
+description: "Represents a moderator note in the Devvit Reddit API."
+---
+
+## Class: ModNote
+
+## Properties
+
+### createdAt
+
+> **createdAt**: `Date`
+
+---
+
+### id
+
+> **id**: `string`
+
+---
+
+### modAction?
+
+> `optional` **modAction**: [`ModAction`](/v0.13/api/redditapi/models/interfaces/ModAction)
+
+---
+
+### operator
+
+> **operator**: `object`
+
+#### id?
+
+> `optional` **id**: ``t2_${string}``
+
+#### name?
+
+> `optional` **name**: `string`
+
+---
+
+### subreddit
+
+> **subreddit**: `object`
+
+#### id?
+
+> `optional` **id**: ``t5_${string}``
+
+#### name?
+
+> `optional` **name**: `string`
+
+---
+
+### type
+
+> **type**: [`ModNoteType`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/ModNoteType)
+
+---
+
+### user
+
+> **user**: `object`
+
+#### id?
+
+> `optional` **id**: ``t2_${string}``
+
+#### name?
+
+> `optional` **name**: `string`
+
+---
+
+### userNote?
+
+> `optional` **userNote**: [`UserNote`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/UserNote)

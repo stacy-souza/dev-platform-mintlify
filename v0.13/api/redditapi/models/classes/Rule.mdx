@@ -1,0 +1,273 @@
+---
+title: "Rule"
+sidebarTitle: "Rule"
+description: "Represents a subreddit rule in the Devvit Reddit API."
+---
+
+## Class: Rule
+
+## Constructors
+
+### new Rule()
+
+> **new Rule**(`ruleData`, `subredditName`, `metadata`): `Rule`
+
+#### Parameters
+
+##### ruleData
+
+`SubredditAboutRulesResponse_SubredditRule`
+
+##### subredditName
+
+`string`
+
+##### metadata
+
+`undefined` | `Metadata`
+
+#### Returns
+
+`Rule`
+
+## Accessors
+
+### createdUtc
+
+#### Get Signature
+
+> **get** **createdUtc**(): `number`
+
+The Unix timestamp of when the rule was created.
+
+##### Returns
+
+`number`
+
+---
+
+### description
+
+#### Get Signature
+
+> **get** **description**(): `string`
+
+The full description of the rule. This appears on your subreddit's sidebar.
+
+##### Returns
+
+`string`
+
+---
+
+### descriptionHtml
+
+#### Get Signature
+
+> **get** **descriptionHtml**(): `undefined` | `string`
+
+##### Returns
+
+`undefined` | `string`
+
+---
+
+### kind
+
+#### Get Signature
+
+> **get** **kind**(): `"all"` | `"link"` | `"comment"`
+
+Which Reddit objects this rule applies to. One of "all", "link" (AKA posts), "comment".
+
+##### Returns
+
+`"all"` | `"link"` | `"comment"`
+
+---
+
+### priority
+
+#### Get Signature
+
+> **get** **priority**(): `number`
+
+The zero-indexed rank of the rule on the subreddit sidebar. Lower numbers appear on top.
+
+##### Returns
+
+`number`
+
+---
+
+### shortName
+
+#### Get Signature
+
+> **get** **shortName**(): `string`
+
+The name for the rule.
+
+##### Returns
+
+`string`
+
+---
+
+### subredditName
+
+#### Get Signature
+
+> **get** **subredditName**(): `string`
+
+The name (without r/ prefix) of the subreddit the rule belongs to.
+
+##### Returns
+
+`string`
+
+---
+
+### violationReason
+
+#### Get Signature
+
+> **get** **violationReason**(): `string`
+
+Text to show users when reporting content due to this rule. Defaults to the shortName.
+
+##### Returns
+
+`string`
+
+## Methods
+
+### delete()
+
+> **delete**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<`Rule`, `"subredditName"` | `"kind"` | `"violationReason"` | `"shortName"` | `"description"` | `"createdUtc"` | `"priority"`\> & `object`
+
+#### Returns
+
+`Pick`\<`Rule`, `"subredditName"` | `"kind"` | `"violationReason"` | `"shortName"` | `"description"` | `"createdUtc"` | `"priority"`\> & `object`
+
+---
+
+### update()
+
+> **update**(`options`): `Promise`\<`void`\>
+
+Update an existing rule.
+
+#### Parameters
+
+##### options
+
+`Readonly`\<[`UpdateRuleOptions`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/UpdateRuleOptions)\>
+
+New values for an existing rule. All fields are optional. If a field is not provided, the existing value will not be changed.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### createRule()
+
+> `static` **createRule**(`subredditName`, `options`, `metadata`): `Promise`\<`void`\>
+
+#### Parameters
+
+##### subredditName
+
+`string`
+
+##### options
+
+`Readonly`\<[`CreateRuleOptions`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CreateRuleOptions)\>
+
+##### metadata
+
+`undefined` | `Metadata`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### delete()
+
+> `static` **delete**(`subredditName`, `shortName`, `metadata`): `Promise`\<`void`\>
+
+#### Parameters
+
+##### subredditName
+
+`string`
+
+##### shortName
+
+`string`
+
+##### metadata
+
+`undefined` | `Metadata`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### getRules()
+
+> `static` **getRules**(`subredditName`, `metadata`): `Promise`\<`Rule`[]>
+
+#### Parameters
+
+##### subredditName
+
+`string`
+
+##### metadata
+
+`undefined` | `Metadata`
+
+#### Returns
+
+`Promise`\<`Rule`[]>
+
+---
+
+### reorderRules()
+
+> `static` **reorderRules**(`subredditName`, `rules`, `metadata`): `Promise`\<`void`\>
+
+#### Parameters
+
+##### subredditName
+
+`string`
+
+##### rules
+
+`Rule`[]
+
+##### metadata
+
+`undefined` | `Metadata`
+
+#### Returns
+
+`Promise`\<`void`\>

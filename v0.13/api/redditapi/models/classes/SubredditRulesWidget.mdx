@@ -1,0 +1,145 @@
+---
+title: "SubredditRulesWidget"
+sidebarTitle: "SubredditRulesWidget"
+description: "Class representing a subreddit rules widget."
+---
+
+## Class: SubredditRulesWidget
+
+## Extends
+
+- [`Widget`](/v0.13/api/redditapi/models/classes/Widget)
+
+## Constructors
+
+<span id="constructor" />
+
+### new SubredditRulesWidget()
+
+> **new SubredditRulesWidget**(`subredditAboutRulesRsp`, `widgetData`, `subredditName`, `metadata`): `SubredditRulesWidget`
+
+#### Parameters
+
+##### subredditAboutRulesRsp
+
+`SubredditAboutRulesResponse`
+
+##### widgetData
+
+`GetWidgetsResponse_WidgetItem`
+
+##### subredditName
+
+`string`
+
+##### metadata
+
+`undefined` | `Metadata`
+
+#### Returns
+
+`SubredditRulesWidget`
+
+#### Overrides
+
+[`Widget`](/v0.13/api/redditapi/models/classes/Widget).[`constructor`](/v0.13/api/redditapi/models/classes/Widget#constructor)
+
+## Accessors
+
+<span id="id" />
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/v0.13/api/redditapi/models/classes/Widget).[`id`](/v0.13/api/redditapi/models/classes/Widget#id)
+
+---
+
+<span id="name" />
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/v0.13/api/redditapi/models/classes/Widget).[`name`](/v0.13/api/redditapi/models/classes/Widget#name)
+
+---
+
+<span id="rules" />
+
+### rules
+
+#### Get Signature
+
+> **get** **rules**(): `SubredditRule`[]
+
+##### Returns
+
+`SubredditRule`[]
+
+---
+
+<span id="subredditname" />
+
+### subredditName
+
+#### Get Signature
+
+> **get** **subredditName**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/v0.13/api/redditapi/models/classes/Widget).[`subredditName`](/v0.13/api/redditapi/models/classes/Widget#subredditname)
+
+## Methods
+
+<span id="delete" />
+
+### delete()
+
+> **delete**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Inherited from
+
+[`Widget`](/v0.13/api/redditapi/models/classes/Widget).[`delete`](/v0.13/api/redditapi/models/classes/Widget#delete)
+
+---
+
+<span id="tojson" />
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<[`Widget`](/v0.13/api/redditapi/models/classes/Widget), `"subredditName"` | `"id"` | `"name"`\> & `Pick`\<`SubredditRulesWidget`, `"rules"`\>
+
+#### Returns
+
+`Pick`\<[`Widget`](/v0.13/api/redditapi/models/classes/Widget), `"subredditName"` | `"id"` | `"name"`\> & `Pick`\<`SubredditRulesWidget`, `"rules"`\>
+
+#### Overrides
+
+[`Widget`](/v0.13/api/redditapi/models/classes/Widget).[`toJSON`](/v0.13/api/redditapi/models/classes/Widget#tojson)

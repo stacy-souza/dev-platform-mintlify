@@ -1,0 +1,1121 @@
+---
+title: "Post"
+sidebarTitle: "Post"
+description: "Represents a Reddit post in the Devvit API with accessors and methods for moderation, metadata, and content management."
+---
+
+## Class: Post
+
+## Accessors
+
+### approved
+
+#### Get Signature
+
+> **get** **approved**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### approvedAtUtc
+
+#### Get Signature
+
+> **get** **approvedAtUtc**(): `number`
+
+##### Returns
+
+`number`
+
+---
+
+### archived
+
+#### Get Signature
+
+> **get** **archived**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### authorFlair
+
+#### Get Signature
+
+> **get** **authorFlair**(): `undefined` | [`CommonFlair`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CommonFlair)
+
+##### Returns
+
+`undefined` | [`CommonFlair`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CommonFlair)
+
+---
+
+### authorId
+
+#### Get Signature
+
+> **get** **authorId**(): `undefined` | ``t2_${string}``
+
+##### Returns
+
+`undefined` | ``t2_${string}``
+
+---
+
+### authorName
+
+#### Get Signature
+
+> **get** **authorName**(): `string`
+
+##### Returns
+
+`string`
+
+---
+
+### bannedAtUtc
+
+#### Get Signature
+
+> **get** **bannedAtUtc**(): `number`
+
+##### Returns
+
+`number`
+
+---
+
+### body
+
+#### Get Signature
+
+> **get** **body**(): `undefined` | `string`
+
+##### Returns
+
+`undefined` | `string`
+
+---
+
+### bodyHtml
+
+#### Get Signature
+
+> **get** **bodyHtml**(): `undefined` | `string`
+
+##### Returns
+
+`undefined` | `string`
+
+---
+
+### comments
+
+#### Get Signature
+
+> **get** **comments**(): [`Listing`](/v0.13/api/redditapi/models/classes/Listing)\<[`Comment`](/v0.13/api/redditapi/models/classes/Comment)\>
+
+##### Returns
+
+[`Listing`](/v0.13/api/redditapi/models/classes/Listing)\<[`Comment`](/v0.13/api/redditapi/models/classes/Comment)\>
+
+---
+
+### createdAt
+
+#### Get Signature
+
+> **get** **createdAt**(): `Date`
+
+##### Returns
+
+`Date`
+
+---
+
+### crosspostParentId
+
+#### Get Signature
+
+> **get** **crosspostParentId**(): `undefined` | ``t3_${string}``
+
+The ID of the original post this was crossposted from. Undefined if this post is not a crosspost.
+
+##### Returns
+
+`undefined` | ``t3_${string}``
+
+---
+
+### distinguishedBy
+
+#### Get Signature
+
+> **get** **distinguishedBy**(): `undefined` | `string`
+
+##### Returns
+
+`undefined` | `string`
+
+---
+
+### edited
+
+#### Get Signature
+
+> **get** **edited**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### flair
+
+#### Get Signature
+
+> **get** **flair**(): `undefined` | [`CommonFlair`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CommonFlair)
+
+##### Returns
+
+`undefined` | [`CommonFlair`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CommonFlair)
+
+---
+
+### gallery
+
+#### Get Signature
+
+> **get** **gallery**(): [`GalleryMedia`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/GalleryMedia)[]
+
+Get the media in the post. Empty if the post doesn't have any media.
+
+##### Returns
+
+[`GalleryMedia`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/GalleryMedia)[]
+
+---
+
+### hidden
+
+#### Get Signature
+
+> **get** **hidden**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): ``t3_${string}``
+
+##### Returns
+
+``t3_${string}``
+
+---
+
+### ignoringReports
+
+#### Get Signature
+
+> **get** **ignoringReports**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### locked
+
+#### Get Signature
+
+> **get** **locked**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### modReportReasons
+
+#### Get Signature
+
+> **get** **modReportReasons**(): `string`[]
+
+##### Deprecated
+
+Use [modReports](#modreports) to retain each report's author.
+
+##### Returns
+
+`string`[]
+
+---
+
+### modReports
+
+#### Get Signature
+
+> **get** **modReports**(): [`ModeratorReport`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/ModeratorReport)[]
+
+##### Returns
+
+[`ModeratorReport`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/ModeratorReport)[]
+
+---
+
+### nsfw
+
+#### Get Signature
+
+> **get** **nsfw**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### numberOfComments
+
+#### Get Signature
+
+> **get** **numberOfComments**(): `number`
+
+##### Returns
+
+`number`
+
+---
+
+### numberOfReports
+
+#### Get Signature
+
+> **get** **numberOfReports**(): `number`
+
+##### Returns
+
+`number`
+
+---
+
+### permalink
+
+#### Get Signature
+
+> **get** **permalink**(): `string`
+
+##### Returns
+
+`string`
+
+---
+
+### pollData
+
+#### Get Signature
+
+> **get** **pollData**(): `undefined` | [`PollData`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/PollData)
+
+Poll data for the post, if the post is a poll. Undefined otherwise.
+
+##### Returns
+
+`undefined` | [`PollData`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/PollData)
+
+---
+
+### quarantined
+
+#### Get Signature
+
+> **get** **quarantined**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### removed
+
+#### Get Signature
+
+> **get** **removed**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### removedBy
+
+#### Get Signature
+
+> **get** **removedBy**(): `undefined` | `string`
+
+Who removed this object (username)
+
+##### Returns
+
+`undefined` | `string`
+
+---
+
+### removedByCategory
+
+#### Get Signature
+
+> **get** **removedByCategory**(): `undefined` | `string`
+
+who/what removed this object. It will return one of the following:
+
+- "anti_evil_ops": object is removed by a aeops member
+- "author": object is removed by author of the post
+- "automod_filtered": object is filtered by automod
+- "community_ops": object is removed by a community team member
+- "content_takedown": object is removed due to content violation
+- "copyright_takedown": object is removed due to copyright violation
+- "deleted": object is deleted
+- "moderator": object is removed by a mod of the sub
+- "reddit": object is removed by anyone else
+- undefined: object is not removed
+
+##### Returns
+
+`undefined` | `string`
+
+---
+
+### score
+
+#### Get Signature
+
+> **get** **score**(): `number`
+
+##### Returns
+
+`number`
+
+---
+
+### secureMedia
+
+#### Get Signature
+
+> **get** **secureMedia**(): `undefined` | [`SecureMedia`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/SecureMedia)
+
+##### Returns
+
+`undefined` | [`SecureMedia`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/SecureMedia)
+
+---
+
+### spam
+
+#### Get Signature
+
+> **get** **spam**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### spoiler
+
+#### Get Signature
+
+> **get** **spoiler**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### stickied
+
+#### Get Signature
+
+> **get** **stickied**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+---
+
+### subredditId
+
+#### Get Signature
+
+> **get** **subredditId**(): ``t5_${string}``
+
+##### Returns
+
+``t5_${string}``
+
+---
+
+### subredditName
+
+#### Get Signature
+
+> **get** **subredditName**(): `string`
+
+##### Returns
+
+`string`
+
+---
+
+### thumbnail
+
+#### Get Signature
+
+> **get** **thumbnail**(): `undefined` | \{ `height`: `number`; `url`: `string`; `width`: `number`; \}
+
+##### Returns
+
+`undefined` | \{ `height`: `number`; `url`: `string`; `width`: `number`; \}
+
+---
+
+### title
+
+#### Get Signature
+
+> **get** **title**(): `string`
+
+##### Returns
+
+`string`
+
+---
+
+### url
+
+#### Get Signature
+
+> **get** **url**(): `string`
+
+##### Returns
+
+`string`
+
+---
+
+### userReportReasons
+
+#### Get Signature
+
+> **get** **userReportReasons**(): `string`[]
+
+##### Returns
+
+`string`[]
+
+## Methods
+
+### addComment()
+
+> **addComment**(`options`): `Promise`\<[`Comment`](/v0.13/api/redditapi/models/classes/Comment)\>
+
+#### Parameters
+
+##### options
+
+[`CommentSubmissionOptions`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CommentSubmissionOptions)
+
+#### Returns
+
+`Promise`\<[`Comment`](/v0.13/api/redditapi/models/classes/Comment)\>
+
+---
+
+### addRemovalNote()
+
+> **addRemovalNote**(`options`): `Promise`\<`void`\>
+
+Add a mod note for why the post was removed
+
+#### Parameters
+
+##### options
+
+###### modNote?
+
+`string`
+
+the reason for removal (maximum 100 characters) (optional)
+
+###### reasonId
+
+`string`
+
+id of a Removal Reason - you can leave this as an empty string if you don't have one
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### approve()
+
+> **approve**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### crosspost()
+
+> **crosspost**(`options`): `Promise`\<`Post`\>
+
+#### Parameters
+
+##### options
+
+`Omit`\<[`CrosspostOptions`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CrosspostOptions), `"postId"`\>
+
+#### Returns
+
+`Promise`\<`Post`\>
+
+---
+
+### delete()
+
+> **delete**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### distinguish()
+
+> **distinguish**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### distinguishAsAdmin()
+
+> **distinguishAsAdmin**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### edit()
+
+> **edit**(`options`): `Promise`\<`void`\>
+
+#### Parameters
+
+##### options
+
+[`PostTextOptions`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/PostTextOptions)
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### filter()
+
+> **filter**(`options`?): `Promise`\<`void`\>
+
+**`Experimental`**
+
+Filters a post. When a post is filtered, it is added to the ModQueue for review. By default, filtered posts are hidden while in the queue. Set `keep` to `true` to keep the post visible. Set `reason` to show moderators a reason; when `keep` is `true`, the reason is also shown on the post.
+
+#### Parameters
+
+##### options?
+
+`FilterOptions`
+
+The options for this filter action.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+A Promise that resolves if the post was filtered successfully.
+
+---
+
+### getAuthor()
+
+> **getAuthor**(): `Promise`\<`undefined` | [`User`](/v0.13/api/redditapi/models/classes/User)\>
+
+#### Returns
+
+`Promise`\<`undefined` | [`User`](/v0.13/api/redditapi/models/classes/User)\>
+
+---
+
+### getCurrentUserPollOption()
+
+> **getCurrentUserPollOption**(): `Promise`\<`undefined` | [`PollOption`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/PollOption)\>
+
+Get the poll option the authenticated user selected for this post. Returns undefined if the post is not a poll or the user has not voted.
+
+This method will get the poll option for the app account by default. To get the poll option for a user, please contact Reddit.
+
+#### Returns
+
+`Promise`\<`undefined` | [`PollOption`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/PollOption)\>
+
+---
+
+### getDuplicates()
+
+> **getDuplicates**(`options`): [`Listing`](/v0.13/api/redditapi/models/classes/Listing)\<`Post`\>
+
+#### Parameters
+
+##### options
+
+`Omit`\<[`GetDuplicatesOptions`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/GetDuplicatesOptions), `"postId"`\> = `{}`
+
+#### Returns
+
+[`Listing`](/v0.13/api/redditapi/models/classes/Listing)\<`Post`\>
+
+---
+
+### getEnrichedThumbnail()
+
+> **getEnrichedThumbnail**(): `Promise`\<`undefined` | [`EnrichedThumbnail`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/EnrichedThumbnail)\>
+
+Get a thumbnail that contains a preview image and also contains a blurred preview for NSFW images. The thumbnail returned has higher resolution than Post.thumbnail. Returns undefined if the post doesn't have a thumbnail
+
+#### Returns
+
+`Promise`\<`undefined` | [`EnrichedThumbnail`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/EnrichedThumbnail)\>
+
+#### Throws
+
+Throws an error if the thumbnail could not be fetched
+
+#### Example
+
+```ts
+// from a menu action, form, scheduler, trigger, custom post click event, etc
+const post = await context.reddit.getPostById(context.postId);
+const enrichedThumbnail = await post.getEnrichedThumbnail();
+```
+
+---
+
+### hide()
+
+> **hide**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### ignoreReports()
+
+> **ignoreReports**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### isApproved()
+
+> **isApproved**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isArchived()
+
+> **isArchived**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isDistinguishedBy()
+
+> **isDistinguishedBy**(): `undefined` | `string`
+
+#### Returns
+
+`undefined` | `string`
+
+---
+
+### isEdited()
+
+> **isEdited**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isHidden()
+
+> **isHidden**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isIgnoringReports()
+
+> **isIgnoringReports**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isLocked()
+
+> **isLocked**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isNsfw()
+
+> **isNsfw**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isQuarantined()
+
+> **isQuarantined**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isRemoved()
+
+> **isRemoved**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isSpam()
+
+> **isSpam**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isSpoiler()
+
+> **isSpoiler**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### isStickied()
+
+> **isStickied**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+---
+
+### lock()
+
+> **lock**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### markAsNsfw()
+
+> **markAsNsfw**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### markAsSpoiler()
+
+> **markAsSpoiler**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### remove()
+
+> **remove**(`isSpam`): `Promise`\<`void`\>
+
+#### Parameters
+
+##### isSpam
+
+`boolean` = `false`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### setSuggestedCommentSort()
+
+> **setSuggestedCommentSort**(`suggestedSort`): `Promise`\<`void`\>
+
+Set the suggested sort for comments on a Post.
+
+#### Parameters
+
+##### suggestedSort
+
+[`PostSuggestedCommentSort`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/PostSuggestedCommentSort)
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Throws
+
+Throws an error if the suggested sort could not be set.
+
+#### Example
+
+```ts
+const post = await reddit.getPostById(context.postId);
+await post.setSuggestedCommentSort("NEW");
+```
+
+---
+
+### snoozeReports()
+
+> **snoozeReports**(`reason`): `Promise`\<`void`\>
+
+Snooze subsequent reports with the given reason from the same users for the next 7 days. Only works for free-form reports.
+
+#### Parameters
+
+##### reason
+
+`string`
+
+The report reason to snooze.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### sticky()
+
+> **sticky**(`position`?): `Promise`\<`void`\>
+
+#### Parameters
+
+##### position?
+
+`1` | `2` | `3` | `4`
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<`Post`, `"subredditName"` | `"flair"` | `"id"` | `"subredditId"` | `"permalink"` | `"url"` | `"createdAt"` | `"title"` | `"nsfw"` | `"authorId"` | `"authorName"` | `"body"` | `"bodyHtml"` | `"thumbnail"` | `"score"` | `"numberOfComments"` | `"numberOfReports"` | `"approved"` | `"spam"` | `"stickied"` | `"removed"` | `"removedBy"` | `"removedByCategory"` | `"archived"` | `"edited"` | `"locked"` | `"quarantined"` | `"spoiler"` | `"hidden"` | `"ignoringReports"` | `"distinguishedBy"` | `"authorFlair"` | `"secureMedia"` | `"userReportReasons"` | `"modReports"` | `"modReportReasons"` | `"crosspostParentId"`\>
+
+#### Returns
+
+`Pick`\<`Post`, `"subredditName"` | `"flair"` | `"id"` | `"subredditId"` | `"permalink"` | `"url"` | `"createdAt"` | `"title"` | `"nsfw"` | `"authorId"` | `"authorName"` | `"body"` | `"bodyHtml"` | `"thumbnail"` | `"score"` | `"numberOfComments"` | `"numberOfReports"` | `"approved"` | `"spam"` | `"stickied"` | `"removed"` | `"removedBy"` | `"removedByCategory"` | `"archived"` | `"edited"` | `"locked"` | `"quarantined"` | `"spoiler"` | `"hidden"` | `"ignoringReports"` | `"distinguishedBy"` | `"authorFlair"` | `"secureMedia"` | `"userReportReasons"` | `"modReports"` | `"modReportReasons"` | `"crosspostParentId"`\>
+
+---
+
+### undistinguish()
+
+> **undistinguish**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### unhide()
+
+> **unhide**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### unignoreReports()
+
+> **unignoreReports**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### unlock()
+
+> **unlock**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### unmarkAsNsfw()
+
+> **unmarkAsNsfw**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### unmarkAsSpoiler()
+
+> **unmarkAsSpoiler**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### unsnoozeReports()
+
+> **unsnoozeReports**(`reason`): `Promise`\<`void`\>
+
+Unsnooze reports with the given reason. Only works for free-form reports.
+
+#### Parameters
+
+##### reason
+
+`string`
+
+The report reason to unsnooze.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### unsticky()
+
+> **unsticky**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+---
+
+### updateCrowdControlLevel()
+
+> **updateCrowdControlLevel**(`level`): `Promise`\<`void`\>
+
+Updates the crowd control level of the post to hide comments accordingly.
+
+#### Parameters
+
+##### level
+
+[`CrowdControlLevel`](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CrowdControlLevel)
+
+The crowd control level to set. See [CrowdControlLevel](https://developers.reddit.com/docs/0.13/api/redditapi/models/type-aliases/CrowdControlLevel) for more information.
+
+#### Returns
+
+`Promise`\<`void`\>
