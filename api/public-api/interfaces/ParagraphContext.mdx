@@ -1,0 +1,269 @@
+---
+title: "ParagraphContext"
+---
+
+## Interface: ParagraphContext
+
+## Borrows
+
+TextContainer
+
+## Borrows
+
+ImageContainer
+
+## Borrows
+
+LinkContainer
+
+## Borrows
+
+LineBreakContainer
+
+## Extends
+
+- [`TextContainer`](/api/public-api/type-aliases/TextContainer)\<`ParagraphContext`\>.[`ImageContainer`](/api/public-api/type-aliases/ImageContainer)\<`ParagraphContext`\>.[`LinkContainer`](/api/public-api/type-aliases/LinkContainer)\<`ParagraphContext`\>.[`LineBreakContainer`](/api/public-api/type-aliases/LineBreakContainer)\<`ParagraphContext`\>
+
+## Methods
+
+
+### animatedImage()
+
+> **animatedImage**(`opts`): `ParagraphContext`
+
+Append an Animated Image
+
+#### Parameters
+
+##### opts
+
+[`MediaOptions`](/api/public-api/type-aliases/MediaOptions)
+
+[ImageOptions](/api/public-api/type-aliases/ImageOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+[`ImageContainer`](/api/public-api/type-aliases/ImageContainer).[`animatedImage`](/api/public-api/type-aliases/ImageContainer#animatedimage)
+
+***
+
+
+### commentLink()
+
+> **commentLink**(`opts`): `ParagraphContext`
+
+Append a link to a Reddit Comment
+
+#### Parameters
+
+##### opts
+
+[`RedditPermalinkOptions`](/api/public-api/type-aliases/RedditPermalinkOptions)
+
+[CommentLinkOptions](/api/public-api/type-aliases/CommentLinkOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+`LinkContainer.commentLink`
+
+***
+
+
+### image()
+
+> **image**(`opts`): `ParagraphContext`
+
+Append an Image
+
+#### Parameters
+
+##### opts
+
+[`MediaOptions`](/api/public-api/type-aliases/MediaOptions)
+
+[ImageOptions](/api/public-api/type-aliases/ImageOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+[`ImageContainer`](/api/public-api/type-aliases/ImageContainer).[`image`](/api/public-api/type-aliases/ImageContainer#image)
+
+***
+
+
+### linebreak()
+
+> **linebreak**(): `ParagraphContext`
+
+Append a Line Break
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+[`LineBreakContainer`](/api/public-api/type-aliases/LineBreakContainer).[`linebreak`](/api/public-api/type-aliases/LineBreakContainer#linebreak)
+
+***
+
+
+### link()
+
+> **link**(`opts`): `ParagraphContext`
+
+Append a Link
+
+#### Parameters
+
+##### opts
+
+[`LinkOptions`](/api/public-api/type-aliases/LinkOptions)
+
+[LinkOptions](/api/public-api/type-aliases/LinkOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+`LinkContainer.link`
+
+***
+
+
+### postLink()
+
+> **postLink**(`opts`): `ParagraphContext`
+
+Append a link to a Reddit Post
+
+#### Parameters
+
+##### opts
+
+[`RedditPermalinkOptions`](/api/public-api/type-aliases/RedditPermalinkOptions)
+
+[PostLinkOptions](/api/public-api/type-aliases/PostLinkOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+`LinkContainer.postLink`
+
+***
+
+
+### subredditLink()
+
+> **subredditLink**(`opts`): `ParagraphContext`
+
+Append a link to a Reddit Subreddit
+
+#### Parameters
+
+##### opts
+
+[`SubredditLinkOptions`](/api/public-api/type-aliases/SubredditLinkOptions)
+
+[SubredditLinkOptions](/api/public-api/type-aliases/SubredditLinkOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+`LinkContainer.subredditLink`
+
+***
+
+
+### text()
+
+> **text**(`opts`): `ParagraphContext`
+
+Append Text with optional formatting
+
+#### Parameters
+
+##### opts
+
+[`TextOptions`](/api/public-api/type-aliases/TextOptions)
+
+[TextOptions](/api/public-api/type-aliases/TextOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+[`TextContainer`](/api/public-api/type-aliases/TextContainer).[`text`](/api/public-api/type-aliases/TextContainer#text)
+
+***
+
+
+### userLink()
+
+> **userLink**(`opts`): `ParagraphContext`
+
+Append a link to a Reddit User
+
+#### Parameters
+
+##### opts
+
+[`UserLinkOptions`](/api/public-api/type-aliases/UserLinkOptions)
+
+[UserLinkOptions](/api/public-api/type-aliases/UserLinkOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Inherited from
+
+`LinkContainer.userLink`
+
+***
+
+
+### userMention()
+
+> **userMention**(`opts`): `ParagraphContext`
+
+Append a link to a Reddit User as a
+
+#### Parameters
+
+##### opts
+
+[`UserLinkOptions`](/api/public-api/type-aliases/UserLinkOptions)
+
+[UserMentionOptions](/api/public-api/type-aliases/UserMentionOptions)
+
+#### Returns
+
+`ParagraphContext`
+
+#### Mention
+
+#### Inherited from
+
+`LinkContainer.userMention`

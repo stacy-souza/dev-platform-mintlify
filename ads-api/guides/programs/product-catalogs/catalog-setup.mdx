@@ -1,0 +1,122 @@
+---
+title: "Set Up a Catalog"
+---
+
+A _catalog_ contains the items sold on your website. These are used to run [static](https://business.reddithelp.com/s/article/Product-Ads) or [dynamic product ads](https://business.reddithelp.com/s/article/dynamic-product-ads).
+
+## Before you start
+
+-   [Set up a Reddit Ads account](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account).
+-   [Find your business ID](https://ads.reddit.com/accounts).
+-   **(Optional)** [Find your Pixel ID](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-business).
+
+## 1\. Create your catalog
+
+Set up your catalog with [`Create Product Catalog`](https://ads-api.reddit.com/docs/v3/api/create-product-catalog).
+
+### Create product catalog
+
+```
+{
+  "data": {
+    "name": "",
+    "default_language": "en",
+    "default_currency": "USD",
+    "event_sources": [
+      ""
+    ]
+  }
+}
+```
+
+Save the `id` in the response.
+
+## 2\. Create products
+
+<Tabs>
+
+<Tab title="Feed">
+
+Use [`Create Product Feed`](https://ads-api.reddit.com/docs/v3/api/create-product-feed) to manage products. Choose a mode:
+
+-   **`replace`:** Match your catalog with the feed. **All other products will be removed.**
+-   **`update`:** Add missing products and update those that map another product. **All other products will be ignored.**
+
+Add a `schedule` to periodically update your products.
+
+### Add product feed
+
+```
+{
+  "data": {
+    "name": "",
+    "url": "",
+    "username": "",
+    "password": "",
+    "mode": "REPLACE",
+    "schedule": {
+      "interval": "Schedule interval",
+      "interval_count": "Schedule interval count",
+      "day_of_month": "Schedule day of month",
+      "hour": "Schedule hour",
+      "minute": "Schedule minute",
+      "timezone": "Timezone",
+      "day_of_week": "Schedule day of week"
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Manual">
+
+Add products to your catalog with [`Batch Create Products`](https://ads-api.reddit.com/docs/v3/api/batch-create-products).
+
+### Batch create products
+
+```
+{
+  "data": [
+    {
+      "id": "",
+      "title": "",
+      "description": "",
+      "link": "",
+      "image_link": "",
+      "price": ""
+    }
+  ]
+}
+```
+
+</Tab>
+
+</Tabs>
+
+## 3\. (Optional) Organize your products
+
+Create sets with [`Create Product Set`](https://ads-api.reddit.com/docs/v3/api/create-product-set). Bucket products using [filter rules](/ads-api/guides/programs/product-catalogs/filter-products).
+
+### Create product set
+
+Switch to Advanced for nested logic or anything beyond one boolean group.
+
+```
+{
+  "data": {
+    "name": "",
+    "filter": "{\"and\":[{\"title\":{\"i_contains\":\"bowl\"}}]}"
+
+  }
+}
+```
+
+Match
+
+-   Filter 1
+
+    AttributeOperatorValue
+
+
+Use [`List Products in Product Set`](https://ads-api.reddit.com/docs/v3/api/list-products-in-product-set) to validate the right products are in your set.

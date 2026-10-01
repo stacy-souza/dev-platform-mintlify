@@ -1,0 +1,124 @@
+---
+title: "CAPI v2 to v3 Migration"
+---
+
+Reddit is launching Conversions API v3, which introduces breaking changes to the current request payload structure. This change requires advertisers using Conversions API v3 to consolidate their integration to comply with the new structure.
+
+We encourage advertisers to migrate to take advantage of new features and long-term support.
+
+## What’s changing
+
+### Endpoint path
+
+<Tabs>
+
+<Tab title="v2">
+
+```text
+https://ads-api.reddit.com/api/v2.0/conversions/events/{{Pixel ID}}
+```
+
+</Tab>
+
+<Tab title="v3">
+
+```text
+https://ads-api.reddit.com/api/v3/pixels/{{Pixel ID}}/conversion_events
+```
+
+</Tab>
+
+</Tabs>
+
+### Request structure
+
+<Tabs>
+
+<Tab title="v2">
+
+```text
+{  "events": [    // ...event data  ]}
+```
+
+</Tab>
+
+<Tab title="v3">
+
+```text
+{  "data": {    "events": [      // ...event data    ]  }}
+```
+
+New nested structure with a `data` node wrapping the original request payload.
+
+</Tab>
+
+</Tabs>
+
+### Request parameters
+
+<Note>
+
+Unlisted fields remain unchanged between versions.
+
+</Note>
+
+| v2 | v3 |
+| --- | --- |
+| `test_mode` | deprecated, now supported through `test_id` |
+| `event_at` | changed to **_integer_** type, representing the Unix epoch in milliseconds |
+| `event_at_ms` | deprecated, now supported through `event_at` |
+| `action_source` | changed to a required field |
+| `event_type` | renamed to `type` |
+| `event_type.tracking_type` | updated enum to `UPPER_SNAKE_CASE` format (e.g., `PAGE_VISIT`). [See standard events](#standard-events) |
+| `event_metadata` | renamed to `metadata` |
+| `event_metadata.value` | changed to **_double_** type, representing the base unit of the currency |
+| `event_metadata.value_decimal` | deprecated, now supported through `value` |
+| `user.opt_out` | deprecated, now supported through `user.data_processing_options` |
+| N/A | new, `event_source_url` allows domains to be assigned to events, enabling domain detection in the [Events Manager](https://business.reddithelp.com/s/article/Events-Manager#view-event-details) |
+
+### Standard events
+
+| v2 | v3 |
+| --- | --- |
+| `PageVisit` | `PAGE_VISIT` |
+| `ViewContent` | `VIEW_CONTENT` |
+| `Search` | `SEARCH` |
+| `AddToCart` | `ADD_TO_CART` |
+| `AddToWishlist` | `ADD_TO_WISHLIST` |
+| `Purchase` | `PURCHASE` |
+| `Lead` | `LEAD` |
+| `SignUp` | `SIGN_UP` |
+| `Custom` | `CUSTOM` |
+
+### Response codes
+
+Conversions API now supports a wide range of HTTP status codes. You can refer to [`Post Conversion Events`](https://ads-api.reddit.com/docs/v3/api/post-conversion-events) for the response format corresponding to each status code. Learn more about [error handling and possible resolutions](/ads-api/guides/programs/capi/error-handling).
+
+## Step-by-step migration
+
+1.  Update endpoint path to `/api/v3/pixels/{{Pixel ID}}/conversion_events`.
+2.  Wrap your JSON request payload in a `data` object node (i.e., `{ "data": // your current payload goes here }`).
+3.  Update your parameters.
+    -   Remove `test_mode`
+    -   Convert `event_at` to Unix epoch in milliseconds or rename `event_at_ms` to `event_at`
+    -   Label your event with a permitted [`action_source`](https://ads-api.reddit.com/docs/v3/api/post-conversion-events#action-source-field)
+    -   Rename `event_type` to `type` and `event_metadata` to `metadata`
+    -   Change the value format of `type.tracking_type` to `UPPER_SNAKE_CASE` (e.g., `PageVisit` to `PAGE_VISIT`)
+    -   Convert `metadata.value` to a double or rename `metadata.value_decimal` to `metadata.value`
+    -   Replace `user.opt_out` with `user.data_processing_options`
+    -   (Optional, `WEBSITE` events only) Provide the page URL for `event_source_url`
+
+        <Tip>
+
+        [Domain](https://business.reddithelp.com/s/article/Conversions-API#set-up-domain-detection) will be parsed from the URL. Provide a URL with the click ID appended for better attribution and match rate.
+
+        </Tip>
+
+4.  Verify events in [Event Testing](/ads-api/guides/programs/capi/verify-events).
+5.  Review the [latest response structure](https://ads-api.reddit.com/docs/v3/api/post-conversion-events#responses) and [error handling solutions](/ads-api/guides/programs/capi/error-handling).
+
+## Things to know
+
+-   We accept conversion events from versions of CAPI. We strongly discourage sending the same event to both versions of CAPI (dual-sending).
+-   We recommend a percentage rollout when migrating production traffic from v2 to v3 to minimize event loss due to misconfiguration.
+-   Existing bearer tokens are still valid, and you don’t need to generate a new one for v3.

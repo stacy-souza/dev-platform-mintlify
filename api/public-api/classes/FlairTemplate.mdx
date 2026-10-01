@@ -1,0 +1,169 @@
+---
+title: "FlairTemplate"
+---
+
+## Class: FlairTemplate
+
+## Constructors
+
+<span id="constructor" />
+
+### new FlairTemplate()
+
+> **new FlairTemplate**(): `FlairTemplate`
+
+#### Returns
+
+`FlairTemplate`
+
+## Accessors
+
+
+### allowableContent
+
+#### Get Signature
+
+> **get** **allowableContent**(): [`AllowableFlairContent`](/api/public-api/type-aliases/AllowableFlairContent)
+
+The flair template's allowable content. Either 'all', 'emoji', or 'text'.
+
+##### Returns
+
+[`AllowableFlairContent`](/api/public-api/type-aliases/AllowableFlairContent)
+
+***
+
+
+### allowUserEdits
+
+#### Get Signature
+
+> **get** **allowUserEdits**(): `boolean`
+
+Does the flair template allow users to edit their flair?
+
+##### Returns
+
+`boolean`
+
+***
+
+
+### backgroundColor
+
+#### Get Signature
+
+> **get** **backgroundColor**(): [`FlairBackgroundColor`](/api/public-api/type-aliases/FlairBackgroundColor)
+
+The flair template's background color. Either 'transparent' or a hex color code. e.g. #FFC0CB
+
+##### Returns
+
+[`FlairBackgroundColor`](/api/public-api/type-aliases/FlairBackgroundColor)
+
+***
+
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+The flair template's ID
+
+##### Returns
+
+`string`
+
+***
+
+
+### maxEmojis
+
+#### Get Signature
+
+> **get** **maxEmojis**(): `number`
+
+The flair template's maximum number of emojis.
+
+##### Returns
+
+`number`
+
+***
+
+
+### modOnly
+
+#### Get Signature
+
+> **get** **modOnly**(): `boolean`
+
+Is the flair template only available to moderators?
+
+##### Returns
+
+`boolean`
+
+***
+
+
+### text
+
+#### Get Signature
+
+> **get** **text**(): `string`
+
+The flair template's text
+
+##### Returns
+
+`string`
+
+***
+
+
+### textColor
+
+#### Get Signature
+
+> **get** **textColor**(): [`FlairTextColor`](/api/public-api/type-aliases/FlairTextColor)
+
+The flair template's text color. Either 'dark' or 'light'.
+
+##### Returns
+
+[`FlairTextColor`](/api/public-api/type-aliases/FlairTextColor)
+
+## Methods
+
+
+### delete()
+
+> **delete**(): `Promise`\<`void`\>
+
+Delete this flair template
+
+#### Returns
+
+`Promise`\<`void`\>
+
+***
+
+
+### edit()
+
+> **edit**(`options`): `Promise`\<`FlairTemplate`\>
+
+Edit this flair template
+
+#### Parameters
+
+##### options
+
+`Partial`\<`Omit`\<[`EditFlairTemplateOptions`](/api/public-api/type-aliases/EditFlairTemplateOptions), `"subredditName"` \| `"id"`\>\>
+
+#### Returns
+
+`Promise`\<`FlairTemplate`\>

@@ -1,0 +1,97 @@
+---
+title: "Delete User Data"
+---
+
+The Ads Data Deletion API lets you request deletion of specific customer match keys, including email address, phone number, device IDs, and external IDs. Each request creates an asynchronous job and returns a `job_id` that you can use to track the job until it reaches `COMPLETED` or `FAILED`.
+
+This API doesn't delete first-party account data, handle direct user-initiated deletion requests, or support ad hoc requests to delete all data for an advertiser.
+
+<Warning>
+
+Deletion is irreversible. Once a job is completed, matched ads-related data is permanently removed.
+
+</Warning>
+
+## Before you start
+
+-   [Create](/ads-api/guides/quick-start/create-dev-app) and [authorize](/ads-api/guides/quick-start/authenticate) a developer application with the `adsdatadeletion` scope.
+-   Find your ads account ID in [Accounts](https://ads.reddit.com/accounts).
+
+## 1\. Create a data deletion job
+
+Call [`Create Data Deletion Job`](https://ads-api.reddit.com/docs/v3/api/create-data-deletion-job) with the identifiers you want to remove. A single job accepts between 1 and 200 identifiers, which don't have to map to the same user.
+
+Submit each value exactly once with the matching identifier `type`.
+
+<Warning>
+
+Don't submit unsupported identifiers or other sensitive values.
+
+</Warning>
+
+### Create data deletion job
+
+Choose an identifier type and enter its value. Add up to 10 identifiers here. The API accepts up to 200 per job.
+
+```
+{
+  "data": {
+    "identifiers": [
+      {
+        "type": "EMAIL",
+        "value": "b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514"
+      },
+      {
+        "type": "PHONE_NUMBER",
+        "value": "8a59780bb8cd2ba022bfa5ba2ea3b6e07af17a7d8b30c1f9b3390e36f69019e4"
+      }
+    ]
+  }
+}
+```
+
+-   Identifier 1
+
+    TypeValue
+
+-   Identifier 2
+
+    TypeValue
+
+
+A successful request returns `201 Created` with the new `job_id` and `QUEUED` status. Save the `job_id` to track the job.
+
+```json title="Example of a queued data deletion job"
+{  "data": {    "job_id": "b3d9c1e2-4f5a-4c8b-9e2d-1a2b3c4d5e6f",    "status": "QUEUED"  }}
+```
+
+## 2\. Track the job status
+
+Call [`Get Data Deletion Job Status`](https://ads-api.reddit.com/docs/v3/api/get-data-deletion-job-status) with the `job_id`. One of the following statuses will be returned:
+
+-   **`QUEUED`:** The job has been accepted and is pending.
+-   **`COMPLETED`:** The job has finished successfully.
+-   **`FAILED`:** The job couldn't be completed. Submit a new job to retry, or [contact support](https://support.reddithelp.com/hc/en-us/requests/new?ticket_form_id=50388520825236) if failure continues.
+
+```json title="Example of a successful data deletion job"
+{  "data": {    "job_id": "b3d9c1e2-4f5a-4c8b-9e2d-1a2b3c4d5e6f",    "status": "COMPLETED"  }}
+```
+
+Repeat daily until `status` is `COMPLETED` or `FAILED`.
+
+## Processing timeline
+
+Deletion jobs are handled asynchronously and processed daily. Status updates are expected over days, not minutes. Requests are completed within 30 days or earlier where required by law.
+
+## Best practices
+
+-   Poll once daily for each pending job. The status isn't expected to change every few minutes or throughout the day.
+-   Slow down polling if a job remains `QUEUED` for multiple daily checks, or if you receive `429 Too Many Requests`.
+-   Stop polling after the job reaches `COMPLETED` or `FAILED`.
+-   When possible, use hashed identifiers, especially for `EMAIL` and `PHONE_NUMBER`. Raw values are accepted, but should only be sent when your integration can't pre-hash the identifier.
+
+## Troubleshooting
+
+-   **`400 Bad Request`:** The body is missing `identifiers`, contains too many identifiers, or an identifier uses an unsupported `type`.
+-   **`404 Not Found`:** The `job_id` does not exist.
+-   **`429 Too Many Requests`:** Slow down requests before trying again.

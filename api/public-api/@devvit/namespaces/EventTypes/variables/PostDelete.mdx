@@ -1,0 +1,417 @@
+---
+title: "PostDelete"
+---
+
+## Variable: PostDelete
+
+> **PostDelete**: `object`
+
+## Type declaration
+
+<span id="type" />
+
+### $type
+
+> **$type**: `"devvit.events.v1alpha.PostDelete"`
+
+
+### create()
+
+#### Parameters
+
+##### base?
+
+###### author?
+
+&#123; `accountType`: `AccountTypeV2`; `banned`: `boolean`; `description`: `string`; `flair`: &#123; `backgroundColor`: `string`; `cssClass`: `string`; `enabled`: `boolean`; `subredditId`: `string`; `templateId`: `string`; `text`: `string`; `textColor`: `string`; `userId`: `string`; &#125;; `iconImage`: `string`; `id`: `string`; `isGold`: `boolean`; `karma`: `number`; `name`: `string`; `snoovatarImage`: `string`; `spam`: `boolean`; `suspended`: `boolean`; `url`: `string`; &#125;
+
+###### author.accountType?
+
+`AccountTypeV2`
+
+###### author.banned?
+
+`boolean`
+
+###### author.description?
+
+`string`
+
+###### author.flair?
+
+&#123; `backgroundColor`: `string`; `cssClass`: `string`; `enabled`: `boolean`; `subredditId`: `string`; `templateId`: `string`; `text`: `string`; `textColor`: `string`; `userId`: `string`; &#125;
+
+###### author.flair.backgroundColor?
+
+`string`
+
+###### author.flair.cssClass?
+
+`string`
+
+###### author.flair.enabled?
+
+`boolean`
+
+###### author.flair.subredditId?
+
+`string`
+
+###### author.flair.templateId?
+
+`string`
+
+###### author.flair.text?
+
+`string`
+
+###### author.flair.textColor?
+
+`string`
+
+###### author.flair.userId?
+
+`string`
+
+###### author.iconImage?
+
+`string`
+
+###### author.id?
+
+`string`
+
+###### author.isGold?
+
+`boolean`
+
+###### author.karma?
+
+`number`
+
+###### author.name?
+
+`string`
+
+###### author.snoovatarImage?
+
+`string`
+
+###### author.spam?
+
+`boolean`
+
+###### author.suspended?
+
+`boolean`
+
+###### author.url?
+
+`string`
+
+###### createdAt?
+
+`Date`
+
+###### deletedAt?
+
+`Date`
+
+###### postId?
+
+`string`
+
+###### reason?
+
+[`DeletionReason`](/api/public-api/@devvit/namespaces/EventTypes/enumerations/DeletionReason)
+
+###### source?
+
+[`EventSource`](/api/public-api/@devvit/namespaces/EventTypes/enumerations/EventSource)
+
+###### subreddit?
+
+&#123; `description`: `string`; `id`: `string`; `name`: `string`; `nsfw`: `boolean`; `permalink`: `string`; `quarantined`: `boolean`; `rating`: `SubredditRating`; `spam`: `boolean`; `subscribersCount`: `number`; `title`: `string`; `topics`: `string`[]; `type`: `SubredditType`; &#125;
+
+###### subreddit.description?
+
+`string`
+
+###### subreddit.id?
+
+`string`
+
+###### subreddit.name?
+
+`string`
+
+###### subreddit.nsfw?
+
+`boolean`
+
+###### subreddit.permalink?
+
+`string`
+
+###### subreddit.quarantined?
+
+`boolean`
+
+###### subreddit.rating?
+
+`SubredditRating`
+
+###### subreddit.spam?
+
+`boolean`
+
+###### subreddit.subscribersCount?
+
+`number`
+
+###### subreddit.title?
+
+`string`
+
+###### subreddit.topics?
+
+`string`[]
+
+###### subreddit.type?
+
+`SubredditType`
+
+#### Returns
+
+[`PostDelete`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/PostDelete)
+
+
+### decode()
+
+#### Parameters
+
+##### input
+
+`Reader` | `Uint8Array`\<`ArrayBufferLike`\>
+
+##### length?
+
+`number`
+
+#### Returns
+
+[`PostDelete`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/PostDelete)
+
+
+### encode()
+
+#### Parameters
+
+##### message
+
+[`PostDelete`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/PostDelete)
+
+##### writer?
+
+`Writer`
+
+#### Returns
+
+`Writer`
+
+
+### fromJSON()
+
+#### Parameters
+
+##### object
+
+`any`
+
+#### Returns
+
+[`PostDelete`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/PostDelete)
+
+
+### fromPartial()
+
+#### Parameters
+
+##### object
+
+###### author?
+
+&#123; `accountType`: `AccountTypeV2`; `banned`: `boolean`; `description`: `string`; `flair`: &#123; `backgroundColor`: `string`; `cssClass`: `string`; `enabled`: `boolean`; `subredditId`: `string`; `templateId`: `string`; `text`: `string`; `textColor`: `string`; `userId`: `string`; &#125;; `iconImage`: `string`; `id`: `string`; `isGold`: `boolean`; `karma`: `number`; `name`: `string`; `snoovatarImage`: `string`; `spam`: `boolean`; `suspended`: `boolean`; `url`: `string`; &#125;
+
+###### author.accountType?
+
+`AccountTypeV2`
+
+###### author.banned?
+
+`boolean`
+
+###### author.description?
+
+`string`
+
+###### author.flair?
+
+&#123; `backgroundColor`: `string`; `cssClass`: `string`; `enabled`: `boolean`; `subredditId`: `string`; `templateId`: `string`; `text`: `string`; `textColor`: `string`; `userId`: `string`; &#125;
+
+###### author.flair.backgroundColor?
+
+`string`
+
+###### author.flair.cssClass?
+
+`string`
+
+###### author.flair.enabled?
+
+`boolean`
+
+###### author.flair.subredditId?
+
+`string`
+
+###### author.flair.templateId?
+
+`string`
+
+###### author.flair.text?
+
+`string`
+
+###### author.flair.textColor?
+
+`string`
+
+###### author.flair.userId?
+
+`string`
+
+###### author.iconImage?
+
+`string`
+
+###### author.id?
+
+`string`
+
+###### author.isGold?
+
+`boolean`
+
+###### author.karma?
+
+`number`
+
+###### author.name?
+
+`string`
+
+###### author.snoovatarImage?
+
+`string`
+
+###### author.spam?
+
+`boolean`
+
+###### author.suspended?
+
+`boolean`
+
+###### author.url?
+
+`string`
+
+###### createdAt?
+
+`Date`
+
+###### deletedAt?
+
+`Date`
+
+###### postId?
+
+`string`
+
+###### reason?
+
+[`DeletionReason`](/api/public-api/@devvit/namespaces/EventTypes/enumerations/DeletionReason)
+
+###### source?
+
+[`EventSource`](/api/public-api/@devvit/namespaces/EventTypes/enumerations/EventSource)
+
+###### subreddit?
+
+&#123; `description`: `string`; `id`: `string`; `name`: `string`; `nsfw`: `boolean`; `permalink`: `string`; `quarantined`: `boolean`; `rating`: `SubredditRating`; `spam`: `boolean`; `subscribersCount`: `number`; `title`: `string`; `topics`: `string`[]; `type`: `SubredditType`; &#125;
+
+###### subreddit.description?
+
+`string`
+
+###### subreddit.id?
+
+`string`
+
+###### subreddit.name?
+
+`string`
+
+###### subreddit.nsfw?
+
+`boolean`
+
+###### subreddit.permalink?
+
+`string`
+
+###### subreddit.quarantined?
+
+`boolean`
+
+###### subreddit.rating?
+
+`SubredditRating`
+
+###### subreddit.spam?
+
+`boolean`
+
+###### subreddit.subscribersCount?
+
+`number`
+
+###### subreddit.title?
+
+`string`
+
+###### subreddit.topics?
+
+`string`[]
+
+###### subreddit.type?
+
+`SubredditType`
+
+#### Returns
+
+[`PostDelete`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/PostDelete)
+
+
+### toJSON()
+
+#### Parameters
+
+##### message
+
+[`PostDelete`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/PostDelete)
+
+#### Returns
+
+`unknown`

@@ -1,0 +1,403 @@
+---
+title: "Direct Integration"
+---
+
+<Warning>
+
+The values for several fields—including `tracking_type`—are different in CAPI v3. Learn how to [migrate from v2](/ads-api/guides/programs/capi/migration).
+
+</Warning>
+
+## Prerequisites and considerations
+
+Before you start, you’ll need to:
+
+-   **Create a Reddit Ads account.** [Set up your business on Reddit Ads](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account#set-up-your-account-for-ads) or [join your team’s account](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account#join-a-business) as a creator or administrator.
+-   **Find your Reddit Pixel ID.** Specify which business account should receive your conversions. You can find your Pixel ID in the [Events Manager](https://ads.reddit.com/events-manager).
+
+You should also be familiar with the CAPI requirements and product functionality:
+
+-   CAPI supports a variety of sources, including web, app, and offline events.
+-   There’s a rate limit of 1,000 requests/second, 10,000 events/second, and 1,000 events/request.
+-   We recommend sending conversions via CAPI as close to real-time as possible, but events must be sent within seven days after they occur.
+-   We require [event deduplication](https://business.reddithelp.com/s/article/event-deduplication) if you use the [Reddit Pixel](https://business.reddithelp.com/s/article/reddit-pixel) and [Conversions API](https://ads-api.reddit.com/docs/v3/api/post-conversion-events) together (which we recommend for best performance). The event with more event metadata and match keys will be prioritized. Deduplication is not required when the event is only sent through one integration type. Learn more about [event deduplication](https://business.reddithelp.com/s/article/event-deduplication).
+-   Some [match keys (unique event and user identifiers)](https://business.reddithelp.com/s/article/about-match-keys) are required for each conversion event to ensure accurate matching and attribution. We recommend sending as many identifiers as possible to help improve attribution accuracy and fuel performance.
+
+<Tip>
+
+Use the [Data Deletion API](/ads-api/guides/programs/data-deletion/delete-user-data) to request deletion of ads-related match key data.
+
+</Tip>
+
+-   Your use of CAPI is subject to the agreements in the [Ads API](https://www.reddithelp.com/en/categories/advertising/policy-guidelines/reddit-ads-api-terms) and [Reddit Business Tool](https://business.reddithelp.com/s/article/Reddit-Business-Tool-Terms) terms.
+
+## 1\. Retrieve your Pixel ID
+
+1.  In the [Events Manager](https://ads.reddit.com/events-manager), select _Configure data source_ and choose [Conversions API > Set up manually](https://ads.reddit.com/events-manager/manual-setup/capi). If you haven’t set up CAPI or the Pixel yet, select _Conversions API Only_ instead.
+2.  Select _Copy to Clipboard_ to save your Pixel ID to your clipboard.
+
+    ![Copy Pixel ID](/images/ads-api/copy-pixel-id-a35c19bd86a240ea2bb19607a8ddbdff.webp)
+
+3.  Paste the value in a safe place.
+
+## 2\. Generate a conversion access token
+
+<Note>
+
+Learn more about [conversion access tokens](https://business.reddithelp.com/s/article/conversion-access-token).
+
+</Note>
+
+1.  Select _Generate Access Token._
+
+    ![Generate token](/images/ads-api/generate-token-ab4cd6ae93aa510d6db86998a675a5c9.webp)
+
+2.  Give your token a name, like _My Reddit Conversion Token_.
+3.  Select _Generate_ to create your token.
+4.  Select _Copy to Clipboard & Close_.
+
+    <Warning>
+
+    This value cannot be retrieved later. You’ll need to generate a new token.
+
+    </Warning>
+
+    ![Copy access token](/images/ads-api/copy-access-token-ded139742abcc9eab1a059084fe6b189.webp)
+
+5.  Paste the value in a safe place.
+
+## 3\. Set up events
+
+Access your website’s server and configure conversion events to the following endpoint:
+
+### Post Conversion Events
+
+```
+https://ads-api.reddit.com/api/v3/pixels//conversion_events
+```
+
+You can send [standard conversion events](https://business.reddithelp.com/s/article/supported-conversion-events#supported-conversion-events), custom conversion events, or both. If your event is well-formatted and valid, you’ll receive a response like this:
+
+```json
+{    "data": {        "message": "Successfully processed 1 conversion events."    }}
+```
+
+<Accordion title="Custom conversion events">
+
+To send a custom conversion event, set `tracking_type` to `"CUSTOM"` and assign `custom_event_name` to a value that doesn’t match our pre-existing events. This free-form and case-sensitive value may use any UTF-8 character up to 64 characters, including spaces. For example, `Promotion Event` and `PromotionEvent` will be considered two distinct events.
+
+<Warning>
+
+Only the 20 most recent custom events will be visible on the dashboard.
+
+</Warning>
+
+### Custom conversion event
+
+Fill in fields to build the events payload for a custom conversion event
+
+```
+"events": [ {
+  "event_at": ,
+  "action_source": "WEBSITE",
+  "type": {
+      "tracking_type": "CUSTOM",
+      "custom_event_name": ""
+  }
+} ]
+```
+
+</Accordion>
+
+<Accordion title="Domain detection">
+
+`event_source_url` can be provided to extract the [domain](https://business.reddithelp.com/s/article/Events-Manager#view-event-details). This is recommended to better understand the source of your `WEBSITE` events.
+
+<Tip>
+
+Include click ID in the URL to improve attribution accuracy. This will be used when the `click_id` parameter isn't provided.
+
+</Tip>
+
+### Set up event source URL
+
+```
+"events": [
+    {
+    "event_at": ,
+    "event_source_url": "",
+    "action_source": "WEBSITE",
+    "type": {
+        "tracking_type": "PURCHASE",
+        "custom_event_name": ""
+    }
+  }
+]
+```
+
+</Accordion>
+
+<Accordion title="Action source">
+
+_[Action source](https://business.reddithelp.com/s/article/omni-attribution)_ identifies whether a conversion happened online, offline, or through another source. This is used for [source-level conversion metrics](https://business.reddithelp.com/s/article/the-dashboard) in reporting.
+
+Set this required parameter in `"events"`:
+
+```json
+"events": [ {    "action_source": "WEBSITE",    ...} ]
+```
+
+<Warning>
+
+[Event deduplication](https://business.reddithelp.com/s/article/event-deduplication) applies only for events in the same channel.
+
+</Warning>
+
+</Accordion>
+
+<Accordion title="Match keys">
+
+[_Match keys_](https://business.reddithelp.com/s/article/about-match-keys) are identifiers you can share with conversion events and are crucial to help match conversions to a Reddit Ads engagement, like a view or click. To increase attribution accuracy, we strongly recommend sharing as many signals as possible.
+
+You can set up these parameters in `"events"`:
+
+### Send match keys
+
+All optional. At least email + phone number is recommended. May provide some values hashed.
+
+```
+"events": [ {
+  "click_id": "",
+  "user": {
+      "ip_address": "",
+      "user_agent": "",
+      "screen_dimensions": {
+          "width": ,
+          "height":
+
+      },
+      "uuid": "",
+      "email": "",
+      "phone_number": "",
+      "external_id": "",
+      "idfa": "",
+      "aaid": ""
+  }
+} ]
+```
+
+Some signals can be shared unhashed or pre-hashed. If you’d like to hash signals, we recommend using SHA-256 and following the hashing guidance.
+
+<Tip>
+
+Use the [Data Deletion API](/ads-api/guides/programs/data-deletion/delete-user-data) to request deletion of ads-related match key data.
+
+</Tip>
+
+### Hashing email addresses
+
+Email addresses should be formatted like `example@email.com`. Events with invalid values—such as `‘First Last’ <example@email.com>`—will still be accepted, but a warning will appear in the [Events Manager](/ads-api/guides/programs/capi/verify-events).
+
+The email address must be canonicalized before hashing:
+
+-   the address should be lowercase
+-   the local part of the address should have any dots removed, and any text after a plus sign should be removed
+-   SHA-256 should be used to hash the identifier, and 64 lowercase hex digits should be given
+
+For example, `alice@example.com` and `Al.ice+Apple@Example.Com` should both hash to `ff8d9819fc0e12bf0d24892e45987e249a28dce836a85cad60e28eaaa8c6d976`.
+
+Here’s a breakdown for the example of `Al.ice+Apple@Example.Com`:
+
+-   the address should be lowercase (`Al.ice+Apple@Example.Com` becomes `al.ice+apple@example.com`)
+-   the local part of the address should have any dots removed, and any text after a plus sign should be removed (`al.ice+apple@example.com` becomes `alice@example.com`)
+
+### Hashing phone numbers
+
+Phone numbers should be formatted like `+15554441234`. Events using invalid formats—like `+1 (555) 444-1234`—will still be accepted, but a warning will appear in the [Events Manager](/ads-api/guides/programs/capi/verify-events).
+
+The phone number must be canonicalized before hashing:
+
+-   must contain the country and area code
+-   remove the extension
+-   remove all non-numeric characters, including spaces, symbols, and letters
+-   the number should start with `+`
+-   SHA-256 should be used to hash the identifier, and 64 lowercase hex digits should be given
+
+For example, `+15554441234` and `+1 (555) 444-1234` should both hash to `e5b124c58580eb16bd959b8d0cac12b12c952e2ceae0203d416cff94f10b994a`.
+
+Here’s a breakdown for the example of `+1 (555) 444-1234 ext. 789`:
+
+-   remove the extension (`+1 (555) 444-1234 ext. 789` becomes `+1 (555) 444-1234`)
+-   remove non-numeric characters (`+1 (555) 444-1234` becomes `15554441234`)
+-   ensure it starts with `+` (`15554441234` becomes `+15554441234`)
+
+### Hashing MAIDs
+
+When passing an IDFA or AAID directly, it should follow the standard format. Events with invalid IDs—such as placeholder `00000000-0000-0000-0000-000000000000`—will still be accepted, but a warning will appear in the [Events Manager](/ads-api/guides/programs/capi/verify-events).
+
+If you choose to pre-hash the identifier, it should follow a canonical format:
+
+-   an IDFA should be uppercase hex digits
+-   an AAID should be lowercase hex digits
+-   the dashes should be included
+-   SHA-256 should be used to hash the identifier and 64 lowercase hex digits should be given
+
+For example:
+
+-   an IDFA of `EA7583CD-A667-48BC-B806-42ECB2B48606` can be hashed to `70574fa9c8f498a7b2e5c8712b1126de7b1406fd02fdc591821c5bd33092fd1c`
+-   an AAID of `cdda802e-fb9c-47ad-9866-0794d394c912` can be hashed to `f23b554b2a8fb732a8b973733832e70f018da7bc294dfea289735a07d5dd2c9f`
+
+### Hashing external ID
+
+An advertiser-assigned custom identifier. We recommend passing an external ID with its corresponding [click ID](/ads-api/guides/programs/capi/click-id-persistence) whenever possible.
+
+-   **Example (unhashed):** `customer12345`
+-   **Example (hashed):** `a4cc2fc5adf58a029291c1514d273989113a1d05e1d753c1d0c3a848af7109cc`
+
+</Accordion>
+
+<Accordion title="Event metadata">
+
+[_Event metadata_](https://business.reddithelp.com/s/article/about-event-metadata) is detailed information associated with specific actions or events. Setting up metadata shares more performance insights, and using a consistent `conversion_id` is crucial when using both the Pixel and CAPI for deduplication purposes.
+
+We strongly recommend setting up `conversion_id` when using both Pixel and Conversions API. `conversion_id` signals can be shared unhashed or pre-hashed. If you’d like to hash it, we recommend using SHA-256.
+
+You can set up event metadata by adding additional parameters to `"metadata"`:
+
+<Warning>
+
+`quantity` and `item_price` are not replacements for `item_count` and `value`, which are used for optimization and strongly recommended for revenue-related events.
+
+</Warning>
+
+### Send event metadata
+
+All optional.
+
+```
+"events": [ {
+  "metadata": {
+      "item_count": ,
+      "currency": "",
+      "value": ,
+      "conversion_id": "",
+      "products": [ {
+          "id": "",
+          "name": "",
+          "category": "",
+          "quantity": ,
+          "item_price":
+
+      } ]
+  }
+} ]
+```
+
+</Accordion>
+
+<Accordion title="Opt out users">
+
+We offer the `data_processing_options` parameter to help your compliance needs, including opting out users if they have not consented to behavioral targeting. Learn more about [Limited Data Use (LDU)](https://business.reddithelp.com/s/article/Limited-Data-Use).
+
+### Set up LDU
+
+Mode is fixed. Country is required. Region is optional.
+
+```
+"events": [ {
+  "user": {
+      "data_processing_options": {
+          "modes": [ "LDU" ],
+          "country": "",
+          "region": ""
+      }
+  }
+} ]
+```
+
+</Accordion>
+
+## 4\. Set up deduplication
+
+<Tip>
+
+Did you set up event deduplication with the conversion ID? Check out the [event deduplication panel](https://business.reddithelp.com/s/article/Events-Manager#event-deduplication-panel) for details on deduplication effectiveness.
+
+</Tip>
+
+If you implement both the [Reddit Pixel](https://business.reddithelp.com/s/article/reddit-pixel) and [CAPI](https://ads-api.reddit.com/docs/v3/api/post-conversion-events) and the same events are shared across both sources, deduplication is necessary to prevent double-counting. Deduplication occurs every hour. When duplicates are detected, the event(s) with less event metadata and match keys be marked as a duplicate(s).If all events are of equal quality, the earliest event(s) will be preferred.
+
+Reddit supports two methods: conversion ID and session-based deduplication. For deduplication to occur, events must match one of these methods **and** be of the same event type. For custom events, the event name must also match. Events that meet these conditions will be evaluated for deduplication. A log of deduplicated events is available for up to seven days.
+
+Events must be sent within two days for proper deduplication.
+
+<Note>
+
+If you share different conversion events for the Reddit Pixel and Conversions API, you don’t have to worry about deduplication.
+
+</Note>
+
+### Conversion ID (recommended)
+
+<Note>
+
+This method is always preferred when a conversion ID is provided.
+
+</Note>
+
+<Tip>
+
+View your deduplication details in the [deduplication panel](https://business.reddithelp.com/s/article/Events-Manager#event-deduplication-panel).
+
+</Tip>
+
+You can pass a unique conversion ID through the Pixel and CAPI for every distinct conversion event. When this method is chosen, the event with the lower quality will be marked as a duplicate. If equal, the later event will be considered a duplicate.
+
+This method is the most accurate way to ensure proper deduplication and minimize the risk of integration errors and attribution inaccuracies.
+
+To ensure your events are deduplicated:
+
+-   Create a unique conversion ID for every distinct conversion event. You can set this as a random number or ID. Similarly, you could set this to the order number when tracking purchase events. Learn more about [generating unique conversion IDs](https://business.reddithelp.com/s/article/event-deduplication#generate-unique-conversion-ids).
+-   Include the event in the Reddit Pixel and CAPI.
+-   Ensure the conversion ID for its corresponding events matches.
+
+    <Warning>
+
+    If the conversion ID is improperly passed to too many multiple events, those events will be marked as duplicates and will not be attributed, impacting campaign performance.
+
+    </Warning>
+
+
+### Session-based deduplication (default)
+
+<Note>
+
+This method isn’t used when a conversion ID is provided, and it won’t mark events as duplicates if they’re sent only from the Pixel or only from CAPI.
+
+</Note>
+
+This deduplication method determines which source—the Pixel or CAPI—is providing higher-quality events within a session. A _session_ is a series of events from a single user where no more than five minutes pass between two consecutive events.
+
+To enable deduplication, include either a UUID or external ID on all Pixel and CAPI events. We recommend choosing UUID since it’s automatically passed with Pixel events.
+
+When this deduplication method is used, an integration type–CAPI or the Pixel–is selected for each session based on the number of attributable events, or the source that sent the earliest event if both are equal.
+
+The events from the selected source will be used for attribution. The other events will be filtered out to keep your reporting accurate.
+
+### Generate unique conversion IDs
+
+We recommend generating the conversion ID based on attributes unique to each event. For example, you could set it as the hash of the timestamp, event type, metadata parameters, and user parameters. This way, there will be a unique conversion ID for each unique event, removing the risk of mistakenly deduplicating them.
+
+Here’s one way you can do this in JavaScript:
+
+```js
+const crypto = require('crypto'); function generateConversionID(event_at, tracking_type, metadata_value, ip_address) {    // Concatenate the input values    const inputString = event_at + tracking_type + metadata_value + ip_address;    // Create a SHA-256 hash of the concatenated string    const hash = crypto.createHash('sha256');    hash.update(inputString);    // Return the hash in hexadecimal format    return hash.digest('hex');}// Example usageconst event_at = 1735707600;const tracking_type = 'PURCHASE';const metadata_value = '100.00';const ip_address = '192.168.1.1';const conversionID = generateConversionID(event_at, tracking_type, metadata_value, ip_address);console.log('Generated Conversion ID:', conversionID);
+```
+
+### Things to know
+
+-   Events must be sent within two days to ensure proper deduplication.
+-   When deduplicating using conversion ID, the event with more event metadata and match keys is preferred.
+-   Deduplication isn’t necessary when sharing different events with the Reddit Pixel and CAPI.
+-   If a conversion ID is used for both integration types, that method will be preferred. Otherwise, session-based deduplication will apply.
+-   View reporting for your events either on [the dashboard](https://business.reddithelp.com/s/article/the-dashboard) or with [`Get a Report`](https://ads-api.reddit.com/docs/v3/api/get-a-report).

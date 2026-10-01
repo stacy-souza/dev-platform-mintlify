@@ -1,0 +1,57 @@
+---
+title: "SettingsClient"
+---
+
+## Class: SettingsClient
+
+## Constructors
+
+<span id="constructor" />
+
+### new SettingsClient()
+
+> **new SettingsClient**(): `SettingsClient`
+
+#### Returns
+
+`SettingsClient`
+
+## Methods
+
+
+### get()
+
+> **get**\<`T`\>(`name`): `Promise`\<`undefined` \| `T`\>
+
+#### Type Parameters
+
+##### T
+
+`T` = `undefined` \| `string` \| `number` \| `boolean` \| `string`[]
+
+#### Parameters
+
+##### name
+
+`string`
+
+#### Returns
+
+`Promise`\<`undefined` \| `T`\>
+
+***
+
+
+### getAll()
+
+> **getAll**\<`T`\>(): `Promise`\<`T`\>
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* `object` = [`SettingsValues`](/api/public-api/type-aliases/SettingsValues)
+
+#### Returns
+
+`Promise`\<`T`\>

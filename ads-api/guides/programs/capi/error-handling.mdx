@@ -1,0 +1,37 @@
+---
+title: "Error Handling"
+---
+
+## 400 errors
+
+| Error message | Reason | Solution |
+| --- | --- | --- |
+| `There were {Number} invalid conversion events. None were processed.` | The payload doesn't conform to the CAPI v3 validation rules (for example, wrong or missing values in `type.tracking_type` or `metadata`). No events were sent. | Ensure you're passing valid values for events. If you've migrated from CAPI v2, [review the changes to events](/ads-api/guides/programs/capi/migration), such as updates to `event_type.tracking_type` and `event_metadata`. |
+| `Bad Request` | The maximum allowable events are 1000 events/call. | Split your events into multiple calls. |
+
+## 401 errors - Unauthorized
+
+| Error message | Reason | Solution |
+| --- | --- | --- |
+| `No bearer token provided` | You’re not passing a bearer token in the request. | Double-check that you’re passing tokens properly. |
+| `UNAUTHORIZED` | You’re passing an invalid token that cannot be authenticated by Reddit. | [Create a valid access token](/ads-api/guides/programs/capi/direct-integration#2-generate-a-conversion-access-token) before posting conversions. |
+
+## 403 errors - Forbidden
+
+| Error message | Reason | Solution |
+| --- | --- | --- |
+| `You’re not authorized to post conversions to Pixel ID {Pixel ID}.` | Your account lacks the permission to post conversions for this Pixel. | Ensure you’re using an access token with adequate permission and providing the correct Pixel ID. |
+| `Missing adsconversions scope to post conversions to Pixel.` | Your developer app doesn’t have the proper scope for this request. | Add `adsconversions` to [your scope](/ads-api/guides/quick-start/authenticate). |
+
+## 429 errors - Too many requests
+
+| Error message | Reason | Solution |
+| --- | --- | --- |
+| `Your user agent was automatically ratelimited.` | Default user agents may lead to throttling and aren’t recommended. | Set your requests’ user agent header (`user-agent`) to a unique and descriptive string. |
+| `Too many requests/events within timeframe.` | The ratelimiting quota has been exhausted for the window. | Cache data retrieved locally or store the data in a database to avoid polling the API. If you need to backfill data, consider sending data in batches. Alternatively, set a retry logic and limit the retry frequency by implementing exponential backoff. |
+
+## 500 errors - Internal server error
+
+| Error message | Reason | Solution |
+| --- | --- | --- |
+| `The service is currently unavailable. No conversion events were processed.` | Service is experiencing downtime at the moment. | Retry posting conversion events later. |

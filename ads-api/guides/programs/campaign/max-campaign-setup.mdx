@@ -1,0 +1,285 @@
+---
+title: "Set Up a Max Campaign"
+---
+
+<Note>
+
+Max campaigns currently support `CLICKS`, `CONVERSIONS`, and `APP_INSTALLS` [campaign objectives](https://business.reddithelp.com/s/article/Ad-campaign-objectives). Use [Standard campaigns](/ads-api/guides/programs/campaign/campaign-setup) for other objective types.
+
+</Note>
+
+Max campaigns are an automated campaign type that improves performance and streamlines setup and management. After you provide your targeting and creative assets, Max campaigns use artificial intelligence to automatically adjust bidding, creative selection, and more—optimizing for each impression in real time.
+
+You can programmatically set up Max campaigns using the Reddit Ads API. This lets you create targeting for your audience and provide the assets to choose from for your ads.
+
+Alternatively, you can create [Max campaigns](https://business.reddithelp.com/s/article/max-campaigns) in the Ads Manager.
+
+All ads created using the API are subject to our [Ads API Terms](https://business.reddithelp.com/s/article/Reddit-Ads-API-Terms) and [Ads Policy](https://business.reddithelp.com/s/article/Reddit-Advertising-Policy-Overview).
+
+## Before you start
+
+-   [Set up a Reddit Ads account](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account).
+-   [Set up](/ads-api/guides/quick-start/create-dev-app) and [authorize your developer app](/ads-api/guides/quick-start/authenticate) with the `adsedit` and `adsread` scopes
+-   **Create the content for your ads.** This includes text, [landing pages](https://business.reddithelp.com/s/article/URL-and-Landing-Page-Best-Practices), and [click or impression trackers](https://business.reddithelp.com/s/article/Set-up-third-party-measurement). [Learn about our ad specifications](https://business.reddithelp.com/s/article/Reddit-Ad-Unit-Specifications).
+-   **Find your ad account ID.** [Here's how](/ads-api/guides/programs/business/fetch-accounts).
+
+## 1\. Create a Max campaign
+
+Use [`Create Campaign`](https://ads-api.reddit.com/docs/v3/api/create-campaign) to set up an automated campaign with campaign budget optimization (CBO) enabled.
+
+### Create a Max campaign
+
+```
+{
+  "data": {
+    "type": "AUTOMATED",
+    "special_ad_categories": ["HOUSING_EMPLOYMENT_CREDIT"],
+    "name": "",
+    "configured_status": "PAUSED",
+    "funding_instrument_id": "",
+    "conversion_pixel_id": "",
+    "objective": "CLICKS",
+    "goal_value": ,
+    "optimization_goal": "CLICKS",
+    "goal_type": "LIFETIME_SPEND",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": "BIDLESS",
+    "bid_type": "CPC"
+  }
+}
+```
+
+## 2\. Manage creative assets
+
+Max campaigns use a set of creative assets to dynamically generate ads. Assets can be managed either with the [`Creative Assets`](https://ads-api.reddit.com/docs/v3/api/creative-assets) endpoints or in the [Asset Library](https://business.reddithelp.com/s/article/asset-library) in the Ads Manager.
+
+### Upload creative assets
+
+Assets may be uploaded with [`Create Creative Asset Uploads`](https://ads-api.reddit.com/docs/v3/api/create-creative-asset-uploads) in a single API call or across multiple API calls.
+
+We recommend creating at least 3 distinct headline assets and 2 distinct media assets, which is the minimum requirement for ad templates.
+
+Each accepted upload has an `id` that is distinct from its `reference_id`. Use the upload `id` to poll its processing status. After the status becomes `ACTIVE`, use `result.id` to identify the stored asset in your ad template.
+
+<Note>
+
+`reference_id` is any user-defined string. **It is only used to correlate to an entity in the response payload,** which is mainly used for error tracking.
+
+</Note>
+
+### Upload creative assets
+
+Add up to 50 image, video, headline, or CTA assets.
+
+```
+{
+  "data": [
+    {
+      "reference_id": "image_1",
+      "name": "An image asset for Max",
+      "type": "IMAGE",
+      "media": {
+        "url": "https://s3.us-west-1.amazonaws.com/example.com/creative_asset1.jpg",
+        "type": "URL"
+      }
+    },
+    {
+      "reference_id": "image_2",
+      "name": "Another image asset for Max",
+      "type": "IMAGE",
+      "media": {
+        "url": "https://s3.us-west-1.amazonaws.com/example.com/creative_asset2.jpg",
+        "type": "URL"
+      }
+    },
+    {
+      "reference_id": "headline_1",
+      "text": "Skincare that survives bad sleep and worse Wi-Fi",
+      "type": "HEADLINE"
+    },
+    {
+      "reference_id": "headline_2",
+      "text": "Do the work, not the spreadsheets",
+      "type": "HEADLINE"
+    },
+    {
+      "reference_id": "headline_3",
+      "text": "Your new favorite app, discovered by Reddit",
+      "type": "HEADLINE"
+    }
+  ]
+}
+```
+
+-   Asset 1
+
+    TypeReference ID (optional)Asset nameMedia URL
+
+-   Asset 2
+
+    TypeReference ID (optional)Asset nameMedia URL
+
+-   Asset 3
+
+    TypeReference ID (optional)Headline text
+
+-   Asset 4
+
+    TypeReference ID (optional)Headline text
+
+-   Asset 5
+
+    TypeReference ID (optional)Headline text
+
+
+### Poll asset status
+
+Use [`List Creative Asset Uploads`](https://ads-api.reddit.com/docs/v3/api/list-creative-asset-uploads) to see if your asset is ready. When `status` is `ACTIVE`, that asset can be used for ad templates.
+
+It may take time for an asset to be ready. We recommend polling at a fixed interval:
+
+-   Start polling after approximately 1–2 seconds.
+-   Poll every 10–15 seconds after that.
+
+If the `status` is `PROCESSING_MEDIA` past 300 seconds, retry upload.
+
+### Validate asset
+
+[`Get Creative Asset Upload`](https://ads-api.reddit.com/docs/v3/api/get-creative-asset-upload) and [`List Creative Asset Uploads`](https://ads-api.reddit.com/docs/v3/api/list-creative-asset-uploads) can be used to verify asset uploads.
+
+Both endpoints include `result` after processing finishes. An `ACTIVE` upload contains the stored asset; use its `result.id` in the ad template. An `INVALID_MEDIA` upload contains error details instead and cannot be used in a template.
+
+## 3\. Create an ad group
+
+Use [`Create Ad Group`](https://ads-api.reddit.com/docs/v3/api/create-ad-group) to define audience controls and suggestions for your ads.
+
+-   **Controls**: Provide location, custom audience exclusion, account-level brand safety (e.g. community exclusion) controls. Audience controls are **always** followed.
+-   **Suggestions**: Provide **at least one** keyword, community, interest group, or custom audience inclusion suggestion. Reddit uses these targeting recommendations to optimize targeting without constraining the audience.
+
+    <Note>
+
+    Device targeting is supported for Max campaigns. For `CLICKS` and `CONVERSIONS`, `targeting.devices` is optional; omit it or pass an empty list to target all devices. For `APP_INSTALLS`, one mobile OS target is required, and it must match the app. Placement targeting is not configurable; placements remain automated.
+
+    </Note>
+
+
+Max campaigns are restricted to **one ad group per campaign**.
+
+### Create a Max ad group
+
+```
+{
+  "data": {
+    "type": "AUTOMATED",
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "conversion_pixel_id": "",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "targeting": {
+      "communities": [""],
+      "keywords": [""],
+      "interests": [""],
+      "custom_audience_ids": [""],
+      "geolocations": [""]
+    }
+  }
+}
+```
+
+## 4\. Manage your dynamic creative ad
+
+The dynamic creative ad template is used to find the best asset combination for each impression.
+
+Max chooses a combination of assets to create a materialized ad. Materialized ads **cannot** be found or retrieved using the Ads API. Use the [Reporting API](#view-combination-and-asset-reporting) to see your best ad combinations instead.
+
+Each campaign can have **one template per ad group**.
+
+### Create your ad template
+
+Set up your ad template with [`Create Ad`](https://ads-api.reddit.com/docs/v3/api/create-ad). Only `ACTIVE` assets may be selected.
+
+At a minimum, 3 headline assets and 2 distinct media assets must be chosen.
+
+### Create a Max ad template
+
+Edit the ad fields inline, then add the asset IDs that Max can combine.
+
+```
+{
+  "data": {
+    "name": "",
+    "profile_id": "",
+    "asset_identifiers": [
+      {
+        "id": "11t2_n7yx0000000000000"
+      },
+      {
+        "id": "11t2_n7yx0000000000001"
+      },
+      {
+        "id": "11t2_n7yx0000000000002"
+      },
+      {
+        "id": "11t2_n7yx0000000000003"
+      },
+      {
+        "id": "11t2_n7yx0000000000004"
+      }
+    ],
+    "destination": {
+      "type": "URL",
+      "url": ""
+    },
+    "type": "DYNAMIC_CREATIVE_AD_TEMPLATE",
+    "configured_status": "PAUSED",
+    "ad_group_id": ""
+  }
+}
+```
+
+-   Asset 1
+
+    Asset IDVersion (optional)
+
+-   Asset 2
+
+    Asset IDVersion (optional)
+
+-   Asset 3
+
+    Asset IDVersion (optional)
+
+-   Asset 4
+
+    Asset IDVersion (optional)
+
+-   Asset 5
+
+    Asset IDVersion (optional)
+
+
+### Poll for template readiness
+
+Use [`Get Ad`](https://ads-api.reddit.com/docs/v3/api/get-ad) to retrieve your template's status. When `materialization_status` is `SUCCESS`, your template is ready.
+
+## View combination and asset reporting
+
+Ad template metrics are broken down with the `ad_id` breakdown. The `template_id` will populate as the ad ID.
+
+You can also use the `asset_id` breakdown to see metrics for individual assets. 
+
+```json title="Example: Break down by individual asset"
+{  "data": {    "breakdowns": [      "asset_id"    ],    "fields": [      "impressions",      "clicks"    ],    "starts_at": "2026-01-01T00:00:00Z",    "ends_at": "2026-04-15T00:00:00Z"  }}
+```
+
+## Things to know
+
+-   The `Campaign` object `type` must be set to `AUTOMATED`.
+-   Max automatically expands and optimizes your targeting suggestions to find relevant audiences.
+-   Max campaigns use campaign budget optimization.
+-   Max campaigns only support automatic bidding strategies. Manual bidding isn't supported.
+-   As with all ads, system-generated ads (`materialized ads`) must pass mandatory review before serving.
+-   Max campaigns are restricted to **one ad group** and **one dynamic creative ad**. Reddit's system automatically generates and tests different combinations to serve the best-performing ads.

@@ -1,0 +1,43 @@
+---
+title: "ScheduledJob"
+---
+
+## Type Alias: ScheduledJob
+
+> **ScheduledJob** = `object`
+
+## Properties
+
+
+### data
+
+> **data**: [`JSONObject`](/api/public-api/type-aliases/JSONObject) \| `undefined`
+
+Additional data passed in by the scheduler client
+
+***
+
+
+### id
+
+> **id**: `string`
+
+ID of the scheduled job. Use this with scheduler.cancelJob to cancel the job.
+
+***
+
+
+### name
+
+> **name**: `string`
+
+The name of the scheduled job type
+
+***
+
+
+### runAt
+
+> **runAt**: `Date`
+
+The Date of when this job should run

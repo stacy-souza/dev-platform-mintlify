@@ -1,0 +1,19 @@
+---
+title: "Data Deletion"
+---
+
+Request deletion of ads-related user data and track asynchronous deletion jobs to completion.
+
+## References
+
+<Columns cols={2}>
+  <Card title="Delete User Data" href="/ads-api/guides/programs/data-deletion/delete-user-data">
+    Submit customer identifiers for deletion, monitor job status, and follow hashing and polling best practices.
+  </Card>
+  <Card title="Create Data Deletion Job" href="https://ads-api.reddit.com/docs/v3/api/create-data-deletion-job">
+    Create an asynchronous job to delete ads-related data for supported user identifiers. Prefer pre-hashed identifiers when supported. Learn more about deleting user data .
+  </Card>
+  <Card title="Get Data Deletion Job Status" href="https://ads-api.reddit.com/docs/v3/api/get-data-deletion-job-status">
+    Retrieve the current status of a data deletion job. Deletions are processed daily, so poll once per day until the job reaches COMPLETED or FAILED. View the polling guidance.
+  </Card>
+</Columns>

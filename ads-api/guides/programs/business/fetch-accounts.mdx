@@ -1,0 +1,84 @@
+---
+title: "Fetch Ad Accounts"
+---
+
+You can retrieve a list of your authorized ad accounts to determine which account you'd like to use for Reddit Ads API actions, like sending conversion events or fetching data from the Ads Manager.
+
+## Before you start
+
+-   [**Set up a Reddit Ads account**](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account)**.**
+-   **Find your ads account ID.** Let us know which business account to [fetch data from](https://ads-api.reddit.com/docs/v3/api/list-ad-accounts-by-business). You can find your ads account ID in [Accounts](https://ads.reddit.com/accounts).
+-   **Find details about your Reddit developer application.** Retrieve details like the client ID and redirect URL for your app. You can find this information in your account's [application preferences](https://www.reddit.com/prefs/apps).
+-   **Access a terminal application or Postman.** Ensure you have a way to create requests to the API.
+
+## 1\. Get your access token
+
+1.  Go to the authorization URL of your Reddit developer application. For `scope`, you must at least include `“adsread”`.
+
+    <Note>
+
+    Learn more about [authorizing your application](/ads-api/guides/quick-start/authenticate).
+
+    </Note>
+
+    ### Authorize app
+
+    ```
+    https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=&redirect_uri=&duration=Duration&scope=Scope
+    ```
+
+2.  Check that the username listed matches the member you want to authorize the app. The app will be able to access all the accounts this user has permission to manage, even as this user's permissions change over time. If the username is correct, select _Allow_.
+
+    ![Check your username](/images/ads-api/check-username-730d8ba6fa4b8147f23abe916991eb59.webp)
+
+    <Warning>
+
+    If an unexpected username is displayed, you're in an active Reddit session. To fix this, log out of your account, log into the correct account, then revisit the URL.
+
+    </Warning>
+
+3.  You will be redirected to the redirect URL that you provided earlier. The URL in your address bar will have 2 query parameters: the state and the code. Copy and record the code value and remove the `_#\__` characters at the end of the value, if any. ![Copy code](/images/ads-api/copy-code-7529e9db824d1ea0b85628912f583ca6.webp)
+
+    <Accordion title="Example">
+
+    -   **Example URL:** `https://mybusiness.com/oauth/callback?state=my-state&code=Ve49meZ9oh3lZFY35CEizm3jTsfJeA#_`
+    -   **Copy:** `Ve49meZ9oh3lZFY35CEizm3jTsfJeA`
+
+    </Accordion>
+
+4.  Send an API request to retrieve your access token. Learn how to [create a developer application](/ads-api/guides/quick-start/authenticate).
+
+    ### Get access token
+
+    ```
+    curl -X POST https://www.reddit.com/api/v1/access_token \
+     -H 'content-type: application/x-www-form-urlencoded' \
+     -A '' \
+     -u ':' \
+     -d 'grant_type=authorization_code&code=&redirect_uri='
+    ```
+
+
+## 2\. Find the business linked to your member
+
+Call [`List My Businesses`](https://ads-api.reddit.com/docs/v3/api/list-my-businesses) to return details about the businesses linked to your member. Save the `id` for the business account you need.
+
+<Accordion title="Response example">
+
+```JSON
+{  "data": [    {      "id": "34e0ed2c-b15d-4945-bf3f-1428eaddbf11",      "name": "Reddit inc",      "industry": "OTHER",      [...]    }  ],  [...]}
+```
+
+</Accordion>
+
+## 3\. Fetch a list of ad accounts
+
+Get a list of the ad accounts in a business by calling [`List Ad Accounts by Businesses`](https://ads-api.reddit.com/docs/v3/api/list-ad-accounts-by-business). Only ad accounts that the member has permission on will be returned. Use `id` to perform API actions on specific ad accounts.
+
+<Accordion title="Response example">
+
+```json
+{  "data": [    {      "id": "a2_bzv32cgqp",      "type": "MANAGED",      "currency": "USD",      "name": "anagtest",      "business_id": "34e0ed2c-b15d-4945-bf3f-1428eaddbf11",      [...]    }  ],  [...]}
+```
+
+</Accordion>

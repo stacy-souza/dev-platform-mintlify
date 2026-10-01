@@ -1,0 +1,40 @@
+---
+title: "Match Destination and Click URL"
+---
+
+By default, click URL doesn't update when changing an ad or creative with the Ads API. This can cause misalignment with where users finally navigate to when they click the ad's call to action button.
+
+You can choose to either match this field with your destination URL, or use a [third-party tracker](https://business.reddithelp.com/s/article/Set-up-third-party-measurement).
+
+The click URL must be manually updated for ads using **image**, **carousel** or **video** formats.
+
+This guide covers matching the click URL with the destination URL if you need them to match.
+
+## Before you start
+
+Retrieve your ad and post IDs with [`List Ads`](https://ads-api.reddit.com/docs/v3/api/list-ads) and [`List Structured Posts`](https://ads-api.reddit.com/docs/v3/api/list-structured-posts), respectively.
+
+## 1\. Retrieve the destination URL
+
+Retrieve `data.creative.destination.url` from [Get Structured Post](https://ads-api.reddit.com/docs/v3/api/get-structured-post).
+
+### Find destination URL
+
+```
+https://ads-api.reddit.com/api/v3/structured_posts/
+
+```
+
+## 2\. Update the click URL
+
+Set `click_url` to match `data.creative.destination.url` with [`Update Ad`](https://ads-api.reddit.com/docs/v3/api/update-ad).
+
+### Change click URL
+
+```
+{
+  "data": {
+    "click_url": ""
+  }
+}
+```

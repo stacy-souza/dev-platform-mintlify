@@ -1,0 +1,122 @@
+---
+title: "Campaign Management"
+---
+
+Customize Reddit ads, segment targeting, and optimize delivery with detailed settings for audience, placements, and budgets.
+
+<Tip>
+
+Looking for more hands-on help? Use our [campaign setup guide](/ads-api/guides/programs/campaign/campaign-setup).
+
+</Tip>
+
+## Before you start
+
+-   [Set up a Reddit Ads account](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account).
+-   [Find the ad account](https://ads-api.reddit.com/docs/v3/api/list-ad-accounts-by-business) to create entities under.
+
+## Plan a campaign
+
+Set up and manage campaigns based on objectives.
+
+-   [`List Campaigns`](https://ads-api.reddit.com/docs/v3/api/list-campaigns)
+-   [`Create Campaign`](https://ads-api.reddit.com/docs/v3/api/create-campaign)
+-   [`Get Campaign`](https://ads-api.reddit.com/docs/v3/api/get-campaign)
+-   [`Update Campaign`](https://ads-api.reddit.com/docs/v3/api/update-campaign)
+
+## Organize ad groups
+
+Organize ads into ad groups to target, schedule, and granularly price ads.
+
+<Tip>
+
+Segment campaigns to better understand your targeting buckets and set different bids.
+
+</Tip>
+
+-   [`List Ad Groups`](https://ads-api.reddit.com/docs/v3/api/list-ad-groups)
+-   [`Create Ad Group`](https://ads-api.reddit.com/docs/v3/api/create-ad-group)
+-   [`Generate Bid Suggestion`](https://ads-api.reddit.com/docs/v3/api/generate-bid-suggestion)
+-   [`Get Ad Group`](https://ads-api.reddit.com/docs/v3/api/get-ad-group)
+-   [`Update Ad Group`](https://ads-api.reddit.com/docs/v3/api/update-ad-group)
+
+## Manage ads
+
+### Manage posts
+
+<Warning>
+
+Skip this step when creating catalog ads.
+
+</Warning>
+
+Manage the contents of your ad.
+
+-   [`List Posts`](https://ads-api.reddit.com/docs/v3/api/list-posts)
+-   [`Create Post`](https://ads-api.reddit.com/docs/v3/api/create-post)
+-   [`Get Post`](https://ads-api.reddit.com/docs/v3/api/get-post)
+-   [`Update Post`](https://ads-api.reddit.com/docs/v3/api/update-post)
+
+### Add required assets
+
+Depending on your campaign objective, set up other required assets.
+
+<Tabs>
+
+<Tab title="Catalog">
+
+Set up your [product catalogs](/ads-api/guides/programs/product-catalogs). Required for [static](https://business.reddithelp.com/s/article/Product-Ads) and [dynamic product ads](https://business.reddithelp.com/s/article/dynamic-product-ads).
+
+</Tab>
+
+<Tab title="Conversions">
+
+Set up conversions with the [Conversions API](/ads-api/guides/programs/capi), [Reddit Pixel](https://business.reddithelp.com/s/article/reddit-pixel), or both.
+
+</Tab>
+
+<Tab title="App Installs">
+
+Check the [SKAdNetwork ID availability quota](https://ads-api.reddit.com/docs/v3/api/get-sk-ad-network-availability) for your app.
+
+</Tab>
+
+<Tab title="Lead Generation">
+
+<Note>
+
+This ad type is in beta. Contact your [Reddit Ads expert](https://www.business.reddit.com/speak-with-a-reddit-ads-expert) for more details.
+
+</Note>
+
+Manage your lead generation forms.
+
+-   [`List Lead Generation Forms`](https://ads-api.reddit.com/docs/v3/api/list-lead-generation-forms)
+-   [`Create Lead Generation Form`](https://ads-api.reddit.com/docs/v3/api/create-lead-generation-form)
+-   [`Get Lead Generation Form`](https://ads-api.reddit.com/docs/v3/api/get-lead-generation-form)
+
+</Tab>
+
+</Tabs>
+
+### Create ads
+
+Manage promotional content and set click and impression trackers.
+
+-   [`List Ads`](https://ads-api.reddit.com/docs/v3/api/list-ads)
+-   [`Create Ad`](https://ads-api.reddit.com/docs/v3/api/create-ad)
+-   [`Get Ad`](https://ads-api.reddit.com/docs/v3/api/get-ad)
+-   [`Update Ad`](https://ads-api.reddit.com/docs/v3/api/update-ad)
+
+### Optimize ads
+
+Find successful ads and uncover advertising strategies.
+
+<Note>
+
+These endpoints are in beta. For access, reach out to your sales representative.
+
+</Note>
+
+-   `Search Inspiration Creatives`
+-   `Generate Inspiration Creative Summary`

@@ -1,0 +1,73 @@
+---
+title: "Create a Developer Application"
+---
+
+<Warning>
+
+Only business admins can access this interface. Contact one of your business's administrators for help.
+
+</Warning>
+
+Developer applications define the settings that determine how your app authenticates with the Ads API. These settings streamline workflows and enhance campaign management efficiency programmatically, enabling you to build custom tools to create and manage ad campaigns, generate reports, and manage custom audiences.
+
+These settings can only be managed by business admins with a [verified account](https://support.reddithelp.com/hc/en-us/articles/360043047552-Why-should-I-verify-my-Reddit-account-with-an-email-address). You can manage your developer applications in [_Business > Developer Portal_](https://ads.reddit.com/business/developer-applications).
+
+![Choose Developer Application in the menu](/images/ads-api/dev-app-menu-3c3dd3e8754026632390efd4471c1543.webp)
+
+In this interface, you can:
+
+-   **Add an app:** Create or migrate an existing developer application to define the settings for how your app authenticates with the Ads API.
+    -   [**Create**](#create-an-application)**:** Make new developer application credentials for your app.
+    -   [**Migrate**](#migrate-an-application)**:** Move an existing developed app associated with your Reddit account to manage it in the Ads Manager.
+-   **Edit an app:** Change any setting for your application, excluding its app ID and secret.
+-   **Delete your app:** Remove this app from your business. 
+
+    <Warning>
+
+    Deleting an app will disconnect all third-party services using it from the Ads API. This action can't be undone.
+
+    </Warning>
+
+
+## Create an application
+
+1.  In the developer application interface, select _Add Apps > Create an app_.
+
+    ![Select Add App &gt; Create an app](/images/ads-api/add-app-create-77b0b3ecceb6268927c0a2db0ac7951e.webp)
+
+2.  Set up your app.
+    -   **App name:** An appropriate and descriptive title. We recommend a name that reflects your business, product, or integration purpose. Avoid generic names like `Reddit Integration` or `Test`. 
+    -   **Description (optional):** Information about your app.
+    -   **About URL:** The URL that provides more information about your business or application.
+    -   **Redirect URL:** The URL to authorize access to your application. We recommend setting a path on your business domain, like `https://mybusiness.com/oauth/callback`.
+    -   **Primary contact:** The business admin responsible for this app, who may be contacted for operational updates related to the Ads API. This must be set to a business admin. Here's how to [set this permission](https://business.reddithelp.com/s/article/Add-users-to-a-Reddit-Ads-account#change-a-members-role).
+3.  When ready, select _Create App_. This will save your app and generate its secret and app ID.
+
+    ![Select Create App](/images/ads-api/create-app-7d4f0c84292af7297427eb9a8871d326.webp)
+
+
+## Migrate an application
+
+<Note>
+
+Migration will limit your app's scope to the Ads API. Follow [our authentication guide](https://developers.reddit.com/docs/authentication) to set up access to Devvit.
+
+</Note>
+
+1.  In the developer application interface, select _Add Apps > Migrate an existing app_.
+
+    ![Select Add App &gt; Migrate an existing app](/images/ads-api/add-app-migrate-7427a18d853771292dbaa743c75babb4.webp)
+
+2.  Select the app to migrate.
+3.  Choose a primary contact for your app. This must be set to a business admin.
+4.  When ready, select _Migrate App_. This will make your app only available to manage in the developer application interface and remove it from [Preferences > Apps](https://www.reddit.com/prefs/apps/).
+
+    ![Select migrate app](/images/ads-api/migrate-app-de03a6dae545057bf2360321c2c59c2e.webp)
+
+
+## Things to know
+
+-   A member cannot be removed from your business if they're an active primary contact.
+-   You agree to the [Advertising Platform Terms](https://business.reddithelp.com/s/article/REDDIT-ADVERTISING-PLATFORM-TERMS), [Developer Terms](https://www.redditinc.com/policies/developer-terms), and [User Agreement](https://redditinc.com/policies/user-agreement) when creating or migrating an app.
+-   Migrating an application will limit your application's scope to only the Ads API. Learn how to [set up Devvit](https://developers.reddit.com/docs).
+-   After creating your application, finish set up by [authenticating it](/ads-api/guides/quick-start/authenticate).

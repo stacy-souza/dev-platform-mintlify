@@ -1,0 +1,201 @@
+---
+title: "ConversationData"
+---
+
+## Type Alias: ConversationData
+
+> **ConversationData** = `object`
+
+## Properties
+
+
+### authors
+
+> **authors**: [`Participant`](/api/public-api/type-aliases/Participant)[]
+
+The authors of each message in the modmail conversation.
+
+***
+
+
+### conversationType?
+
+> `optional` **conversationType**: `string`
+
+A ConversationType specifies whether a conversation is with a subreddit
+itself, with another user, or with another subreddit entirely.
+- `sr_user` - This is a conversation with another user outside of the
+              subreddit. The participant ID is that user's ID.
+- `internal` - This is a Mod Discussion, internal to the subreddit. There
+               is no other participant.
+- `sr_sr` - This is a conversation is with another subreddit. The
+            participant will have a subreddit ID.
+
+***
+
+
+### id?
+
+> `optional` **id**: `string`
+
+Conversation ID
+
+***
+
+
+### isAuto?
+
+> `optional` **isAuto**: `boolean`
+
+Is the conversation automatically generated e.g. from automod, u/reddit
+
+***
+
+
+### isHighlighted?
+
+> `optional` **isHighlighted**: `boolean`
+
+Is the conversation highlighted
+
+***
+
+
+### isInternal?
+
+> `optional` **isInternal**: `boolean`
+
+Is the conversation internal (i.e. mod only)
+
+***
+
+
+### lastModUpdate?
+
+> `optional` **lastModUpdate**: `string`
+
+The last datetime a mod from the owning subreddit made any interaction
+with the conversation.
+
+(Note that if this is a subreddit to subreddit conversation, the mods of
+the participant subreddit are irrelevant and do not affect this field.)
+
+***
+
+
+### lastUnread?
+
+> `optional` **lastUnread**: `string`
+
+The datetime of the last unread message within this conversation for the current viewer.
+
+***
+
+
+### lastUpdated?
+
+> `optional` **lastUpdated**: `string`
+
+The datetime of the last time the conversation was update.
+
+***
+
+
+### lastUserUpdate?
+
+> `optional` **lastUserUpdate**: `string`
+
+The last datetime a user made any interaction with the conversation
+
+***
+
+
+### messages
+
+> **messages**: `object`
+
+Conversation messages
+
+#### Index Signature
+
+\[`id`: `string`\]: [`MessageData`](/api/public-api/type-aliases/MessageData)
+
+#### Example
+
+```ts
+const arrayOfMessages = Object.values(conversation.messages);
+const messageById = conversation.messages[messageId];
+```
+
+***
+
+
+### modActions
+
+> **modActions**: `object`
+
+Conversation mod actions
+
+#### Index Signature
+
+\[`id`: `string`\]: [`ModActionData`](/api/public-api/type-aliases/ModActionData)
+
+#### Example
+
+```ts
+const arrayOfModActions = Object.values(conversation.modActions);
+const modActionById = conversation.modActions[modActionId];
+```
+
+***
+
+
+### numMessages?
+
+> `optional` **numMessages**: `number`
+
+Number of messages (not actions) in the conversation
+
+***
+
+
+### participant?
+
+> `optional` **participant**: [`Participant`](/api/public-api/type-aliases/Participant)
+
+Participant. Is absent for mod discussions
+
+***
+
+
+### state?
+
+> `optional` **state**: [`ModMailConversationState`](/api/public-api/enumerations/ModMailConversationState)
+
+State of the conversation
+
+***
+
+
+### subject?
+
+> `optional` **subject**: `string`
+
+Suject of the conversation
+
+***
+
+
+### subreddit?
+
+> `optional` **subreddit**: `object`
+
+Subreddit owning the modmail conversation
+
+#### displayName?
+
+> `optional` **displayName**: `string`
+
+#### id?
+
+> `optional` **id**: `T5`

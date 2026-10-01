@@ -1,0 +1,31 @@
+---
+title: "Add Adaptive Time Zone Parameters"
+---
+
+The API defaults to returning data in Coordinated Universal Time (UTC). If you need data in a certain time zone, the `time_zone_id` parameter is effective only when the breakdowns include date details. If not, you can set the time offset with `start_at` and `end_at` to match your desired time zone.
+
+To return details about the time zone used by our API, you can call `List Time Zones`, which returns information like the time zone code, offset, and daylight saving time status:
+
+```json
+{  "data": [    {      "code": "PT",      "dst_offset": 3600,      "id": "America/Los_Angeles",      "is_dst_active": false,      "name": "Pacific Time",      "offset": -28800    }  ],  "pagination": {    "next_url": "https://ads-api.reddit.com/api/v3?page.token=nextToken",    "previous_url": "https://ads-api.reddit.com/api/v3?page.token=previousToken"  }}
+```
+
+This call can be integrated into middleware to periodically retrieve the offset (`dst_offset`) and accommodate daylight savings time (`is_dst_active`).
+
+<Note>
+
+Offset values are returned in seconds, so remember to adjust your timestamps accordingly.
+
+</Note>
+
+To make this easier, you can use third-party tools and libraries. For example, the `moment.js` library lets you handle time zone conversions:
+
+```js
+var jun = moment("2014-06-01T12:00:00Z");var dec = moment("2014-12-01T12:00:00Z");jun.tz('America/New_York').format('ha z'); // 8am EDTdec.tz('America/New_York').format('ha z'); // 7am EST
+```
+
+<Warning>
+
+Keep in mind that third-party tools and libraries aren't officially endorsed or supported by Reddit.
+
+</Warning>

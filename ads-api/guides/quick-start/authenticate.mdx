@@ -1,0 +1,148 @@
+---
+title: "Authenticate Your Developer Application"
+---
+
+You can set up your developer application to gain access to the Reddit API, letting you develop nifty applications and integrations that seamlessly interact with Reddit's ads platform.
+
+Before you begin, you should have:
+
+-   [A Reddit Ads account](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account).
+-   [A developer application](/ads-api/guides/quick-start/create-dev-app). You'll need its app ID and secret.
+-   Access to a terminal application.
+
+<Tip>
+
+System User authorization
+
+For business-owned authorization, use the [System Users guide](/ads-api/guides/programs/business/system-users). System Users are available in Open Beta.
+
+</Tip>
+
+## 1\. Authorize your application
+
+Go to your business's [developer applications](https://ads.reddit.com/business/developer-applications) and find your application's app ID. Replace the values in the following link and navigate to it:
+
+### Authorize app
+
+```
+https://www.reddit.com/api/v1/authorize?client_id=&response_type=code&state=&redirect_uri=&duration=Duration&scope=Scope
+```
+
+<Accordion title="Reference: Fields">
+
+| Field | Description |
+| --- | --- |
+| `{{App ID}}` | The ID of your dev app |
+| `{{Random String}}` | This can be set to any string with no spaces or special characters, like the name of your dev app. This is used to [detect cross-site request forgeries (CSRF)](https://owasp.org/www-community/attacks/csrf). You can also set a signature for additional security. |
+| `{{Redirect URI registered for app}}` | The redirect URL you set for your dev app.
+<Warning>
+
+Don't change `redirect_uri` to `redirect_url`. This parameter must be used so that the application can correctly route mobile and web application redirects.
+
+</Warning>
+
+ |
+| `{{Duration}}` | The time limit that this access token will expire. Set this to `permanent` for production use, or `temporary` to make the access code valid for only one hour.
+
+<Note>
+
+If you set this to `temporary`, you won't be able to refresh this option.
+
+</Note>
+
+ |
+| `{{Scope}}` | A comma-separated list of the actions performable with the access token. Only the following scopes are accepted: `adsread`, `adsconversions`, `adsedit`, and `adsdatadeletion`. |
+
+</Accordion>
+
+<Accordion title="Reference: Scope">
+
+<Tip>
+
+If you’d like your token to access everything in the Reddit Ads API, use `adsread,adsconversions,adsedit,adsdatadeletion`.
+
+</Tip>
+
+| **Scope** | **Description** |
+| --- | --- |
+| `adsconversions` | Post conversion events by enabling access to the [Conversions API](https://ads-api.reddit.com/docs/v3/api/pixels) |
+| `adsedit` | Edit ads data |
+| `adsread` | Read advertising data for your account  |
+| `adsdatadeletion` | Delete advertising data through my account |
+
+</Accordion>
+
+Check that the username listed matches the account you want to authorize the app. If the username is correct, select _Allow_.
+
+![Check your username](/images/ads-api/check-username-730d8ba6fa4b8147f23abe916991eb59.webp)
+
+<Warning>
+
+If an unexpected username is displayed, you're in an active Reddit session. To fix this, log out of your account, log into the correct account, then revisit the URL.
+
+</Warning>
+
+You will be sent to the redirect URL that you provided earlier. The URL in your address bar will have 2 query parameters: the state and the code. Copy and record the code value and remove the `#_` characters at the end of the value, if any.
+
+<Warning>
+
+This code should be used within the next ten minutes and only once per authorization.
+
+</Warning>
+
+![Copy the code](/images/ads-api/copy-code-7529e9db824d1ea0b85628912f583ca6.webp)
+
+<Accordion title="Example: Find code value from redirect URL">
+
+| Redirect URL | Code value |
+| --- | --- |
+| `https://notarealbrand.myshopify.com/oauth/callback?state=my-state&code=Ve49meZ9oh3lZFY35CEizm3jTsfJeA#_` | `Ve49meZ9oh3lZFY35CEizm3jTsfJeA` |
+
+</Accordion>
+
+## 2\. Get your access token from the Reddit API
+
+Open a terminal window and execute the following cURL command with your noted values:
+
+### Get access token
+
+```
+curl -X POST https://www.reddit.com/api/v1/access_token \
+   -H 'content-type: application/x-www-form-urlencoded' \
+   -A '' \
+   -u ':' \
+   -d 'grant_type=authorization_code&code=&redirect_uri='
+```
+
+If successful, you will receive a response that looks like this:
+
+```json
+{    "access_token": {{Access token}},    "token_type": "bearer",    "expires_in": {{Expiration time in Unix epoch}},    "refresh_token": {{Refresh token}},    "scope": {{Scope string}}}
+```
+
+Record the value for `access_token` and `refresh_token`. You'll use `access_token` to access the Reddit Ads API for either one hour (3600) or one day (86400), whichever is listed for the value for `expires_in`.
+
+## 3\. (Optional) Refresh your access token
+
+You can use an active access token to maintain continuous access to the API without requiring re-authentication. 
+
+To refresh your token, open a terminal window and execute the following cURL command with your noted values:
+
+### Refresh access token
+
+Use your refresh token to get a new access token
+
+```
+curl -X POST https://www.reddit.com/api/v1/access_token \
+   -A '' \
+   -u ':' \
+   -d 'grant_type=refresh_token&refresh_token='
+```
+
+If successful, you will receive a response that looks like this:
+
+```json
+{    "access_token": {{Access token}},    "token_type": "bearer",    "expires_in": {{Expiration time in Unix epoch}},    "refresh_token": {{Refresh token}},    "scope": {{Scope string}}}
+```
+
+Record the value for `access_token` and `refresh_token`. You'll use `access_token` to access the Reddit Ads API for either one hour (3600) or one day (86400), whichever is listed for the value for `expires_in`.

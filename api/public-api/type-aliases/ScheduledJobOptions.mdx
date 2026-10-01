@@ -1,0 +1,40 @@
+---
+title: "ScheduledJobOptions"
+---
+
+## Type Alias: ScheduledJobOptions\<T\>
+
+> **ScheduledJobOptions**\<`T`\> = `object`
+
+## Type Parameters
+
+### T
+
+`T` *extends* [`JSONObject`](/api/public-api/type-aliases/JSONObject) \| `undefined` = [`JSONObject`](/api/public-api/type-aliases/JSONObject) \| `undefined`
+
+## Properties
+
+
+### data?
+
+> `optional` **data**: `T`
+
+Additional data passed in by the scheduler client
+
+***
+
+
+### name
+
+> **name**: `string`
+
+The name of the scheduled job type
+
+***
+
+
+### runAt
+
+> **runAt**: `Date`
+
+The Date of when this job should run

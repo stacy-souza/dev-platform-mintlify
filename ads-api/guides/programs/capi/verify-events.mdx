@@ -1,0 +1,103 @@
+---
+title: "Verify Conversion Events"
+---
+
+Verifying your CAPI integration will let you know it's accurately tracking events across all browsers and devices. If you don’t do this, you may experience ad delivery and measurement challenges.
+
+We recommend implementing both the Pixel and CAPI to optimize campaign performance. Sharing the same events using both implementations can help minimize signal loss and achieve more efficient results, but may cause events to be double-counted. Set up [event deduplication](/ads-api/guides/programs/capi/direct-integration#4-set-up-deduplication) to avoid attribution and reporting discrepancies.
+
+We also recommend passing [match keys](/ads-api/guides/programs/capi/direct-integration#match-keys) for better match rates and higher attribution rates. This lets you pass high-quality match keys and identifiers (like email, phone number, IP, and click ID) using your implementations to increase conversion attribution.
+
+Conversion events can be verified using these methods:
+
+-   **Events Manager:** Trigger conversion events in real time to see if your events are being captured.
+-   **[`Get Last Fired At`](https://ads-api.reddit.com/docs/v3/api/get-last-fired-at):** Retrieve the latest time conversion events were sent, in [ISO 8601 format](https://www.iso.org/iso-8601-date-and-time-format.html).
+-   **[`Get A Report`](https://ads-api.reddit.com/docs/v3/api/get-a-report):** Get a report for your conversion events. This method is recommended for verifying custom conversion events. [Read the guide](/ads-api/guides/programs/reporting/get-custom-event-report).
+
+## 1\. Check signal delivery
+
+1.  Go to the [Events Manager](https://ads.reddit.com/events-manager) and check that all your standard and custom conversion events are listed. If any of your events aren’t listed, [add those events](https://business.reddithelp.com/s/article/supported-conversion-events) to your integration.
+    -   **Recommendations for conversions:** Ensure `PURCHASE`, `LEAD`, and `SIGN_UP` are included.
+    -   **Requirements for [dynamic product ads (DPA)](https://business.reddithelp.com/s/article/dynamic-product-ads):** Ensure `VIEW_CONTENT`, `ADD_TO_CART`, and `PURCHASE` are included.
+2.  Verify that your total event counts make sense. For example, if you get a lot of traffic on your site, `PAGE_VISIT` shouldn’t be low.
+
+## 2\. Verify events
+
+<Note>
+
+Test events are subject to a rate limit of 10 events per second.
+
+</Note>
+
+<Note>
+
+Batch events aren’t currently supported. Only one event per request will be displayed.
+
+</Note>
+
+1.  Open [Event Testing](https://ads.reddit.com/events-manager/testing) in the Ads Manager.
+2.  Copy the test ID provided and set it as `"test_id”` in the `POST` request.
+3.  Send test requests to the CAPI endpoint.
+
+    <Warning>
+
+    Remove `“test_id”` field from the request before deploying to production.
+
+    </Warning>
+
+4.  Verify events display in Event Testing and that the metadata, match keys, and conversion ID match your request.
+
+    <Note>
+
+    Events may be delayed for up to five seconds before appearing on the interface.
+
+    </Note>
+
+    ![Triggered events](/images/ads-api/triggered-events-9b235b51bccd9566ce367b1d3250ae03.webp)
+
+
+## 3\. Trigger conversion events
+
+Explore your site to manually trigger events and ensure the correct events are being captured. For example, when you add an item to your cart, an `ADD_TO_CART` event should fire.
+
+If you’re using the integration with DPA, we recommend configuring at least these actions:
+
+| Action | Event |
+| --- | --- |
+| View a variation of a product | `VIEW_CONTENT` |
+| Add product to cart | `ADD_TO_CART` |
+| Make a test purchase | `PURCHASE` |
+
+The event status will be received if the event was configured correctly.
+
+<Warning>
+
+Some events may not be captured in Events Testing. If you don’t see any event, try checking it with the [Pixel Helper](https://business.reddithelp.com/s/article/Reddit-Pixel-Helper-Chrome-extension).
+
+</Warning>
+
+As you do that, those events will appear in the table with their status, timestamp, and setup method. Expand each event to reveal more information:
+
+-   **Received Pixel ID:** Your Pixel ID
+-   _Conversion ID:_ The event’s unique ID, used for [event deduplication](https://business.reddithelp.com/s/article/event-deduplication)
+-   **[Match keys](https://business.reddithelp.com/s/article/about-match-keys):** Shared user or device identifiers
+-   **[Metadata](https://business.reddithelp.com/s/article/about-event-metadata):** More details relevant for the event
+-   **Referrer URL:** The page URL where the event is firing on
+
+If you don’t see an event or you see an issue, the event was improperly configured. This means that the action may not be firing, which may affect your analytics. We strongly recommend [troubleshooting errors](/ads-api/guides/programs/capi/error-handling) as soon as possible. You can hover over issues to see information on event misconfigurations.
+
+![Example issue](/images/ads-api/example-issue-085b65083fc4a391466c32b13be97f6c.webp)
+
+## 4\. Troubleshooting errors
+
+If any of your events have issues, you can review them in [Diagnostics](https://ads.reddit.com/events-manager/diagnostics) to view your most recent conversion event issues. Expand an issue to get more details and learn how to resolve it. If you decide not to fix it, select _Ignore Issue_ to move it to the _Ignored_ tab. Issues may take up to 24 hours to clear after they’ve been resolved.
+
+![Ignore issue](/images/ads-api/ignore-issue-490378bab213e6b8ead69d9da1b594a2.webp)
+
+See more information on errors and warnings by expanding each conversion event. You must resolve errors for your integration to work properly. Warnings should be resolved, but your integration will still work if left unresolved. Learn more about [common errors and warnings and their solutions](/ads-api/guides/programs/capi/error-handling).
+
+<Warning>
+
+Diagnostics will not call out product metadata not passing. We strongly recommend using the [Pixel Helper](https://business.reddithelp.com/s/article/Reddit-Pixel-Helper-Chrome-extension) to check that this type of metadata is being passed.
+
+</Warning>

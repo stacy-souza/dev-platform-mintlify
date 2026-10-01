@@ -1,0 +1,69 @@
+---
+title: "TableContext"
+---
+
+## Interface: TableContext
+
+## Borrows
+
+TableContentContainer
+
+## Extends
+
+- [`TableContentContainer`](/api/public-api/type-aliases/TableContentContainer)\<`TableContext`\>
+
+## Methods
+
+
+### headerCell()
+
+> **headerCell**(`opts`, `cb`): `TableContext`
+
+Append a Table Cell to the Table Header
+
+#### Parameters
+
+##### opts
+
+[`TableHeaderCellOptions`](/api/public-api/type-aliases/TableHeaderCellOptions)
+
+[TableHeaderCellOptions](/api/public-api/type-aliases/TableHeaderCellOptions)
+
+##### cb
+
+(`cell`) => `void`
+
+scoped callback to add child elements to this Table Header Cell
+
+#### Returns
+
+`TableContext`
+
+#### Inherited from
+
+[`TableContentContainer`](/api/public-api/type-aliases/TableContentContainer).[`headerCell`](/api/public-api/type-aliases/TableContentContainer#headercell)
+
+***
+
+
+### row()
+
+> **row**(`cb`): `TableContext`
+
+Append a Table Row to the Table
+
+#### Parameters
+
+##### cb
+
+(`row`) => `void`
+
+scoped callback to add child elements to this Table Row
+
+#### Returns
+
+`TableContext`
+
+#### Inherited from
+
+[`TableContentContainer`](/api/public-api/type-aliases/TableContentContainer).[`row`](/api/public-api/type-aliases/TableContentContainer#row)

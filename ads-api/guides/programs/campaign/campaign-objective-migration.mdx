@@ -1,0 +1,109 @@
+---
+title: "Campaign Objective Migration"
+---
+
+On September 21st, Reddit will roll out updated campaign objective values to align more closely with industry naming and conventions.
+
+Although legacy enums will continue to be supported for the foreseeable future, developers are recommended to use the following guidance to minimize disruptions to existing integrations.
+
+| Legacy enum | New enum | Optimization goals |
+| --- | --- | --- |
+| `IMPRESSIONS` | `BRAND_AWARENESS` | `null` |
+| `VIDEO_VIEWABLE_IMPRESSIONS` | `BRAND_AWARENESS` |
+-   `VIDEO_VIEW_6S`
+-   `VIDEO_VIEW_15S`
+
+ |
+| `CONVERSIONS` | `SALES` |
+
+-   `CLICKS`
+-   `PURCHASE`
+-   `ADD_TO_CART`
+-   `PAGE_VISIT`
+-   `SIGN_UP`
+-   `ADD_TO_WISHLIST`
+-   `VIEW_CONTENT`
+-   `LEAD`
+
+ |
+| `CATALOG_SALES` | `SALES` |
+
+-   `CLICKS`
+-   `PURCHASE`
+
+ |
+| `LEAD_GENERATION` | `LEAD_GENERATION` |
+
+-   `LEAD`
+-   `SIGN_UP`
+
+ |
+| `CLICKS` | `CLICKS` | `CLICKS` |
+| `APP_INSTALLS` | `APP_INSTALLS` |
+
+-   `MOBILE_CONVERSION_INSTALL`
+-   `MOBILE_CONVERSION_SIGN_UP`
+-   `MOBILE_CONVERSION_ADD_PAYMENT_INFO`
+-   `MOBILE_CONVERSION_ADD_TO_CART`
+-   `MOBILE_CONVERSION_PURCHASE`
+-   `MOBILE_CONVERSION_COMPLETED_TUTORIAL`
+-   `MOBILE_CONVERSION_LEVEL_ACHIEVED`
+-   `MOBILE_CONVERSION_SPEND_CREDITS`
+-   `MOBILE_CONVERSION_REINSTALL`
+-   `MOBILE_CONVERSION_UNLOCK_ACHIEVEMENT`
+-   `MOBILE_CONVERSION_START_TRIAL`
+-   `MOBILE_CONVERSION_SUBSCRIBE`
+-   `MOBILE_CONVERSION_ONBOARD_STARTED`
+-   `MOBILE_CONVERSION_FIRST_TIME_PURCHASE`
+
+ |
+
+## Objective-specific changes
+
+<Tabs>
+
+<Tab title="Catalog">
+
+-   `objective` must be `SALES`.
+-   `use_catalog=true` is required to use a product catalog. When this value is set, `product_set_id` must also be set for all ad groups in the campaign. Catalog usage applies uniformly across ad groups in a `SALES` campaign: either every ad group uses one, or none do.
+-   Depending on the `optimization_goal` set:
+    -   `PURCHASE`: `view_through_conversion_type` must be set to `SEVEN_DAY_CLICKS_ONE_DAY_VIEW`
+    -   `CLICKS`: `view_through_conversion_type` must be `null`.
+-   `shopping_ad_type` is required for all ad groups.
+-   [Reddit Pixel](https://business.reddithelp.com/s/article/reddit-pixel#set-up-the-reddit-pixel) or [CAPI](https://business.reddithelp.com/s/article/Conversions-API#integrate-capi) setup is still required.
+
+</Tab>
+
+<Tab title="Conversions">
+
+`objective` must be `SALES`.
+
+<Warning>
+
+Don't set `use_catalog=true`—this will restrict optimization goals to only `PURCHASE` or `CLICKS`.
+
+</Warning>
+
+</Tab>
+
+<Tab title="Brand Awareness">
+
+-   Campaigns must use the **same** `optimization_goal`. Mixing goals—such as `null` and `VIDEO_VIEW_6S`—in one campaign **isn't supported**.
+-   The `bid_type` must match the `optimization_goal`.
+
+    | Objective | Bid type |
+    | --- | --- |
+    | `null` | `CPM` |
+    | `VIDEO_VIEW_6S` | `CPV6` |
+    | `VIDEO_VIEW_15S` | `CPV15` |
+
+</Tab>
+
+<Tab title="Lead Generation">
+
+-   `optimization_goal` must be `LEAD` or `SIGN_UP`. `null` is no longer supported for new campaigns.
+-   Onsite lead generation forms are no longer supported. [Reddit Pixel](https://business.reddithelp.com/s/article/reddit-pixel#set-up-the-reddit-pixel) or [CAPI](https://business.reddithelp.com/s/article/Conversions-API#integrate-capi) setup is now required. Use [`List Lead Generation Forms`](https://ads-api.reddit.com/docs/v3/api/list-lead-generation-forms) or [`Get Lead Generation Forms`](https://ads-api.reddit.com/docs/v3/api/get-lead-generation-form) to retrieve data before API sunset on September 30th.
+
+</Tab>
+
+</Tabs>

@@ -1,0 +1,411 @@
+---
+title: "Rate Limiting"
+---
+
+The Reddit Ads API applies rate limits to prevent abuse, maintain stability, and ensure fair usage. Understanding these limits helps you build reliable integrations.
+
+## How it works
+
+Each route or endpoint is assigned to a specific endpoint group. Each group shares a pooled limit, meaning requests to endpoints within the same group count toward a shared limit. This limit is based on the group's quota policies, each defining a request limit within a specific time window.
+
+Limits are applied to each [authorized](/ads-api/guides/quick-start/authenticate) instance of your application, meaning each user who authorizes your application receives their own set of limits.
+
+### Rate limiting headers
+
+Rate limit data is provided in HTTP headers for each API response.
+
+<Warning>
+
+Monitor these headers to manage request rates and prevent throttling.
+
+</Warning>
+
+<Tabs>
+
+<Tab title="RateLimit-Policy">
+
+Provides the application rate limit policies of the requested route.
+
+```http
+RateLimit-Policy: "policy-name-1";q=quota-1;w=window-1,"policy-name-2";q=quota-2;w=window-2
+```
+
+<Accordion title="Details">
+
+`custom-audience-ingestion` and `custom-audience-ingestion-burst` of 3000 requests/900 seconds and 500 requests/60 seconds
+
+```http
+RateLimit-Policy: "custom-audience-ingestion";q=3000;w=900,"custom-audience-ingestion-burst";q=500;w=60
+```
+
+</Accordion>
+
+</Tab>
+
+<Tab title="RateLimit">
+
+The remaining requests and the time until reset for each endpoint group.
+
+```http
+RateLimit: "policy-name-1";r=remaining-1;t=time-until-reset-1,"policy-name-2";r=remaining-2;t=time-until-reset-2
+```
+
+<Accordion title="Details">
+
+Remaining requests until reset time. 2134 requests remaining for the `custom-audience-ingestion` policy, which resets in 723 seconds, and 24 requests remaining for the `custom-audience-ingestion-burst` policy, which resets in 3 seconds.
+
+```http
+RateLimit: "custom-audience-ingestion";r=2134;t=723,"custom-audience-ingestion-burst";r=24;t=3
+```
+
+</Accordion>
+
+</Tab>
+
+</Tabs>
+
+## Best practices
+
+-   Cache data when working with specialized values or reviewing large data sets frequently.
+-   Stagger requests across multiple accounts to avoid sudden traffic spikes.
+-   Backfill data only during non-peak business hours, when possible.
+-   Include custom `User-Agent` headers with your request.
+-   Design your apps to gracefully handle `429 Too Many Requests` responses by implementing fallbacks.
+
+<Accordion title="Exponential backoff">
+
+```python
+max_attempts = 10attempts = 0while attempts < max_attempts:    # Make a request to Ads API.    response = requests.get(        request_url,        headers={"Authorization": "Bearer " + auth_token},    )    # If not rate limited, break out of while loop and continue with the rest of the code.    if response.status_code != 429:        break    # If rate limited, wait and try again.    time.sleep((2 ** attempts) + random.random())    attempts = attempts + 1
+```
+
+</Accordion>
+
+## Rate limit endpoint groups
+
+<Accordion title="Campaign Management Read">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-campaign-management-read` | 400 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Get Ad Account](https://ads-api.reddit.com/docs/v3/api/get-ad-account)
+-   [List Ad Groups](https://ads-api.reddit.com/docs/v3/api/list-ad-groups)
+-   [List Ads](https://ads-api.reddit.com/docs/v3/api/list-ads)
+-   [List Apps By Ad Account](https://ads-api.reddit.com/docs/v3/api/list-apps-by-ad-account)
+-   [List Campaigns](https://ads-api.reddit.com/docs/v3/api/list-campaigns)
+-   [List Saved Audiences](https://ads-api.reddit.com/docs/v3/api/list-saved-audiences)
+-   [Get Ad Group](https://ads-api.reddit.com/docs/v3/api/get-ad-group)
+-   [Get Ad](https://ads-api.reddit.com/docs/v3/api/get-ad)
+-   [List Ad Accounts By Business](https://ads-api.reddit.com/docs/v3/api/list-ad-accounts-by-business)
+-   [Get Campaign](https://ads-api.reddit.com/docs/v3/api/get-campaign)
+-   [Get Saved Audience](https://ads-api.reddit.com/docs/v3/api/get-saved-audience)
+-   [Get Third Party Trackers](https://ads-api.reddit.com/docs/v3/api/get-third-party-trackers)
+-   [List Time Zones](https://ads-api.reddit.com/docs/v3/api/list-time-zones)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Campaign Management Write">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-campaign-management-write` | 200 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Update Ad Account](https://ads-api.reddit.com/docs/v3/api/update-ad-account)
+-   [Create Ad Group](https://ads-api.reddit.com/docs/v3/api/create-ad-group)
+-   [Create Ad](https://ads-api.reddit.com/docs/v3/api/create-ad)
+-   [Create Campaign](https://ads-api.reddit.com/docs/v3/api/create-campaign)
+-   [Create Saved Audience](https://ads-api.reddit.com/docs/v3/api/create-saved-audience)
+-   [Update Ad Group](https://ads-api.reddit.com/docs/v3/api/update-ad-group)
+-   [Update Ad](https://ads-api.reddit.com/docs/v3/api/update-ad)
+-   [Update Campaign](https://ads-api.reddit.com/docs/v3/api/update-campaign)
+-   [Update Saved Audience](https://ads-api.reddit.com/docs/v3/api/update-saved-audience)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Targeting Taxonomy">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-targeting-taxonomy` | 100 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [List User Custom Audiences](https://ads-api.reddit.com/docs/v3/api/list-user-custom-audiences)
+-   [Get Custom Audience](https://ads-api.reddit.com/docs/v3/api/get-custom-audience)
+-   [List Carriers](https://ads-api.reddit.com/docs/v3/api/list-carriers)
+-   [List Communities](https://ads-api.reddit.com/docs/v3/api/list-communities)
+-   [Search Communities](https://ads-api.reddit.com/docs/v3/api/search-communities)
+-   [List Communities Suggestions](https://ads-api.reddit.com/docs/v3/api/list-communities-suggestions)
+-   [List Devices](https://ads-api.reddit.com/docs/v3/api/list-devices)
+-   [List Geolocations](https://ads-api.reddit.com/docs/v3/api/list-geolocations)
+-   [Do Geolocation Validations](https://ads-api.reddit.com/docs/v3/api/do-geolocation-validations)
+-   [List Interests](https://ads-api.reddit.com/docs/v3/api/list-interests)
+-   [Do Keyword Validations](https://ads-api.reddit.com/docs/v3/api/do-keyword-validations)
+-   [List Languages](https://ads-api.reddit.com/docs/v3/api/list-languages)
+-   [List Third-Party Audiences](https://ads-api.reddit.com/docs/v3/api/list-third-party-audiences)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Custom Audiences Ingestion">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-custom-audience-ingestion` | 3000 requests | 900 sec |
+| `ads-custom-audience-ingestion-burst` | 500 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Create Custom Audience](https://ads-api.reddit.com/docs/v3/api/create-custom-audience)
+-   [Delete Custom Audience](https://ads-api.reddit.com/docs/v3/api/delete-custom-audience)
+-   [Update Custom Audience Users](https://ads-api.reddit.com/docs/v3/api/update-custom-audience-users)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Ads Privacy">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-privacy` | 60 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Create Data Deletion Job](https://ads-api.reddit.com/docs/v3/api/create-data-deletion-job)
+-   [Get Data Deletion Job Status](https://ads-api.reddit.com/docs/v3/api/get-data-deletion-job-status)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Audience and Delivery Estimates">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-audience-delivery-estimates` | 10 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Estimate Audience and Delivery](https://ads-api.reddit.com/docs/v3/api/estimate-audience-and-delivery)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Billing">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-funding-instruments` | 30 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [List Funding Instruments](https://ads-api.reddit.com/docs/v3/api/list-funding-instruments)
+-   [Query Funding Instruments by Business](https://ads-api.reddit.com/docs/v3/api/query-funding-instruments-by-business)
+-   [Get Child Funding Instruments](https://ads-api.reddit.com/docs/v3/api/get-child-funding-instruments)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Business Manager">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-business-manager` | 100 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Get Ad Account History](https://ads-api.reddit.com/docs/v3/api/get-ad-account-history)
+-   [List Profiles By Ad Account](https://ads-api.reddit.com/docs/v3/api/list-profiles-by-ad-account)
+-   [Get Business](https://ads-api.reddit.com/docs/v3/api/get-business)
+-   [Update Business](https://ads-api.reddit.com/docs/v3/api/update-business)
+-   [Query Ad Accounts](https://ads-api.reddit.com/docs/v3/api/query-ad-accounts)
+-   [List Profiles By Business](https://ads-api.reddit.com/docs/v3/api/list-profiles-by-business)
+-   [List Industries](https://ads-api.reddit.com/docs/v3/api/list-industries)
+-   [Get Me](https://ads-api.reddit.com/docs/v3/api/get-me)
+-   [List My Businesses](https://ads-api.reddit.com/docs/v3/api/list-my-businesses)
+-   [Get Profile](https://ads-api.reddit.com/docs/v3/api/get-profile)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Leads">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-leads` | 20 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [List Lead Generation Forms](https://ads-api.reddit.com/docs/v3/api/list-lead-generation-forms)
+-   [Create Lead Generation Form](https://ads-api.reddit.com/docs/v3/api/create-lead-generation-form)
+-   [Get Lead Generation Form](https://ads-api.reddit.com/docs/v3/api/get-lead-generation-form)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Conversion Signals">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-conversion-signals` | 30 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [List Pixels By Ad Account](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-ad-account)
+-   [Get App Last Fired At](https://ads-api.reddit.com/docs/v3/api/get-app-last-fired-at)
+-   [List Pixels By Business](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-business)
+-   [Get Last Fired At](https://ads-api.reddit.com/docs/v3/api/get-last-fired-at)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Reporting">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-reporting` | 60 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Get A Report](https://ads-api.reddit.com/docs/v3/api/get-a-report)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Product Catalog">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-product-catalog` | 7000 requests | 300 sec |
+| `ads-product-catalog-burst` | 3000 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [List Product Catalogs](https://ads-api.reddit.com/docs/v3/api/list-product-catalogs)
+-   [Create Product Catalog](https://ads-api.reddit.com/docs/v3/api/create-product-catalog)
+-   [List Catalog Import Issues](https://ads-api.reddit.com/docs/v3/api/list-catalog-import-issues)
+-   [Get Catalog Import Report](https://ads-api.reddit.com/docs/v3/api/get-catalog-import-report)
+-   [Get Product Catalog](https://ads-api.reddit.com/docs/v3/api/get-product-catalog)
+-   [Update Product Catalog](https://ads-api.reddit.com/docs/v3/api/update-product-catalog)
+-   [Delete Product Catalog](https://ads-api.reddit.com/docs/v3/api/delete-product-catalog)
+-   [List Catalog Imports](https://ads-api.reddit.com/docs/v3/api/list-catalog-imports)
+-   [List Product Feeds](https://ads-api.reddit.com/docs/v3/api/list-product-feeds)
+-   [Create Product Feed](https://ads-api.reddit.com/docs/v3/api/create-product-feed)
+-   [List Product Sets](https://ads-api.reddit.com/docs/v3/api/list-product-sets)
+-   [Create Product Set](https://ads-api.reddit.com/docs/v3/api/create-product-set)
+-   [List Products In Product Catalog](https://ads-api.reddit.com/docs/v3/api/list-products-in-product-catalog)
+-   [Get Product Feed](https://ads-api.reddit.com/docs/v3/api/get-product-feed)
+-   [Update Product Feed](https://ads-api.reddit.com/docs/v3/api/update-product-feed)
+-   [Delete Product Feed](https://ads-api.reddit.com/docs/v3/api/delete-product-feed)
+-   [Get Product Set](https://ads-api.reddit.com/docs/v3/api/get-product-set)
+-   [Update Product Set](https://ads-api.reddit.com/docs/v3/api/update-product-set)
+-   [Delete Product Set](https://ads-api.reddit.com/docs/v3/api/delete-product-set)
+-   [List Products In Product Set](https://ads-api.reddit.com/docs/v3/api/list-products-in-product-set)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Forecasting">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-forecasting` | 30 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Get Channel Planning Reach](https://ads-api.reddit.com/docs/v3/api/get-channel-planning-reach)
+-   [Generate Bid Suggestion](https://ads-api.reddit.com/docs/v3/api/generate-bid-suggestion)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Creative Management">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-creative-management` | 200 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Get Creative Asset Upload](https://ads-api.reddit.com/docs/v3/api/get-creative-asset-upload)
+-   [Get Creative Asset](https://ads-api.reddit.com/docs/v3/api/get-creative-asset)
+-   [Update Creative Asset](https://ads-api.reddit.com/docs/v3/api/update-creative-asset)
+-   [Delete Creative Asset](https://ads-api.reddit.com/docs/v3/api/delete-creative-asset)
+-   [Get Post](https://ads-api.reddit.com/docs/v3/api/get-post)
+-   [Update Post](https://ads-api.reddit.com/docs/v3/api/update-post)
+-   [List Creative Assets](https://ads-api.reddit.com/docs/v3/api/list-creative-assets)
+-   [List Creative Asset Uploads](https://ads-api.reddit.com/docs/v3/api/list-creative-asset-uploads)
+-   [Create Creative Asset Uploads](https://ads-api.reddit.com/docs/v3/api/create-creative-asset-uploads)
+-   [List Posts](https://ads-api.reddit.com/docs/v3/api/list-posts)
+-   [Create Post](https://ads-api.reddit.com/docs/v3/api/create-post)
+-   [List Structured Posts](https://ads-api.reddit.com/docs/v3/api/list-structured-posts)
+-   [Create Structured Post Creation Job](https://ads-api.reddit.com/docs/v3/api/create-structured-post-creation-job)
+-   [Get Structured Post Creation Job](https://ads-api.reddit.com/docs/v3/api/get-structured-post-creation-job)
+-   [Get Structured Post](https://ads-api.reddit.com/docs/v3/api/get-structured-post)
+-   [Update Structured Post](https://ads-api.reddit.com/docs/v3/api/update-structured-post)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="CAPI">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-conversion-events-rps` | 1000 requests | 1 sec |
+| `ads-conversion-events-eps` | 10000 events | 1 sec |
+
+<Accordion title="Details">
+
+-   [Post Conversion Events](https://ads-api.reddit.com/docs/v3/api/post-conversion-events)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Product Catalog Batch">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-product-catalog-batch` | 150 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [Batch Delete Products](https://ads-api.reddit.com/docs/v3/api/batch-delete-products)
+-   [Batch Create Products](https://ads-api.reddit.com/docs/v3/api/batch-create-products)
+
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Keyword Suggestions">
+
+| Slug | Quota | Window |
+| --- | --- | --- |
+| `ads-keyword-suggestions` | 100 requests | 60 sec |
+
+<Accordion title="Details">
+
+-   [List Keyword Suggestions](https://ads-api.reddit.com/docs/v3/api/list-keyword-suggestions)
+
+</Accordion>
+
+</Accordion>

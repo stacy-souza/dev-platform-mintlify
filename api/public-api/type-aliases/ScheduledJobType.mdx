@@ -1,0 +1,31 @@
+---
+title: "ScheduledJobType"
+---
+
+## Type Alias: ScheduledJobType\<Data\>
+
+> **ScheduledJobType**\<`Data`\> = `object`
+
+## Type Parameters
+
+### Data
+
+`Data` *extends* [`JSONObject`](/api/public-api/type-aliases/JSONObject) \| `undefined`
+
+## Properties
+
+
+### name
+
+> **name**: `string`
+
+The name of the scheduled job type
+
+***
+
+
+### onRun
+
+> **onRun**: [`ScheduledJobHandler`](/api/public-api/type-aliases/ScheduledJobHandler)\<`Data`\>
+
+The function that will be called when the job is scheduled to run

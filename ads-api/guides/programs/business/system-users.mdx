@@ -1,0 +1,165 @@
+---
+title: "Reddit Ads API System Users"
+---
+
+<Info>
+
+About this page
+
+This page is the central resource for System Users, with guidance for both developers implementing System Users and advertisers authorizing and managing them.
+
+</Info>
+
+## What are System Users?
+
+System Users are business-owned, non-human identities used to authorize API integrations. A Business Admin can authorize a developer’s application through a System User associated with their Business, rather than tying API access to an individual user.
+
+System Users are now available in **Open Beta**. Developers can add System Users as an option in their OAuth flows, enabling advertisers to choose the authorization role that best fits their organization.
+
+**Note**: System Users are backwards compatible with existing OAuth integrations. The existing OAuth URL will continue to be supported, and previously completed authorizations will remain valid and are not affected by the introduction of System Users.
+
+## Who are System Users for?
+
+System Users are designed to make Ads API authorization **more durable and scalable**. This makes them particularly relevant to two audiences:
+
+-   **Developers building or maintaining Ads API integrations:** System Users can reduce the operational burden of maintaining user-based authorization at scale—especially when you support multiple advertisers whose SSO, MFA, personnel changes, or other security requirements can lead to repeated reauthorization.
+-   **Advertisers using Ads API integrations:** System Users are particularly relevant if your organization has strict SSO or MFA requirements, frequent personnel changes, or other conditions that make authorization tied to an individual employee difficult to maintain.
+
+If you manage your Reddit advertising directly through Reddit Ads Manager and **do not use an Ads API integration, System Users do not affect you and no action is needed.**
+
+## For Developers
+
+With regular user-based authorization, your developer application is authorized through the Reddit user who completes the OAuth flow.
+
+With System User authorization, your application is instead authorized through a System User associated with the advertiser’s Business and your developer application.
+
+We encourage developers to implement System Users as an additional authorization option, giving advertisers the flexibility to choose the approach that best fits their needs while keeping access and permissions under their Business Admin’s control.
+
+### Implement System Users
+
+**1\. Update your authorization URL**
+
+In your client application, you’ll need to update the authorize URL that you’re redirecting users to. This is a simple string change and all other parameters remain the same; only the URL is changing.
+
+```text title="Before"
+https://www.reddit.com/api/v1/authorize?client_id={CLIENT_ID}&response_type=code&state={STATE}&redirect_uri={REDIRECT_URI}&duration=permanent&scope={SCOPES}
+```
+
+```text title="After"
+https://ads.reddit.com/oauth?client_id={CLIENT_ID}&response_type=code&state={STATE}&redirect_uri={REDIRECT_URI}&duration=permanent&scope={SCOPES}
+```
+
+Replace the placeholders with the values from your developer app configuration. Follow the current OAuth URL and API references for the exact parameters, scopes, redirect requirements, token exchange, and response formats. The existing authorization-code integration model is intended to remain backwards compatible, and the older OAuth flow remains supported.
+
+**2\. Have a Business Admin authorize the integration**
+
+When an advertiser authorizes an integration through the updated OAuth flow, they can either continue with regular user-based authorization as themselves or create and use a System User for the integration.
+
+If they choose System User, the advertiser completes the setup in the flow by selecting the Business that should own the System User and assigning the appropriate business and ad account permissions to it.
+
+The advertiser’s Business Admin must complete the authorization and setup. A developer cannot complete this authorization on the advertiser’s behalf, and the System User cannot complete it itself.
+
+**3\. Get your access token as usual**
+
+Follow the [existing authentication process](/ads-api/guides/quick-start/authenticate#2-get-your-access-token-from-the-reddit-api) to get your access token. With the access token, the integration can then use the authorized identity to make Ads API requests within the Business and permission boundaries granted by the Business Admin.
+
+**4\. Validate before broad rollout**
+
+Before offering System Users broadly to your customers, test the complete flow with a controlled Business and Ad Account.
+
+The access token now belongs to the System User. The [Get Me endpoint](https://ads-api.reddit.com/docs/v3/api/get-me#responses) will return `SYSTEM_USER` as the authenticated actor type rather than `MEMBER`. Because a System User is a non-human identity, the response will not include member profile information such as an email address or phone number.
+
+### Important to Know
+
+If you are currently using the [Get Ad Account History](https://ads-api.reddit.com/docs/v3/api/get-ad-account-history) endpoint, please note that actions taken through a System User may currently appear as performed by “Reddit,” rather than identifying the System User. Because this attribution is not accurate at this stage, do not rely on the performer field for audit or action-level attribution.
+
+### FAQ
+
+**Does a System User work only with certain Ads API endpoints?**
+
+No. System Users are an authorization model for the Ads API and can be used across the Ads API, subject to the permissions granted by the Business Admin.
+
+**Does System User replace regular user-based authorization?**
+
+No. In the updated OAuth flow, the advertiser can choose either regular user-based authorization or System User authorization. On top of that, System Users are backwards compatible with existing OAuth integrations. The existing OAuth URL will continue to be supported, and previously completed authorizations will remain valid and are not affected by the introduction of System Users.
+
+**Can a System User’s access be revoked?**
+
+Yes. When a System User gets revoked, the access token will be invalidated. The integration will no longer be able to perform any API actions for this Business until a Business Admin reauthenticates it.
+
+**How can I tell whether a token represents a System User or a member?**
+
+Use the authenticated actor information returned by GET /api/v3/me. The actor type can be SYSTEM\_USER or MEMBER. A SYSTEM\_USER response does not include human member profile information such as an email address or phone number.
+
+## For Advertisers using Ads API Integration
+
+When you authorize an Ads API integration today, you open the OAuth link provided by the developer and authorize the application using your current Reddit user account. The integration then relies on that user remaining active and authorized.
+
+This can create disruptions over time. If that user is logged out or needs to reauthenticate due to SSO or MFA requirements, loses access, changes roles, or leaves the organization and their account is deactivated, the integration may stop working. You may then need to go through the OAuth flow again to restore access.
+
+**System Users provide a more durable alternative.** When the developer supports System Users, you can choose to authorize the integration through a System User associated with your Business instead of relying on your individual Reddit account. This helps the integration remain authorized through personnel and authentication changes, while your Business Admin retains control over the access and permissions granted to it.
+
+### Authorizing an integration with a System User
+
+When you open the OAuth URL provided by the developer, you can choose between **regular user-based authorization** and **System User authorization**.
+
+If you choose System User authorization:
+
+1.  **Create or select a System User\*.** If your Business does not already have a System User for this developer application, you will be prompted to create one. If one already exists, you can select the existing System User.
+2.  **Set up the System User as a Business Admin.** A Business Admin must create the System User and complete its setup.
+3.  **Assign access and permissions.** Select the appropriate Business role and Ad Account permissions based on the access the integration needs.
+4.  **Authorize the integration.** Once the System User is set up, use it to complete the OAuth flow and authorize the developer application.
+
+After authorization, Business Admins can view and manage System Users in **Business Manager → Users → System Users**.
+
+<Note>
+
+Create or select a System User\*
+
+Because System Users are newly available, you may not have an existing System User for any integration yet. In that case, you’ll be guided through creating and configuring one before completing authorization.
+
+</Note>
+
+### Important considerations for advertisers
+
+Keep the following in mind when using System Users:
+
+-   **Business Admin access is required.** Only a Business Admin can complete System User authorization and manage System Users.
+-   **System Users are integration-specific.** Each System User has a 1:1 relationship with one Business and one developer application.
+-   **Each Business can have up to 10 System Users.**
+-   **System Users are for API access only.** They cannot be used to log in to Business Manager or the Reddit Ads UI, and they cannot be assigned the Business Admin role.
+-   **You remain in control of access.** The System User can access only the Business and Ad Account assets and operations covered by the permissions you grant.
+
+Additionally, given System Users are still in Open Beta, some System Users lifecycle capabilities within Business Manager are still being developed. The limitations below describe the current experience; support will be added incrementally as the product evolves.
+
+-   **Shared Ad Accounts** - System Users currently work only with Ad Accounts directly owned by your Business. They cannot access an Ad Account that has been shared into your Business by another business. If your organization uses shared Ad Accounts, check with your integration provider before choosing System User authorization to confirm that your current account structure is supported.
+-   **Account Action History** - Actions taken through a System User may currently appear in Account Action History as performed by **“Reddit”** rather than identifying the System User. Because this attribution is not currently accurate, do not rely on the performer field for audit or action-level attribution for actions performed through a System User.
+-   **System User lifecycle management** - Business Admins cannot currently create, delete, archive, or rename System Users in Business Manager, and a clear lifecycle state is not yet displayed. As a result, System Users that are no longer actively used may remain visible in Business Manager. Additional lifecycle management capabilities will be added over time.
+-   **Permission visibility and management** - System Users are not yet represented consistently across all Business Manager surfaces. They are currently missing from business permission exports and are not represented or manageable on the Ad Account permission page. For now, Business Admins can manage System Users through Business Manager → Users → System Users.
+-   **Revoking access** - Business Admins can revoke a System User’s access, which invalidates its access and refresh tokens. However, Business Manager does not yet provide clear confirmation or a persistent revoked or disconnected state after revocation. The revocation experience will be improved in a future iteration.
+
+### FAQ
+
+**Does System User replace regular user-based authorization?**
+
+No. In the updated OAuth flow, the advertiser can choose either regular user-based authorization or System User authorization.
+
+**Where can a Business Admin manage a System User?**
+
+Business Admins can manage System Users in Reddit Business Manager under **Users → System Users**. Business Admins must create System Users during the OAuth process.
+
+**What can a System User access?**
+
+A System User can access only the business and Ad Account assets and operations covered by the permissions granted by the Business Admin.
+
+**Can a System User be assigned the Business Admin role?**
+
+No. A System User is a non-human API identity and cannot be assigned the Business Admin role.
+
+**Can I use one System User to authorize multiple third-party integrations or developer applications?**
+
+No. Each System User has a one-to-one relationship with one third-party integration and one Business. If you use separate integrations for reports and campaign management, create one System User for each integration.
+
+**Can a Business Admin delete or archive a System User?**
+
+Not currently. Deletion would remove the System User from active use, while archiving would retire it without treating it as active. These lifecycle actions and related management capabilities will be added incrementally as the product evolves.

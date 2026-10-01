@@ -1,0 +1,124 @@
+---
+title: "Implement Click ID Persistence"
+---
+
+The click ID (`rdt_cid`) is a match key that helps attribute click conversions more accurately. It’s appended to the landing page URL when a user clicks through an ad from Reddit. We recommend sharing it for all available conversion events. 
+
+By default, this match key is automatically shared when passing events with the Reddit Pixel. You can implement click ID persistence to share it for the [Conversions API](https://business.reddithelp.com/s/article/Conversions-API) (CAPI).
+
+<Note>
+
+Click ID will be automatically passed when integrating with [Tealium](https://docs.tealium.com/server-side-connectors/reddit-conversions-connector/) or the [Ads Manager Google Tag Manager](https://business.reddithelp.com/s/article/share-conversions-with-gtm) flow.
+
+</Note>
+
+## Before you start
+
+-   **Set up CAPI.** [Here’s how to get started](/ads-api/guides/programs/capi/direct-integration).
+-   **Ensure your landing pages preserve URL parameters.** This keeps the click ID intact through redirects.
+
+## 1\. Find the click ID
+
+You can retrieve the click ID from your landing page’s URL.
+
+```js
+// Get the click ID (rdt_cid) from the URLfunction getClickIdFromUrl() {  const params = new URLSearchParams(window.location.search);  return params.get('rdt_cid');}const clickId = getClickIdFromUrl();
+```
+
+## 2\. Set up click ID persistence
+
+Choose one or more methods to ensure the click ID persists. We recommend combining methods so click IDs persist reliably across site refreshes, navigation events, and browser behaviors.
+
+<Tabs>
+
+<Tab title="URL">
+
+Read the click ID from your URL (e.g., `?rdt_cid=123`).
+
+Recommended for static or low-complexity sites. Not for cases where you want to hide parameters or keep the URL clean.
+
+```text
+example.com/page?rdt_cid=123
+```
+
+</Tab>
+
+<Tab title="Cookies">
+
+<Note>
+
+Ensure compliance with regional consent requirements when using browser-based storage.
+
+</Note>
+
+Store the click ID as a browser cookie on initial page load. This value persists across pages and sessions if not deleted.
+
+Recommended for traditional, multi-page websites. Requires cookie consent and will fail if cookies are disabled.
+
+```js
+// Set a cookiedocument.cookie = `_rdt_cid=${clickId}; path=/; expires=Fri, 31 Dec 9999 23:59:59 GMT`;// Read a cookiefunction getCookie(name) {  const value = `; ${document.cookie}`;  const parts = value.split(`; ${name}=`);  if (parts.length === 2) return parts.pop().split(';').shift();}
+```
+
+</Tab>
+
+<Tab title="Storage">
+
+<Note>
+
+Ensure compliance with regional consent requirements when using browser-based storage.
+
+</Note>
+
+Save the click ID in the browser’s `localStorage` or `sessionStorage` using the Web Storage API.
+
+<Tip>
+
+Use `localStorage` to persist between sessions and `sessionStorage` to persist until the tab closes.
+
+</Tip>
+
+Useful for single-page apps or websites that don’t rely on cookies.
+
+```js
+// Option 1: Local storagelocalStorage.setItem('rdt_cid', clickId);const storedClickId = localStorage.getItem('rdt_cid'); //retrieve from storage// Option 2: Session storagesessionStorage.setItem('rdt_cid', clickId);const storedClickId = sessionStorage.getItem('rdt_cid'); //retrieve from storage
+```
+
+</Tab>
+
+<Tab title="Forms">
+
+Include the click ID as a hidden input in forms to pass back to your server automatically.
+
+Great for forms or checkout flows where form submissions trigger conversions.
+
+```html
+<form action="/submit" method="post">  <input type="hidden" id="rdt_cid_field" name="rdt_cid" value="">    <button type="submit">Submit</button></form><script>  // Populate the hidden field with the click ID, if available  if (clickId) {    document.getElementById('rdt_cid_field').value = clickId;  }</script>
+```
+
+</Tab>
+
+<Tab title="Server">
+
+Store the click ID in the user’s server-side session upon landing and reuse it for backend event processing.
+
+Recommended for sites already handling user sessions. Recommended for securing data and avoiding browser storage limits.
+
+</Tab>
+
+<Tab title="Variables">
+
+Assign the click ID to a global JavaScript variable for access across on-page scripts.
+
+Good for single-page applications or light-weight JS-based flows. Only persists for the current page view.
+
+```js
+let rdt_cid = clickId; // Use this variable in your scripts
+```
+
+</Tab>
+
+</Tabs>
+
+## 3\. Test your integration
+
+When ready, test your setup to check that the click ID is being preserved and passed. Open your [test URL](https://business.reddithelp.com/s/article/Generate-a-Test-Ad-URL-link) and select your ad. Ensure the `rdt_cid` value in the landing page URL matches [`data.events[].click_id`](https://ads-api.reddit.com/docs/v3/api/post-conversion-events#click-id-field) in your CAPI event payload.

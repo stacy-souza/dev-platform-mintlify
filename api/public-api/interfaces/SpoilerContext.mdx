@@ -1,0 +1,215 @@
+---
+title: "SpoilerContext"
+---
+
+## Interface: SpoilerContext
+
+## Borrows
+
+TextContainer
+
+## Borrows
+
+LinkContainer
+
+## Borrows
+
+LineBreakContainer
+
+## Extends
+
+- [`TextContainer`](/api/public-api/type-aliases/TextContainer)\<`SpoilerContext`\>.[`LinkContainer`](/api/public-api/type-aliases/LinkContainer)\<`SpoilerContext`\>.[`LineBreakContainer`](/api/public-api/type-aliases/LineBreakContainer)\<`SpoilerContext`\>
+
+## Methods
+
+
+### commentLink()
+
+> **commentLink**(`opts`): `SpoilerContext`
+
+Append a link to a Reddit Comment
+
+#### Parameters
+
+##### opts
+
+[`RedditPermalinkOptions`](/api/public-api/type-aliases/RedditPermalinkOptions)
+
+[CommentLinkOptions](/api/public-api/type-aliases/CommentLinkOptions)
+
+#### Returns
+
+`SpoilerContext`
+
+#### Inherited from
+
+`LinkContainer.commentLink`
+
+***
+
+
+### linebreak()
+
+> **linebreak**(): `SpoilerContext`
+
+Append a Line Break
+
+#### Returns
+
+`SpoilerContext`
+
+#### Inherited from
+
+[`LineBreakContainer`](/api/public-api/type-aliases/LineBreakContainer).[`linebreak`](/api/public-api/type-aliases/LineBreakContainer#linebreak)
+
+***
+
+
+### link()
+
+> **link**(`opts`): `SpoilerContext`
+
+Append a Link
+
+#### Parameters
+
+##### opts
+
+[`LinkOptions`](/api/public-api/type-aliases/LinkOptions)
+
+[LinkOptions](/api/public-api/type-aliases/LinkOptions)
+
+#### Returns
+
+`SpoilerContext`
+
+#### Inherited from
+
+`LinkContainer.link`
+
+***
+
+
+### postLink()
+
+> **postLink**(`opts`): `SpoilerContext`
+
+Append a link to a Reddit Post
+
+#### Parameters
+
+##### opts
+
+[`RedditPermalinkOptions`](/api/public-api/type-aliases/RedditPermalinkOptions)
+
+[PostLinkOptions](/api/public-api/type-aliases/PostLinkOptions)
+
+#### Returns
+
+`SpoilerContext`
+
+#### Inherited from
+
+`LinkContainer.postLink`
+
+***
+
+
+### subredditLink()
+
+> **subredditLink**(`opts`): `SpoilerContext`
+
+Append a link to a Reddit Subreddit
+
+#### Parameters
+
+##### opts
+
+[`SubredditLinkOptions`](/api/public-api/type-aliases/SubredditLinkOptions)
+
+[SubredditLinkOptions](/api/public-api/type-aliases/SubredditLinkOptions)
+
+#### Returns
+
+`SpoilerContext`
+
+#### Inherited from
+
+`LinkContainer.subredditLink`
+
+***
+
+
+### text()
+
+> **text**(`opts`): `SpoilerContext`
+
+Append Text with optional formatting
+
+#### Parameters
+
+##### opts
+
+[`TextOptions`](/api/public-api/type-aliases/TextOptions)
+
+[TextOptions](/api/public-api/type-aliases/TextOptions)
+
+#### Returns
+
+`SpoilerContext`
+
+#### Inherited from
+
+[`TextContainer`](/api/public-api/type-aliases/TextContainer).[`text`](/api/public-api/type-aliases/TextContainer#text)
+
+***
+
+
+### userLink()
+
+> **userLink**(`opts`): `SpoilerContext`
+
+Append a link to a Reddit User
+
+#### Parameters
+
+##### opts
+
+[`UserLinkOptions`](/api/public-api/type-aliases/UserLinkOptions)
+
+[UserLinkOptions](/api/public-api/type-aliases/UserLinkOptions)
+
+#### Returns
+
+`SpoilerContext`
+
+#### Inherited from
+
+`LinkContainer.userLink`
+
+***
+
+
+### userMention()
+
+> **userMention**(`opts`): `SpoilerContext`
+
+Append a link to a Reddit User as a
+
+#### Parameters
+
+##### opts
+
+[`UserLinkOptions`](/api/public-api/type-aliases/UserLinkOptions)
+
+[UserMentionOptions](/api/public-api/type-aliases/UserMentionOptions)
+
+#### Returns
+
+`SpoilerContext`
+
+#### Mention
+
+#### Inherited from
+
+`LinkContainer.userMention`

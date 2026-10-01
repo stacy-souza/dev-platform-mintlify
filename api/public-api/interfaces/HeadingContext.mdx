@@ -1,0 +1,192 @@
+---
+title: "HeadingContext"
+---
+
+## Interface: HeadingContext
+
+## Borrows
+
+RawTextContainer
+
+## Borrows
+
+LinkContainer
+
+## Extends
+
+- [`RawTextContainer`](/api/public-api/type-aliases/RawTextContainer)\<`HeadingContext`\>.[`LinkContainer`](/api/public-api/type-aliases/LinkContainer)\<`HeadingContext`\>
+
+## Methods
+
+
+### commentLink()
+
+> **commentLink**(`opts`): `HeadingContext`
+
+Append a link to a Reddit Comment
+
+#### Parameters
+
+##### opts
+
+[`RedditPermalinkOptions`](/api/public-api/type-aliases/RedditPermalinkOptions)
+
+[CommentLinkOptions](/api/public-api/type-aliases/CommentLinkOptions)
+
+#### Returns
+
+`HeadingContext`
+
+#### Inherited from
+
+`LinkContainer.commentLink`
+
+***
+
+
+### link()
+
+> **link**(`opts`): `HeadingContext`
+
+Append a Link
+
+#### Parameters
+
+##### opts
+
+[`LinkOptions`](/api/public-api/type-aliases/LinkOptions)
+
+[LinkOptions](/api/public-api/type-aliases/LinkOptions)
+
+#### Returns
+
+`HeadingContext`
+
+#### Inherited from
+
+`LinkContainer.link`
+
+***
+
+
+### postLink()
+
+> **postLink**(`opts`): `HeadingContext`
+
+Append a link to a Reddit Post
+
+#### Parameters
+
+##### opts
+
+[`RedditPermalinkOptions`](/api/public-api/type-aliases/RedditPermalinkOptions)
+
+[PostLinkOptions](/api/public-api/type-aliases/PostLinkOptions)
+
+#### Returns
+
+`HeadingContext`
+
+#### Inherited from
+
+`LinkContainer.postLink`
+
+***
+
+
+### rawText()
+
+> **rawText**(`text`): `HeadingContext`
+
+Append unstyled text
+
+#### Parameters
+
+##### text
+
+`string`
+
+#### Returns
+
+`HeadingContext`
+
+#### Inherited from
+
+[`RawTextContainer`](/api/public-api/type-aliases/RawTextContainer).[`rawText`](/api/public-api/type-aliases/RawTextContainer#rawtext)
+
+***
+
+
+### subredditLink()
+
+> **subredditLink**(`opts`): `HeadingContext`
+
+Append a link to a Reddit Subreddit
+
+#### Parameters
+
+##### opts
+
+[`SubredditLinkOptions`](/api/public-api/type-aliases/SubredditLinkOptions)
+
+[SubredditLinkOptions](/api/public-api/type-aliases/SubredditLinkOptions)
+
+#### Returns
+
+`HeadingContext`
+
+#### Inherited from
+
+`LinkContainer.subredditLink`
+
+***
+
+
+### userLink()
+
+> **userLink**(`opts`): `HeadingContext`
+
+Append a link to a Reddit User
+
+#### Parameters
+
+##### opts
+
+[`UserLinkOptions`](/api/public-api/type-aliases/UserLinkOptions)
+
+[UserLinkOptions](/api/public-api/type-aliases/UserLinkOptions)
+
+#### Returns
+
+`HeadingContext`
+
+#### Inherited from
+
+`LinkContainer.userLink`
+
+***
+
+
+### userMention()
+
+> **userMention**(`opts`): `HeadingContext`
+
+Append a link to a Reddit User as a
+
+#### Parameters
+
+##### opts
+
+[`UserLinkOptions`](/api/public-api/type-aliases/UserLinkOptions)
+
+[UserMentionOptions](/api/public-api/type-aliases/UserMentionOptions)
+
+#### Returns
+
+`HeadingContext`
+
+#### Mention
+
+#### Inherited from
+
+`LinkContainer.userMention`

@@ -1,0 +1,67 @@
+---
+title: "TableContentContainer"
+---
+
+## Type Alias: TableContentContainer\<Context\>
+
+> **TableContentContainer**\<`Context`\> = `object`
+
+## Mixin
+
+## Extended by
+
+- [`TableContext`](/api/public-api/interfaces/TableContext)
+
+## Type Parameters
+
+### Context
+
+`Context`
+
+## Methods
+
+
+### headerCell()
+
+> **headerCell**(`opts`, `cb`): `Context`
+
+Append a Table Cell to the Table Header
+
+#### Parameters
+
+##### opts
+
+[`TableHeaderCellOptions`](/api/public-api/type-aliases/TableHeaderCellOptions)
+
+[TableHeaderCellOptions](/api/public-api/type-aliases/TableHeaderCellOptions)
+
+##### cb
+
+(`cell`) => `void`
+
+scoped callback to add child elements to this Table Header Cell
+
+#### Returns
+
+`Context`
+
+***
+
+
+### row()
+
+> **row**(`cb`): `Context`
+
+Append a Table Row to the Table
+
+#### Parameters
+
+##### cb
+
+(`row`) => `void`
+
+scoped callback to add child elements to this Table Row
+
+#### Returns
+
+`Context`

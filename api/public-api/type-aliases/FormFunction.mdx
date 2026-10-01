@@ -1,0 +1,41 @@
+---
+title: "FormFunction"
+---
+
+## Type Alias: FormFunction()\<T\>
+
+> **FormFunction**\<`T`\> = (`data`) => [`Form`](/api/public-api/type-aliases/Form)
+
+A function that returns a form. You can use this to dynamically generate a form.
+
+## Type Parameters
+
+### T
+
+`T` *extends* `object` = &#123;&#125;
+
+## Parameters
+
+### data
+
+`T`
+
+## Returns
+
+[`Form`](/api/public-api/type-aliases/Form)
+
+## Example
+
+```ts
+const formKey = Devvit.createForm((data) => ({
+  fields: data.fields,
+  title: data.title,
+}), callback);
+
+...
+
+ui.showForm(formKey, {
+ fields: [{ type: 'string', name: 'title', label: 'Title' }]
+ title: 'My dynamic form'
+});
+```

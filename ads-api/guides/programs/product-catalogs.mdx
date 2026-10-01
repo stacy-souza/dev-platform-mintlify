@@ -1,0 +1,115 @@
+---
+title: "Product Catalogs"
+---
+
+Manage your products and categorize them into product sets for your [product ads](https://business.reddithelp.com/s/article/Product-Ads) and [dynamic product ads (DPAs)](https://business.reddithelp.com/s/article/dynamic-product-ads).
+
+## Before you start
+
+-   [Set up a Reddit Ads account](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account).
+-   Find your Pixel ID in [Accounts](https://ads.reddit.com/accounts).
+
+## Set up a catalog
+
+Set up and manage product catalogs for your business.
+
+-   [`List Product Catalogs`](https://ads-api.reddit.com/docs/v3/api/list-product-catalogs)
+-   [`Create Product Catalog`](https://ads-api.reddit.com/docs/v3/api/create-product-catalog)
+-   [`Get Product Catalog`](https://ads-api.reddit.com/docs/v3/api/get-product-catalog)
+-   [`Update Product Catalog`](https://ads-api.reddit.com/docs/v3/api/update-product-catalog)
+-   [`Delete Product Catalog`](https://ads-api.reddit.com/docs/v3/api/delete-product-catalog)
+
+## Manage products
+
+There are several ways to manage products in your catalog:
+
+<Tip>
+
+Use [`List Products in Product Catalog`](https://ads-api.reddit.com/docs/v3/api/list-products-in-product-catalog) to view all the products in your catalog.
+
+</Tip>
+
+| Method | Description | Use case |
+| --- | --- | --- |
+| Bulk import |
+Upload a file in the [Ads Manager](https://business.reddithelp.com/s/article/catalogs#2-add-items-to-your-catalog) for a one-time update.
+
+ |
+
+Set up your initial catalog if you don't plan to update your catalog regularly. Not intended for ongoing updates.
+
+ |
+| Product feed |
+
+Sync products automatically using a hosted data feed. This feed overrides manual and bulk-import changes to ensure the catalog aligns with the latest feed data.
+
+ |
+
+Automate ongoing catalog updates.
+
+ |
+| Manual |
+
+Send an array with product details.
+
+ |
+
+Granular updates to your product metadata with REST API calls.
+
+ |
+
+<Tabs>
+
+<Tab title="Product feed">
+
+Create products for your catalog from a product feed hosted online.
+
+-   [`List Product Feeds`](https://ads-api.reddit.com/docs/v3/api/list-product-feeds)
+-   [`Create Product Feed`](https://ads-api.reddit.com/docs/v3/api/create-product-feed)
+-   [`Get Product Feed`](https://ads-api.reddit.com/docs/v3/api/get-product-feed)
+-   [`Update Product Feed`](https://ads-api.reddit.com/docs/v3/api/update-product-feed)
+-   [`Delete Product Feed`](https://ads-api.reddit.com/docs/v3/api/delete-product-feed)
+
+</Tab>
+
+<Tab title="Manual">
+
+-   [`Batch Create Products`](https://ads-api.reddit.com/docs/v3/api/batch-create-products)
+-   [`Batch Delete Products`](https://ads-api.reddit.com/docs/v3/api/batch-delete-products)
+
+</Tab>
+
+</Tabs>
+
+## Organize products
+
+Categorize your products into product sets based on similar attributes.
+
+-   [`List Product Sets`](https://ads-api.reddit.com/docs/v3/api/list-product-sets)
+-   [`List Products in Product Set`](https://ads-api.reddit.com/docs/v3/api/list-products-in-product-set)
+-   [`Create Product Set`](https://ads-api.reddit.com/docs/v3/api/create-product-set)
+-   [`Get Product Set`](https://ads-api.reddit.com/docs/v3/api/get-product-set)
+-   [`Update Product Set`](https://ads-api.reddit.com/docs/v3/api/update-product-set)
+-   [`Delete Product Set`](https://ads-api.reddit.com/docs/v3/api/delete-product-set)
+
+## Create product ads
+
+Create product or dynamic product ads based on your catalog.
+
+<Note>
+
+Learn how to [set up a campaign](/ads-api/guides/programs/campaign/campaign-setup).
+
+</Note>
+
+-   [`Create Campaign`](https://ads-api.reddit.com/docs/v3/api/create-campaign)
+-   [`Create Ad Group`](https://ads-api.reddit.com/docs/v3/api/create-ad-group)
+-   [`Create Ad`](https://ads-api.reddit.com/docs/v3/api/create-ad)
+
+## Troubleshooting
+
+Retrieve import reports and diagnose catalog issues. Use these endpoints with [product diagnostics](https://business.reddithelp.com/s/article/troubleshoot-catalogs) and [DPA readiness](https://business.reddithelp.com/s/article/dpa-readiness) for troubleshooting.
+
+-   [`List Catalog Imports`](https://ads-api.reddit.com/docs/v3/api/list-catalog-imports)
+-   [`Get Catalog Import Report`](https://ads-api.reddit.com/docs/v3/api/get-catalog-import-report)
+-   [`List Catalog Import Issues`](https://ads-api.reddit.com/docs/v3/api/list-catalog-import-issues)

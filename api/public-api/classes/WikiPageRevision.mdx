@@ -1,0 +1,137 @@
+---
+title: "WikiPageRevision"
+---
+
+## Class: WikiPageRevision
+
+## Constructors
+
+<span id="constructor" />
+
+### new WikiPageRevision()
+
+> **new WikiPageRevision**(`data`, `wikiVersion`?): `WikiPageRevision`
+
+#### Parameters
+
+##### data
+
+`WikiPageRevision`
+
+##### wikiVersion?
+
+[`WikiVersion`](/api/public-api/type-aliases/WikiVersion)
+
+#### Returns
+
+`WikiPageRevision`
+
+## Accessors
+
+
+### author
+
+#### Get Signature
+
+> **get** **author**(): [`User`](/api/public-api/classes/User)
+
+The author of this revision.
+
+##### Deprecated
+
+Use authorId instead.
+
+##### Returns
+
+[`User`](/api/public-api/classes/User)
+
+***
+
+
+### authorId
+
+#### Get Signature
+
+> **get** **authorId**(): `undefined` \| `` `t2_${string}` ``
+
+The ID of the author of this revision.
+
+##### Returns
+
+`undefined` \| `` `t2_${string}` ``
+
+***
+
+
+### date
+
+#### Get Signature
+
+> **get** **date**(): `Date`
+
+##### Returns
+
+`Date`
+
+***
+
+
+### hidden
+
+#### Get Signature
+
+> **get** **hidden**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+***
+
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+***
+
+
+### page
+
+#### Get Signature
+
+> **get** **page**(): `string`
+
+##### Returns
+
+`string`
+
+***
+
+
+### reason
+
+#### Get Signature
+
+> **get** **reason**(): `string`
+
+##### Returns
+
+`string`
+
+## Methods
+
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<`WikiPageRevision`, `"id"` \| `"hidden"` \| `"reason"` \| `"date"` \| `"page"`\> & `object`
+
+#### Returns
+
+`Pick`\<`WikiPageRevision`, `"id"` \| `"hidden"` \| `"reason"` \| `"date"` \| `"page"`\> & `object`

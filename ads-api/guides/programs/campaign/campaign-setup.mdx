@@ -1,0 +1,1472 @@
+---
+title: "Set Up a Standard Campaign"
+---
+
+You can programmatically set up a Standard campaign using the Reddit Ads API. This lets you create ad groups to target your audience, organize the ads you display on Reddit, and measure your results in the Ads Manager.
+
+All ads created using the API are subject to our [Ads API Terms](https://business.reddithelp.com/s/article/Reddit-Ads-API-Terms) and [Ads Policy](https://business.reddithelp.com/s/article/Reddit-Advertising-Policy-Overview).
+
+<Note>
+
+Looking for an easier way to set up campaigns? Try creating a [Standard campaign](https://business.reddithelp.com/s/article/Set-up-a-Reddit-Ads-Campaign) in the Ads Manager.
+
+</Note>
+
+## Before you start
+
+-   [Set up a Reddit Ads account](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account).
+-   **Create the content for your ads.** This includes text, [landing pages](https://business.reddithelp.com/s/article/URL-and-Landing-Page-Best-Practices), and [click or impression trackers](https://business.reddithelp.com/s/article/Set-up-third-party-measurement). [Learn about our ad specifications](https://business.reddithelp.com/s/article/Reddit-Ad-Unit-Specifications).
+-   **Find your ad account ID.** [Here's how](/ads-api/guides/programs/business/fetch-accounts).
+
+## 1\. Create a Standard campaign
+
+Create a Standard campaign by calling the [`Create Campaign`](https://ads-api.reddit.com/docs/v3/api/create-campaign) endpoint. Enable `is_campaign_budget_optimization` (CBO) to automatically allocate budget across all ad groups based on performance.
+
+<Note>
+
+**App installs**, **conversions**, and **catalog sales** objectives aren't eligible for CBO.
+
+</Note>
+
+<Tabs>
+
+<Tab title="Campaign budget optimization (CBO)">
+
+<Tabs>
+
+<Tab title="Awareness">
+
+### Awareness campaign (CBO)
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "IMPRESSIONS",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": "BIDLESS",
+    "bid_type": "CPM",
+    "goal_type": "LIFETIME_SPEND",
+    "goal_value": ,
+    "is_campaign_budget_optimization": true,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Traffic">
+
+### Traffic campaign (CBO)
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "CLICKS",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "is_campaign_budget_optimization": true,
+    "bid_strategy": "BIDLESS",
+    "bid_type": "CPC",
+    "goal_type": "LIFETIME_SPEND",
+    "goal_value": ,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Video views">
+
+<Warning>
+
+Video views campaigns can only serve video ads.
+
+</Warning>
+
+### Video views campaign
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "VIDEO_VIEWABLE_IMPRESSIONS",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": "BIDLESS",
+    "bid_type": "CPV6",
+    "goal_type": "LIFETIME_SPEND",
+    "optimization_goal": "VIDEO_VIEW_6S",
+    "goal_value": ,
+    "is_campaign_budget_optimization": true,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+</Tab>
+
+<Tab title="Ad group budgets (non-CBO)">
+
+### Awareness campaign (CBO)
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "IMPRESSIONS",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": "BIDLESS",
+    "bid_type": "CPM",
+    "goal_type": "LIFETIME_SPEND",
+    "goal_value": ,
+    "is_campaign_budget_optimization": true,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Awareness">
+
+### Traffic campaign (CBO)
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "CLICKS",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "is_campaign_budget_optimization": true,
+    "bid_strategy": "BIDLESS",
+    "bid_type": "CPC",
+    "goal_type": "LIFETIME_SPEND",
+    "goal_value": ,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Traffic">
+
+<Warning>
+
+Video views campaigns can only serve video ads.
+
+</Warning>
+
+### Video views campaign
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "VIDEO_VIEWABLE_IMPRESSIONS",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": "BIDLESS",
+    "bid_type": "CPV6",
+    "goal_type": "LIFETIME_SPEND",
+    "optimization_goal": "VIDEO_VIEW_6S",
+    "goal_value": ,
+    "is_campaign_budget_optimization": true,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Video views">
+
+<Tip>
+
+See the remaining SKAdNetwork ID quota for your app with [`Get SKAdNetwork Availability`](https://ads-api.reddit.com/docs/v3/api/get-sk-ad-network-availability).
+
+</Tip>
+
+<Tabs>
+
+<Tab title="Standard">
+
+### Standard campaign (non-CBO)
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "CATALOG_SALES",
+    "is_campaign_budget_optimization": false
+  }
+}
+```
+
+</Tab>
+
+<Tab title="App installs">
+
+### App Installs campaigns (non-CBO)
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "APP_INSTALLS",
+    "is_campaign_budget_optimization": false,
+    "app_id": ""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+</Tab>
+
+<Tab title="Standard">
+
+### Standard campaign (non-CBO)
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "CATALOG_SALES",
+    "is_campaign_budget_optimization": false
+  }
+}
+```
+
+</Tab>
+
+<Tab title="App installs">
+
+### App Installs campaigns (non-CBO)
+
+```
+{
+  "data": {
+    "name": "",
+    "configured_status": "PAUSED",
+    "objective": "APP_INSTALLS",
+    "is_campaign_budget_optimization": false,
+    "app_id": ""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+### Campaign objectives
+
+| Objective | Purpose | Cost |
+| --- | --- | --- |
+| `IMPRESSIONS` (awareness) | Awareness of your brand or product. Optimized for impressions. | Pay for cost-per-1,000 impressions (**CPM**) |
+| `CLICKS` (traffic) | Traffic to your website. | Pay for cost-per-click |
+| `CONVERSIONS` | Conversions (valuable actions) on your website. | Pay for cost-per-click |
+| `VIDEO_VIEWABLE_IMPRESSIONS` (video views) | Views for your video. | Pay for cost-per-view (**CPV**) |
+| `APP_INSTALLS` | Installs for your mobile app. | Pay for clicks |
+| `CATALOG_SALES` | Sales of your retail products and services. Required for product and dynamic product ads. Optimized for clicks. | Pay for cost-per-click (**CPC**) |
+| `LEAD_GENERATION` (beta) | Increase potential customer interest by capturing valuable leads with forms on Reddit. | Pay for cost-per-click (**CPC**) |
+
+## 2\. Set up ad groups
+
+Granularly measure your Standard campaign's performance and define audiences, targeting, and schedules for your ads using ad groups. Create an ad group by calling the [`Create Ad Group`](https://ads-api.reddit.com/docs/v3/api/create-ad-group) endpoint.
+
+<Tabs>
+
+<Tab title="Campaign budget optimization (CBO)">
+
+With CBO, bidding is handled at the campaign level. Set `bid_strategy` and `bid_value` to `null` to inherit the campaign's settings.
+
+<Tabs>
+
+<Tab title="Awareness">
+
+### Awareness ad group (CBO)
+
+```
+{
+  "data": {
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": null,
+    "bid_value": null,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Traffic">
+
+### Traffic ad group (CBO)
+
+```
+{
+  "data": {
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": null,
+    "bid_value": null,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Video views">
+
+### Video views ad group (CBO)
+
+```
+{
+  "data": {
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "bid_type": "CPV6",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": null,
+    "bid_value": null,
+    "optimization_goal": "VIDEO_VIEW_6S",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+</Tab>
+
+<Tab title="Ad group budgets (non-CBO)">
+
+### Awareness ad group (CBO)
+
+```
+{
+  "data": {
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": null,
+    "bid_value": null,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Awareness">
+
+### Traffic ad group (CBO)
+
+```
+{
+  "data": {
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": null,
+    "bid_value": null,
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Traffic">
+
+### Video views ad group (CBO)
+
+```
+{
+  "data": {
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "bid_type": "CPV6",
+    "start_time": "Datehh : min : s",
+    "end_time": "Datehh : min : s",
+    "bid_strategy": null,
+    "bid_value": null,
+    "optimization_goal": "VIDEO_VIEW_6S",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Video views">
+
+<Tabs>
+
+<Tab title="App installs">
+
+<Tabs>
+
+<Tab title="Android">
+
+### Android ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "MOBILE_CONVERSION_INSTALL",
+    "targeting": {
+      "devices": [
+        {
+          "type": "MOBILE",
+          "os": "ANDROID"
+        }
+      ],
+      "platforms": [MOBILE_NATIVE]
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="iOS">
+
+### iOS ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "MOBILE_CONVERSION_INSTALL",
+    "targeting": {
+      "devices": [
+        {
+          "type": "MOBILE",
+          "os": "IOS",
+          "min_version": ""
+        }
+      ],
+      "platforms": [MOBILE_NATIVE]
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+</Tab>
+
+<Tab title="Conversions">
+
+### Android ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "MOBILE_CONVERSION_INSTALL",
+    "targeting": {
+      "devices": [
+        {
+          "type": "MOBILE",
+          "os": "ANDROID"
+        }
+      ],
+      "platforms": [MOBILE_NATIVE]
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Video views">
+
+### iOS ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "MOBILE_CONVERSION_INSTALL",
+    "targeting": {
+      "devices": [
+        {
+          "type": "MOBILE",
+          "os": "IOS",
+          "min_version": ""
+        }
+      ],
+      "platforms": [MOBILE_NATIVE]
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Catalog sales">
+
+`optimization_goal` must match an event your Pixel is tracking (or use `CLICKS` if the Pixel is not fully set up). See options in the [parameter examples](https://ads-api.reddit.com/docs/v3/api/create-ad-group#request).
+
+### Conversions ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "optimization_goal": "PURCHASE",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "configured_status": "PAUSED",
+    "name": "",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Traffic">
+
+### Video views ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPV6",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "VIDEO_VIEW_6S",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Awareness">
+
+<Note>
+
+Learn how to [create product sets](https://ads-api.reddit.com/docs/v3/api/create-product-set).
+
+</Note>
+
+<Tabs>
+
+<Tab title="Static">
+
+### Static ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "product_set_id": "",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "optimization_goal": "PURCHASE",
+    "configured_status": "PAUSED",
+    "name": "",
+    "shopping_type": "STATIC",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Dynamic">
+
+### Dynamic ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "product_set_id": "",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "optimization_goal": "PURCHASE",
+    "configured_status": "PAUSED",
+    "name": "",
+    "shopping_type": "DYNAMIC",
+    "shopping_targeting": {
+      "lookback_window_days": ,
+      "targeting_type": "RETARGETING"
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+</Tab>
+
+<Tab title="Android">
+
+### Static ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "product_set_id": "",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "optimization_goal": "PURCHASE",
+    "configured_status": "PAUSED",
+    "name": "",
+    "shopping_type": "STATIC",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="iOS">
+
+### Dynamic ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "product_set_id": "",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "optimization_goal": "PURCHASE",
+    "configured_status": "PAUSED",
+    "name": "",
+    "shopping_type": "DYNAMIC",
+    "shopping_targeting": {
+      "lookback_window_days": ,
+      "targeting_type": "RETARGETING"
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Static">
+
+### Traffic ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Dynamic">
+
+### Awareness ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+</Tab>
+
+<Tab title="App installs">
+
+<Tabs>
+
+<Tab title="Android">
+
+### Android ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "MOBILE_CONVERSION_INSTALL",
+    "targeting": {
+      "devices": [
+        {
+          "type": "MOBILE",
+          "os": "ANDROID"
+        }
+      ],
+      "platforms": [MOBILE_NATIVE]
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="iOS">
+
+### iOS ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "MOBILE_CONVERSION_INSTALL",
+    "targeting": {
+      "devices": [
+        {
+          "type": "MOBILE",
+          "os": "IOS",
+          "min_version": ""
+        }
+      ],
+      "platforms": [MOBILE_NATIVE]
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+</Tab>
+
+<Tab title="Conversions">
+
+### Android ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "MOBILE_CONVERSION_INSTALL",
+    "targeting": {
+      "devices": [
+        {
+          "type": "MOBILE",
+          "os": "ANDROID"
+        }
+      ],
+      "platforms": [MOBILE_NATIVE]
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Video views">
+
+### iOS ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "MOBILE_CONVERSION_INSTALL",
+    "targeting": {
+      "devices": [
+        {
+          "type": "MOBILE",
+          "os": "IOS",
+          "min_version": ""
+        }
+      ],
+      "platforms": [MOBILE_NATIVE]
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Catalog sales">
+
+`optimization_goal` must match an event your Pixel is tracking (or use `CLICKS` if the Pixel is not fully set up). See options in the [parameter examples](https://ads-api.reddit.com/docs/v3/api/create-ad-group#request).
+
+### Conversions ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "optimization_goal": "PURCHASE",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "configured_status": "PAUSED",
+    "name": "",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Traffic">
+
+### Video views ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPV6",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "optimization_goal": "VIDEO_VIEW_6S",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Awareness">
+
+<Note>
+
+Learn how to [create product sets](https://ads-api.reddit.com/docs/v3/api/create-product-set).
+
+</Note>
+
+<Tabs>
+
+<Tab title="Static">
+
+### Static ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "product_set_id": "",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "optimization_goal": "PURCHASE",
+    "configured_status": "PAUSED",
+    "name": "",
+    "shopping_type": "STATIC",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Dynamic">
+
+### Dynamic ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "product_set_id": "",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "optimization_goal": "PURCHASE",
+    "configured_status": "PAUSED",
+    "name": "",
+    "shopping_type": "DYNAMIC",
+    "shopping_targeting": {
+      "lookback_window_days": ,
+      "targeting_type": "RETARGETING"
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+</Tab>
+
+<Tab title="Android">
+
+### Static ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "product_set_id": "",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "optimization_goal": "PURCHASE",
+    "configured_status": "PAUSED",
+    "name": "",
+    "shopping_type": "STATIC",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="iOS">
+
+### Dynamic ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "product_set_id": "",
+    "view_through_conversion_type": "SEVEN_DAY_CLICKS_ONE_DAY_VIEW",
+    "optimization_goal": "PURCHASE",
+    "configured_status": "PAUSED",
+    "name": "",
+    "shopping_type": "DYNAMIC",
+    "shopping_targeting": {
+      "lookback_window_days": ,
+      "targeting_type": "RETARGETING"
+    },
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Static">
+
+### Traffic ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPC",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Dynamic">
+
+### Awareness ad group (non-CBO)
+
+```
+{
+  "data": {
+    "bid_strategy": "MANUAL_BIDDING",
+    "bid_type": "CPM",
+    "start_time": "Datehh : min : s",
+    "goal_value": ,
+    "bid_value": ,
+    "campaign_id": "",
+    "configured_status": "PAUSED",
+    "name": "",
+    "conversion_pixel_id":""
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+## 3\. Create a post
+
+<Warning>
+
+Skip this step when creating catalog ads.
+
+</Warning>
+
+Create the contents of your ad with [`Create Structured Post Creation Job`](https://ads-api.reddit.com/docs/v3/api/create-structured-post-creation-job).
+
+If the job `status` is `SUCCESS`, a post will be created. For other statuses:
+
+-   **`CLIENT_ERROR`:** Fix the creative configuration and create a new job.
+-   **`SERVER_ERROR`:** The system ran into an error. Retry again later.
+
+<Tip>
+
+Check the status of your job with [`Get Structured Post Creation Job`](https://ads-api.reddit.com/docs/v3/api/get-structured-post-creation-job).
+
+</Tip>
+
+<Tabs>
+
+<Tab title="Image">
+
+### Image post
+
+```
+{
+  "data": {
+    "allow_comments": true,
+    "creative": {
+      "type": "IMAGE",
+      "headline": "",
+      "destination": {
+        "url": "",
+        "type": "URL"
+      },
+      "image": {
+        "media": {
+          "url": "",
+          "type": "URL"
+        }
+      },
+      "thumbnail": {
+        "media": {
+          "url": "",
+          "type": "URL"
+        }
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Video">
+
+### Video post
+
+```
+{
+  "data": {
+    "allow_comments": true,
+    "creative": {
+      "type": "VIDEO",
+      "headline": "",
+      "destination": {
+        "url": "",
+        "type": "URL"
+      },
+      "video": {
+        "media": {
+          "url": "",
+          "type": "URL"
+        }
+      },
+      "thumbnail": {
+        "media": {
+          "url": "",
+          "type": "URL"
+        }
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Carousel">
+
+### Carousel post
+
+Between 2–7 creatives must be added.
+
+```
+{
+"data": {
+  "allow_comments": true,
+  "creative": {
+    "type": "CAROUSEL",
+    "headline": "",
+    "carousel": [
+      {
+        "destination": {
+          "url": "",
+          "type": "URL"
+        },
+        "image": {
+          "media": {
+            "url": "",
+            "type": "URL"
+          }
+        },
+        "caption": ""
+      },
+      {
+        "destination": {
+          "url": "",
+          "type": "URL"
+        },
+        "image": {
+          "media": {
+            "url": "",
+            "type": "URL"
+          }
+        },
+        "caption": ""
+      }
+    ],
+    "thumbnail": {
+      "media": {
+        "url": "",
+        "type": "URL"
+      }
+    }
+  }
+}
+}
+```
+
+</Tab>
+
+<Tab title="Free-form">
+
+### Free-form (text) post
+
+```
+{
+  "data": {
+    "allow_comments": true,
+    "creative": {
+      "type": "TEXT",
+      "headline": "",
+      "body": "",
+      "text_format": "PLAIN_TEXT"
+    }
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Promoted post">
+
+[Promoting a post](https://business.reddithelp.com/s/article/Promote-Your-Post) has several limitations:
+
+-   Promoting a post creates an ad using the original post's content, including its headline. This **freezes** both the original and promoted post's voting and comments.
+-   When a destination URL is set, selecting the title and call-to-action goes to this URL. The comments entry opens the original post.
+-   Only **community posts** can be promoted with the API. [Promote profile posts on Reddit](https://business.reddithelp.com/s/article/Promote-Your-Post#promote-a-post).
+
+<Accordion title="Details">
+
+1.  Navigate to the post on Reddit.
+2.  Copy the post URL.
+3.  Copy the string between `/comments` and the post title.
+
+    | URL | String |
+    | --- | --- |
+    | `https://www.reddit.com/r/NotARealBrand/comments/xxxxxxx/try_our_ramen/` | `xxxxxxx` |
+
+4.  Prepend `t3_` to the string.
+
+    | String | Post ID |
+    | --- | --- |
+    | `xxxxxxx` | `t3_xxxxxxx` |
+
+</Accordion>
+
+### Promoted Community Post
+
+```
+{
+  "data": {
+    "allow_comments": false,
+    "creative": {
+      "type": "PROMOTED_POST",
+      "headline": "My Promoted Community Post",
+      "post": {
+        "type": "PROMOTED_COMMUNITY_POST",
+        "post_id": "",
+        "destination": {
+          "url": "",
+          "type": "URL"
+        }
+      }
+    }
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+## 4\. Build ads
+
+Create an ad with [`Create Ad`](https://ads-api.reddit.com/docs/v3/api/create-ad).
+
+<Tabs>
+
+<Tab title="Standard">
+
+<Warning>
+
+For ads using **image**, **video**, or **carousel** formats, `click_url` must be present. Typically, this value defaults to `destination_url` if not provided. Updating the post referenced by the ad will not reapply this defaulting. [See how to align these values](/ads-api/guides/programs/campaign/match-destination-and-click-url).
+
+</Warning>
+
+### Standard ad
+
+For app install campaigns, set click\_url to your Google Play or App Store product URL.
+
+```
+{
+  "data": {
+    "ad_group_id": "",
+    "name": "",
+    "post_id": "",
+    "click_url": "",
+    "configured_status": "PAUSED"
+  }
+}
+```
+
+</Tab>
+
+<Tab title="Catalog sales">
+
+<Note>
+
+The API does not verify that product IDs on a shopping ad exist in the ad group’s product set—ensure IDs match your catalog.
+
+</Note>
+
+### Catalog sales ad
+
+```
+{
+  "data": {
+    "ad_group_id": "",
+    "post_id": "",
+    "name": "",
+    "configured_status": "PAUSED",
+    "products": [
+      {
+        "product_id": ""
+      }
+    ],
+    "shopping_creative": {
+      "destination_url": "",
+      "headline": "",
+      "allow_comments": true,
+      "call_to_action": "View More",
+      "second_line_cta": "PRICE"
+    }
+  }
+}
+```
+
+</Tab>
+
+</Tabs>
+
+## 5\. Test your ad
+
+After building your ad, it will be reviewed. This process may take up to 48 business hours. Check your ad's status and rejection reason with [`Get Ad`](https://ads-api.reddit.com/docs/v3/api/get-ad).
+
+We strongly recommend visiting the `preview_url` link to ensure your ad looks right. This preview will expire at the date and time listed in `preview_expiry`.
+
+<Note>
+
+You can set `preview_expiry` with [`Update Ad`](https://ads-api.reddit.com/docs/v3/api/update-ad).
+
+</Note>
+
+Once approved, monitor your ads at least once a week to optimize them:
+
+-   [**Dashboard**](https://business.reddithelp.com/s/article/Reddit-Ads-reporting)**:** Measure impact and identify ways to improve your campaigns by viewing ad performance over time in the Ads Manager.
+-   **[`Get A Report`](https://ads-api.reddit.com/docs/v3/api/get-a-report):** Generate a metrics report for up to three breakdowns based on the list of fields that you provide. Reports provide detailed insights and analytics on ad performance, audience engagement, and other relevant metrics. You can also use this endpoint to verify custom conversion events.

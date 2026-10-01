@@ -1,0 +1,279 @@
+---
+title: "Reddit Advertising API"
+sidebarTitle: "Introduction"
+---
+
+[Download Specs](https://ads-api.reddit.com/api/v3/openapi.json)
+
+## Ads API terms
+
+By accessing or using the Ads API and/or associated Reddit Data, you are agreeing that you have read, and that you Agree to comply with and to be bound by, the [Ads API Terms](https://business.reddithelp.com/s/article/Reddit-Ads-API-Terms) and all applicable laws and regulations in their entirety without limitation or qualification.
+
+The Ads API Terms apply to and govern your access to and use of the Ads API and Reddit Data, constitute a legally binding agreement between you and Reddit, and include certain terms that are defined in the [Advertising Platform Terms](https://business.reddithelp.com/s/article/REDDIT-ADVERTISING-PLATFORM-TERMS), [Developer Terms](https://www.redditinc.com/policies/developer-terms), and [User Agreement](https://redditinc.com/policies/user-agreement).
+
+You may use the Ads API and Reddit Data only in accordance with the Ads API Terms. Use of the Conversions API is subject to the [Advertiser Measurement Program Terms](https://business.reddithelp.com/s/article/Reddit-Business-Tool-Terms) in addition to the same agreements as the Ads API. If you do not agree to the Ads API Terms, and Advertiser Measurement Program Terms as applicable, then you must not access or use the Ads API, Conversions API, or Reddit Data.
+
+<Note>
+
+The Reddit Ads API is open to all developers and **does not require allowlisting or approval from Reddit to access**. [Get started with the API](/ads-api/guides/quick-start/create-dev-app).
+
+API partners working on behalf of advertisers can request support by [contacting us](https://support.reddithelp.com/hc/en-us/requests/new?ticket_form_id=50388520825236). See our [supported partners](https://www.business.reddit.com/solutions/find-api-partners-index).
+
+</Note>
+
+## Overview
+
+The Reddit Ads API lets advertisers tap into the Reddit Ads Platform to build and manage advertising campaigns and accounts programmatically. By integrating Reddit Ads API into your tooling, you can streamline workflows, reduce operational overhead, and accelerate the creation, optimization, and reporting of Reddit campaigns without needing to step into the Reddit Ads Manager directly.
+
+All API applications must be authenticated with OAuth2 by [creating a developer application](/ads-api/guides/quick-start/create-dev-app) and [obtaining access and refresh tokens](/ads-api/guides/quick-start/authenticate).
+
+### Entity Relationship Diagram
+
+Drag to pan • Pinch to zoom on touch • Scroll or +/− • ⌘+/⌘-
+
+%
+
+can use assetcan use assetcan use assetis funded byhascan use assetcan use assethas role oncan use assetorganizesorganizesorganizesorganizesrunsauthorsorganizespromotesfundscan use asset
+
+Business+9
+
+name
+
+primary\_contact\_id
+
+country
+
+Click to see 9 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/businesses)
+
+Ad Account+19
+
+attribution\_type
+
+primary\_contact\_member\_id
+
+time\_zone\_id
+
+Click to see 19 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/ad-accounts)
+
+Member+4
+
+firstname
+
+lastname
+
+email
+
+reddit\_user\_id
+
+Click to see 4 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/members)
+
+Profile+3
+
+name
+
+reddit\_user\_id
+
+Click to see 3 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/profiles)
+
+Campaign+29
+
+objective
+
+special\_ad\_categories
+
+is\_campaign\_budget\_optimization
+
+Click to see 29 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+Ad Group+37
+
+bid\_strategy
+
+bid\_value
+
+optimization\_goal
+
+schedule
+
+targeting
+
+Click to see 37 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+Ad+14
+
+event\_trackers
+
+preview\_url
+
+effective\_status
+
+rejection\_reason
+
+Click to see 14 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/ads)
+
+Structured Post+4
+
+profile\_id
+
+creative
+
+allow\_comments
+
+Click to see 4 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/structured-posts)
+
+Pixel+7
+
+name
+
+automatic\_matching\_config
+
+Click to see 7 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/pixels)
+
+Catalog+7
+
+event\_sources
+
+data\_sources
+
+summary
+
+Click to see 7 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/product-catalogs)
+
+Custom Audience+13
+
+type
+
+size\_range\_lower
+
+size\_range\_upper
+
+Click to see 13 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/custom-audiences)
+
+Funding Instrument+7
+
+billable\_amount
+
+credit\_limit
+
+is\_servable
+
+currency
+
+Click to see 7 more
+
+[View docs →](https://ads-api.reddit.com/docs/v3/api/funding-instruments)
+
+One (only)
+
+Zero or One
+
+One or Many
+
+Zero or Many
+
+Here are two popular ways to use the Reddit Ads API:
+
+-   **Postman:** A visual client that makes it simpler to set up and start testing requests and responses. This is the fastest way to familiarize yourself with the API if you prefer a point-and-click approach. You can explore our [Postman collections](https://www.postman.com/reddit-ads-api "https://www.postman.com/reddit-ads-api").
+-   **Programmatic access:** Use your preferred programming language or command-line tools to create automations and integrations. This approach is ideal if you want to embed API calls into your workflows or build custom tools.
+
+### User agents
+
+Rate-limiting issues often occur if you haven't set your user agent to a unique descriptor. Many default user agents (like `“Python/urllib”` or `“Java”`) are drastically limited to encourage unique and descriptive user-agent strings. We recommend following this format for your client's user agent string:
+
+```text
+{{Target platform}}:{{Unique app ID}}:{{Version string}} (by /u/{{Your Reddit username}})
+```
+
+<Note>
+
+Including your version number helps us block old buggy or broken versions of your app safely. Just remember to update this string when you update your version number.
+
+</Note>
+
+<Accordion title="Example">
+
+```text
+User-Agent: android:com.example.myredditapp:v1.2.3 (by /u/kemitche)
+```
+
+</Accordion>
+
+<Warning>
+
+Never lie about your user agent! Don't pretend to be popular browsers or other bots. We'll ban anyone caught in the act.
+
+</Warning>
+
+### Pagination
+
+Paginated endpoints respond with a `pagination` object containing up to 2 fields:
+
+<Warning>
+
+The URLs for these fields should be followed directly. Don't assume pagination based on the query parameters in the provided URLs.
+
+</Warning>
+
+-   **`next_url`:** The full URL to access the next page of the response. If not available, the current page is the final page.
+-   **`previous_url`:** The full URL to access the previous page of the response. If not available, the current page is the first page.
+
+All endpoints that return a list, such as `List Campaigns` and `Get a Report`, will be paginated.
+
+### Response types
+
+| Response | Description |
+| --- | --- |
+| 200 | Successfully processed the request. |
+| 400 | Request was invalid. See the client error message for specifics. |
+| 401 | No bearer token or a bad bearer token was provided. Check your application authentication. |
+| 403 | Insufficient authentication scopes or the user doesn't have permission. Check the client error message for specifics. If it's a permission issue, ensure the user has the proper permissions assigned to take action. |
+| 404 | Specified resource was not found. Check that correct permissions have been given to the source and that the resource exists. |
+| 429 | Request has exceeded rate limits. For more information on rate limiting and best practices for handling errors, see our [rate limiting reference](/ads-api/guides/quick-start/rate-limiting). |
+| 500 | Server error while processing events. Try again later or [use our chat agent](https://business.reddithelp.com/s/) if the problem persists. |
+
+### Limitations
+
+<Note>
+
+Future changes may introduce new limitations.
+
+</Note>
+
+-   **Rate limits:** Exceeding request limits may result in temporary throttling.
+-   **Functionality restrictions:** Unless explicitly stated, alpha or beta products aren't supported in the Reddit Ads API.
+
+## Authentication
+
+<Tabs>
+
+<Tab title="OAuth 2.0: RedditAPIKey">
+
+</Tab>
+
+</Tabs>
+
+Reddit OAuth2 Security Key
+
+<table><tbody><tr><th><p>Security Scheme Type:</p></th><td><p>oauth2</p></td></tr><tr><th><p>OAuth Flow (authorizationCode):</p></th><td><div><p>Token URL: <a href="https://www.reddit.com/api/v1/access_token" target="_blank" rel="noopener noreferrer" className="">https://www.reddit.com/api/v1/access_token</a></p></div><div><p>Authorization URL: <a href="https://www.reddit.com/api/v1/authorize" target="_blank" rel="noopener noreferrer" className="">https://www.reddit.com/api/v1/authorize</a></p></div><div><p>Refresh URL: <a href="https://www.reddit.com/api/v1/access_token" target="_blank" rel="noopener noreferrer" className="">https://www.reddit.com/api/v1/access_token</a></p></div><span><p>Scopes:</p></span><ul><li><p>adsconversions: Post conversion events through the API</p></li><li><p>adsread: Read advertising data through my account.</p></li><li><p>adsedit: Write advertising data through my account.</p></li><li><p>adsdatadeletion: Delete advertising data through my account.</p></li></ul></td></tr></tbody></table>

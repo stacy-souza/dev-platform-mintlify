@@ -1,0 +1,44 @@
+---
+title: "Conversions API"
+---
+
+Send server-to-server event data to Reddit for more accurate tracking, especially in cookie-restricted environments.
+
+## Considerations
+
+-   CAPI supports a variety of sources, including web, app, and offline events.
+-   There’s a rate limit of 1,000 requests/second, 10,000 events/second, and 1,000 events/request.
+-   We recommend sending conversions via CAPI as close to real-time as possible, but events must be sent within seven days after they occur.
+-   We require [event deduplication](https://business.reddithelp.com/s/article/event-deduplication) if you use the [Reddit Pixel](https://business.reddithelp.com/s/article/reddit-pixel) and [Conversions API](https://ads-api.reddit.com/docs/v3/api/post-conversion-events) together (which we recommend for best performance). The event with more event metadata and match keys will be prioritized. Deduplication is not required when the event is only sent through one integration type. Learn more about [event deduplication](https://business.reddithelp.com/s/article/event-deduplication).
+-   Some [match keys (unique event and user identifiers)](https://business.reddithelp.com/s/article/about-match-keys) are required for each conversion event to ensure accurate matching and attribution. We recommend sending as many identifiers as possible to help improve attribution accuracy and fuel performance.
+
+    <Tip>
+
+    Use the [Data Deletion API](/ads-api/guides/programs/data-deletion/delete-user-data) to request deletion of ads-related match key data.
+
+    </Tip>
+
+-   Your use of CAPI is subject to the agreements in the [Ads API](https://www.reddithelp.com/en/categories/advertising/policy-guidelines/reddit-ads-api-terms) and [Reddit Business Tool](https://business.reddithelp.com/s/article/Reddit-Business-Tool-Terms) terms.
+
+## Guides
+
+<Columns cols={2}>
+  <Card title="Direct Integration" href="/ads-api/guides/programs/capi/direct-integration">
+    Send conversion events directly with our Conversions API. This guide explains setup, match keys, and event deduplication for accurate measurement.
+  </Card>
+  <Card title="Implement Click ID Persistence" href="/ads-api/guides/programs/capi/click-id-persistence">
+    The click ID (rdt\_cid) is a match key that helps attribute click conversions more accurately. It’s appended to the landing page URL when a user clicks through an ad from Reddit. We recommend sharing it for all available conversion events.
+  </Card>
+  <Card title="Verify Conversion Events" href="/ads-api/guides/programs/capi/verify-events">
+    Verify your Reddit Conversions API integration to ensure accurate tracking and ad performance. Use the Events Manager to test events and troubleshoot issues.
+  </Card>
+  <Card title="Error Handling" href="/ads-api/guides/programs/capi/error-handling">
+    Troubleshoot and resolve common errors for the Reddit Conversions API. This guide explains error codes for bad requests, authorization issues, and rate limits.
+  </Card>
+  <Card title="CAPI v2 to v3 Migration" href="/ads-api/guides/programs/capi/migration">
+    Update your Conversions API integration to v3 to access new features and ongoing support. Our guide explains changes to payloads, parameters, and endpoints.
+  </Card>
+  <Card title="Best Practices" href="/ads-api/guides/programs/capi/best-practices">
+    Get accurate conversion data for your Reddit ads. This guide covers best practices for the Conversions API, including event deduplication and signal sharing.
+  </Card>
+</Columns>

@@ -1,0 +1,133 @@
+---
+title: "SubredditRulesWidget"
+---
+
+## Class: SubredditRulesWidget
+
+## Extends
+
+- [`Widget`](/api/public-api/classes/Widget)
+
+## Constructors
+
+<span id="constructor" />
+
+### new SubredditRulesWidget()
+
+> **new SubredditRulesWidget**(`subredditAboutRulesRsp`, `widgetData`, `subredditName`): `SubredditRulesWidget`
+
+#### Parameters
+
+##### subredditAboutRulesRsp
+
+`SubredditAboutRulesResponse`
+
+##### widgetData
+
+`GetWidgetsResponse_WidgetItem`
+
+##### subredditName
+
+`string`
+
+#### Returns
+
+`SubredditRulesWidget`
+
+#### Overrides
+
+[`Widget`](/api/public-api/classes/Widget).[`constructor`](/api/public-api/classes/Widget#constructor)
+
+## Accessors
+
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/api/public-api/classes/Widget).[`id`](/api/public-api/classes/Widget#id)
+
+***
+
+
+### name
+
+#### Get Signature
+
+> **get** **name**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/api/public-api/classes/Widget).[`name`](/api/public-api/classes/Widget#name)
+
+***
+
+
+### rules
+
+#### Get Signature
+
+> **get** **rules**(): `SubredditRule`[]
+
+##### Returns
+
+`SubredditRule`[]
+
+***
+
+
+### subredditName
+
+#### Get Signature
+
+> **get** **subredditName**(): `string`
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`Widget`](/api/public-api/classes/Widget).[`subredditName`](/api/public-api/classes/Widget#subredditname)
+
+## Methods
+
+
+### delete()
+
+> **delete**(): `Promise`\<`void`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Inherited from
+
+[`Widget`](/api/public-api/classes/Widget).[`delete`](/api/public-api/classes/Widget#delete)
+
+***
+
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<[`Widget`](/api/public-api/classes/Widget), `"subredditName"` \| `"id"` \| `"name"`\> & `Pick`\<`SubredditRulesWidget`, `"rules"`\>
+
+#### Returns
+
+`Pick`\<[`Widget`](/api/public-api/classes/Widget), `"subredditName"` \| `"id"` \| `"name"`\> & `Pick`\<`SubredditRulesWidget`, `"rules"`\>
+
+#### Overrides
+
+[`Widget`](/api/public-api/classes/Widget).[`toJSON`](/api/public-api/classes/Widget#tojson)

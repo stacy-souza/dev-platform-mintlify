@@ -1,0 +1,362 @@
+---
+title: "Filter Products"
+---
+
+Rules can be created using attribute and attribute operators. 
+
+```text
+{\"field\":{\"operator\":\"value\"}}
+```
+
+<Note>
+
+`\` must be prepended to quotation marks (`"`) to pass validation.
+
+</Note>
+
+These rules can be further combined using match operators.
+
+## Match operators
+
+Match operators specify the relationship between multiple conditions:
+
+```text
+{"{{condition}}":[{{filter1}}, {{filter2}}]}
+```
+
+| Condition | Description | Example |
+| --- | --- | --- |
+| `and` |
+All rules must be true
+
+ |
+
+Title contains both `reddit` and `snoo`, and price is less than 1.00.
+
+**Filter:** `{"and":[{"title":{"contains":"reddit"}},{"title":{"contains":"snoo"}},{"price":{"lt":"1.00"}}]}`
+
+ |
+| `or` |
+
+At least one rule is true
+
+ |
+
+The product title contains `reddit` or `snoo`, or the product is in stock.
+
+**Filter:** `{"or":[{"title":{"contains":"reddit"}},{"title":{"contains":"snoo"}},{"availability":{"eq":"IN_STOCK"}}]}`
+
+ |
+
+## Attributes
+
+Attributes are the fields that define your product.
+
+<Note>
+
+Learn more about our [catalog requirements](https://business.reddithelp.com/s/article/catalog-requirements).
+
+</Note>
+
+| Attributes | Description |
+| --- | --- |
+| `id` |
+Unique identifier for the product
+
+ |
+| `title` |
+
+Name of the product
+
+ |
+| `description` |
+
+Detailed description of the product
+
+ |
+| `price` |
+
+Cost of the product
+
+ |
+| `currency` |
+
+Currency of the price
+
+ |
+| `sale_price` |
+
+Discounted price of the product
+
+ |
+| `availability` |
+
+Availability status of the product. Must be one of the following:
+
+-   `IN_STOCK`
+-   `OUT_OF_STOCK`
+-   `PREORDER`
+-   `BACKORDER`
+
+ |
+| `brand` |
+
+Brand of the product
+
+ |
+| `color` |
+
+Color of the product
+
+ |
+| `gender` |
+
+Gender the product is intended for. Must be one of the following:
+
+-   `MALE`
+-   `FEMALE`
+-   `UNISEX`
+
+ |
+| `product_type` |
+
+Type of product
+
+ |
+| `item_group_id` |
+
+ID for grouping similar items
+
+ |
+| `condition` |
+
+Condition of the product. Must be:
+
+-   `new`
+-   `refurbished`
+-   `used`
+
+ |
+| `age_group` |
+
+Age group the product is intended for. Must be:
+
+-   `newborn`
+-   `infant`
+-   `toddler`
+-   `kids`
+-   `adult`
+
+ |
+| `size` |
+
+Size of the product
+
+ |
+| `pattern` |
+
+Pattern of the product
+
+ |
+| `material` |
+
+Material the product is made from
+
+ |
+| `custom_label_0` |
+
+Custom label 0
+
+ |
+| `custom_label_1` |
+
+Custom label 1
+
+ |
+| `custom_label_2` |
+
+Custom label 2
+
+ |
+| `custom_label_3` |
+
+Custom label 3
+
+ |
+| `custom_label_4` |
+
+Custom label 4
+
+ |
+
+## Attribute operators
+
+Attribute operators define how to filter a specific attribute.
+
+<Note>
+
+All operators are case-sensitive unless otherwise noted.
+
+</Note>
+
+| Operator | Description | Examples |
+| --- | --- | --- |
+| `contains` | Substring contains text/number |
+Title contains a substring of `red`.
+
+**Rule:** `{"title":{"contains":"red"}}`
+
+-   **True:** `red`, `reddit`
+-   **False:** `Reddit`, `snoo`
+
+ |
+| `not_contains` | No substring contains text/number |
+
+Title doesn't contain a substring of `red`.
+
+**Rule:** `{"title":{"not_contains":"red"}}`
+
+-   **True:** `Reddit`, `snoo`
+-   **False:** `red`, `reddit`
+
+ |
+| `i_contains` | Substring contains (case-insensitive) |
+
+Title contains a substring of `red` (case-insensitive).
+
+**Rule:** `{"title":{"i_contains":"red"}}`
+
+-   **True:** `Reddit`, `reddit`, `Red`
+-   **False:** `snoo`
+
+ |
+| `i_not_contains` | No substring contains (case-insensitive) |
+
+Title doesn't contain a substring of `red` (case-insensitive).
+
+**Rule:** `{"title":{"i_not_contains":"red"}}`
+
+-   **True:** `snoo`
+-   **False:** `Reddit`, `red`, `Red`
+
+ |
+| `starts_with` | Starts with exact text/number |
+
+Title starts with `snoo`.
+
+**Rule:** `{"title":{"starts_with":"snoo"}}`
+
+-   **True:** `snoo`, `snoo alien`
+-   **False:** `Snoo`, `reddit snoo`
+
+ |
+| `i_starts_with` | Starts with (case-insensitive) |
+
+Title starts with `snoo` (case-insensitive).
+
+**Rule:** `{"title":{"starts_with":"snoo"}}`
+
+-   **True:** `snoo`, `Snoo`, `snoo alien`
+-   **False:** `reddit snoo`
+
+ |
+| `is_any` | Matches one of the values |
+
+Title matches `snoo` or `reddit`.
+
+**Rule:** `{"title":{"is_any":["snoo","reddit"]}}`
+
+-   **True:** `snoo`, `reddit`
+-   **False:** `snoo alien`, `Snoo`
+
+ |
+| `is_not_any` | Does not match the values |
+
+Title doesn't match `snoo` or `reddit`.
+
+**Rule:** `{"title":{"is_not_any":["snoo","reddit"]}}`
+
+-   **True:** `snoo alien`, `Snoo`
+-   **False:** `snoo`, `reddit`
+
+ |
+| `i_is_any` | Matches one value (case-insensitive) |
+
+Title matches `snoo` or `reddit` (case-insensitive).
+
+**Rule:** `{"title":{"i_is_any":["snoo","reddit"]}}`
+
+-   **True:** `snoo`, `Snoo`, `reddit`
+-   **False:** `snoo alien`
+
+ |
+| `i_is_not_any` | Doesn't match values (case-insensitive) |
+
+Title doesn't match `snoo` or `reddit` (case-insensitive).
+
+**Rule:** `{"title":{"i_is_not_any":["snoo","reddit"]}}`
+
+-   **True:** `snoo alien`
+-   **False:** `Snoo`, `snoo`, `reddit`
+
+ |
+| `eq` | Value is equal to |
+
+Gender equals `UNISEX`.
+
+**Rule:** `{"gender":{"eq":"UNISEX"}}`
+
+-   **True:** `UNISEX`
+-   **False:** `MALE`, `FEMALE`
+
+ |
+| `neq` | Value is not equal to |
+
+Product isn't in stock.
+
+**Rule:** `{"availability":{"neq":"IN_STOCK"}}`
+
+-   **True:** `OUT_OF_STOCK`, `PREORDER`
+-   **False:** `IN_STOCK`
+
+ |
+| `lt` | Value is less than |
+
+Cost is less than 1.00.
+
+**Rule:** `{"price":{"lt":"1.00"}}`
+
+-   **True:** `-1`, `0`
+-   **False:** `1`, `2`
+
+ |
+| `lte` | Value is less than or equal to |
+
+Cost is less than or equal to 1.00.
+
+**Rule:** `{"price":{"lte":"1.00"}}`
+
+-   **True:** `-1`, `0`, `1`
+-   **False:** `2`
+
+ |
+| `gt` | Value is greater than |
+
+Cost is greater than 1.00.
+
+**Rule:** `{"price":{"gt":"1.00"}}`
+
+-   **True:** `2`
+-   **False:** `-1`, `0`, `1`
+
+ |
+| `gte` | Value is greater than or equal to |
+
+Cost is greater than or equal to 1.00.
+
+**Rule:** `{"price":{"gte":"1.00"}}`
+
+-   **True:** `1`, `2`
+-   **False:** `-1`, `0`
+
+ |

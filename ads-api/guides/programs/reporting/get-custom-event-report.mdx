@@ -1,0 +1,133 @@
+---
+title: "Retrieve a Custom Conversion Event Report"
+---
+
+Get a report for your conversion events. This method is recommended for verifying custom conversion events. If you'd like to verify standard events, we recommend [using the Events Manager](/ads-api/guides/programs/capi/verify-events) instead.
+
+## Name-key structure
+
+Specify a `name` in `conversion_custom_events` for [`Get A Report`](https://ads-api.reddit.com/docs/v3/api/get-a-report). `name` is case-sensitive and must exactly match the event name passed with the [Reddit Pixel](https://business.reddithelp.com/s/article/reddit-pixel) or [Conversions API](/ads-api/guides/programs/capi). Choose the metrics to provide and whether to break down metrics by action source.
+
+<Tip>
+
+Find the names of your custom conversion events with [`Get Last Fired at`](https://ads-api.reddit.com/docs/v3/api/get-last-fired-at).
+
+</Tip>
+
+<Tabs>
+
+<Tab title="Request">
+
+<Tip>
+
+This generator only supports one custom conversion event. Create another object to retrieve a report for multiple custom events.
+
+</Tip>
+
+### Retrieve a report for a custom event
+
+```
+{
+  "data": {
+    "fields": [
+      IMPRESSIONS
+
+    ],
+    "conversion_custom_events": [
+      {
+        "name": "",
+        "metrics": [
+          {
+            "metric_type": "VIEWS",
+            "action_sources": [
+              "WEBSITE",
+              "APP"
+            ]
+          },
+          {
+            "metric_type": "ROAS"
+          }
+        ]
+      }
+    ],
+    "starts_at": "",
+    "ends_at": ""
+  }
+}
+```
+
+-   Metric 1
+
+    Metric typeAction sources (optional)
+
+-   Metric 2
+
+    Metric typeAction sources (optional)
+
+</Tab>
+
+<Tab title="Response">
+
+```json
+"data": {    "metrics": [        {            "conversion_custom_events": {                "Custom Purchase Event": {                    "values": [                        {                            "metric_type": "VIEWS",                            "action_source": "WEBSITE",                            "value": 123                        },                        {                            "metric_type": "VIEWS",                            "action_source": "APP",                            "value": 45                        },                        {                            "metric_type": "ROAS",                            "value": 4.5                        }                    ]                }            }        }    ],    "metrics_updated_at": "2024-03-11T00:00:00Z"}
+```
+
+</Tab>
+
+</Tabs>
+
+<Accordion title="Legacy: Slot-based structure">
+
+<Note>
+
+Slot-based fields are on the path to deprecation. Use the [name-key structure](#name-key-structure) going forward.
+
+</Note>
+
+### 1\. Find the index mapping
+
+Call [`Get Last Fired At`](https://ads-api.reddit.com/docs/v3/api/get-last-fired-at) and use `custom_events` in the response to map custom event labels. If your fields are valid, you’ll receive a response like this:
+
+```json
+"data": {    "custom_events": [        {            "last_fired_at": "2024-03-11T19:03:32+00:00",            "name": "begin_checkout"        },        {            "last_fired_at": "2024-03-12T00:59:05.981000+00:00",            "name": "login"        },        {            "last_fired_at": "2024-03-11T08:03:41.323000+00:00",            "name": "select_item"        },        {            "last_fired_at": "2024-03-10T23:36:53.844000+00:00",            "name": "share"        }    ]}
+```
+
+The custom conversion events will be listed by their index in ascending order, starting with `1`. For example, the first conversion event `begin_checkout` will have an index of `1`.
+
+### 2\. Get the report for a custom event
+
+Fetch data for custom conversion events by calling [`Get A Report`](https://ads-api.reddit.com/docs/v3/api/get-a-report) and adding the designated value to the fields list. Enum for custom event has pattern of `CONVERSION_CUSTOM_EVENT_{{index}}_{{field}}`, where:
+
+| Parameter | Requirements | Description |
+| --- | --- | --- |
+| `{{index}}` (integer) | Between 1 and 20 | The slot for the custom conversion event. For example, if your event was the first item in the `custom_events` array, you should set this to `1`. |
+| `{{field}}` (string) | Must include at least one of the following:
+-   `AVG_VALUE`
+-   `CLICKS`
+-   `ECPA`
+-   `ROAS`
+-   `TOTAL_ITEMS`
+-   `TOTAL_VALUE`
+-   `VIEWS`
+
+ | The field you want to be returned in your metrics. |
+
+<Note>
+
+Reporting returns conversion data based on the [attribution window](https://business.reddithelp.com/s/article/Web-Attribution-Overview) selected in the Ads Manager.
+
+</Note>
+
+For example, to return click and view conversions for custom conversion event 1:
+
+```json
+"data": {    "fields": [        "CONVERSION_CUSTOM_EVENT_1_CLICKS",        "CONVERSION_CUSTOM_EVENT_1_VIEWS"    ],    "starts_at": "2024-03-10T00:00:00Z",    "ends_at": "2024-03-12T00:00:00Z"}
+```
+
+Data will be returned in the same format as standard conversion events. If your event is well-formatted and your fields are valid, you’ll receive a response like this:
+
+```json
+"data": {    "metrics": [        {            "conversion_purchase_clicks": 7,            "conversion_purchase_views": 0,            "conversion_custom_event_1_clicks": 56,            "conversion_custom_event_1_views": 0,            "conversion_custom_event_3_clicks": 36,            "conversion_custom_event_3_views": 0        }    ],    "metrics_updated_at": "2024-03-11T00:00:00Z"},
+```
+
+</Accordion>

@@ -1,0 +1,33 @@
+---
+title: "FilterOptions"
+---
+
+## Type Alias: FilterOptions
+
+> **FilterOptions** = `object`
+
+## Properties
+
+
+### keep?
+
+> `optional` **keep**: `boolean`
+
+Whether the post or comment remains visible while it is in the moderation
+queue. Defaults to `false`.
+
+***
+
+
+### reason?
+
+> `optional` **reason**: `string`
+
+The reason shown to moderators in the moderation queue. If [keep](#keep) is
+`true`, the reason is also shown on the post or comment.
+
+#### Example
+
+```ts
+"contains sensitive content"
+```

@@ -1,0 +1,124 @@
+---
+title: "Listing"
+---
+
+## Class: Listing\<T\>
+
+## Type Parameters
+
+### T
+
+`T`
+
+## Constructors
+
+<span id="constructor" />
+
+### new Listing()
+
+> **new Listing**\<`T`\>(): `Listing`\<`T`\>
+
+#### Returns
+
+`Listing`\<`T`\>
+
+## Properties
+
+
+### children
+
+> **children**: `T`[]
+
+***
+
+
+### limit
+
+> **limit**: `number`
+
+***
+
+
+### pageSize
+
+> **pageSize**: `number`
+
+## Accessors
+
+
+### hasMore
+
+#### Get Signature
+
+> **get** **hasMore**(): `boolean`
+
+##### Returns
+
+`boolean`
+
+## Methods
+
+
+### \[asyncIterator\]()
+
+> **\[asyncIterator\]**(): `AsyncIterator`\<`T`\>
+
+#### Returns
+
+`AsyncIterator`\<`T`\>
+
+***
+
+
+### all()
+
+> **all**(): `Promise`\<`T`[]\>
+
+#### Returns
+
+`Promise`\<`T`[]\>
+
+***
+
+
+### get()
+
+> **get**(`count`): `Promise`\<`T`[]\>
+
+#### Parameters
+
+##### count
+
+`number`
+
+#### Returns
+
+`Promise`\<`T`[]\>
+
+***
+
+
+### preventInitialFetch()
+
+> **preventInitialFetch**(): `void`
+
+#### Returns
+
+`void`
+
+***
+
+
+### setMore()
+
+> **setMore**(`more`): `void`
+
+#### Parameters
+
+##### more
+
+`undefined` | [`MoreObject`](/api/public-api/type-aliases/MoreObject)
+
+#### Returns
+
+`void`

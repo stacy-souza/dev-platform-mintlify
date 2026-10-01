@@ -1,0 +1,30 @@
+---
+title: "SubredditSettingsOptions"
+---
+
+## Type Alias: SubredditSettingsOptions
+
+> **SubredditSettingsOptions** = `Partial`\<[`SubredditSettings`](/api/public-api/type-aliases/SubredditSettings)\> & `object`
+
+Optional overrides for subreddit settings. Only provided fields are applied;
+the rest remain unchanged when calling [Subreddit.updateSettings](/api/public-api/classes/Subreddit#updatesettings).
+
+## Type declaration
+
+### description?
+
+> `optional` **description**: `string`
+
+Subreddit description (raw markdown). Appears in the sidebar of the subreddit.
+
+### title?
+
+> `optional` **title**: `string`
+
+Subreddit title.
+
+### type?
+
+> `optional` **type**: [`SubredditType`](/api/public-api/type-aliases/SubredditType)
+
+Subreddit type (e.g. public, private, restricted).

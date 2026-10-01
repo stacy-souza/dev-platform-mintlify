@@ -1,0 +1,79 @@
+---
+title: "Configuration"
+---
+
+## Type Alias: Configuration
+
+> **Configuration** = `object`
+
+## Properties
+
+
+### blob?
+
+> `optional` **blob**: [`PluginSettings`](/api/public-api/type-aliases/PluginSettings) \| `boolean`
+
+Allows your app to use the Blob Plugin
+
+***
+
+
+### http?
+
+> `optional` **http**: [`PluginSettings`](/api/public-api/type-aliases/PluginSettings) \| `boolean` \| &#123; `domains`: `string`[]; &#125;
+
+Allows your app to use the HTTP/Fetch API
+
+***
+
+
+### media?
+
+> `optional` **media**: [`PluginSettings`](/api/public-api/type-aliases/PluginSettings) \| `boolean`
+
+Allows media uploads from apps
+
+***
+
+
+### redditAPI?
+
+> `optional` **redditAPI**: [`PluginSettings`](/api/public-api/type-aliases/PluginSettings) \| `boolean`
+
+Allows your app to use the reddit API
+
+***
+
+
+### redis?
+
+> `optional` **redis**: [`PluginSettings`](/api/public-api/type-aliases/PluginSettings) \| `boolean`
+
+Allows your app to use the Redis Plugin
+
+***
+
+
+### userActions?
+
+> `optional` **userActions**: `boolean` \| &#123; `enabled`: `boolean`; &#125; \| &#123; `scopes`: `Scope`[]; &#125;
+
+Allows your app to call Reddit APIs on behalf of the User. Passing a boolean allows you to submit post/comments on behalf of the user.
+
+#### Type declaration
+
+`boolean`
+
+&#123; `enabled`: `boolean`; &#125;
+
+#### enabled
+
+> **enabled**: `boolean`
+
+Defaults to SUBMIT_POST and SUBMIT_COMMENT.
+
+&#123; `scopes`: `Scope`[]; &#125;
+
+#### scopes
+
+> **scopes**: `Scope`[]

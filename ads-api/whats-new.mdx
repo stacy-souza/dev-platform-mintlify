@@ -1,0 +1,441 @@
+---
+title: "What's New"
+---
+
+Check out the tables below to see a list of the latest updates and modifications that have been made to the API. These tables provide a detailed overview of changes, including new features, improvements, and any fixed issues, ensuring you stay informed about the latest developments and enhancements in our API.
+
+<Tabs>
+
+<Tab title="Upcoming changes">
+
+| Date | Endpoint or Schema | Description |
+| --- | --- | --- |
+| December 8, 2026 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) |
+<Warning>
+
+**Breaking changes:** Beginning December 8, 2026, [Get A Report](https://ads-api.reddit.com/docs/v3/api/get-a-report) requests using `HOUR` for a range longer than 7 days or unsupported breakdown combinations will return a `400 Bad Request`. Late-arriving conversion data for prior hours or days will be applied during the daily refresh. [Review the changes and migration guidance](/ads-api/guides/programs/reporting/upcoming-reporting-api-changes).
+
+</Warning>
+
+ |
+| September 30, 2026 | [Lead Generation Forms](https://ads-api.reddit.com/docs/v3/api/lead-generation-forms) |
+
+Existing ads using onsite forms will be paused.
+
+ |
+| September 21, 2026 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+[Ads](https://ads-api.reddit.com/docs/v3/api/ads)
+
+ |
+
+-   New objective enums will be rolled out. Support for legacy objective enums will continue to help minimize disruption to existing integrations.
+-   `use_catalog` will be added to Campaigns API. This should only be set to `TRUE` for `SALES` objectives. Defaults to `FALSE`.
+
+<Warning>
+
+**Breaking changes:** Campaigns will return new objective enums for campaigns created with the **new objectives**. If your integration stores, displays, maps, or reports on objective values, [review the mapping table](https://ads-api.reddit.com/docs/v3/campaign-objective-migration) and update your logic to avoid disruption.
+
+</Warning>
+
+ |
+| September 21, 2026 | [Lead Generation Forms](https://ads-api.reddit.com/docs/v3/api/lead-generation-forms) |
+
+Lead Generation Forms API will be sunsetted as onsite forms will no longer be supported.
+
+<Warning>
+
+**Breaking changes:** Advertisers must transition to using offline forms using the [Reddit Pixel](https://business.reddithelp.com/s/article/reddit-pixel) or [Conversions API](https://business.reddithelp.com/s/article/Conversions-API). Advertisers may also use the `GET` and `LIST` endpoints to retain onsite forms for records prior to this deadline.
+
+</Warning>
+
+ |
+
+</Tab>
+
+<Tab title="Released changes">
+
+| Date | Endpoint or Schema | Description |
+| --- | --- | --- |
+| September 9, 2026 |
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+ |
+
+CBO campaigns now support an optional campaign-level `schedule`. When set, it applies to all ad group in that campaign, and their schedules cannot be set directly. Set it to `null` to allow delivery at any time.
+
+ |
+| September 9, 2026 | [Structured Posts](https://ads-api.reddit.com/docs/v3/api/structured-posts) | Updated `event.type` validation for scheduled events on image and video creatives. The field is required and accepts only `REMINDER` across the Structured Posts API, including [`Create Structured Post Creation Job`](https://ads-api.reddit.com/docs/v3/api/create-structured-post-creation-job) and [`Get Structured Post`](https://ads-api.reddit.com/docs/v3/api/get-structured-post). |
+| September 8, 2026 | [Post Conversion Events](https://ads-api.reddit.com/docs/v3/api/post-conversion-events) | Added `referrer_url` for the page that referred the user to the conversion page and `metadata.order_id` for the advertiser-assigned order identifier. |
+| September 8, 2026 | [Forecasting](https://ads-api.reddit.com/docs/v3/api/forecasting) | The [`Estimate Audience and Delivery`](https://ads-api.reddit.com/docs/v3/api/audience-and-delivery-estimates) operation now calculates target audience estimates for a fixed 30-day period, regardless of the configured `start_time` and `end_time`. Delivery estimates continue to use the configured ad group schedule. |
+| September 3, 2026 | [Get Me](https://ads-api.reddit.com/docs/v3/api/get-me) | [Get Me](https://ads-api.reddit.com/docs/v3/api/get-me) now identifies System User access tokens with `SYSTEM_USER`. System User responses do not contain human profile data. |
+| September 3, 2026 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+[Ads](https://ads-api.reddit.com/docs/v3/api/ads)
+
+[Creative assets](https://ads-api.reddit.com/docs/v3/api/creative-assets)
+
+ | Made Max campaigns available for third-party API users, including the creative asset operations required to create and update them. [See the guidance](/ads-api/guides/programs/campaign/max-campaign-setup). |
+| September 1, 2026 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+ | `VIDEO_VIEW_15S` `optimization_goal` and `CPV15` `bid_type` are now available to all API clients.
+
+`VIDEO_VIEW_15S` requires a `bid_type` of `CPV15`.
+
+ |
+| August 31, 2026 | [Structured Posts](https://ads-api.reddit.com/docs/v3/api/structured-posts) | Documented `event` settings for reminder ads on image and video creatives in [Get Structured Post](https://ads-api.reddit.com/docs/v3/api/get-structured-post) responses and [Create Structured Post Creation Job](https://ads-api.reddit.com/docs/v3/api/create-structured-post-creation-job) requests. |
+| August 26, 2026 | [Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups) | Updated the [`Update Ad Group`](https://ads-api.reddit.com/docs/v3/api/update-ad-group) documentation so fields managed by Reddit no longer appear in request bodies. These fields remain available in responses. |
+| August 24, 2026 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) | Updated the [`Create Ad`](https://ads-api.reddit.com/docs/v3/api/create-ad) and [`Update Ad`](https://ads-api.reddit.com/docs/v3/api/update-ad) documentation so fields managed by Reddit no longer appear in request bodies. These fields remain available in responses. |
+| August 20, 2026 | [Get Catalog Import Report](https://ads-api.reddit.com/docs/v3/api/get-catalog-import-report) | [Get Catalog Import Report](https://ads-api.reddit.com/docs/v3/api/get-catalog-import-report) now returns `204 No Content` when the feed contents are unchanged. |
+| August 20, 2026 | [Get Third Party Trackers](https://ads-api.reddit.com/docs/v3/api/get-third-party-trackers) | Added an operation for retrieving domains recognized for click and impression tracking before creating or updating ads. |
+| August 13, 2026 | [Custom Audiences](https://ads-api.reddit.com/docs/v3/api/custom-audiences) | Added support for creating and deleting website retargeting and engagement retargeting custom audiences. Website retargeting uses the `PIXEL_RETARGETING` type in API requests and responses. |
+| August 10, 2026 |
+
+-   Ads
+-   Structured Posts
+
+ | Clarified that `click_url` does not automatically update when an image, carousel, or video ad’s destination URL changes. |
+| August 3, 2026 | [Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups) | Corrected the `targeting` field schema to document that it must be an object and cannot be `null`. |
+| August 3, 2026 | [Targeting](https://ads-api.reddit.com/docs/v3/api/targeting) | Corrected the targeting schema to document that `excluded_interests`, `excluded_keywords`, `keywords`, and `platforms` must be arrays and cannot be `null`. |
+| July 30, 2026 | [Forecasting](https://ads-api.reddit.com/docs/v3/api/forecasting) | Made [`Estimate Audience and Delivery`](https://ads-api.reddit.com/docs/v3/api/audience-and-delivery-estimates) available for third-party API users. Requests require the `adsread` scope. |
+| July 27, 2026 | [Ad Account History](https://ads-api.reddit.com/docs/v3/api/ad-account-history) | [`Get Ad Account History`](https://ads-api.reddit.com/docs/v3/api/get-ad-account-history) now returns contextual keyword changes when filtering by Ad Groups or Targeting. |
+| July 27, 2026 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Marked slot-based custom conversion event fields (`CONVERSION_CUSTOM_EVENT_1_*` through `CONVERSION_CUSTOM_EVENT_20_*`) as legacy. Use `conversion_custom_events` to request custom conversion events by name going forward. Each request can select up to 20 custom conversion events. |
+| July 20, 2026 | [Ad Accounts](https://ads-api.reddit.com/docs/v3/api/ad-accounts) | Added new suspension reasons. |
+| July 16, 2026 | Creatives | An explicit opt-out of the [Redditor Highlights](https://business.reddithelp.com/s/article/redditor-highlights) (user-generated content) enhancement is now preserved on read: `user_generated_content.enroll_status` returns `OPT_OUT` instead of omitting the `user_generated_content` enhancement. |
+| July 14, 2026 | [Data Deletion](https://ads-api.reddit.com/docs/v3/api/data-deletion) | Released the Data Deletion API: [`Create Data Deletion Job`](https://ads-api.reddit.com/docs/v3/api/create-data-deletion-job) and [`Get Data Deletion Job Status`](https://ads-api.reddit.com/docs/v3/api/get-data-deletion-job-status). |
+| July 13, 2026 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+ | `conversion_pixel_id` is required for all ad groups and campaign budget optimization (CBO) campaigns.
+
+<Warning>
+
+**Breaking changes:** Advertisers must explicitly set `conversion_pixel_id` for all ad groups and CBO campaigns. Implementations without this field will **fail** and return an error. Find your Pixels with [`List Pixels by Ad Account`](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-ad-account).
+
+</Warning>
+
+ |
+| June 18, 2026 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Made the `LANGUAGE` breakdown available for [Get A Report](https://ads-api.reddit.com/docs/v3/api/get-a-report). |
+| June 17, 2026 | [Lead Generation Forms](https://ads-api.reddit.com/docs/v3/api/lead-generation-forms) | Clarified the following:
+
+-   All form fields are required for [`Create Lead Generation Form`](https://ads-api.reddit.com/docs/v3/api/create-lead-gen-form).
+-   `privacy_link` must begin with `HTTPS`.
+-   At least one question must be required.
+
+ |
+| June 17, 2026 |
+
+[Product Catalog](https://ads-api.reddit.com/docs/v3/api/product-catalogs)
+
+[Product Set](https://ads-api.reddit.com/docs/v3/api/list-product-sets)
+
+ | Added read-only `invalid_products_count` field to the `summary` in Product Catalog and Product Set responses, such as [`List Product Catalogs`](https://ads-api.reddit.com/docs/v3/api/list-product-catalogs), indicating how many products have critical issues and are not submitted for review. |
+| June 16, 2026 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Added `conversion_custom_events` to Reports requests and responses for [`Get A Report`](https://ads-api.reddit.com/docs/v3/api/get-a-report) so custom conversion events can be requested by name with selected metrics and action sources. |
+| June 16, 2026 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) | Added `configured_status` and `effective_status` query parameters to [`List Ads`](https://ads-api.reddit.com/docs/v3/api/list-ads) for filtering ads. |
+| June 16, 2026 | [Creative Assets](https://ads-api.reddit.com/docs/v3/api/creative-assets) | Made [`List Creative Assets`](https://ads-api.reddit.com/docs/v3/api/list-creative-assets) and [`Get Creative Asset`](https://ads-api.reddit.com/docs/v3/api/get-creative-asset) available. |
+| June 16, 2026 | [Structured Posts](https://ads-api.reddit.com/docs/v3/api/structured-posts) | Exposed user-generated content enhancement settings on text, image, and video ad creatives in [`Get Structured Post`](https://ads-api.reddit.com/docs/v3/api/get-structured-post) responses and [`Create Structured Post Creation Job`](https://ads-api.reddit.com/docs/v3/api/create-structured-post-creation-job) requests. Use `enhancements.user_generated_content.enroll_status` to state whether user-generated content may appear in your ad.
+
+Learn about [Redditor Highlights](https://business.reddithelp.com/s/article/redditor-highlights).
+
+ |
+| June 15, 2026 |
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+[Targeting](https://ads-api.reddit.com/docs/v3/api/targeting)
+
+ | Made language targeting available for third-party API users. Advertisers can now see supported languages with [`List Languages`](https://ads-api.reddit.com/docs/v3/api/list-languages), and set `languages` for ad group targeting. |
+| June 10, 2026 | [Structured Posts](https://ads-api.reddit.com/docs/v3/api/structured-posts) | Added the read-only `created_at` field to the Structured Post schema returned by [`List Structured Posts`](https://ads-api.reddit.com/docs/v3/api/list-structured-posts), [`Get Structured Post`](https://ads-api.reddit.com/docs/v3/api/get-structured-post), and [`Update Structured Post`](https://ads-api.reddit.com/docs/v3/api/update-structured-post). |
+| June 10, 2026 | [Custom Audiences](https://ads-api.reddit.com/docs/v3/api/custom-audiences) | Added read-only `business_id` to custom audience responses via [`Get Custom Audience`](https://ads-api.reddit.com/docs/v3/api/get-custom-audience), [`List User Custom Audiences`](https://ads-api.reddit.com/docs/v3/api/list-user-custom-audiences) and [`Create Custom Audience`](https://ads-api.reddit.com/docs/v3/api/create-custom-audience). |
+| June 1, 2026 | [Pixels](https://ads-api.reddit.com/docs/v3/api/pixels) | Added `enhanced_signal_collection_config` to the Pixel schema, returned by [`List Pixels By Ad Account`](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-ad-account) and [`List Pixels By Business`](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-business). |
+| May 28, 2026 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) | Added `ad_group_id` and `campaign_id` query parameters to [`List Ads`](https://ads-api.reddit.com/docs/v3/api/list-ads) for filtering by ad group and campaign. |
+| May 27, 2026 |
+
+[Posts](https://ads-api.reddit.com/docs/v3/api/posts)
+
+[Structured Posts](https://ads-api.reddit.com/docs/v3/api/structured-posts)
+
+ | Clarified that captions should be 180 characters or less. |
+| May 26, 2026 |
+
+[Posts](https://ads-api.reddit.com/docs/v3/api/posts)
+
+OAuth scopes
+
+ | Removed legacy OAuth scopes `history` and `read` from the public scope Product Catalogs and Posts APIs. Third-party tokens now need only `adsread` for [`Get Post`](https://ads-api.reddit.com/docs/v3/api/get-post) and [`List Posts`](https://ads-api.reddit.com/docs/v3/api/list-posts), and only `adsedit` for [`Update Post`](https://ads-api.reddit.com/docs/v3/api/update-post), [`Create Post`](https://ads-api.reddit.com/docs/v3/api/create-post), [`Update Structured Post`](https://ads-api.reddit.com/docs/v3/api/update-structured-post), and [`Create Structured Post Creation Job`](https://ads-api.reddit.com/docs/v3/api/create-structured-post-creation-job). |
+| May 26, 2026 | [Apps](https://ads-api.reddit.com/docs/v3/api/app) | Made [`List Apps by Ad Account`](https://ads-api.reddit.com/docs/v3/api/list-apps-by-ad-account) available for third-party API users. |
+| May 25, 2026 | [Catalog Import](https://ads-api.reddit.com/docs/v3/api/list-catalog-imports) | Added read-only `invalid_products_count` field to the `summary` in [`List Catalog Imports`](https://ads-api.reddit.com/docs/v3/api/list-catalog-imports) responses, indicating how many products were rejected as invalid and not imported. |
+| May 14, 2026 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) | Documented that `shopping_creative.destination_url` may be an empty string, null, or a valid URI. Aligns the spec with existing behavior for shopping ads returned from [`List Ads`](https://ads-api.reddit.com/docs/v3/api/list-ads) and [`Get Ad`](https://ads-api.reddit.com/docs/v3/api/get-ad). |
+| May 14, 2026 | [Custom Audiences](https://ads-api.reddit.com/docs/v3/api/custom-audiences) | Documented and enforced existing `column_order` validation for [`Update Custom Audience Users`](https://ads-api.reddit.com/docs/v3/api/update-custom-audience-users): requests must include one or two supported identifier columns. |
+| May 12, 2026 | [Custom Audiences](https://ads-api.reddit.com/docs/v3/api/custom-audiences) | Relaxed `customer_list_config` input validation for customer list audiences so clients can send a partial configuration instead of all fields. |
+| May 7, 2026 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) | Fixed [`Create Ad`](https://ads-api.reddit.com/docs/v3/api/create-ad) documentation so required `ad_group_id` appears in the Request Body section. Validation is unchanged. |
+| May 7, 2026 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) |
+
+Third-party [`Update Ad`](https://ads-api.reddit.com/docs/v3/api/update-ad) requests now accept `click_url_query_parameters` in the body, consistent with ad creation.
+
+ |
+| May 7, 2026 |
+
+[Businesses](https://ads-api.reddit.com/docs/v3/api/businesses)
+
+[Ad accounts](https://ads-api.reddit.com/docs/v3/api/ad-accounts)
+
+ | Clarified the following:
+
+-   `admin_approval` and `type` fields for Ad Accounts API are only mutable by Reddit.
+-   `country` only accepts a 2-letter country code.
+-   Partner ad accounts won't appear in [`GET List Ad Accounts in Business`](https://ads-api.reddit.com/docs/v3/api/list-ad-accounts-by-business).
+
+ |
+| May 7, 2026 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Made the `ASSET_ID` breakdown available for third-party API users in [Get A Report](https://ads-api.reddit.com/docs/v3/api/get-a-report). |
+| May 5, 2026 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+[Posts](https://ads-api.reddit.com/docs/v3/api/posts)
+
+ | Clarified the following:
+
+-   CBO-gated fields and bid nuances.
+-   Maximum creatives for carousel posts.
+-   **Marked the Posts API as legacy endpoints.** Advertisers can still call the legacy Posts endpoint, but are encouraged to use the [Structured Posts API](https://ads-api.reddit.com/docs/v3/api/create-structured-post-creation-job) for managing posts.
+
+ |
+| April 28, 2026 | [Structured Posts](https://ads-api.reddit.com/docs/v3/api/structured-posts) |
+
+Made promoting eligible community posts available for third-party API users.
+
+Profile posts can't be promoted in the API. [See how to promote one on Reddit](https://business.reddithelp.com/s/article/Promote-Your-Post).
+
+ |
+| April 15, 2026 | [Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups) | Added `PAGE_VISIT` as a valid value for `optimization_goal` in ad groups. |
+| April 14, 2026 | [Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns) | Added read-only `is_max` field to all [Campaign responses](https://ads-api.reddit.com/docs/v3/api/get-campaign) to indicate whether it is a Reddit Max campaign. |
+| March 31, 2026 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+ | `optimization_goal` can't be set to `NULL` for video views campaigns.
+
+<Warning>
+
+**Breaking changes:** Advertisers must use a [valid goal](https://ads-api.reddit.com/docs/v3/api/create-ad-group#optimization-goal-options) for future video views campaigns.
+
+</Warning>
+
+ |
+| March 27, 2026 | [Posts](https://ads-api.reddit.com/docs/v3/api/posts) | Added `supplementary_text` field to text creatives. This is only available for select advertisers. [Reach out](https://www.business.reddit.com/speak-with-a-reddit-ads-expert) for more details. |
+| March 25, 2026 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Clarified behavior of `time_zone_id`,`starts_at`, and `ends_at` parameters in Reports API. |
+| March 16, 2026 | [Conversions API](https://ads-api.reddit.com/docs/v3/api/post-conversion-events) | Added `item_price` and `quantity` fields for the product in conversion events. |
+| March 12, 2026 | [Ad Accounts](https://ads-api.reddit.com/docs/v3/api/ad-accounts) | Added App Attribution fields. |
+| March 11, 2026 |
+
+[Conversions API](https://ads-api.reddit.com/docs/v3/api/post-conversion-events)
+
+[Reports](https://ads-api.reddit.com/docs/v3/api/reports)
+
+ |
+
+-   Added `PHYSICAL_STORE`, `APP`, and `OTHER` as valid values for [action source](https://business.reddithelp.com/s/article/omni-attribution).
+-   Added `conversion_metrics` to filter conversion data by action source.
+
+ |
+| March 9, 2026 | [Conversions API](https://ads-api.reddit.com/docs/v3/api/post-conversion-events) | Added `event_source_url` field for domain and click ID extraction. |
+| March 2, 2026 | [Keyword Suggestions](https://ads-api.reddit.com/docs/v3/api/list-keyword-suggestions) | Released [`List Keyword Suggestions`](https://ads-api.reddit.com/docs/v3/api/list-keyword-suggestions). |
+| February 9, 2026 |
+
+[Ad Accounts](https://ads-api.reddit.com/docs/v3/api/ad-accounts)
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+[Ads](https://ads-api.reddit.com/docs/v3/api/ads)
+
+[Custom Audiences](https://ads-api.reddit.com/docs/v3/api/custom-audiences)
+
+[Saved Audiences](https://ads-api.reddit.com/docs/v3/api/saved-audiences)
+
+ | Expanded and unified naming constraints across Ad Accounts, Campaign, Ad Groups, Ads, Custom Audience, and Saved Audience objects. These objects now share the same minimum and maximum length constraint of 500 for the `name` field. Previously these constraints ranged from a minimum of 0 to 3 and a maximum of 200 to 500, though they were not always advertised in our documentation. |
+| January 22, 2026 | Processing Status Support | Added support for `PROCESSING` as an Effective Status for Campaigns, Ad Groups, and Ads. |
+| January 6, 2026 | [Structured Posts](https://ads-api.reddit.com/docs/v3/api/structured-posts) | Release `Structured Posts` schema. |
+| December 29, 2025 | [Saved Audiences](https://ads-api.reddit.com/docs/v3/api/saved-audiences) | Made Saved Audiences available for third-party API users. |
+| December 9, 2025 | [Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns) | Added `invoice_label` to the campaign's schema. |
+| November 13, 2025 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+[Ads](https://ads-api.reddit.com/docs/v3/api/ads)
+
+[Custom Audiences](https://ads-api.reddit.com/docs/v3/api/custom-audiences)
+
+[Saved Audiences](https://ads-api.reddit.com/docs/v3/api/saved-audiences)
+
+ | Added `delivery_status` to the schemas. |
+| October 2, 2025 | [Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups) | Added `conversion_pixel_id` to the ad group's schema. |
+| October 1, 2025 | [Conversions API](https://ads-api.reddit.com/docs/v3/api/post-conversion-events) | Released [`Post Conversion Events`](https://ads-api.reddit.com/docs/v3/api/post-conversion-events). Advertisers are encouraged to [migrate](https://ads-api.reddit.com/docs/v3/capi-migration) to take advantage of new features and long-term support. |
+| August 13, 2025 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Added 6 and 15 second video view rate metrics. |
+| July 21, 2025 | Rate Limiting | Released a new rate limiting system based on groups of endpoints. Also introduces `RateLimit` and `RateLimit-Policy` headers. For more information, see the [rate limiting reference](/ads-api/guides/quick-start/rate-limiting). |
+| June 26, 2025 | [Funding Instruments](https://ads-api.reddit.com/docs/v3/api/funding-instruments) | Added `search` query parameter to [`Query funding instruments by business`](https://ads-api.reddit.com/docs/v3/api/query-funding-instruments-by-business). |
+| June 18, 2025 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) | Made the `click_url_query_parameters` field on the `ad` object available for third-party API users. |
+| June 12, 2025 | [Pixels](https://ads-api.reddit.com/docs/v3/api/pixels) | Released [`List Pixels By Ad Account`](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-ad-account) and [`List Pixels By Business`](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-business) to support pixels retrieval under entities. |
+| May 27, 2025 | [Product Catalogs](https://ads-api.reddit.com/docs/v3/api/product-catalogs) | Added `approved_products_count` and `rejected_products_count` fields. |
+| May 22, 2025 | [Communities Suggestions](https://ads-api.reddit.com/docs/v3/api/list-communities-suggestions) | Added new parameter to [Communities Suggestions API](https://ads-api.reddit.com/docs/v3/api/list-communities-suggestions). |
+| May 5, 2025 |
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+[Conversions API](https://ads-api.reddit.com/docs/v3/api/post-conversion-events)
+
+[Pixels](https://ads-api.reddit.com/docs/v3/api/pixels)
+
+ |
+
+Removed `SEARCH`, `VIEW_CONTENT`, and `ADD_TO_WISHLIST` support for `optimization_goal` in new ad groups
+
+<Warning>
+
+**Breaking changes:** Advertisers must use `PURCHASE`, `LEAD`, `SIGN_UP`, or `ADD_TO_CART` for future conversion campaigns.
+
+</Warning>
+
+ |
+| May 5, 2025 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups)
+
+[Ads](https://ads-api.reddit.com/docs/v3/api/ads)
+
+ |
+
+-   App ID must now be set at the campaign level
+-   [Structure limits](https://ads-api.reddit.com/docs/v3/api/create-campaign) have been updated for app install campaigns
+
+<Warning>
+
+**Breaking changes:** Campaigns with ad group-level app IDs can't create new ads. Separate iOS and Android campaigns are now required.
+
+</Warning>
+
+ |
+| March 13, 2025 | [Pixels](https://ads-api.reddit.com/docs/v3/api/pixels) | Released [`Get Last Fired At`](https://ads-api.reddit.com/docs/v3/api/get-last-fired-at) to retrieve the last time a conversion pixel was fired for conversion events |
+| March 3, 2025 | Account Exclusions | New exclusion fields for account |
+| February 19, 2025 | Lift Study Management/Brand Lift Studies | Support new custom question type for brand lift studies. |
+| February 3, 2025 | [Product Catalogs](https://ads-api.reddit.com/docs/v3/api/product-catalogs) | Released Product Catalog API. |
+| January 10, 2025 | List Lift Experiments | Added parameter to filter experiments by type. |
+| December 9, 2024 | [SKAN Availability](https://ads-api.reddit.com/docs/v3/api/get-sk-ad-network-availability) | Added support for campaign info with new SKAN hierarchy in [SKAN availability API](https://ads-api.reddit.com/docs/v3/api/get-sk-ad-network-availability). |
+| November 18, 2024 | [Bid Suggestions](https://ads-api.reddit.com/docs/v3/api/bid-suggestions) | Added new parameters to [Bid Suggestions API](https://ads-api.reddit.com/docs/v3/api/generate-bid-suggestion). |
+| November 14, 2024 | [Bid Suggestions](https://ads-api.reddit.com/docs/v3/api/bid-suggestions) | Added new [Bid Suggestions API](https://ads-api.reddit.com/docs/v3/api/generate-bid-suggestion). |
+| October 29, 2024 | [Apps](https://ads-api.reddit.com/docs/v3/api/app) | Released [`Get App Last Fired At`](https://ads-api.reddit.com/docs/v3/api/get-app-last-fired-at). |
+| October 2, 2024 | [Ad Accounts](https://ads-api.reddit.com/docs/v3/api/ad-accounts) | Released [`Get Ad Account History`](https://ads-api.reddit.com/docs/v3/api/get-ad-account-history) |
+| September 25, 2024 | [Geolocations](https://ads-api.reddit.com/docs/v3/api/list-geolocations) | Released [`Do Geolocations Validations`](https://ads-api.reddit.com/docs/v3/api/do-geolocation-validations) for city, country, DMA, postal code, and region |
+| September 12, 2024 | [Geolocations](https://ads-api.reddit.com/docs/v3/api/list-geolocations) | Added `city` field in geolocations endpoint and support city search results in [`List Geolocations`](https://ads-api.reddit.com/docs/v3/api/list-geolocations) |
+| August 26, 2024 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Include `attribution_settings` in Report View schema |
+| August 26, 2024 | [Custom Audiences](https://ads-api.reddit.com/docs/v3/api/custom-audiences) | Released Custom Audiences API with create, get, list, delete, and update audience users endpoints |
+| August 9, 2024 | [Product Feeds](https://ads-api.reddit.com/docs/v3/api/list-product-feeds) | Added `SKIPPED` catalog import status |
+| August 7, 2024 | Lift Study Management/Brand Lift Studies | Added API endpoints to list studies and get a study by ID |
+| July 30, 2024 | Campaign/Funding Instruments |
+
+Funding Instrument ID will be a required field on all campaigns.
+
+<Warning>
+
+**Breaking change:** All partners who wish to continue to create campaigns via the Reddit Ads API must update integrations by this date
+
+</Warning>
+
+ |
+| July 30, 2024 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Added attribution windows and `sub_columns` |
+| July 25, 2024 | [Lead Generation Forms](https://ads-api.reddit.com/docs/v3/api/lead-generation-forms) | Added lead generation forms endpoints for get, list, and create. |
+| July 3, 2024 | Gender | Update Targeting schema to expose gender targeting field to endpoints like [`Create Ad Group`](https://ads-api.reddit.com/docs/v3/api/create-ad-group). |
+| June 27, 2024 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) | The `preview_expiry` field is now available for generating preview links for ads. |
+| June 27, 2024 | [Ad Accounts](https://ads-api.reddit.com/docs/v3/api/ad-accounts) | Released [`Update Ad Account`](https://ads-api.reddit.com/docs/v3/api/update-ad-account). This endpoint may be used to update the attribution settings for an ad account. |
+| June 6, 2024 | [Product Feeds](https://ads-api.reddit.com/docs/v3/api/list-product-feeds) | Made `is_paused`, `interval`, `interval_count`, and `next_import_at` fields non-nullable in the Feed Schedule schema. |
+| June 6, 2024 | [Catalog Import](https://ads-api.reddit.com/docs/v3/api/list-catalog-imports) | Made `summary` non-nullable. |
+| June 6, 2024 | [Product Set](https://ads-api.reddit.com/docs/v3/api/list-product-sets) | Made `summary` non-nullable. |
+| June 6, 2024 | [Product Catalogs](https://ads-api.reddit.com/docs/v3/api/product-catalogs) | Renamed `approved_products_count` to `products_count`, and made `summary` non-nullable. |
+| June 6, 2024 | [Timezones](https://ads-api.reddit.com/docs/v3/api/time-zones) | Included more time zones. |
+| June 6, 2024 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) | Added `HOUR` option for `breakdowns`. |
+| June 6, 2024 | [Funding Instruments](https://ads-api.reddit.com/docs/v3/api/funding-instruments) | Added a new API endpoint to `List Funding Instruments by Ad Account`. |
+| June 6, 2024 | [Posts](https://ads-api.reddit.com/docs/v3/api/posts) | Added new endpoint for updating a post. Currently, the only field that can be updated is `allow_comments`. |
+| June 5, 2024 | [Product Feeds](https://ads-api.reddit.com/docs/v3/api/list-product-feeds) | Added new import error codes: `INVALID_SALE_PRICE_EFFECTIVE_DATE`, `INVALID_EXPIRATION_DATE`, and `INVALID_ADULT`. |
+| May 30, 2024 |
+
+[Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns)
+
+[Funding Instruments](https://ads-api.reddit.com/docs/v3/api/funding-instruments)
+
+ |
+
+Added `Funding Instrument ID` as a new field on campaigns.
+
+<Warning>
+
+**Breaking change:** Currently, Campaigns do not have an explicit field for Funding. After July 30, `Funding Instrument ID` must be populated on all campaigns.
+
+</Warning>
+
+ |
+| May 29, 2024 | Campaign Lifetime Budgets | All values on `goal_value` will be set to `null`, and the new `spend_cap` must be used until CBO is released later in Q3. We recommend all partners make this change, in order to take full advantage of future platform bidding functionality. |
+| May 28, 2024 | [Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups) | Added two new targeting endpoints: `list_devices` and `list_carriers`. |
+| May 21, 2024 | [Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups) | Updated ad group documentation and deprecated `excluded_interests` targeting property. |
+| May 21, 2024 | Lift Study Management/Brand Lift Studies | Added `Create Brand Lift Study` endpoint. |
+| April 30, 2024 | [Post](https://ads-api.reddit.com/docs/v3/api/posts) | Limited page size of [`List Posts`](https://ads-api.reddit.com/docs/v3/api/list-posts) to 25. |
+| April 23, 2024 | [Ads](https://ads-api.reddit.com/docs/v3/api/ads) | Added new `effective_status` option `MISSING_PERMISSIONS` to the Ad schema. |
+| April 23, 2024 | [Members](https://ads-api.reddit.com/docs/v3/api/members) | Added `affiliation` enum field to `Member`, which represents the affiliation type of the member. |
+| April 22, 2024 | Campaign Lifetime Budgets |
+
+Exposed new `spend_cap` field on the campaign entity.
+
+<Warning>
+
+**Breaking change:** Currently, campaign lifetime budgets are set by populating the `goal_value` field for the campaign. After April 22, `spend_cap` must be used.
+
+</Warning>
+
+ |
+| March 11, 2024 | [Product Feeds](https://ads-api.reddit.com/docs/v3/api/list-product-feeds) | Added `next_import_at` field to feed schedule, which displays the time when the feed will be imported next time. |
+| February 21, 2024 | [Ad Groups](https://ads-api.reddit.com/docs/v3/api/ad-groups) | Added `excluded_keywords` to the ad group's targeting schema. |
+| February 6, 2024 | [Reports](https://ads-api.reddit.com/docs/v3/api/reports) |
+
+-   Changed to a `POST` operation.
+-   Introduced filtering and metrics specifications.
+-   Added pagination.
+
+ |
+| February 6, 2024 | [Interest](https://ads-api.reddit.com/docs/v3/api/list-interests) | Changed default behavior to return [V3 interests](https://business.reddithelp.com/s/article/reddit-audiences#interest-targeting) and updated Interest schema. |
+| February 6, 2024 | General Changes |
+
+-   Updated path from `/api/v2.0/` to `/api/v3/`.
+-   Introduced multi-level rate limits.
+-   Increased user-level rate limits to 5 requests/second.
+-   Removed account-level allow-listing requirement.
+
+ |
+| January 11, 2024 | [Campaigns](https://ads-api.reddit.com/docs/v3/api/campaigns) | Added lifetime budgets fields `goal_type` and `goal_value` to the campaign schema. |
+
+</Tab>
+
+</Tabs>

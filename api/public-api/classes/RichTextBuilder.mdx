@@ -1,0 +1,346 @@
+---
+title: "RichTextBuilder"
+---
+
+## Class: RichTextBuilder
+
+## Mixes
+
+ParagraphContainer
+
+## Mixes
+
+HeadingContainer
+
+## Mixes
+
+HorizontalRuleContainer
+
+## Mixes
+
+BlockQuoteContainer
+
+## Mixes
+
+CodeBlockContainer
+
+## Mixes
+
+EmbedContainer
+
+## Mixes
+
+ListContainer
+
+## Mixes
+
+TableContainer
+
+## Mixes
+
+ImageContainer
+
+## Mixes
+
+VideoContainer
+
+## Implements
+
+- [`ParagraphContainer`](/api/public-api/type-aliases/ParagraphContainer)\<`RichTextBuilder`\>
+- [`HeadingContainer`](/api/public-api/type-aliases/HeadingContainer)\<`RichTextBuilder`\>
+- [`HorizontalRuleContainer`](/api/public-api/type-aliases/HorizontalRuleContainer)\<`RichTextBuilder`\>
+- [`BlockQuoteContainer`](/api/public-api/type-aliases/BlockQuoteContainer)\<`RichTextBuilder`\>
+- [`CodeBlockContainer`](/api/public-api/type-aliases/CodeBlockContainer)\<`RichTextBuilder`\>
+- [`EmbedContainer`](/api/public-api/type-aliases/EmbedContainer)\<`RichTextBuilder`\>
+- [`ListContainer`](/api/public-api/type-aliases/ListContainer)\<`RichTextBuilder`\>
+- [`TableContainer`](/api/public-api/type-aliases/TableContainer)\<`RichTextBuilder`\>
+- [`ImageContainer`](/api/public-api/type-aliases/ImageContainer)\<`RichTextBuilder`\>
+- [`VideoContainer`](/api/public-api/type-aliases/VideoContainer)\<`RichTextBuilder`\>
+
+## Constructors
+
+<span id="constructor" />
+
+### new RichTextBuilder()
+
+> **new RichTextBuilder**(): `RichTextBuilder`
+
+#### Returns
+
+`RichTextBuilder`
+
+## Methods
+
+
+### animatedImage()
+
+> **animatedImage**(`_opts`): `RichTextBuilder`
+
+Append an Animated Image
+
+#### Parameters
+
+##### \_opts
+
+[`MediaOptions`](/api/public-api/type-aliases/MediaOptions)
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`ImageContainer.animatedImage`
+
+***
+
+
+### blockQuote()
+
+> **blockQuote**(`_opts`, `_cb`): `RichTextBuilder`
+
+Append a Block Quote element
+
+#### Parameters
+
+##### \_opts
+
+[`BlockQuoteOptions`](/api/public-api/type-aliases/BlockQuoteOptions)
+
+##### \_cb
+
+(`blockQuote`) => `void`
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`BlockQuoteContainer.blockQuote`
+
+***
+
+
+### build()
+
+> **build**(): `string`
+
+Serializes the document to a JSON string
+
+#### Returns
+
+`string`
+
+***
+
+
+### codeBlock()
+
+> **codeBlock**(`_opts`, `_cb`): `RichTextBuilder`
+
+Append a Code Block element
+
+#### Parameters
+
+##### \_opts
+
+[`CodeBlockOptions`](/api/public-api/type-aliases/CodeBlockOptions)
+
+##### \_cb
+
+(`codeBlock`) => `void`
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`CodeBlockContainer.codeBlock`
+
+***
+
+
+### embed()
+
+> **embed**(`_opts`): `RichTextBuilder`
+
+Append an embedded iframe
+
+#### Parameters
+
+##### \_opts
+
+[`EmbedOptions`](/api/public-api/type-aliases/EmbedOptions)
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`EmbedContainer.embed`
+
+***
+
+
+### heading()
+
+> **heading**(`_opts`, `_cb`): `RichTextBuilder`
+
+Append a Heading
+
+#### Parameters
+
+##### \_opts
+
+[`HeadingOptions`](/api/public-api/type-aliases/HeadingOptions)
+
+##### \_cb
+
+(`heading`) => `void`
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`HeadingContainer.heading`
+
+***
+
+
+### horizontalRule()
+
+> **horizontalRule**(): `RichTextBuilder`
+
+Append a Horizontal Rule
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`HorizontalRuleContainer.horizontalRule`
+
+***
+
+
+### image()
+
+> **image**(`_opts`): `RichTextBuilder`
+
+Append an Image
+
+#### Parameters
+
+##### \_opts
+
+[`MediaOptions`](/api/public-api/type-aliases/MediaOptions)
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`ImageContainer.image`
+
+***
+
+
+### list()
+
+> **list**(`_opts`, `_cb`): `RichTextBuilder`
+
+Append a List
+
+#### Parameters
+
+##### \_opts
+
+[`ListOptions`](/api/public-api/type-aliases/ListOptions)
+
+##### \_cb
+
+(`list`) => `void`
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`ListContainer.list`
+
+***
+
+
+### paragraph()
+
+> **paragraph**(`_cb`): `RichTextBuilder`
+
+Append a Paragraph
+
+#### Parameters
+
+##### \_cb
+
+(`paragraph`) => `void`
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`ParagraphContainer.paragraph`
+
+***
+
+
+### table()
+
+> **table**(`_cb`): `RichTextBuilder`
+
+Append a Table
+
+#### Parameters
+
+##### \_cb
+
+(`table`) => `void`
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`TableContainer.table`
+
+***
+
+
+### video()
+
+> **video**(`_opts`): `RichTextBuilder`
+
+Append a Video
+
+#### Parameters
+
+##### \_opts
+
+[`VideoOptions`](/api/public-api/type-aliases/VideoOptions)
+
+#### Returns
+
+`RichTextBuilder`
+
+#### Implementation of
+
+`VideoContainer.video`

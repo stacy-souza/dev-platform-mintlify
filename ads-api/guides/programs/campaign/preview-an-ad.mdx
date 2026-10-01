@@ -1,0 +1,68 @@
+---
+title: "Preview an Ad"
+---
+
+We strongly recommend previewing your ad to ensure it renders correctly in placements and as a post.
+
+Ads built with the API can be tested in two ways:
+
+| Method | Description | Best for |
+| --- | --- | --- |
+| `preview_url` **(recommended)** | View your ad in an environment mirroring the ad’s real-life behavior. Only usable while `preview_expiry` is set and valid. | Validating tracking, analytics, ad performance, and reviewing placement. |
+| `post_url` | View your ad as a post. | Moderating comments or reviewing presentation. |
+
+You can retrieve both values with [Get Ad](https://ads-api.reddit.com/docs/v3/api/get-ad).
+
+<Tip>
+
+You can retrieve your ad’s ID with _More Tools > Copy ID_ [on the dashboard](https://ads.reddit.com/dashboard) or [List Ads](https://ads-api.reddit.com/docs/v3/api/list-ads).
+
+</Tip>
+
+## Refresh preview expiration
+
+Use [Update Ad](https://ads-api.reddit.com/docs/v3/api/update-ad) to refresh your preview URL’s expiration date. This is required to generate `preview_url` initially. Provide a datetime within the next 30 days for `preview_expiry`.
+
+If this is the **first time** expiration has been set, open the Ads Manager and [generate its test URL](https://business.reddithelp.com/s/article/Generate-a-Test-Ad-URL-link).
+
+<Note>
+
+After refreshing, it may take up to 20 minutes for your ad to appear on your preview link.
+
+</Note>
+
+<Tabs>
+
+<Tab title="Request Body">
+
+```json
+"data": {    "preview_expiry": "2025-03-27T21:18:39.927000+00:00"}
+```
+
+</Tab>
+
+<Tab title="Response">
+
+```json
+{    "data": {        "id": "2150528811614587268",        ...        "preview_expiry": "2025-11-14T15:32:29.080868+00:00",        "preview_url": "https://www.reddit.com/?ad=kR9wTqLzP5hA3cVnE7sGbUjM8fXyB6dK4aW2oP1iL0uYvJmQzR7tW5sF9eG1cHkO8rB3xNlD4pG6jVbCqI2gA9uYhTfE7lK5zM0wR8oPvB4cQ%3D",        ...    }}
+```
+
+</Tab>
+
+</Tabs>
+
+## Preview on a specific post or community
+
+By default, `preview_url` shows your ad in the conversation placement on the Home feed. To test your ad on a specific post or community, append `?ad={{Your preview ID}}` to the URL.
+
+For example, if `preview_url` is: 
+
+```text
+https://www.reddit.com/?ad=kR9wTqLzP5hA3cVnE7sGbUjM8fXyB6dK4aW2oP1iL0uYvJmQzR7tW5sF9eG1cHkO8rB3xNlD4pG6jVbCqI2gA9uYhTfE7lK5zM0wR8oPvB4cQ%3D
+```
+
+You can use the same preview ID elsewhere:
+
+-   **Preview ID:** `kR9wTqLzP5hA3cVnE7sGbUjM8fXyB6dK4aW2oP1iL0uYvJmQzR7tW5sF9eG1cHkO8rB3xNlD4pG6jVbCqI2gA9uYhTfE7lK5zM0wR8oPvB4cQ%3D`
+-   **Preview on r/ramen:** `https://www.reddit.com/r/ramen/?ad=kR9wTqLzP5hA3cVnE7sGbUjM8fXyB6dK4aW2oP1iL0uYvJmQzR7tW5sF9eG1cHkO8rB3xNlD4pG6jVbCqI2gA9uYhTfE7lK5zM0wR8oPvB4cQ%3D`
+-   **Preview on a post in r/ramen:** `https://www.reddit.com/r/ramen/comments/1nytqai/how_do_ramen_restaurants_make_their_ramen_so/?comments_ad=kR9wTqLzP5hA3cVnE7sGbUjM8fXyB6dK4aW2oP1iL0uYvJmQzR7tW5sF9eG1cHkO8rB3xNlD4pG6jVbCqI2gA9uYhTfE7lK5zM0wR8oPvB4cQ%3D`

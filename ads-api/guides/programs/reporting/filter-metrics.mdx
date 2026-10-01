@@ -1,0 +1,59 @@
+---
+title: "Filter Metrics"
+---
+
+Metrics can be filtered based on entity type and conversion data.
+
+-   **[Entity type](#entity-type):** Limit to specific campaigns, ad groups, or ads. Multiple filters can be provided in a comma-separated list.
+-   **[Conversion data](#conversion-data):** Limit conversion metrics by channel.
+
+## Entity type
+
+Provide the `filter` parameter to limit entities based on a specific value or range:
+
+`{{Entity}} : {{Field}} {{Operation}} {{Value}}`
+
+When multiple are provided, the string will follow the OR operation.
+
+<Tabs>
+
+<Tab title="Entities">
+
+-   `campaign`
+-   `ad_group`
+-   `ad`
+
+</Tab>
+
+<Tab title="Fields">
+
+-   `id`
+-   `effective_status`
+-   `name`
+
+</Tab>
+
+<Tab title="Operations">
+
+-   `==` (exact match)
+-   `=@` (substring match)
+
+</Tab>
+
+</Tabs>
+
+## Conversion data
+
+<Note>
+
+Conversion metrics are based on your ad account's [attribution window](https://business.reddithelp.com/s/article/Web-Attribution-Overview). Update this window with [`FETCH Update Ad Account`](https://ads-api.reddit.com/docs/v3/api/update-ad-account) or in the [Ads Manager](https://ads.reddit.com/events-manager/attribution-settings).
+
+</Note>
+
+Filter conversion metrics by channel using `conversion_metrics`:
+
+```json
+"conversion_metrics": [    {        "conversion_field": "CONVERSION_ADD_TO_CART_CLICKS",        "action_sources": [ "APP" ]    }]
+```
+
+See the [supported metrics](https://business.reddithelp.com/s/article/about-event-metadata#event-metadata-reporting-metricsa-idevent-metadata-reporting-metricsa).

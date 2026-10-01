@@ -1,0 +1,79 @@
+---
+title: "BaseField"
+---
+
+## Type Alias: BaseField\<ValueType\>
+
+> **BaseField**\<`ValueType`\> = `object`
+
+## Type Parameters
+
+### ValueType
+
+`ValueType`
+
+## Properties
+
+
+### defaultValue?
+
+> `optional` **defaultValue**: `ValueType`
+
+The default value of the field
+
+***
+
+
+### disabled?
+
+> `optional` **disabled**: `boolean`
+
+If true the field will be disabled
+
+***
+
+
+### helpText?
+
+> `optional` **helpText**: `string`
+
+An optional help text that will be displayed below the field
+
+***
+
+
+### label
+
+> **label**: `string`
+
+The label of the field. This will be displayed to the user
+
+***
+
+
+### name
+
+> **name**: `string`
+
+The name of the field. This will be used as the key in the `values` object
+when the form is submitted.
+
+***
+
+
+### required?
+
+> `optional` **required**: `boolean`
+
+If true the field will be required and the user will not be able to submit
+the form without filling it in.
+
+***
+
+
+### scope?
+
+> `optional` **scope**: [`SettingScopeType`](/api/public-api/type-aliases/SettingScopeType)
+
+This indicates whether the field (setting) is an app level or install level
+setting. App setting values can be used by any installation.

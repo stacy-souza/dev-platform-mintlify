@@ -1,0 +1,184 @@
+---
+title: "Upcoming Changes to the Reporting API"
+---
+
+We’re making several changes to the Reddit Ads Reporting API to improve its reliability, performance, and consistency at scale.
+
+These changes align the query patterns supported by the Reporting API more closely with those supported in Ads Manager. We’re also documenting replacements for deprecated and legacy metrics and updating how late-arriving conversion data is reflected in reports.
+
+Some changes may require updates to your Reporting API integration. Review the changes, required actions, and timeline below.
+
+## What is changing
+
+### Hourly reports will be limited to a 7-day date range
+
+Reporting requests that use the `HOUR` breakdown will support a maximum date range of 7 days per request. The requested range can be any continuous 7-day period; it doesn't have to be the most recent week.
+
+**Action required:** If your integration requests hourly data for periods longer than 7 days, divide the date range into multiple requests of 7 days or less.
+
+### Certain breakdown combinations will no longer be supported
+
+A reporting request can include no more than 1 of the following breakdowns:
+
+-   `KEYWORD`
+-   `COMMUNITY` or the legacy `SUBREDDIT` value
+-   `INTEREST`
+-   `LANGUAGE`
+
+In addition, those breakdowns can't be combined with any of the following breakdowns in the same request:
+
+-   `DMA` or its `METRO` alias
+-   `REGION`
+-   `GALLERY_ITEM_ID` or its `CAROUSEL_CARD` alias
+-   `OS_TYPE`
+-   `COUNTRY`
+
+**Action required:** Review your reporting requests for these combinations. If your integration requires multiple affected breakdowns, submit separate requests and combine the results in your system as appropriate.
+
+### Deprecated fields
+
+The following Reporting API fields are being deprecated and will be removed from the API documentation.
+
+#### App install fields
+
+The unified app install fields no longer return data.
+
+| Deprecated field |
+| --- |
+| `APP_INSTALL_INSTALL_COUNT` |
+| `APP_INSTALL_INSTALL_ECPA` |
+| `APP_INSTALL_INSTALL_CVR` |
+| `APP_INSTALL_SIGN_UP_COUNT` |
+| `APP_INSTALL_SIGN_UP_ECPA` |
+| `APP_INSTALL_SIGN_UP_CVR` |
+| `APP_INSTALL_APP_LAUNCH_COUNT` |
+| `APP_INSTALL_APP_LAUNCH_ECPA` |
+| `APP_INSTALL_APP_LAUNCH_CVR` |
+| `APP_INSTALL_SEARCH_COUNT` |
+| `APP_INSTALL_SEARCH_ECPA` |
+| `APP_INSTALL_SEARCH_CVR` |
+| `APP_INSTALL_VIEW_CONTENT_COUNT` |
+| `APP_INSTALL_VIEW_CONTENT_ECPA` |
+| `APP_INSTALL_VIEW_CONTENT_CVR` |
+| `APP_INSTALL_ADD_PAYMENT_INFO_COUNT` |
+| `APP_INSTALL_ADD_PAYMENT_INFO_ECPA` |
+| `APP_INSTALL_ADD_PAYMENT_INFO_CVR` |
+| `APP_INSTALL_ADD_TO_CART_COUNT` |
+| `APP_INSTALL_ADD_TO_CART_ECPA` |
+| `APP_INSTALL_ADD_TO_CART_CVR` |
+| `APP_INSTALL_PURCHASE_COUNT` |
+| `APP_INSTALL_PURCHASE_ECPA` |
+| `APP_INSTALL_PURCHASE_CVR` |
+| `APP_INSTALL_COMPLETED_TUTORIAL_COUNT` |
+| `APP_INSTALL_COMPLETED_TUTORIAL_ECPA` |
+| `APP_INSTALL_COMPLETED_TUTORIAL_CVR` |
+| `APP_INSTALL_LEVEL_ACHIEVED_COUNT` |
+| `APP_INSTALL_LEVEL_ACHIEVED_ECPA` |
+| `APP_INSTALL_LEVEL_ACHIEVED_CVR` |
+| `APP_INSTALL_SPEND_CREDITS_COUNT` |
+| `APP_INSTALL_SPEND_CREDITS_ECPA` |
+| `APP_INSTALL_SPEND_CREDITS_CVR` |
+| `APP_INSTALL_REVENUE` |
+| `APP_INSTALL_TOTAL_CONVERSIONS` |
+| `APP_INSTALL_ROAS_DOUBLE` |
+
+#### Custom conversion fields
+
+The slot-based custom conversion fields still return data, but they are on the path to deprecation.
+
+| Deprecated or legacy field |
+| --- |
+| `CONVERSION_CUSTOM_VIEWS` |
+| `CONVERSION_CUSTOM_CLICKS` |
+| `CONVERSION_CUSTOM_ECPA` |
+| `CONVERSION_CUSTOM_TOTAL_VALUE` |
+| `CONVERSION_CUSTOM_TOTAL_ITEMS` |
+| `CONVERSION_CUSTOM_AVG_VALUE` |
+| `CONVERSION_CUSTOM_EVENT_1_VIEWS` through `CONVERSION_CUSTOM_EVENT_20_VIEWS` |
+| `CONVERSION_CUSTOM_EVENT_1_CLICKS` through `CONVERSION_CUSTOM_EVENT_20_CLICKS` |
+| `CONVERSION_CUSTOM_EVENT_1_ECPA` through `CONVERSION_CUSTOM_EVENT_20_ECPA` |
+| `CONVERSION_CUSTOM_EVENT_1_TOTAL_VALUE` through `CONVERSION_CUSTOM_EVENT_20_TOTAL_VALUE` |
+| `CONVERSION_CUSTOM_EVENT_1_TOTAL_ITEMS` through `CONVERSION_CUSTOM_EVENT_20_TOTAL_ITEMS` |
+| `CONVERSION_CUSTOM_EVENT_1_AVG_VALUE` through `CONVERSION_CUSTOM_EVENT_20_AVG_VALUE` |
+| `CONVERSION_CUSTOM_EVENT_1_ROAS` through `CONVERSION_CUSTOM_EVENT_20_ROAS` |
+
+**Action required:** Confirm that your integration doesn't request any of these deprecated or legacy fields. If it does, migrate using the supported alternatives in the next section before the effective date.
+
+### Replacement fields
+
+Use the supported fields and request structure below.
+
+#### App install fields
+
+Use the attribution-source-specific app install fields that match the event and metric in each request.
+
+| Replacement fields |
+| --- |
+| `APP_INSTALL_MMP_INSTALL_COUNT`, `APP_INSTALL_REDDIT_INSTALL_COUNT`, or `APP_INSTALL_SKAN_INSTALL_COUNT` |
+| `APP_INSTALL_MMP_INSTALL_ECPA`, `APP_INSTALL_REDDIT_INSTALL_ECPA`, or `APP_INSTALL_SKAN_INSTALL_ECPA` |
+| `APP_INSTALL_MMP_INSTALL_CVR`, `APP_INSTALL_REDDIT_INSTALL_CVR`, or `APP_INSTALL_SKAN_INSTALL_CVR` |
+| `APP_INSTALL_MMP_SIGN_UP_COUNT`, `APP_INSTALL_REDDIT_SIGN_UP_COUNT`, or `APP_INSTALL_SKAN_SIGN_UP_COUNT` |
+| `APP_INSTALL_MMP_SIGN_UP_ECPA`, `APP_INSTALL_REDDIT_SIGN_UP_ECPA`, or `APP_INSTALL_SKAN_SIGN_UP_ECPA` |
+| `APP_INSTALL_MMP_SIGN_UP_CVR`, `APP_INSTALL_REDDIT_SIGN_UP_CVR`, or `APP_INSTALL_SKAN_SIGN_UP_CVR` |
+| `APP_INSTALL_MMP_APP_LAUNCH_COUNT`, `APP_INSTALL_REDDIT_APP_LAUNCH_COUNT`, or `APP_INSTALL_SKAN_APP_LAUNCH_COUNT` |
+| `APP_INSTALL_MMP_APP_LAUNCH_ECPA`, `APP_INSTALL_REDDIT_APP_LAUNCH_ECPA`, or `APP_INSTALL_SKAN_APP_LAUNCH_ECPA` |
+| `APP_INSTALL_MMP_APP_LAUNCH_CVR`, `APP_INSTALL_REDDIT_APP_LAUNCH_CVR`, or `APP_INSTALL_SKAN_APP_LAUNCH_CVR` |
+| `APP_INSTALL_MMP_SEARCH_COUNT`, `APP_INSTALL_REDDIT_SEARCH_COUNT`, or `APP_INSTALL_SKAN_SEARCH_COUNT` |
+| `APP_INSTALL_MMP_SEARCH_ECPA`, `APP_INSTALL_REDDIT_SEARCH_ECPA`, or `APP_INSTALL_SKAN_SEARCH_ECPA` |
+| `APP_INSTALL_MMP_SEARCH_CVR`, `APP_INSTALL_REDDIT_SEARCH_CVR`, or `APP_INSTALL_SKAN_SEARCH_CVR` |
+| `APP_INSTALL_MMP_VIEW_CONTENT_COUNT`, `APP_INSTALL_REDDIT_VIEW_CONTENT_COUNT`, or `APP_INSTALL_SKAN_VIEW_CONTENT_COUNT` |
+| `APP_INSTALL_MMP_VIEW_CONTENT_ECPA`, `APP_INSTALL_REDDIT_VIEW_CONTENT_ECPA`, or `APP_INSTALL_SKAN_VIEW_CONTENT_ECPA` |
+| `APP_INSTALL_MMP_VIEW_CONTENT_CVR`, `APP_INSTALL_REDDIT_VIEW_CONTENT_CVR`, or `APP_INSTALL_SKAN_VIEW_CONTENT_CVR` |
+| `APP_INSTALL_MMP_ADD_PAYMENT_INFO_COUNT`, `APP_INSTALL_REDDIT_ADD_PAYMENT_INFO_COUNT`, or `APP_INSTALL_SKAN_ADD_PAYMENT_INFO_COUNT` |
+| `APP_INSTALL_MMP_ADD_PAYMENT_INFO_ECPA`, `APP_INSTALL_REDDIT_ADD_PAYMENT_INFO_ECPA`, or `APP_INSTALL_SKAN_ADD_PAYMENT_INFO_ECPA` |
+| `APP_INSTALL_MMP_ADD_PAYMENT_INFO_CVR`, `APP_INSTALL_REDDIT_ADD_PAYMENT_INFO_CVR`, or `APP_INSTALL_SKAN_ADD_PAYMENT_INFO_CVR` |
+| `APP_INSTALL_MMP_ADD_TO_CART_COUNT`, `APP_INSTALL_REDDIT_ADD_TO_CART_COUNT`, or `APP_INSTALL_SKAN_ADD_TO_CART_COUNT` |
+| `APP_INSTALL_MMP_ADD_TO_CART_ECPA`, `APP_INSTALL_REDDIT_ADD_TO_CART_ECPA`, or `APP_INSTALL_SKAN_ADD_TO_CART_ECPA` |
+| `APP_INSTALL_MMP_ADD_TO_CART_CVR`, `APP_INSTALL_REDDIT_ADD_TO_CART_CVR`, or `APP_INSTALL_SKAN_ADD_TO_CART_CVR` |
+| `APP_INSTALL_MMP_PURCHASE_COUNT`, `APP_INSTALL_REDDIT_PURCHASE_COUNT`, or `APP_INSTALL_SKAN_PURCHASE_COUNT` |
+| `APP_INSTALL_MMP_PURCHASE_ECPA`, `APP_INSTALL_REDDIT_PURCHASE_ECPA`, or `APP_INSTALL_SKAN_PURCHASE_ECPA` |
+| `APP_INSTALL_MMP_PURCHASE_CVR`, `APP_INSTALL_REDDIT_PURCHASE_CVR`, or `APP_INSTALL_SKAN_PURCHASE_CVR` |
+| `APP_INSTALL_MMP_COMPLETED_TUTORIAL_COUNT`, `APP_INSTALL_REDDIT_COMPLETED_TUTORIAL_COUNT`, or `APP_INSTALL_SKAN_COMPLETED_TUTORIAL_COUNT` |
+| `APP_INSTALL_MMP_COMPLETED_TUTORIAL_ECPA`, `APP_INSTALL_REDDIT_COMPLETED_TUTORIAL_ECPA`, or `APP_INSTALL_SKAN_COMPLETED_TUTORIAL_ECPA` |
+| `APP_INSTALL_MMP_COMPLETED_TUTORIAL_CVR`, `APP_INSTALL_REDDIT_COMPLETED_TUTORIAL_CVR`, or `APP_INSTALL_SKAN_COMPLETED_TUTORIAL_CVR` |
+| `APP_INSTALL_MMP_LEVEL_ACHIEVED_COUNT`, `APP_INSTALL_REDDIT_LEVEL_ACHIEVED_COUNT`, or `APP_INSTALL_SKAN_LEVEL_ACHIEVED_COUNT` |
+| `APP_INSTALL_MMP_LEVEL_ACHIEVED_ECPA`, `APP_INSTALL_REDDIT_LEVEL_ACHIEVED_ECPA`, or `APP_INSTALL_SKAN_LEVEL_ACHIEVED_ECPA` |
+| `APP_INSTALL_MMP_LEVEL_ACHIEVED_CVR`, `APP_INSTALL_REDDIT_LEVEL_ACHIEVED_CVR`, or `APP_INSTALL_SKAN_LEVEL_ACHIEVED_CVR` |
+| `APP_INSTALL_MMP_SPEND_CREDITS_COUNT`, `APP_INSTALL_REDDIT_SPEND_CREDITS_COUNT`, or `APP_INSTALL_SKAN_SPEND_CREDITS_COUNT` |
+| `APP_INSTALL_MMP_SPEND_CREDITS_ECPA`, `APP_INSTALL_REDDIT_SPEND_CREDITS_ECPA`, or `APP_INSTALL_SKAN_SPEND_CREDITS_ECPA` |
+| `APP_INSTALL_MMP_SPEND_CREDITS_CVR`, `APP_INSTALL_REDDIT_SPEND_CREDITS_CVR`, or `APP_INSTALL_SKAN_SPEND_CREDITS_CVR` |
+| `APP_INSTALL_MMP_REVENUE`, `APP_INSTALL_REDDIT_REVENUE`, or `APP_INSTALL_SKAN_REVENUE` |
+| `APP_INSTALL_MMP_TOTAL_CONVERSIONS`, `APP_INSTALL_REDDIT_TOTAL_CONVERSIONS`, or `APP_INSTALL_SKAN_TOTAL_CONVERSIONS` |
+| `APP_INSTALL_MMP_ROAS`, `APP_INSTALL_REDDIT_ROAS`, or `APP_INSTALL_SKAN_ROAS` |
+
+#### Custom conversion reporting
+
+Use the name-keyed `conversion_custom_events` request structure. `conversion_custom_events` is a top-level request property, not an entry in the `fields` array. For each custom event, add an object with the exact, case-sensitive event `name` and a `metrics` array. Each entry in `metrics` must include one of the supported `metric_type` values below; include `action_sources` where applicable.
+
+| Supported `metric_type` |
+| --- |
+| `VIEWS` |
+| `CLICKS` |
+| `ECPA` |
+| `TOTAL_VALUE` |
+| `TOTAL_ITEMS` |
+| `AVG_VALUE` |
+| `ROAS` |
+
+See [Retrieve a Custom Conversion Event Report](/ads-api/guides/programs/reporting/get-custom-event-report) for the request structure and migration example.
+
+### Late-arriving conversion data will be reflected during daily refreshes
+
+Conversion data received for the current hour will continue to be processed in the current hourly batch. Late-arriving conversion data associated with a prior hour or day will be reflected when historical data is corrected during the daily refresh.
+
+This change applies to reporting in both the API and Ads Manager. It doesn't require a request-format change, but previously retrieved historical totals may be updated after the daily refresh.
+
+**Action recommended:** If your integration reconciles or finalizes conversion totals shortly after events occur, account for the possibility that historical totals may be corrected during a subsequent daily refresh.
+
+## Effective date
+
+These changes take effect on **December 8, 2026**. Review your integration, determine whether updates are required, and complete and deploy any necessary changes before this date.
+
+Beginning on the effective date, requests that don't meet the new hourly date-range or breakdown-combination requirements will be rejected. Test and deploy your updates in advance to avoid reporting interruptions.
+
+For questions or support related to these changes, contact the [Ads API Support Team](https://support.reddithelp.com/hc/en-us/requests/new?ticket_form_id=50388520825236).

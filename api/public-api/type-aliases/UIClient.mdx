@@ -1,0 +1,202 @@
+---
+title: "UIClient"
+---
+
+## Type Alias: UIClient
+
+> **UIClient** = `object`
+
+The UI client lets your app interact with the Reddit frontend.
+This client will only be available for capabilities that have
+a frontend component, such as within the Custom Post component's
+event handlers, a Form's `onSubmit` handler, and Menu items.
+
+## Methods
+
+
+### navigateTo()
+
+#### Call Signature
+
+> **navigateTo**(`url`): `void`
+
+Navigate to a URL
+
+##### Parameters
+
+###### url
+
+`string`
+
+##### Returns
+
+`void`
+
+#### Call Signature
+
+> **navigateTo**(`subreddit`): `void`
+
+##### Parameters
+
+###### subreddit
+
+`Pick`\<[`Subreddit`](/api/public-api/classes/Subreddit), `"permalink"` \| `"url"`\>
+
+##### Returns
+
+`void`
+
+#### Call Signature
+
+> **navigateTo**(`post`): `void`
+
+##### Parameters
+
+###### post
+
+`Pick`\<[`Post`](/api/public-api/classes/Post), `"permalink"` \| `"url"`\>
+
+##### Returns
+
+`void`
+
+#### Call Signature
+
+> **navigateTo**(`comment`): `void`
+
+##### Parameters
+
+###### comment
+
+`Pick`\<[`Comment`](/api/public-api/classes/Comment), `"permalink"` \| `"url"`\>
+
+##### Returns
+
+`void`
+
+#### Call Signature
+
+> **navigateTo**(`user`): `void`
+
+##### Parameters
+
+###### user
+
+`Pick`\<[`User`](/api/public-api/classes/User), `"permalink"` \| `"url"`\>
+
+##### Returns
+
+`void`
+
+#### Call Signature
+
+> **navigateTo**(`urlOrThing`): `void`
+
+##### Parameters
+
+###### urlOrThing
+
+`string` | &#123; `permalink`: `string`; `url`: `string`; &#125;
+
+##### Returns
+
+`void`
+
+***
+
+
+### showForm()
+
+> **showForm**(`formKey`, `data`?): `void`
+
+Open a form in a modal
+
+#### Parameters
+
+##### formKey
+
+[`FormKey`](/api/public-api/type-aliases/FormKey)
+
+##### data?
+
+[`JSONObject`](/api/public-api/type-aliases/JSONObject)
+
+#### Returns
+
+`void`
+
+***
+
+
+### showFormInternal()
+
+> **showFormInternal**(`formKey`, `data`?, `formDataOverride`?): `void`
+
+Internal use only.
+
+#### Parameters
+
+##### formKey
+
+[`FormKey`](/api/public-api/type-aliases/FormKey)
+
+##### data?
+
+[`JSONObject`](/api/public-api/type-aliases/JSONObject)
+
+##### formDataOverride?
+
+[`Form`](/api/public-api/type-aliases/Form)
+
+#### Returns
+
+`void`
+
+***
+
+
+### showToast()
+
+#### Call Signature
+
+> **showToast**(`text`): `void`
+
+Show a message in a toast.
+
+##### Parameters
+
+###### text
+
+`string`
+
+##### Returns
+
+`void`
+
+#### Call Signature
+
+> **showToast**(`toast`): `void`
+
+##### Parameters
+
+###### toast
+
+[`Toast`](/api/public-api/type-aliases/Toast)
+
+##### Returns
+
+`void`
+
+#### Call Signature
+
+> **showToast**(`textOrToast`): `void`
+
+##### Parameters
+
+###### textOrToast
+
+`string` | [`Toast`](/api/public-api/type-aliases/Toast)
+
+##### Returns
+
+`void`

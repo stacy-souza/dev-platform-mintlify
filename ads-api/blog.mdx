@@ -1,0 +1,331 @@
+---
+title: "Blog"
+rss: true
+---
+
+{/* source: /blog/08-2026-monthly-update */}
+<Update label="September 16 2026" description="August 2026 Reddit Ads API Updates">
+
+Hi Developer,
+
+Please read the Reddit Ads API updates for August 2026.
+
+-   [New launches](/ads-api/blog#new-launches)
+    -   [Retrieve recognized third-party tracker domains](/ads-api/blog#retrieve-recognized-third-party-tracker-domains)
+    -   [Create and delete retargeting custom audiences](/ads-api/blog#create-and-delete-retargeting-custom-audiences)
+    -   [System Users now in Open Beta](/ads-api/blog#system-users-now-in-open-beta)
+    -   [Max API now in Open Beta](/ads-api/blog#max-api-now-in-open-beta)
+-   [Product Update](/ads-api/blog#product-update)
+    -   [More predictable catalog import reporting](/ads-api/blog#more-predictable-catalog-import-reporting)
+
+## New launches
+
+### Retrieve recognized third-party tracker domains
+
+Reddit Ads API now supports [`Get Third Party Trackers`](https://ads-api.reddit.com/docs/v3/api/get-third-party-trackers), a new operation that lets developers retrieve domains recognized for click and impression tracking before creating or updating an ad.
+
+This allows integrations to validate tracking domains earlier in the workflow, helping reduce errors and create more reliable ad creation and update experiences in partner platforms.
+
+### Create and delete retargeting custom audiences
+
+Developers can now create and delete **website retargeting and engagement retargeting custom audiences** through the [Custom Audiences API](https://ads-api.reddit.com/docs/v3/api/custom-audiences).
+
+Website retargeting audiences use the `PIXEL_RETARGETING` type in API requests and responses. With this update, developers can manage more retargeting audience workflows programmatically, including deleting audiences through the [`Delete Custom Audience`](https://ads-api.reddit.com/docs/v3/api/delete-custom-audience) operation.
+
+### System Users now in Open Beta
+
+System Users are now available in Open Beta to all Ads API developers, giving businesses a new way to authorize and manage API integrations without relying on an individual Reddit user account.
+
+When an advertiser authorizes an integration using a System User, authorization is owned by the business rather than tied to an individual employee. This can help create more durable integrations by reducing dependencies on individual user accounts.
+
+System Users are designed specifically for businesses building or using Ads API integrations. No action is needed unless you are developing or managing an Ads API integration. More information can be found [here](/ads-api/guides/programs/business/system-users).
+
+### Max API now in Open Beta
+
+Max API is now available in Open Beta to all Ads API developers, enabling partners to build support for creating and managing Reddit Max campaigns through their integrations. See here for Max campaign set up [guide](/ads-api/guides/programs/campaign/max-campaign-setup).
+
+## Product Update
+
+### More predictable catalog import reporting
+
+[`Get Catalog Import Report`](https://ads-api.reddit.com/docs/v3/api/get-catalog-import-report) now returns `204 No Content` when feed contents are unchanged.
+
+This provides integrations with a clear signal that there is no new report content to process, making it easier to handle unchanged catalog imports efficiently.
+
+Thank you for your business.
+
+Reddit Ads API
+
+**Tags:**
+
+-   [monthly updates](https://ads-api.reddit.com/docs/blog/tags/monthly-updates)
+-   [new launch](https://ads-api.reddit.com/docs/blog/tags/new-launch)
+-   [product update](https://ads-api.reddit.com/docs/blog/tags/product-update)
+-   [third-party trackers](https://ads-api.reddit.com/docs/blog/tags/third-party-trackers)
+-   [custom audiences](https://ads-api.reddit.com/docs/blog/tags/custom-audiences)
+-   [system users](https://ads-api.reddit.com/docs/blog/tags/system-users)
+-   [max api](https://ads-api.reddit.com/docs/blog/tags/max-api)
+-   [product catalogs](https://ads-api.reddit.com/docs/blog/tags/product-catalogs)
+
+
+</Update>
+
+{/* source: /blog/07-2026-monthly-update */}
+<Update label="July 31 2026" description="July 2026 Reddit Ads API Updates">
+
+Hi Developer,
+
+Please read the Reddit Ads API updates for July 2026.
+
+-   [Forecasting](/ads-api/blog#forecasting)
+-   [Data Deletion](/ads-api/blog#data-deletion)
+-   [Ad Account Management](/ads-api/blog#ad-account-management)
+
+## \[New Launch\] Forecasting
+
+On July 30, 2026, Reddit Ads API launched the [`Estimate Audience and Delivery`](https://ads-api.reddit.com/docs/v3/api/estimate-audience-and-delivery) endpoint. Requests require the `adsread` scope.
+
+This gives developers access to forecasting capabilities directly in their integrations, making it easier to support planning workflows and helping advertisers estimate reach and delivery before launching campaigns. It is also important to set expectations clearly: the estimates tool provides directional forecasts, not guarantees of delivery. Audience size reflects the estimated number of redditors eligible to see an ad based on targeting and placement, not actual reach and not a proxy for daily or monthly active users. Estimated impressions and clicks are also modeled values that assume full budget delivery. See [here](https://business.reddithelp.com/s/article/Overview-Reddit-Ads-Audience-and-Targeting#audience-estimates) for more information about this product.
+
+## \[New Launch\] Data Deletion
+
+Reddit released the Data Deletion API on July 14, 2026, including [`Create Data Deletion Job`](https://ads-api.reddit.com/docs/v3/api/create-data-deletion-job) and [`Get Data Deletion Job Status`](https://ads-api.reddit.com/docs/v3/api/get-data-deletion-job-status).
+
+This gives developers a more direct way to support deletion workflows through the API, which can help advertisers and partners manage privacy-related operations more efficiently and with better visibility into job status.
+
+## \[Product Update\] Ad Account Management
+
+On July 20, 2026, Reddit added new suspension reasons to Ad Accounts. The `suspension_reason` field now covers broader account-review outcomes such as `ADVERTISING_POLICY`, `BEHAVIOR`, `FRAUD`, `OTHER`, and `KYC_CHECK_FAILED`, along with more specific fraud-related reasons including `FRAUD_MALWARE`, `FRAUD_FINANCIAL_SCAMS`, `FRAUD_PHISHING`, `FRAUD_IMPERSONATION`, `FRAUD_SUSPENSION_EVASION`, `FRAUD_DISPUTE`, and `FRAUD_DECEPTION`.
+
+This gives developers a more granular, machine-readable explanation for why an ad account was suspended. In practice, that can make it easier to power clearer UI messaging, route cases to the right support or compliance workflows, distinguish verification issues from policy or fraud enforcement, and help advertisers understand the nature of an account restriction with less manual investigation.
+
+Thank you for your business.
+
+Reddit Ads API
+
+**Tags:**
+
+-   [monthly updates](https://ads-api.reddit.com/docs/blog/tags/monthly-updates)
+-   [new launch](https://ads-api.reddit.com/docs/blog/tags/new-launch)
+-   [product update](https://ads-api.reddit.com/docs/blog/tags/product-update)
+-   [forecasting](https://ads-api.reddit.com/docs/blog/tags/forecasting)
+-   [data deletion](https://ads-api.reddit.com/docs/blog/tags/data-deletion)
+-   [ad account management](https://ads-api.reddit.com/docs/blog/tags/ad-account-management)
+
+
+</Update>
+
+{/* source: /blog/06-2026-monthly-update */}
+<Update label="June 30 2026" description="June 2026 Reddit Ads API Updates">
+
+Hi Developer,
+
+Please read the Reddit Ads API updates for June 2026.
+
+-   [Campaign Management](/ads-api/blog#campaign-management)
+-   [Creative Management](/ads-api/blog#creative-management)
+-   [Targeting](/ads-api/blog#targeting)
+-   [Audience Management](/ads-api/blog#audience-management)
+-   [Post Management](/ads-api/blog#post-management)
+-   [Catalog Management](/ads-api/blog#catalog-management)
+-   [Conversion Signals](/ads-api/blog#conversion-signals)
+-   [Reporting](/ads-api/blog#reporting)
+
+## Campaign Management
+
+### Filter ads by configured and effective status
+
+[`List Ads`](https://ads-api.reddit.com/docs/v3/api/list-ads) now supports `configured_status` and `effective_status` query parameters for filtering ads. Developers can use these filters to more easily narrow ad results inside their own tools, which makes it faster for advertisers to review delivery state, troubleshoot campaign setup, and take action on the right ads without extra manual sorting.
+
+## Creative Management
+
+### Access creative assets via API
+
+[`List Creative Assets`](https://ads-api.reddit.com/docs/v3/api/list-creative-assets) and [`Get Creative Asset`](https://ads-api.reddit.com/docs/v3/api/get-creative-asset) are now available. This gives developers direct access to creative asset data, making it easier to build creative libraries, sync asset visibility into partner tools, and support more efficient advertiser workflows around asset review and reuse.
+
+## Targeting
+
+### Enable language targeting for ad groups
+
+Language targeting is now available for third-party API users, and supported languages can be retrieved with [`List Languages`](https://ads-api.reddit.com/docs/v3/api/list-languages). Developers can now build language targeting directly into campaign setup flows, helping advertisers reach more relevant audiences and manage multilingual campaign strategy more efficiently through partner tools.
+
+## Audience Management
+
+### Return business IDs on custom audiences
+
+Custom audience responses now include the read-only `business_id` field across [`Get Custom Audience`](https://ads-api.reddit.com/docs/v3/api/get-custom-audience), [`List User Custom Audiences`](https://ads-api.reddit.com/docs/v3/api/list-user-custom-audiences), and [`Create Custom Audience`](https://ads-api.reddit.com/docs/v3/api/create-custom-audience). This gives developers clearer business-level context for audience objects, which can simplify account mapping and audience management workflows for advertisers operating across multiple businesses or teams.
+
+## Post Management
+
+### Support user-generated content controls in structured posts
+
+Structured Posts now expose user-generated content enhancement settings on text, image, and video ad creatives in [`Get Structured Post`](https://ads-api.reddit.com/docs/v3/api/get-structured-post) responses and [`Create Structured Post Creation Job`](https://ads-api.reddit.com/docs/v3/api/create-structured-post-creation-job) requests. Developers can use `enhancements.user_generated_content.enroll_status` to indicate whether user-generated content may appear in an ad, making it easier to support newer creative controls in their integrations and helping advertisers adopt richer creative formats with more confidence.
+
+### View structured post creation timestamps
+
+The Structured Post schema now includes a read-only `created_at` field in [`List Structured Posts`](https://ads-api.reddit.com/docs/v3/api/list-structured-posts), [`Get Structured Post`](https://ads-api.reddit.com/docs/v3/api/get-structured-post), and [`Update Structured Post`](https://ads-api.reddit.com/docs/v3/api/update-structured-post) responses. This gives developers more visibility into post creation timing, which can improve content management workflows, troubleshooting, and internal auditability for advertisers managing larger creative libraries.
+
+## Catalog Management
+
+### Track invalid products across catalogs and product sets
+
+Product Catalog and Product Set responses now include the read-only `invalid_products_count` field in the summary, such as [`List Product Catalogs`](https://ads-api.reddit.com/docs/v3/api/list-product-catalogs), showing how many products have critical issues and were not submitted for review. This gives developers a clearer way to surface catalog health in their tools and helps advertisers identify product feed problems faster so they can resolve issues before they affect catalog-based campaigns.
+
+## Conversion Signals
+
+### Expose enhanced signal collection configuration on Pixels
+
+The Pixel schema now includes `enhanced_signal_collection_config` in [`List Pixels By Ad Account`](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-ad-account) and [`List Pixels By Business`](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-business) responses. This gives developers more visibility into pixel configuration details and can help advertisers better understand how signal collection is set up across accounts as they manage measurement and optimization workflows.
+
+## Reporting
+
+### Expand custom conversion event reporting
+
+The [Reporting API](https://ads-api.reddit.com/docs/v3/api/get-a-report) now supports `conversion_custom_events` in [`Get A Report`](https://ads-api.reddit.com/docs/v3/api/get-a-report) requests and responses, so developers can request custom conversion events by name with selected metrics and action sources. Reddit also added the `LANGUAGE` breakdown, giving developers more flexibility in how they structure reporting workflows and helping advertisers get more granular performance insights across markets and multilingual campaigns.
+
+Thank you for your business.
+
+Reddit Ads API
+
+**Tags:**
+
+-   [monthly updates](https://ads-api.reddit.com/docs/blog/tags/monthly-updates)
+-   [creative assets](https://ads-api.reddit.com/docs/blog/tags/creative-assets)
+-   [targeting](https://ads-api.reddit.com/docs/blog/tags/targeting)
+-   [custom audiences](https://ads-api.reddit.com/docs/blog/tags/custom-audiences)
+-   [structured posts](https://ads-api.reddit.com/docs/blog/tags/structured-posts)
+-   [reporting](https://ads-api.reddit.com/docs/blog/tags/reporting)
+-   [product catalogs](https://ads-api.reddit.com/docs/blog/tags/product-catalogs)
+-   [conversion signals](https://ads-api.reddit.com/docs/blog/tags/conversion-signals)
+
+
+</Update>
+
+{/* source: /blog/05-2026-monthly-update */}
+<Update label="May 29 2026" description="May 2026 Reddit Ads API Updates">
+
+Hi Developer,
+
+Please read the Reddit Ads API updates for May 2026.
+
+-   [Campaign Management](/ads-api/blog#campaign-management)
+-   [Post Management](/ads-api/blog#post-management)
+-   [Reporting](/ads-api/blog#reporting)
+-   [Catalog Management](/ads-api/blog#catalog-management)
+
+## Campaign Management
+
+### Update Click URL query parameters on existing ads
+
+The `Update Ad` endpoint now accepts `click_url_query_parameters` in the request body, bringing update behavior in line with ad creation. Developers can now modify tracking parameters on existing ads without recreating them, making it easier for advertisers to adjust URL tagging and measurement parameters on live ads to support cleaner attribution and more flexible campaign optimization.
+
+➜ [Update Ad](https://ads-api.reddit.com/docs/v3/api/update-ad)
+
+## Post Management
+
+### Move to Structured Posts for more flexible post management
+
+We’ve marked the Post API as legacy and recommend moving to the new Structured Posts API for post management going forward. Structured Posts gives developers a more scalable, flexible framework for supporting image, text, video, and carousel creatives through an asynchronous creation flow, making it easier to build richer post workflows and unlock newer capabilities like Disclaimer Text for eligible clients.
+
+➜ [Structured Posts](https://ads-api.reddit.com/docs/v3/api/structured-posts)
+
+## Reporting
+
+### Break down reporting by asset ID
+
+We’ve added the `ASSET_ID` breakdown to the Reporting API, giving developers a new way to segment report output alongside existing fields and breakdowns. This makes it easier to build more granular asset-level reporting in their own tools, helping advertisers understand which creative assets are driving results and optimize creative strategy with greater precision.
+
+➜ [Get A Report](https://ads-api.reddit.com/docs/v3/api/get-a-report)
+
+## Catalog Management
+
+### Track invalid products in catalog imports
+
+The `List Catalog Imports` response now includes a read-only `invalid_products_count` field in the summary, showing how many products were rejected as invalid and not imported. This gives developers a clearer way to monitor import health and surface feed-quality diagnostics in their catalog workflows, so they can help advertisers identify rejected products faster, troubleshoot import issues more efficiently, and reduce manual investigation.
+
+➜ [List Catalog Imports](https://ads-api.reddit.com/docs/v3/api/list-catalog-imports)
+
+Please reach out with any questions or concerns.
+
+Reddit Ads API
+
+**Tags:**
+
+-   [monthly updates](https://ads-api.reddit.com/docs/blog/tags/monthly-updates)
+-   [ads](https://ads-api.reddit.com/docs/blog/tags/ads)
+-   [structured posts](https://ads-api.reddit.com/docs/blog/tags/structured-posts)
+-   [posts](https://ads-api.reddit.com/docs/blog/tags/posts)
+-   [reporting](https://ads-api.reddit.com/docs/blog/tags/reporting)
+-   [product catalogs](https://ads-api.reddit.com/docs/blog/tags/product-catalogs)
+
+
+</Update>
+
+{/* source: /blog/system-users-open-beta */}
+<Update label="September 3 2026" description="Introducing System Users for Ads API Integrations">
+
+System Users are now available in **Open Beta** for the broader developer community.
+
+If you build API integrations for advertisers, you can now enable System Users as an authorization option in your OAuth flow by adopting the new OAuth URL. With a System User, authorization is associated with the advertiser’s Business rather than tied to an individual Reddit account—providing a more durable option when personnel changes, SSO, MFA, or other requirements make user-based access difficult to maintain.
+
+Regular user-based authorization remains available, so you can support both options depending on your customers’ needs.
+
+## What are System Users?
+
+A System User is a **business-owned, non-human Reddit user designed specifically for API authorization**. It represents the relationship between one developer application and one Business, rather than between an integration and an individual person.
+
+This can be particularly useful if your integration supports:
+
+-   **Multiple or complex advertiser relationships**, such as technology companies or agencies supporting many advertisers.
+-   **Advertisers with strict security requirements**, where SSO, MFA, or other policies can result in repeated reauthorization.
+-   **Advertisers with frequent personnel changes**, where an integration should not depend on the continued access of the person who originally authorized it.
+
+### An example: A reporting integration across multiple advertisers
+
+**The Situation**: Imagine you’re a developer at an agency building a reporting platform for several advertisers. Each customer authorizes your application to access their Reddit Ad Accounts and retrieve campaign data.
+
+**The Problem**: With regular user-based authorization, that access is tied to the Reddit account of the person who completes the OAuth flow. If that person leaves, changes roles, loses access, or needs to reauthenticate because of SSO or MFA requirements, your integration may stop working—even though nothing about the integration itself has changed.
+
+**The Solution**: With a System User, authorization is instead associated with the advertiser’s Business and your developer application. Your integration no longer depends on one individual remaining available and authorized, while the advertiser’s Business Admin continues to control what your application can access.
+
+## What changes for your advertisers?
+
+Once you adopt the new OAuth URL in your authorization process, your advertisers will see an additional option when authorizing your application: they can continue with regular user-based authorization or choose a System User.
+
+If they choose a System User, their Business Admin completes the setup and controls which Business and Ad Account permissions your application receives. After authorization, businesses can view and manage authorized System Users in **Business Manager → Users → System Users**.
+
+For your customers, this means more reliable API integrations with fewer disruptions when employees change roles or security policies require reauthentication—all while keeping access and permissions under their Business Admin’s control.
+
+## Available now in Open Beta
+
+System Users are available now in **Open Beta**. You can begin adding them to your OAuth flow and offering business-owned authorization to customers where it fits their needs.
+
+During Open Beta, we’ll continue improving the experience based on developer and advertiser feedback. For more information, please see the [System Users documentation](/ads-api/guides/programs/business/system-users).
+
+**Tags:**
+
+-   [new launch](https://ads-api.reddit.com/docs/blog/tags/new-launch)
+-   [oauth](https://ads-api.reddit.com/docs/blog/tags/oauth)
+-   [system users](https://ads-api.reddit.com/docs/blog/tags/system-users)
+-   [business management](https://ads-api.reddit.com/docs/blog/tags/business-management)
+
+
+</Update>
+
+{/* source: /blog/conversion-pixel-id-requirement-notice */}
+<Update label="April 13 2026" description="Conversion Pixel ID Requirement Notice">
+
+Starting July 13th, 2026, all ad groups and campaign budget optimization (CBO) campaigns require a `conversion_pixel_id` to be set.
+
+Update your campaigns and ad groups to prevent delivery issues. Find your Pixels with [`List Pixels by Ad Account`](https://ads-api.reddit.com/docs/v3/api/list-pixels-by-ad-account).
+
+Contact [adsapi-partner-support@reddit.com](mailto:adsapi-partner-support@reddit.com) for support or questions.
+
+**Tags:**
+
+-   [notice](https://ads-api.reddit.com/docs/blog/tags/notice)
+-   [campaigns](https://ads-api.reddit.com/docs/blog/tags/campaigns)
+-   [ad groups](https://ads-api.reddit.com/docs/blog/tags/ad-groups)
+
+
+</Update>

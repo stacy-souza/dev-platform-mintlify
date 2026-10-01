@@ -1,0 +1,164 @@
+---
+title: "Manage Customer Lists"
+---
+
+Custom Audiences allow you to reach a specific audience on Reddit based on data unique to your business, product, or service. It matches data using emails and mobile advertiser IDs. This helps you retarget future ads and continue the conversation with redditors who've engaged with your ads over the past 6 months.
+
+## Before you start
+
+-   [Set up a Reddit Ads account](https://business.reddithelp.com/s/article/Create-and-manage-your-Reddit-Ads-account).
+-   Find your ads account ID in [Accounts](https://ads.reddit.com/accounts).
+-   Access a terminal application or Postman to send requests to the API.
+
+## Create a custom audience
+
+Set up a custom audience using `Create Custom Audience`.
+
+After sending the request, you'll see the high and low estimates for the number of redditors in your audience. Your audience will be valid and usable if `size_range_upper >= 1000`. You can increase the audience size using direct upload or [`Update Custom Audience Users`](#update-users-in-your-custom-audience).
+
+The audience ID will be listed in `id`. Save this value—you'll need this to manage customers in your audience, use this audience in an ad group, or delete your audience. If you lose this value, you can call `List User Custom Audiences` to retrieve it again.
+
+<Tabs>
+
+<Tab title="Example: Request body">
+
+<Note>
+
+For more details on setting these values, see [`Create Custom Audience`](https://ads-api.reddit.com/docs/v3/api/create-custom-audience).
+
+</Note>
+
+### Create custom audience
+
+```
+curl --request POST \
+--url /api/v3/ad_account//customer_lists \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data '{
+  "data": {
+    "name": "",
+    "type": "CUSTOMER_LIST"
+  }
+}'
+```
+
+</Tab>
+
+<Tab title="Example: Response">
+
+```json
+{  "data": {    "id": "ca.129482487242828",    "ad_account_id": "a2_abcdefg",    "created_at": "2023-03-27T21:18:39Z",        "modified_at": "2023-03-27T21:18:39Z",    "name": "My Customer List 1",    "size_range_lower": 140000,    "size_range_upper": 160000,    "status": "VALID",    "type": "CUSTOMER_LIST"  }}
+```
+
+</Tab>
+
+</Tabs>
+
+## Update users in your custom audience
+
+Manually add or remove users in a custom audience using [`Update Custom Audience Users`](https://ads-api.reddit.com/docs/v3/api/update-custom-audience-users). This requires sending each user's [SHA-256 hashed email, mobile advertising ID (MAID)](https://business.reddithelp.com/s/article/advanced-matching-for-developers), or both. You can manage up to 2,500 users per request. After sending the request, you'll receive an empty response (“`{}`”) if your request is valid. Audience size updates typically take up to 4 hours after the request is sent. You can check the size of your audience by calling [`Get Custom Audience`](https://ads-api.reddit.com/docs/v3/api/get-custom-audience).
+
+<Accordion title="Request body">
+
+<Note>
+
+For more details on setting these values, see [`Update Custom Audience Users`](https://ads-api.reddit.com/docs/v3/api/update-custom-audience-users).
+
+</Note>
+
+<Note>
+
+Each row in `user_data` must match `column_order` (for example `EMAIL_SHA256` then `MAID_SHA256`). Use valid SHA-256 hashes per [advanced matching](https://business.reddithelp.com/s/article/advanced-matching-for-developers).
+
+</Note>
+
+### Update custom audience users
+
+Edit **action\_type** and **column\_order** in the preview; build **user\_data** below (up to 10 rows here; the API accepts up to 2,500 per request).
+
+```
+{
+  "data": {
+    "action_type": "ADD",
+    "column_order": [
+      "EMAIL_SHA256",
+      "MAID_SHA256"
+    ],
+    "user_data": [
+      [
+        "f3f3769fbbf5c2c0de8d6a07b9c31a1b2c3d4e5f678901234567890abcdef12",
+        "a1b2c3d4e5f678901234567890abcdef1234567890abcdef1234567890abcd"
+      ]
+    ]
+
+  }
+}
+```
+
+-   User 1
+
+    EMAIL\_SHA256MAID\_SHA256
+
+</Accordion>
+
+## Troubleshooting
+
+| Error | Solution |
+| --- | --- |
+| `400 - Type does not match support Audience Types` | Set `”type”` to `“CUSTOMER_LIST”` |
+| `401 - Unauthorized` | See [401 errors - Unauthorized](#401---unauthorized). |
+| `403 - Blocked` | Check that your user agent affects requests, then set your request's user agent header (`user-agent`) to a unique and descriptive string. |
+| `404 - Not found` | Check your ad account ID in the API request. |
+| `429 - Too many requests` | Set your request's user agent header (`user-agent`) to a unique and descriptive string or wait a few minutes before trying again. |
+| `500 - Internal server error` | An unspecified error has occurred. Try again later or [contact us](https://business.reddithelp.com/s/contactsupport) if this issue persists. |
+| `503 - Service unavailable` | The server is overloaded or down for maintenance. Try again later. |
+
+### 401 - Unauthorized
+
+| Description | Solution |
+| --- | --- |
+| The client ID or secret key entered is invalid. | Verify and correct the client ID and secret key, then try again. |
+| User is trying to authorize with the wrong username. | Log out and log in to the correct account. |
+| User hasn't been authenticated, which can happen if you try to use a Reddit application without authentication. | [Create and authorize a Reddit Application](/ads-api/guides/quick-start/authenticate). |
+
+## Recommendations
+
+<Accordion title="Manage audience freshness">
+
+-   **Refresh your audience regularly.** Customer lists expire one year after their last update. Regular refreshes maintain recency and improve match performance. Update your audience at any time with [`Update Custom Audience Users`](https://ads-api.reddit.com/docs/v3/api/update-custom-audience-users).
+
+</Accordion>
+
+<Accordion title="Improve match quality">
+
+-   **Send MAIDs and HEMs in the same row when possible.** Multiple identifiers for the same user improve match probability.
+-   Follow our guidance when prehashing [email addresses](https://business.reddithelp.com/s/article/advanced-matching-for-developers#hashing-email-addresses) and [MAIDs](https://business.reddithelp.com/s/article/advanced-matching-for-developers#hashing-maids).
+-   **Monitor data hygiene and completeness.** Match rate depends on data quality and segment composition.
+
+</Accordion>
+
+<Accordion title="Audience validity and processing">
+
+-   **Plan for at least 1,000 matched users.** An early `INVALID` status doesn't necessarily indicate an upload failure. An audience is only considered valid after processing is complete and at least 1,000 users are matched.
+
+</Accordion>
+
+<Accordion title="Handle rate limits safely">
+
+-   **Custom audience ingestion is rate limited.** This applies to [`Create Custom Audience`](https://ads-api.reddit.com/docs/v3/api/create-custom-audience), [`Delete Custom Audience`](https://ads-api.reddit.com/docs/v3/api/delete-custom-audience), and [`Update Custom Audience Users`](https://ads-api.reddit.com/docs/v3/api/update-custom-audience-users). Split large changes into smaller groups to reduce the chance of hitting limits. Contact our [Support Team](mailto:adsapi-partner-support@reddit.com) to request a higher app rate limit. [See our current limits](/ads-api/guides/quick-start/rate-limiting#custom-audiences-ingestion).
+
+</Accordion>
+
+<Accordion title="Delivery and deletion impacts">
+
+-   **Avoid changes that reduce an audience to zero matched users.** If a campaign targets only that audience, delivery may be interrupted.
+-   **Deleting an audience prevents it from being used in new ad groups.** Existing ad groups already using it may continue serving targeted users. Coordinate with your team before deletion.
+
+</Accordion>
+
+## Things to know
+
+-   **Processing may take up to 36 hours.** This time varies depending on list size and system load.
+-   **Audience size may differ when created with the Ads API.** Audiences created with the Ads API may be smaller than audiences created from the same list in the Ads Manager. An upcoming fix will make sizes between the systems more aligned.
+-   IDs can be added to and removed from existing audiences.

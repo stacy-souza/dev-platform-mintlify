@@ -1,0 +1,77 @@
+---
+title: "MenuItem"
+---
+
+## Type Alias: MenuItem
+
+> **MenuItem** = `object`
+
+## Properties
+
+
+### description?
+
+> `optional` **description**: `string`
+
+An optional description for the menu item
+
+***
+
+
+### forUserType?
+
+> `optional` **forUserType**: [`MenuItemUserType`](/api/public-api/type-aliases/MenuItemUserType) \| [`MenuItemUserType`](/api/public-api/type-aliases/MenuItemUserType)[]
+
+The user type(s) that the menu item should be displayed for
+
+***
+
+
+### label
+
+> **label**: `string`
+
+The label of the menu item
+
+***
+
+
+### location
+
+> **location**: [`MenuItemLocation`](/api/public-api/type-aliases/MenuItemLocation) \| [`MenuItemLocation`](/api/public-api/type-aliases/MenuItemLocation)[]
+
+The location(s) where the menu item should be displayed
+
+***
+
+
+### onPress()
+
+> **onPress**: (`event`, `context`) => `void` \| `Promise`\<`void`\>
+
+A function that is called when the menu item is pressed
+
+#### Parameters
+
+##### event
+
+[`MenuItemOnPressEvent`](/api/public-api/type-aliases/MenuItemOnPressEvent)
+
+##### context
+
+[`Context`](/api/public-api/@devvit/namespaces/Devvit/type-aliases/Context)
+
+#### Returns
+
+`void` \| `Promise`\<`void`\>
+
+***
+
+
+### postFilter?
+
+> `optional` **postFilter**: [`MenuItemPostFilter`](/api/public-api/type-aliases/MenuItemPostFilter)
+
+**`Experimental`**
+
+The filter that applies to post menu items and has no effect on non-post actions

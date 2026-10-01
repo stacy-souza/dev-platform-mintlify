@@ -1,0 +1,41 @@
+---
+title: "CommentSubmissionOptions"
+---
+
+## Type Alias: CommentSubmissionOptions
+
+> **CommentSubmissionOptions** = &#123; `runAs`: `"USER"` \| `"APP"`; `text`: `string`; &#125; \| &#123; `richtext`: `object` \| [`RichTextBuilder`](/api/public-api/classes/RichTextBuilder); `runAs`: `"USER"` \| `"APP"`; &#125;
+
+Options for submitting a comment body.
+
+## Type declaration
+
+&#123; `runAs`: `"USER"` \| `"APP"`; `text`: `string`; &#125;
+
+### runAs?
+
+> `optional` **runAs**: `"USER"` \| `"APP"`
+
+The account used to create the comment. Defaults to the app account.
+This option is ignored by [Comment.edit](/api/public-api/classes/Comment#edit).
+
+### text
+
+> **text**: `string`
+
+The comment body in Markdown.
+
+&#123; `richtext`: `object` \| [`RichTextBuilder`](/api/public-api/classes/RichTextBuilder); `runAs`: `"USER"` \| `"APP"`; &#125;
+
+### richtext
+
+> **richtext**: `object` \| [`RichTextBuilder`](/api/public-api/classes/RichTextBuilder)
+
+The comment body as rich text.
+
+### runAs?
+
+> `optional` **runAs**: `"USER"` \| `"APP"`
+
+The account used to create the comment. Defaults to the app account.
+This option is ignored by [Comment.edit](/api/public-api/classes/Comment#edit).

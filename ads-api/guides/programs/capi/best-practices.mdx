@@ -1,0 +1,35 @@
+---
+title: "Best Practices"
+---
+
+-   If you receive `429 Too Many Requests`, your service is hitting the rate limit. We recommend waiting and following [our rate limiting best practices](/ads-api/guides/quick-start/rate-limiting#best-practices).
+
+    <Note>
+
+    Batch events whenever possible, limit each request to 1,000 events, and don't send duplicate events.
+
+    </Note>
+
+-   **Use the Conversions API and Reddit Pixel together.** This will improve conversion coverage, maximize campaign performance, and power better targeting and optimization tools. Your measurement will be more resilient and adaptable to the shifting advertising landscape. 
+
+    <Note>
+
+    [Event deduplication](/ads-api/guides/programs/capi/direct-integration#4-set-up-deduplication) is required for advertisers using both the Reddit Pixel and Conversions API.
+
+    </Note>
+
+-   **Set up CAPI with a conversion access token.** We recommend using [this token](/ads-api/guides/programs/capi/direct-integration#2-generate-a-conversion-access-token) over a [developer access token](/ads-api/guides/quick-start/create-dev-app) because it’s non-expiring and simple to generate.
+-   **Verify events before sending production traffic.** Learn more about [event testing](/ads-api/guides/programs/capi/verify-events).
+-   **Avoid dual sending between versions.** Sending the same events in both v2 and v3 may cause event double-counting.
+-   **Share as many match keys as possible.** [Match keys](/ads-api/guides/programs/capi/direct-integration#match-keys) are crucial to help attribute conversions to a Reddit ad engagement. These signals can be shared unhashed or pre-hashed. We strongly recommend sharing the IP address and click ID and suggest including the email address, phone number, and user agent. If you're integrating CAPI with the pixel, we recommend sharing UUID.
+-   **Set an accurate action source.** The [_action source_](/ads-api/guides/programs/capi/direct-integration#action-source) defines the channel where the conversion event occurred. Provide the correct source and its match keys for accurate attribution and metric breakdowns. For example, `PHYSICAL_STORE` events should not send device matching identifiers, click ID, UUID, or MAIDs.
+
+    <Warning>
+
+    [Event deduplication](/ads-api/guides/programs/capi/direct-integration#4-set-up-deduplication) applies only for events in the same channel.
+
+    </Warning>
+
+-   **Pass external ID when available.** [External ID](https://business.reddithelp.com/s/article/about-match-keys#customer-match-keys-and-identifiers) helps improve attribution accuracy for events from all action sources. We recommend passing an external ID that is unique to a single user.
+-   **Include the click ID in the URL.** When sending `WEBSITE` events, set up [`event_source_url`](/ads-api/guides/programs/capi/direct-integration#domain-detection) to parse the domain. Include the [click ID](/ads-api/guides/programs/capi/direct-integration#match-keys) to improve match rate and attribution.
+-   **Follow the API best practices.** Learn more about our [general guidance](/ads-api/guides/programs/capi/direct-integration).

@@ -1,0 +1,27 @@
+---
+title: "ScheduledJobHandler"
+---
+
+## Type Alias: ScheduledJobHandler()\<Data\>
+
+> **ScheduledJobHandler**\<`Data`\> = (`event`, `context`) => `void` \| `Promise`\<`void`\>
+
+## Type Parameters
+
+### Data
+
+`Data` *extends* [`JSONObject`](/api/public-api/type-aliases/JSONObject) \| `undefined` = [`JSONObject`](/api/public-api/type-aliases/JSONObject) \| `undefined`
+
+## Parameters
+
+### event
+
+[`ScheduledJobEvent`](/api/public-api/type-aliases/ScheduledJobEvent)\<`Data`\>
+
+### context
+
+[`JobContext`](/api/public-api/type-aliases/JobContext)
+
+## Returns
+
+`void` \| `Promise`\<`void`\>

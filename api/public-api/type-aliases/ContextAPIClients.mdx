@@ -1,0 +1,105 @@
+---
+title: "ContextAPIClients"
+---
+
+## Type Alias: ContextAPIClients
+
+> **ContextAPIClients** = `object`
+
+## Properties
+
+
+### assets
+
+> **assets**: `AssetsClient`
+
+A client for resolving static assets to public URLs
+
+***
+
+
+### cache
+
+> **cache**: `CacheHelper`
+
+**`Experimental`**
+
+The cache helper will let you cache JSON-able objects in your devvit apps for a limited amount of time.
+
+Under the covers, It's just Redis, so you do need to enable the redis feature. This provides a pattern for e.g. fetching
+remote calls without overwhelming someone's server.
+
+```ts
+Devvit.configure({
+  redis: true, // Enable access to Redis
+});
+
+/// ...
+
+let component = (context) => {
+  let cached = context.cache(async () => {
+    let rsp = await fetch("https://google.com")
+    return rsp.body
+  },
+  {
+    key: "some-fetch",
+    ttl: 10_000 // millis
+  }
+  doSomethingWith(cached);
+  return <text>yay</text>
+}
+```
+
+***
+
+
+### media
+
+> **media**: [`MediaPlugin`](/api/public-api/type-aliases/MediaPlugin)
+
+A client for media API
+
+***
+
+
+### reddit
+
+> **reddit**: [`RedditAPIClient`](/api/public-api/classes/RedditAPIClient)
+
+A client for the Reddit API
+
+***
+
+
+### redis
+
+> **redis**: [`RedisClient`](/api/public-api/type-aliases/RedisClient)
+
+A client for the Redis API
+
+***
+
+
+### scheduler
+
+> **scheduler**: [`Scheduler`](/api/public-api/type-aliases/Scheduler)
+
+A client for the Scheduler API
+
+***
+
+
+### settings
+
+> **settings**: [`SettingsClient`](/api/public-api/classes/SettingsClient)
+
+A client for the Settings API
+
+***
+
+
+### ui
+
+> **ui**: [`UIClient`](/api/public-api/type-aliases/UIClient)
+
+A client for the User Interface API

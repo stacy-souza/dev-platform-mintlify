@@ -1,0 +1,226 @@
+---
+title: "ListItemContext"
+---
+
+## Interface: ListItemContext
+
+## Borrows
+
+BlockQuoteContainer
+
+## Borrows
+
+CodeBlockContainer
+
+## Borrows
+
+HeadingContainer
+
+## Borrows
+
+HorizontalRuleContainer
+
+## Borrows
+
+ListContainer
+
+## Borrows
+
+ParagraphContainer
+
+## Borrows
+
+TableContainer
+
+## Extends
+
+- [`BlockQuoteContainer`](/api/public-api/type-aliases/BlockQuoteContainer)\<`ListItemContext`\>.[`CodeBlockContainer`](/api/public-api/type-aliases/CodeBlockContainer)\<`ListItemContext`\>.[`HeadingContainer`](/api/public-api/type-aliases/HeadingContainer)\<`ListItemContext`\>.[`HorizontalRuleContainer`](/api/public-api/type-aliases/HorizontalRuleContainer)\<`ListItemContext`\>.[`ListContainer`](/api/public-api/type-aliases/ListContainer)\<`ListItemContext`\>.[`ParagraphContainer`](/api/public-api/type-aliases/ParagraphContainer)\<`ListItemContext`\>.[`TableContainer`](/api/public-api/type-aliases/TableContainer)\<`ListItemContext`\>
+
+## Methods
+
+
+### blockQuote()
+
+> **blockQuote**(`opts`, `cb`): `ListItemContext`
+
+Append a Block Quote element
+
+#### Parameters
+
+##### opts
+
+[`BlockQuoteOptions`](/api/public-api/type-aliases/BlockQuoteOptions)
+
+##### cb
+
+(`blockQuote`) => `void`
+
+scoped callback to add child elements to this Block Quote
+
+#### Returns
+
+`ListItemContext`
+
+#### Inherited from
+
+[`BlockQuoteContainer`](/api/public-api/type-aliases/BlockQuoteContainer).[`blockQuote`](/api/public-api/type-aliases/BlockQuoteContainer#blockquote)
+
+***
+
+
+### codeBlock()
+
+> **codeBlock**(`opts`, `cb`): `ListItemContext`
+
+Append a Code Block element
+
+#### Parameters
+
+##### opts
+
+[`CodeBlockOptions`](/api/public-api/type-aliases/CodeBlockOptions)
+
+[CodeBlockOptions](/api/public-api/type-aliases/CodeBlockOptions)
+
+##### cb
+
+(`codeBlock`) => `void`
+
+scoped callback to add child elements to this Code Block
+
+#### Returns
+
+`ListItemContext`
+
+#### Inherited from
+
+[`CodeBlockContainer`](/api/public-api/type-aliases/CodeBlockContainer).[`codeBlock`](/api/public-api/type-aliases/CodeBlockContainer#codeblock)
+
+***
+
+
+### heading()
+
+> **heading**(`opts`, `cb`): `ListItemContext`
+
+Append a Heading
+
+#### Parameters
+
+##### opts
+
+[`HeadingOptions`](/api/public-api/type-aliases/HeadingOptions)
+
+[HeadingOptions](/api/public-api/type-aliases/HeadingOptions)
+
+##### cb
+
+(`heading`) => `void`
+
+scoped callback to add child elements to this Heading
+
+#### Returns
+
+`ListItemContext`
+
+#### Inherited from
+
+[`HeadingContainer`](/api/public-api/type-aliases/HeadingContainer).[`heading`](/api/public-api/type-aliases/HeadingContainer#heading)
+
+***
+
+
+### horizontalRule()
+
+> **horizontalRule**(): `ListItemContext`
+
+Append a Horizontal Rule
+
+#### Returns
+
+`ListItemContext`
+
+#### Inherited from
+
+[`HorizontalRuleContainer`](/api/public-api/type-aliases/HorizontalRuleContainer).[`horizontalRule`](/api/public-api/type-aliases/HorizontalRuleContainer#horizontalrule)
+
+***
+
+
+### list()
+
+> **list**(`opts`, `cb`): `ListItemContext`
+
+Append a List
+
+#### Parameters
+
+##### opts
+
+[`ListOptions`](/api/public-api/type-aliases/ListOptions)
+
+[ListOptions](/api/public-api/type-aliases/ListOptions)
+
+##### cb
+
+(`list`) => `void`
+
+scoped callback to add child elements to this List
+
+#### Returns
+
+`ListItemContext`
+
+#### Inherited from
+
+[`ListContainer`](/api/public-api/type-aliases/ListContainer).[`list`](/api/public-api/type-aliases/ListContainer#list)
+
+***
+
+
+### paragraph()
+
+> **paragraph**(`cb`): `ListItemContext`
+
+Append a Paragraph
+
+#### Parameters
+
+##### cb
+
+(`paragraph`) => `void`
+
+scoped callback to add child elements to this Paragraph
+
+#### Returns
+
+`ListItemContext`
+
+#### Inherited from
+
+[`ParagraphContainer`](/api/public-api/type-aliases/ParagraphContainer).[`paragraph`](/api/public-api/type-aliases/ParagraphContainer#paragraph)
+
+***
+
+
+### table()
+
+> **table**(`cb`): `ListItemContext`
+
+Append a Table
+
+#### Parameters
+
+##### cb
+
+(`table`) => `void`
+
+scoped callback to add child elements to this Table
+
+#### Returns
+
+`ListItemContext`
+
+#### Inherited from
+
+[`TableContainer`](/api/public-api/type-aliases/TableContainer).[`table`](/api/public-api/type-aliases/TableContainer#table)

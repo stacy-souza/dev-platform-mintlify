@@ -1,0 +1,581 @@
+---
+title: "SubredditWikiBannedUser"
+---
+
+## Class: SubredditWikiBannedUser
+
+User on a subreddit's wiki-banned list; data from the AboutWhere response.
+Use `getBannedWikiContributors()` or `subreddit.getBannedWikiContributors()` to receive a listing of these.
+
+## Extends
+
+- [`User`](/api/public-api/classes/User)
+
+## Constructors
+
+<span id="constructor" />
+
+### new SubredditWikiBannedUser()
+
+> **new SubredditWikiBannedUser**(): `SubredditWikiBannedUser`
+
+#### Returns
+
+`SubredditWikiBannedUser`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`constructor`](/api/public-api/classes/User#constructor)
+
+## Properties
+
+
+### date
+
+> `readonly` **date**: `Date`
+
+When the wiki ban was created (UTC).
+
+***
+
+
+### daysLeft?
+
+> `readonly` `optional` **daysLeft**: `number`
+
+Days remaining on a temporary ban (undefined if permanent).
+
+***
+
+
+### note?
+
+> `readonly` `optional` **note**: `string`
+
+Moderator note.
+
+## Accessors
+
+
+### about
+
+#### Get Signature
+
+> **get** **about**(): `string`
+
+The user's public description about themselves. May be empty.
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`about`](/api/public-api/classes/User#about)
+
+***
+
+
+### commentKarma
+
+#### Get Signature
+
+> **get** **commentKarma**(): `number`
+
+The amount of comment karma the user has.
+
+##### Returns
+
+`number`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`commentKarma`](/api/public-api/classes/User#commentkarma)
+
+***
+
+
+### createdAt
+
+#### Get Signature
+
+> **get** **createdAt**(): `Date`
+
+The date the user was created.
+
+##### Returns
+
+`Date`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`createdAt`](/api/public-api/classes/User#createdat)
+
+***
+
+
+### displayName
+
+#### Get Signature
+
+> **get** **displayName**(): `string`
+
+The display name of the user. May be different from their username.
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`displayName`](/api/public-api/classes/User#displayname)
+
+***
+
+
+### hasRedditPremium
+
+#### Get Signature
+
+> **get** **hasRedditPremium**(): `boolean`
+
+Whether the user has Reddit Premium.
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`hasRedditPremium`](/api/public-api/classes/User#hasredditpremium)
+
+***
+
+
+### hasVerifiedEmail
+
+#### Get Signature
+
+> **get** **hasVerifiedEmail**(): `boolean`
+
+Indicates whether or not the user has verified their email address.
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`hasVerifiedEmail`](/api/public-api/classes/User#hasverifiedemail)
+
+***
+
+
+### id
+
+#### Get Signature
+
+> **get** **id**(): `` `t2_${string}` ``
+
+The ID (starting with t2_) of the user to retrieve.
+
+##### Example
+
+```ts
+'t2_1w72'
+```
+
+##### Returns
+
+`` `t2_${string}` ``
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`id`](/api/public-api/classes/User#id)
+
+***
+
+
+### isAdmin
+
+#### Get Signature
+
+> **get** **isAdmin**(): `boolean`
+
+Whether the user is a Reddit employee.
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`isAdmin`](/api/public-api/classes/User#isadmin)
+
+***
+
+
+### isModerator
+
+#### Get Signature
+
+> **get** **isModerator**(): `boolean`
+
+Whether the user is a moderator of any subreddit.
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`isModerator`](/api/public-api/classes/User#ismoderator)
+
+***
+
+
+### linkKarma
+
+#### Get Signature
+
+> **get** **linkKarma**(): `number`
+
+The amount of link karma the user has.
+
+##### Returns
+
+`number`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`linkKarma`](/api/public-api/classes/User#linkkarma)
+
+***
+
+
+### modPermissions
+
+#### Get Signature
+
+> **get** **modPermissions**(): `Map`\<`string`, [`ModeratorPermission`](/api/public-api/type-aliases/ModeratorPermission)[]\>
+
+The permissions the user has on the subreddit.
+
+##### Returns
+
+`Map`\<`string`, [`ModeratorPermission`](/api/public-api/type-aliases/ModeratorPermission)[]\>
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`modPermissions`](/api/public-api/classes/User#modpermissions)
+
+***
+
+
+### nsfw
+
+#### Get Signature
+
+> **get** **nsfw**(): `boolean`
+
+Whether the user's profile is marked as NSFW (Not Safe For Work).
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`nsfw`](/api/public-api/classes/User#nsfw)
+
+***
+
+
+### permalink
+
+#### Get Signature
+
+> **get** **permalink**(): `string`
+
+Returns a permalink path relative to https://www.reddit.com
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`permalink`](/api/public-api/classes/User#permalink)
+
+***
+
+
+### showNsfw
+
+#### Get Signature
+
+> **get** **showNsfw**(): `boolean`
+
+Whether the user is over 18 and wishes to see NSFW content.
+
+##### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`showNsfw`](/api/public-api/classes/User#shownsfw)
+
+***
+
+
+### url
+
+#### Get Signature
+
+> **get** **url**(): `string`
+
+Returns the HTTP URL for the user
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`url`](/api/public-api/classes/User#url)
+
+***
+
+
+### username
+
+#### Get Signature
+
+> **get** **username**(): `string`
+
+The username of the user omitting the u/.
+
+##### Example
+
+```ts
+'spez'
+```
+
+##### Returns
+
+`string`
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`username`](/api/public-api/classes/User#username)
+
+## Methods
+
+
+### getComments()
+
+> **getComments**(`options`): [`Listing`](/api/public-api/classes/Listing)\<[`Comment`](/api/public-api/classes/Comment)\>
+
+Get the user's comments.
+
+#### Parameters
+
+##### options
+
+`Omit`\<[`GetCommentsByUserOptions`](/api/public-api/type-aliases/GetCommentsByUserOptions), `"username"`\>
+
+Options for the request
+
+#### Returns
+
+[`Listing`](/api/public-api/classes/Listing)\<[`Comment`](/api/public-api/classes/Comment)\>
+
+A Listing of Comment objects.
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`getComments`](/api/public-api/classes/User#getcomments)
+
+***
+
+
+### getModPermissionsForSubreddit()
+
+> **getModPermissionsForSubreddit**(`subredditName`): `Promise`\<[`ModeratorPermission`](/api/public-api/type-aliases/ModeratorPermission)[]\>
+
+Get the mod permissions the user has on the subreddit if they are a moderator.
+
+#### Parameters
+
+##### subredditName
+
+`string`
+
+name of the subreddit
+
+#### Returns
+
+`Promise`\<[`ModeratorPermission`](/api/public-api/type-aliases/ModeratorPermission)[]\>
+
+the moderator permissions the user has on the subreddit
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`getModPermissionsForSubreddit`](/api/public-api/classes/User#getmodpermissionsforsubreddit)
+
+***
+
+
+### getPosts()
+
+> **getPosts**(`options`): [`Listing`](/api/public-api/classes/Listing)\<[`Post`](/api/public-api/classes/Post)\>
+
+Get the user's posts.
+
+#### Parameters
+
+##### options
+
+`Omit`\<[`GetPostsByUserOptions`](/api/public-api/type-aliases/GetPostsByUserOptions), `"username"`\>
+
+Options for the request
+
+#### Returns
+
+[`Listing`](/api/public-api/classes/Listing)\<[`Post`](/api/public-api/classes/Post)\>
+
+A Listing of Post objects.
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`getPosts`](/api/public-api/classes/User#getposts)
+
+***
+
+
+### getSnoovatarUrl()
+
+> **getSnoovatarUrl**(): `Promise`\<`undefined` \| `string`\>
+
+#### Returns
+
+`Promise`\<`undefined` \| `string`\>
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`getSnoovatarUrl`](/api/public-api/classes/User#getsnoovatarurl)
+
+***
+
+
+### getSocialLinks()
+
+> **getSocialLinks**(): `Promise`\<[`UserSocialLink`](/api/public-api/type-aliases/UserSocialLink)[]\>
+
+Gets social links of the user
+
+#### Returns
+
+`Promise`\<[`UserSocialLink`](/api/public-api/type-aliases/UserSocialLink)[]\>
+
+A Promise that resolves an Array of UserSocialLink objects
+
+#### Example
+
+```ts
+const socialLinks = await user.getSocialLinks();
+```
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`getSocialLinks`](/api/public-api/classes/User#getsociallinks)
+
+***
+
+
+### getTrophies()
+
+> **getTrophies**(): `Promise`\<[`Trophy`](/api/public-api/type-aliases/Trophy)[]\>
+
+Get the trophies displayed on this user's profile.
+
+#### Returns
+
+`Promise`\<[`Trophy`](/api/public-api/type-aliases/Trophy)[]\>
+
+A Promise that resolves to an array of Trophy objects.
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`getTrophies`](/api/public-api/classes/User#gettrophies)
+
+***
+
+
+### getUserFlairBySubreddit()
+
+> **getUserFlairBySubreddit**(`subreddit`): `Promise`\<`undefined` \| [`UserFlair`](/api/public-api/type-aliases/UserFlair)\>
+
+Retrieve the user's flair for the subreddit.
+
+#### Parameters
+
+##### subreddit
+
+`string`
+
+The name of the subreddit associated with the user's flair.
+
+#### Returns
+
+`Promise`\<`undefined` \| [`UserFlair`](/api/public-api/type-aliases/UserFlair)\>
+
+#### Example
+
+```ts
+const username = "badapple"
+const subredditName = "mysubreddit"
+const user = await reddit.getUserByUsername(username);
+const userFlair = await user.getUserFlairBySubreddit(subredditName);
+```
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`getUserFlairBySubreddit`](/api/public-api/classes/User#getuserflairbysubreddit)
+
+***
+
+
+### getUserKarmaFromCurrentSubreddit()
+
+> **getUserKarmaFromCurrentSubreddit**(): `Promise`\<`GetUserKarmaForSubredditResponse`\>
+
+Returns the karma for this User in the current subreddit.
+The user making the request must be a moderator of the subreddit to read another user's karma in the subreddit.
+An exception is if the specified user is the same as the user making the request.
+
+#### Returns
+
+`Promise`\<`GetUserKarmaForSubredditResponse`\>
+
+The GetUserKarmaForSubredditResponse, containing the user's karma for comments and posts in the subreddit.
+
+#### Inherited from
+
+[`User`](/api/public-api/classes/User).[`getUserKarmaFromCurrentSubreddit`](/api/public-api/classes/User#getuserkarmafromcurrentsubreddit)
+
+***
+
+
+### toJSON()
+
+> **toJSON**(): `Pick`\<[`User`](/api/public-api/classes/User), `"nsfw"` \| `"id"` \| `"username"` \| `"createdAt"` \| `"linkKarma"` \| `"commentKarma"`\> & `object` & `Pick`\<`SubredditWikiBannedUser`, `"date"`\> & `object`
+
+#### Returns
+
+`Pick`\<[`User`](/api/public-api/classes/User), `"nsfw"` \| `"id"` \| `"username"` \| `"createdAt"` \| `"linkKarma"` \| `"commentKarma"`\> & `object` & `Pick`\<`SubredditWikiBannedUser`, `"date"`\> & `object`
+
+#### Overrides
+
+[`User`](/api/public-api/classes/User).[`toJSON`](/api/public-api/classes/User#tojson)

@@ -1,0 +1,383 @@
+---
+mode: "custom"
+title: "Run ads with Reddit"
+sidebarTitle: "Home"
+description: "Create, manage, and measure Reddit ads with code. Quick start guides, campaign management, reporting, and the full v3 endpoint reference."
+---
+
+{/* Replica of the Reddit Ads API landing page at https://ads-api.reddit.com/docs/:
+    same section order, copy, chrome and brand tokens. Pixel-sampled tokens:
+    notice bar #F6F8F9 on #36395A text with #FF4500 links, navbar links
+    #1C1E21 600/14, hero #00E2B7 with a 48/700 H1, pill buttons at radius 64px
+    and 12px/20px padding, cards at radius 16px with a rgba(0,0,0,.1) hairline
+    and a 20/400 #333D42 title, help band #FFBF0B, Ads Formula band #F6F8F9,
+    ink #333D42, black footer with 12/700 uppercase rgba(255,255,255,.8)
+    headings. The notice bar and the header are pinned together, and the
+    theme, search and assistant controls are Mintlify's own, borrowed out of
+    the docs navbar -- see sections 9 and 10 of custom.css. */}
+
+{/* Notice bar plus header, pinned as one block so the header row stays level
+    with the borrowed controls, which are positioned from the top of the
+    viewport. The three inputs drive the two notice slides and the dismiss
+    button: radios switch slides, the checkbox hides the bar. All three are
+    siblings of the bar so `:checked ~` can reach it. */}
+<div className="rdt-chrome sticky top-0 z-40">
+  <input type="radio" name="rdt-notice" id="rdt-notice-1" className="sr-only" defaultChecked aria-label="Show announcement 1" />
+  <input type="radio" name="rdt-notice" id="rdt-notice-2" className="sr-only" aria-label="Show announcement 2" />
+  <input type="checkbox" id="rdt-notice-dismiss" className="sr-only" aria-label="Close notice" />
+
+  <div role="banner" className="rdt-notice flex items-stretch border-b border-[#F5F6F7] bg-[#F6F8F9] lg:h-[52px] dark:border-white/10 dark:bg-[#12181B]">
+    <div className="w-[50px] shrink-0" aria-hidden="true" />
+    <div className="flex flex-1 flex-col justify-center gap-1.5 py-2">
+      <p className="rdt-notice-slide rdt-notice-slide-1 rdt-inline m-0 text-center text-sm leading-5 text-[#36395A] dark:text-[#B8C5CC]">
+        <strong className="font-bold">Notice:</strong> Starting <strong className="font-bold">December 8, 2026</strong>, reports using the{" "}
+        <code className="rounded bg-black/5 px-1 py-0.5 font-mono text-[13px] dark:bg-white/10">HOUR</code> breakdown will be limited to
+        ranges of 7 days or less.{" "}
+        <a href="/ads-api/reference/reports/get-a-report" className="text-[#FF4500] underline decoration-[#FF4500] hover:no-underline">
+          Review Get A Report
+        </a>
+      </p>
+      <p className="rdt-notice-slide rdt-notice-slide-2 rdt-inline m-0 text-center text-sm leading-5 text-[#36395A] dark:text-[#B8C5CC]">
+        <strong className="font-bold">Notice:</strong> Starting <strong className="font-bold">September 21st, 2026</strong>, new campaign
+        objective enums will roll out.{" "}
+        <a href="/ads-api/guides/programs/campaign/campaign-objective-migration" className="text-[#FF4500] underline decoration-[#FF4500] hover:no-underline">
+          Review the migration guide
+        </a>
+      </p>
+      <div className="flex items-center justify-center gap-1.5">
+        <label htmlFor="rdt-notice-1" className="rdt-notice-dot rdt-notice-dot-1">
+          <span className="sr-only">Show announcement 1</span>
+        </label>
+        <label htmlFor="rdt-notice-2" className="rdt-notice-dot rdt-notice-dot-2">
+          <span className="sr-only">Show announcement 2</span>
+        </label>
+      </div>
+    </div>
+    <label
+      htmlFor="rdt-notice-dismiss"
+      className="flex w-[50px] shrink-0 cursor-pointer items-center justify-center text-[#36395A] hover:text-black dark:text-[#B8C5CC] dark:hover:text-white"
+    >
+      <Icon icon="xmark" size={15} />
+      <span className="sr-only">Close notice</span>
+    </label>
+  </div>
+
+  {/* Header row. 64px tall, white, 16px side padding and full bleed like the
+      source: Reddit lockup, the product switcher, the four section links on
+      the left, then the version and More menus on the right. The right
+      padding at `lg` reserves room for the borrowed theme, search and
+      assistant controls, which sit at the end of the same row. Each menu is a
+      hidden checkbox plus its label, so it opens on click with no scripting --
+      see `.rdt-menu` in custom.css. */}
+  <div className="flex h-16 items-center bg-white px-4 shadow-[0_1px_2px_0_rgba(0,0,0,0.1)] lg:pr-[292px] dark:bg-[#0B1416] dark:shadow-[0_1px_2px_0_rgba(255,255,255,0.08)]">
+    <a href="/ads-api" className="mr-4 flex shrink-0 items-center no-underline">
+      <img src="/images/ads-api/reddit-lockup.svg" alt="Reddit" className="m-0 h-8 w-auto dark:hidden" noZoom />
+      <img src="/images/ads-api/reddit-footer-logo.svg" alt="Reddit" className="m-0 hidden h-8 w-auto dark:block" noZoom />
+      <span className="sr-only">Reddit Ads API home</span>
+    </a>
+
+    {/* Product switcher: the same two products as the docs navbar, so the
+        homepage you land on follows the docs you pick. */}
+    <div className="rdt-menu relative mr-1 shrink-0">
+      <input type="checkbox" id="rdt-product" className="peer sr-only" aria-label="Switch product" />
+      <label
+        htmlFor="rdt-product"
+        className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-semibold text-[#181C1F] hover:bg-black/5 peer-focus-visible:ring-2 peer-focus-visible:ring-[#D93900] dark:text-[#EEF1F3] dark:hover:bg-white/10"
+      >
+        <Icon icon="bullhorn" size={14} />
+        Ads API
+        <Icon icon="chevron-down" size={11} className="rdt-chevron" />
+      </label>
+      <div className="rdt-menu-panel invisible absolute left-0 top-full mt-1 w-60 rounded-2xl border border-black/10 bg-white p-2 opacity-0 shadow-xl transition-opacity peer-checked:visible peer-checked:opacity-100 dark:border-white/10 dark:bg-[#181C1F]">
+        <a
+          href="/"
+          className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-[#181C1F] no-underline hover:bg-black/5 dark:text-[#EEF1F3] dark:hover:bg-white/10"
+        >
+          <Icon icon="code" size={15} />
+          Developer Platform
+        </a>
+        <a
+          href="/ads-api"
+          aria-current="page"
+          className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-[#D93900] no-underline hover:bg-black/5 dark:hover:bg-white/10"
+        >
+          <Icon icon="bullhorn" size={15} />
+          Ads API
+          <Icon icon="check" size={14} className="ml-auto" />
+        </a>
+      </div>
+    </div>
+
+    {/* Section links. The source spaces these with 12px of padding per link
+        rather than a gap, which is what puts 24px between the labels. */}
+    <div role="navigation" className="hidden items-center md:flex">
+      <a href="/ads-api/guides/quick-start" className="rounded px-3 py-1 text-sm font-semibold text-[#1C1E21] no-underline hover:text-[#D93900] dark:text-[#EEF1F3] dark:hover:text-[#FF6314]">
+        Guides
+      </a>
+      <a href="/ads-api/api/introduction" className="rounded px-3 py-1 text-sm font-semibold text-[#1C1E21] no-underline hover:text-[#D93900] dark:text-[#EEF1F3] dark:hover:text-[#FF6314]">
+        API
+      </a>
+      <a href="/ads-api/whats-new" className="rounded px-3 py-1 text-sm font-semibold text-[#1C1E21] no-underline hover:text-[#D93900] dark:text-[#EEF1F3] dark:hover:text-[#FF6314]">
+        What's New
+      </a>
+      <a href="/ads-api/blog" className="rounded px-3 py-1 text-sm font-semibold text-[#1C1E21] no-underline hover:text-[#D93900] dark:text-[#EEF1F3] dark:hover:text-[#FF6314]">
+        Blog
+      </a>
+    </div>
+
+    <div className="ml-auto flex items-center">
+      {/* Version menu. v3 is the migrated reference; v2 is deprecated and
+          stays on the source site. */}
+      <div className="rdt-menu relative shrink-0">
+        <input type="checkbox" id="rdt-version" className="peer sr-only" aria-label="Switch API version" />
+        <label
+          htmlFor="rdt-version"
+          className="flex items-center gap-1.5 rounded px-3 py-1 text-sm font-semibold text-[#1C1E21] hover:text-[#D93900] peer-focus-visible:ring-2 peer-focus-visible:ring-[#D93900] dark:text-[#EEF1F3] dark:hover:text-[#FF6314]"
+        >
+          v3
+          <Icon icon="chevron-down" size={11} className="rdt-chevron" />
+        </label>
+        <div className="rdt-menu-panel invisible absolute right-0 top-full mt-1 w-56 rounded-2xl border border-black/10 bg-white p-2 opacity-0 shadow-xl transition-opacity peer-checked:visible peer-checked:opacity-100 dark:border-white/10 dark:bg-[#181C1F]">
+          <a
+            href="/ads-api/api/introduction"
+            aria-current="page"
+            className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-[#D93900] no-underline hover:bg-black/5 dark:hover:bg-white/10"
+          >
+            v3
+            <Icon icon="check" size={14} className="ml-auto" />
+          </a>
+          <a
+            href="https://ads-api.reddit.com/docs/v2/api/reddit-advertising-api"
+            className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-[#181C1F] no-underline hover:bg-black/5 dark:text-[#EEF1F3] dark:hover:bg-white/10"
+          >
+            v2 (Deprecated)
+          </a>
+        </div>
+      </div>
+
+      {/* More menu, same five destinations as the source navbar. */}
+      <div className="rdt-menu relative shrink-0">
+        <input type="checkbox" id="rdt-more" className="peer sr-only" aria-label="More Reddit Ads resources" />
+        <label
+          htmlFor="rdt-more"
+          className="flex items-center gap-1.5 rounded px-3 py-1 text-sm font-semibold text-[#1C1E21] hover:text-[#D93900] peer-focus-visible:ring-2 peer-focus-visible:ring-[#D93900] dark:text-[#EEF1F3] dark:hover:text-[#FF6314]"
+        >
+          More
+          <Icon icon="chevron-down" size={11} className="rdt-chevron" />
+        </label>
+        <div className="rdt-menu-panel invisible absolute right-0 top-full mt-1 w-60 rounded-2xl border border-black/10 bg-white p-2 opacity-0 shadow-xl transition-opacity peer-checked:visible peer-checked:opacity-100 dark:border-white/10 dark:bg-[#181C1F]">
+          <a href="https://ads.reddit.com/" className="block rounded-xl px-3 py-2 text-sm font-medium text-[#181C1F] no-underline hover:bg-black/5 dark:text-[#EEF1F3] dark:hover:bg-white/10">
+            Open Ads Manager
+          </a>
+          <a href="https://www.postman.com/reddit-ads-api" className="block rounded-xl px-3 py-2 text-sm font-medium text-[#181C1F] no-underline hover:bg-black/5 dark:text-[#EEF1F3] dark:hover:bg-white/10">
+            Postman Workspace
+          </a>
+          <a href="https://www.business.reddit.com/solutions/find-api-partners-index" className="block rounded-xl px-3 py-2 text-sm font-medium text-[#181C1F] no-underline hover:bg-black/5 dark:text-[#EEF1F3] dark:hover:bg-white/10">
+            Supported Partners
+          </a>
+          <a href="https://business.reddithelp.com/s/" className="block rounded-xl px-3 py-2 text-sm font-medium text-[#181C1F] no-underline hover:bg-black/5 dark:text-[#EEF1F3] dark:hover:bg-white/10">
+            Ads Help Center
+          </a>
+          <a href="https://support.reddithelp.com/hc/en-us/requests/new?ticket_form_id=50388520825236" className="block rounded-xl px-3 py-2 text-sm font-medium text-[#181C1F] no-underline hover:bg-black/5 dark:text-[#EEF1F3] dark:hover:bg-white/10">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* Hero. */}
+<div className="bg-[#00E2B7]">
+  <div className="mx-auto flex max-w-6xl items-end justify-between gap-6 px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col py-14 lg:py-20">
+      <h1 className="m-0 text-[32px] font-bold leading-tight tracking-tight text-black sm:text-[40px] lg:text-[48px]">
+        Run ads with&nbsp;Reddit
+      </h1>
+      <p className="mt-4 mb-5 text-base text-black/90">Create, manage, and measure ads with code</p>
+      <div className="flex flex-wrap items-center gap-3">
+        <a
+          href="/ads-api/guides/quick-start"
+          className="inline-flex items-center justify-center rounded-[64px] border-2 border-black px-5 py-3 text-lg font-semibold text-black no-underline transition-colors hover:bg-black/10"
+        >
+          Get Started
+        </a>
+        <a
+          href="/ads-api/api/introduction"
+          className="inline-flex items-center justify-center rounded-[64px] border-2 border-black bg-black px-5 py-3 text-lg font-semibold text-white no-underline transition-colors hover:bg-black/80"
+        >
+          View Reference
+        </a>
+      </div>
+    </div>
+    <img
+      src="/images/ads-api/Snoo_Coding.webp"
+      alt="Snoo, the Reddit mascot, coding"
+      width="356"
+      height="356"
+      className="m-0 hidden w-[240px] self-end lg:block lg:w-[356px]"
+      noZoom
+    />
+  </div>
+</div>
+
+{/* Intro copy and the five section cards, in the source's order. */}
+<div className="px-4 py-14 sm:px-6 lg:px-8">
+  <div className="mx-auto max-w-6xl">
+    <p className="m-0 text-base leading-7 text-[#333D42] dark:text-[#B8C5CC]">
+      The Reddit Ads API lets you tap into the Reddit Ads Platform to build and manage advertising campaigns and
+      accounts programmatically.
+    </p>
+    <p className="rdt-inline mt-4 mb-0 text-base leading-7 text-[#333D42] dark:text-[#B8C5CC]">
+      Access to the API is subject to the{" "}
+      <a href="https://business.reddithelp.com/s/article/Reddit-Ads-API-Terms" className="text-[#D93900] no-underline hover:underline">
+        Ads API Terms
+      </a>
+      . Learn more about the{" "}
+      <a href="/ads-api/api/introduction" className="text-[#D93900] no-underline hover:underline">
+        Reddit Ads API
+      </a>
+      .
+    </p>
+
+    <div className="mt-12 grid gap-6 sm:grid-cols-2">
+      <a
+        href="/ads-api/guides/quick-start"
+        className="flex flex-col items-center gap-4 rounded-2xl border border-black/10 bg-white p-6 no-underline transition-shadow hover:shadow-md dark:border-white/10 dark:bg-white/[0.04]"
+      >
+        <img src="/images/ads-api/book-6ddddc13764c11c204750b6118182b61.webp" alt="A notebook, illustrating the guides" width="100" height="100" className="m-0 h-[100px] w-[100px]" noZoom />
+        <span className="text-xl text-[#333D42] dark:text-[#EEF1F3]">Guides</span>
+      </a>
+      <a
+        href="/ads-api/api/introduction"
+        className="flex flex-col items-center gap-4 rounded-2xl border border-black/10 bg-white p-6 no-underline transition-shadow hover:shadow-md dark:border-white/10 dark:bg-white/[0.04]"
+      >
+        <img src="/images/ads-api/coding-bd9a012eb9f8362e51b2b1948eefcec0.webp" alt="Code brackets, illustrating the API reference" width="100" height="100" className="m-0 h-[100px] w-[100px]" noZoom />
+        <span className="text-xl text-[#333D42] dark:text-[#EEF1F3]">API</span>
+      </a>
+      <a
+        href="/ads-api/whats-new"
+        className="flex flex-col items-center gap-4 rounded-2xl border border-black/10 bg-white p-6 no-underline transition-shadow hover:shadow-md dark:border-white/10 dark:bg-white/[0.04]"
+      >
+        <img src="/images/ads-api/party_horn-23d7917eb3ec2984d3587e7c00091e28.webp" alt="A party horn, illustrating the release notes" width="100" height="100" className="m-0 h-[100px] w-[100px]" noZoom />
+        <span className="text-xl text-[#333D42] dark:text-[#EEF1F3]">What's New</span>
+      </a>
+      <a
+        href="/ads-api/blog"
+        className="flex flex-col items-center gap-4 rounded-2xl border border-black/10 bg-white p-6 no-underline transition-shadow hover:shadow-md dark:border-white/10 dark:bg-white/[0.04]"
+      >
+        <img src="/images/ads-api/megaphone-7d7e585e19e104833a42bdadff54cbbe.webp" alt="A megaphone, illustrating the blog" width="100" height="100" className="m-0 h-[100px] w-[100px]" noZoom />
+        <span className="text-xl text-[#333D42] dark:text-[#EEF1F3]">Blog</span>
+      </a>
+      <a
+        href="https://support.reddithelp.com/hc/en-us/requests/new?ticket_form_id=50388520825236"
+        className="flex flex-col items-center gap-4 rounded-2xl border border-black/10 bg-white p-6 no-underline transition-shadow hover:shadow-md sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.75rem)] dark:border-white/10 dark:bg-white/[0.04]"
+      >
+        <img src="/images/ads-api/question_mark-09ebcd2e3b36c2045eb206957df4197c.webp" alt="A question mark, illustrating the support form" width="100" height="100" className="m-0 h-[100px] w-[100px]" noZoom />
+        <span className="text-xl text-[#333D42] dark:text-[#EEF1F3]">Contact Us</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{/* "We're here to help" band. */}
+<div className="bg-[#FFBF0B] px-4 sm:px-6 lg:px-8">
+  <div className="mx-auto flex max-w-6xl flex-col items-center justify-evenly gap-6 py-10 sm:flex-row sm:py-6">
+    <div className="text-center sm:text-left">
+      <h2 className="m-0 text-[26px] font-extrabold text-black lg:text-[32px]">We're here to help</h2>
+      <p className="mt-4 mb-5 text-base text-black">Our Reddit Ads team is ready to support you from setup to success.</p>
+      <a
+        href="https://www.business.reddit.com/speak-with-a-reddit-ads-expert?utm_source=reddit&utm_medium=buttonclick&utm_campaign=helpcenter&utm_content=2025q2_helpcenter"
+        className="inline-flex items-center justify-center rounded-[64px] border-2 border-[#333D42] bg-[#333D42] px-5 py-3 text-lg font-semibold text-[#EEF1F3] no-underline transition-colors hover:bg-black"
+      >
+        Talk with an Ads Expert
+      </a>
+    </div>
+    <img
+      src="/images/ads-api/Snoo_UpPunch.webp"
+      alt="Snoo, the Reddit mascot, punching upward"
+      width="286"
+      height="286"
+      className="m-0 w-[180px] lg:w-[260px]"
+      noZoom
+    />
+  </div>
+</div>
+
+{/* "Master Reddit Ads" band. */}
+<div className="bg-[#F6F8F9] px-4 sm:px-6 lg:px-8 dark:bg-[#12181B]">
+  <div className="mx-auto flex max-w-6xl flex-col items-center justify-evenly gap-6 py-10 sm:flex-row sm:py-6">
+    <img
+      src="/images/ads-api/Snoo_Graduate.webp"
+      alt="Snoo, the Reddit mascot, in a graduation cap"
+      width="286"
+      height="286"
+      className="m-0 w-[180px] lg:w-[260px]"
+      noZoom
+    />
+    <div className="text-center sm:text-left">
+      <h2 className="m-0 text-[26px] font-extrabold text-[#181C1F] lg:text-[32px] dark:text-[#EEF1F3]">Master Reddit Ads</h2>
+      <p className="mt-4 mb-5 text-base text-[#333D42] dark:text-[#B8C5CC]">
+        Sharpen your skills and become a certified Reddit Ads expert.
+      </p>
+      <a
+        href="https://adsformula.redditforbusiness.com/student/catalog?utm_source=ads_help_center"
+        className="inline-flex items-center justify-center rounded-[64px] border-2 border-[#333D42] px-5 py-3 text-lg font-semibold text-[#333D42] no-underline transition-colors hover:bg-black/5 dark:border-[#EEF1F3] dark:text-[#EEF1F3] dark:hover:bg-white/10"
+      >
+        Learn with Ads Formula
+      </a>
+    </div>
+  </div>
+</div>
+
+{/* Footer, replicating the source's black Ads API footer: two link columns
+    with 12/700 uppercase headings, then the Reddit lockup, the legal row and
+    the social icons. `mode: "custom"` hides Mintlify's own footer here. */}
+<div role="contentinfo" className="bg-black px-4 py-12 sm:px-6 lg:px-8">
+  <div className="mx-auto max-w-6xl">
+    <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="flex flex-col gap-3">
+        <h4 className="m-0 text-xs font-bold tracking-[0.96px] text-white/80 uppercase">Ads API</h4>
+        <a href="/ads-api/api/introduction" className="text-sm text-white no-underline hover:underline">v3 API</a>
+        <a href="https://ads-api.reddit.com/docs/v2/api/reddit-advertising-api" className="text-sm text-white no-underline hover:underline">v2 (Deprecated) API</a>
+        <a href="/ads-api/blog" className="text-sm text-white no-underline hover:underline">Blog</a>
+        <a href="https://support.reddithelp.com/hc/en-us/requests/new?ticket_form_id=50388520825236" className="text-sm text-white no-underline hover:underline">Contact Us</a>
+      </div>
+      <div className="flex flex-col gap-3">
+        <h4 className="m-0 text-xs font-bold tracking-[0.96px] text-white/80 uppercase">Ads Platform</h4>
+        <a href="https://ads.reddit.com/" className="text-sm text-white no-underline hover:underline">Reddit Ads Manager</a>
+        <a href="https://www.business.reddit.com/" className="text-sm text-white no-underline hover:underline">Reddit for Business</a>
+        <a href="https://adsformula.redditforbusiness.com/?utm_source=ads_help_center" className="text-sm text-white no-underline hover:underline">Reddit Ads Formula</a>
+      </div>
+    </div>
+
+    <div className="mt-12 flex flex-col items-center gap-6 border-t border-white/15 pt-8">
+      <img src="/images/ads-api/reddit-footer-logo.svg" alt="Reddit" width="130" height="36" className="m-0 h-9 w-auto" noZoom />
+      <div role="navigation" aria-label="Legal policies" className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+        <a href="https://redditinc.com/policies/user-agreement" className="text-sm text-white no-underline hover:underline">User Agreement</a>
+        <a href="https://www.reddit.com/policies/privacy-policy" className="text-sm text-white no-underline hover:underline">Privacy Policy</a>
+        <a href="https://business.reddithelp.com/s/article/Reddit-Advertising-Services-Agreement" className="text-sm text-white no-underline hover:underline">Advertising Platform &amp; Service Terms</a>
+        <a href="https://business.reddithelp.com/s/article/Advertiser-credits" className="text-sm text-white no-underline hover:underline">*Ad Credit Terms</a>
+      </div>
+      <div className="flex items-center gap-5 text-white">
+        <a href="https://www.facebook.com/Reddit/" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="facebook" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">Reddit on Facebook</span>
+        </a>
+        <a href="https://x.com/Redditforbiz" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="x-twitter" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">Reddit for Business on X</span>
+        </a>
+        <a href="https://www.linkedin.com/showcase/reddit-for-business/" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="linkedin" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">Reddit for Business on LinkedIn</span>
+        </a>
+        <a href="https://www.reddit.com/r/RedditforBusiness/" className="text-white no-underline opacity-90 hover:opacity-100">
+          <Icon icon="reddit" iconType="brands" size={20} color="#FFFFFF" />
+          <span className="sr-only">r/RedditforBusiness</span>
+        </a>
+      </div>
+      <p className="m-0 text-xs text-white/60">Reddit, Inc. © 2026. &nbsp;All rights reserved.</p>
+    </div>
+  </div>
+</div>

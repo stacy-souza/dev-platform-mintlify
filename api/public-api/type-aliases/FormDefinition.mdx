@@ -1,0 +1,31 @@
+---
+title: "FormDefinition"
+---
+
+## Type Alias: FormDefinition\<T\>
+
+> **FormDefinition**\<`T`\> = `object`
+
+## Type Parameters
+
+### T
+
+`T` *extends* [`Form`](/api/public-api/type-aliases/Form) \| [`FormFunction`](/api/public-api/type-aliases/FormFunction) = [`Form`](/api/public-api/type-aliases/Form) \| [`FormFunction`](/api/public-api/type-aliases/FormFunction)
+
+## Properties
+
+
+### form
+
+> **form**: `T`
+
+A form or a function that returns a form
+
+***
+
+
+### onSubmit
+
+> **onSubmit**: [`FormOnSubmitEventHandler`](/api/public-api/type-aliases/FormOnSubmitEventHandler)\<[`FormToFormValues`](/api/public-api/type-aliases/FormToFormValues)\<`T`\>\>
+
+A callback that will be invoked when the form is submitted

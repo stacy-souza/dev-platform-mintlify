@@ -1,0 +1,29 @@
+---
+title: "RunJob"
+---
+
+## Type Alias: RunJob()\<Data\>
+
+> **RunJob**\<`Data`\> = (`job`) => `Promise`\<`string`\>
+
+Schedule a new job to run at a specific time or on a cron schedule
+
+## Type Parameters
+
+### Data
+
+`Data` *extends* [`JSONObject`](/api/public-api/type-aliases/JSONObject) \| `undefined`
+
+## Parameters
+
+### job
+
+The job to schedule
+
+[`ScheduledJobOptions`](/api/public-api/type-aliases/ScheduledJobOptions)\<`Data`\> | [`ScheduledCronJobOptions`](/api/public-api/type-aliases/ScheduledCronJobOptions)\<`Data`\>
+
+## Returns
+
+`Promise`\<`string`\>
+
+The id of the scheduled job

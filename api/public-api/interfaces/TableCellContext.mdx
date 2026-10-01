@@ -1,0 +1,248 @@
+---
+title: "TableCellContext"
+---
+
+## Interface: TableCellContext
+
+## Borrows
+
+TextContainer
+
+## Borrows
+
+LinkContainer
+
+## Borrows
+
+ImageContainer
+
+## Extends
+
+- [`TextContainer`](/api/public-api/type-aliases/TextContainer)\<`TableCellContext`\>.[`LinkContainer`](/api/public-api/type-aliases/LinkContainer)\<`TableCellContext`\>.[`ImageContainer`](/api/public-api/type-aliases/ImageContainer)\<`TableCellContext`\>
+
+## Methods
+
+
+### animatedImage()
+
+> **animatedImage**(`opts`): `TableCellContext`
+
+Append an Animated Image
+
+#### Parameters
+
+##### opts
+
+[`MediaOptions`](/api/public-api/type-aliases/MediaOptions)
+
+[ImageOptions](/api/public-api/type-aliases/ImageOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Inherited from
+
+[`ImageContainer`](/api/public-api/type-aliases/ImageContainer).[`animatedImage`](/api/public-api/type-aliases/ImageContainer#animatedimage)
+
+***
+
+
+### commentLink()
+
+> **commentLink**(`opts`): `TableCellContext`
+
+Append a link to a Reddit Comment
+
+#### Parameters
+
+##### opts
+
+[`RedditPermalinkOptions`](/api/public-api/type-aliases/RedditPermalinkOptions)
+
+[CommentLinkOptions](/api/public-api/type-aliases/CommentLinkOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Inherited from
+
+`LinkContainer.commentLink`
+
+***
+
+
+### image()
+
+> **image**(`opts`): `TableCellContext`
+
+Append an Image
+
+#### Parameters
+
+##### opts
+
+[`MediaOptions`](/api/public-api/type-aliases/MediaOptions)
+
+[ImageOptions](/api/public-api/type-aliases/ImageOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Inherited from
+
+[`ImageContainer`](/api/public-api/type-aliases/ImageContainer).[`image`](/api/public-api/type-aliases/ImageContainer#image)
+
+***
+
+
+### link()
+
+> **link**(`opts`): `TableCellContext`
+
+Append a Link
+
+#### Parameters
+
+##### opts
+
+[`LinkOptions`](/api/public-api/type-aliases/LinkOptions)
+
+[LinkOptions](/api/public-api/type-aliases/LinkOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Inherited from
+
+`LinkContainer.link`
+
+***
+
+
+### postLink()
+
+> **postLink**(`opts`): `TableCellContext`
+
+Append a link to a Reddit Post
+
+#### Parameters
+
+##### opts
+
+[`RedditPermalinkOptions`](/api/public-api/type-aliases/RedditPermalinkOptions)
+
+[PostLinkOptions](/api/public-api/type-aliases/PostLinkOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Inherited from
+
+`LinkContainer.postLink`
+
+***
+
+
+### subredditLink()
+
+> **subredditLink**(`opts`): `TableCellContext`
+
+Append a link to a Reddit Subreddit
+
+#### Parameters
+
+##### opts
+
+[`SubredditLinkOptions`](/api/public-api/type-aliases/SubredditLinkOptions)
+
+[SubredditLinkOptions](/api/public-api/type-aliases/SubredditLinkOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Inherited from
+
+`LinkContainer.subredditLink`
+
+***
+
+
+### text()
+
+> **text**(`opts`): `TableCellContext`
+
+Append Text with optional formatting
+
+#### Parameters
+
+##### opts
+
+[`TextOptions`](/api/public-api/type-aliases/TextOptions)
+
+[TextOptions](/api/public-api/type-aliases/TextOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Inherited from
+
+[`TextContainer`](/api/public-api/type-aliases/TextContainer).[`text`](/api/public-api/type-aliases/TextContainer#text)
+
+***
+
+
+### userLink()
+
+> **userLink**(`opts`): `TableCellContext`
+
+Append a link to a Reddit User
+
+#### Parameters
+
+##### opts
+
+[`UserLinkOptions`](/api/public-api/type-aliases/UserLinkOptions)
+
+[UserLinkOptions](/api/public-api/type-aliases/UserLinkOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Inherited from
+
+`LinkContainer.userLink`
+
+***
+
+
+### userMention()
+
+> **userMention**(`opts`): `TableCellContext`
+
+Append a link to a Reddit User as a
+
+#### Parameters
+
+##### opts
+
+[`UserLinkOptions`](/api/public-api/type-aliases/UserLinkOptions)
+
+[UserMentionOptions](/api/public-api/type-aliases/UserMentionOptions)
+
+#### Returns
+
+`TableCellContext`
+
+#### Mention
+
+#### Inherited from
+
+`LinkContainer.userMention`

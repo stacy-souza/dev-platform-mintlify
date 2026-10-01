@@ -1,0 +1,401 @@
+---
+title: "AutomoderatorFilterComment"
+---
+
+## Variable: AutomoderatorFilterComment
+
+> **AutomoderatorFilterComment**: `object`
+
+## Type declaration
+
+<span id="type" />
+
+### $type
+
+> **$type**: `"devvit.events.v1alpha.AutomoderatorFilterComment"`
+
+
+### create()
+
+#### Parameters
+
+##### base?
+
+###### author?
+
+`string`
+
+###### comment?
+
+&#123; `author`: `string`; `body`: `string`; `collapsedBecauseCrowdControl`: `boolean`; `createdAt`: `number`; `deleted`: `boolean`; `downvotes`: `number`; `elementTypes`: `string`[]; `gilded`: `boolean`; `hasMedia`: `boolean`; `id`: `string`; `languageCode`: `string`; `lastModifiedAt`: `number`; `mediaUrls`: `string`[]; `numReports`: `number`; `parentId`: `string`; `permalink`: `string`; `postId`: `string`; `score`: `number`; `spam`: `boolean`; `subredditId`: `string`; `upvotes`: `number`; &#125;
+
+###### comment.author?
+
+`string`
+
+###### comment.body?
+
+`string`
+
+###### comment.collapsedBecauseCrowdControl?
+
+`boolean`
+
+###### comment.createdAt?
+
+`number`
+
+###### comment.deleted?
+
+`boolean`
+
+###### comment.downvotes?
+
+`number`
+
+###### comment.elementTypes?
+
+`string`[]
+
+###### comment.gilded?
+
+`boolean`
+
+###### comment.hasMedia?
+
+`boolean`
+
+###### comment.id?
+
+`string`
+
+###### comment.languageCode?
+
+`string`
+
+###### comment.lastModifiedAt?
+
+`number`
+
+###### comment.mediaUrls?
+
+`string`[]
+
+###### comment.numReports?
+
+`number`
+
+###### comment.parentId?
+
+`string`
+
+###### comment.permalink?
+
+`string`
+
+###### comment.postId?
+
+`string`
+
+###### comment.score?
+
+`number`
+
+###### comment.spam?
+
+`boolean`
+
+###### comment.subredditId?
+
+`string`
+
+###### comment.upvotes?
+
+`number`
+
+###### reason?
+
+`string`
+
+###### removedAt?
+
+`Date`
+
+###### subreddit?
+
+&#123; `description`: `string`; `id`: `string`; `name`: `string`; `nsfw`: `boolean`; `permalink`: `string`; `quarantined`: `boolean`; `rating`: `SubredditRating`; `spam`: `boolean`; `subscribersCount`: `number`; `title`: `string`; `topics`: `string`[]; `type`: `SubredditType`; &#125;
+
+###### subreddit.description?
+
+`string`
+
+###### subreddit.id?
+
+`string`
+
+###### subreddit.name?
+
+`string`
+
+###### subreddit.nsfw?
+
+`boolean`
+
+###### subreddit.permalink?
+
+`string`
+
+###### subreddit.quarantined?
+
+`boolean`
+
+###### subreddit.rating?
+
+`SubredditRating`
+
+###### subreddit.spam?
+
+`boolean`
+
+###### subreddit.subscribersCount?
+
+`number`
+
+###### subreddit.title?
+
+`string`
+
+###### subreddit.topics?
+
+`string`[]
+
+###### subreddit.type?
+
+`SubredditType`
+
+#### Returns
+
+[`AutomoderatorFilterComment`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/AutomoderatorFilterComment)
+
+
+### decode()
+
+#### Parameters
+
+##### input
+
+`Reader` | `Uint8Array`\<`ArrayBufferLike`\>
+
+##### length?
+
+`number`
+
+#### Returns
+
+[`AutomoderatorFilterComment`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/AutomoderatorFilterComment)
+
+
+### encode()
+
+#### Parameters
+
+##### message
+
+[`AutomoderatorFilterComment`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/AutomoderatorFilterComment)
+
+##### writer?
+
+`Writer`
+
+#### Returns
+
+`Writer`
+
+
+### fromJSON()
+
+#### Parameters
+
+##### object
+
+`any`
+
+#### Returns
+
+[`AutomoderatorFilterComment`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/AutomoderatorFilterComment)
+
+
+### fromPartial()
+
+#### Parameters
+
+##### object
+
+###### author?
+
+`string`
+
+###### comment?
+
+&#123; `author`: `string`; `body`: `string`; `collapsedBecauseCrowdControl`: `boolean`; `createdAt`: `number`; `deleted`: `boolean`; `downvotes`: `number`; `elementTypes`: `string`[]; `gilded`: `boolean`; `hasMedia`: `boolean`; `id`: `string`; `languageCode`: `string`; `lastModifiedAt`: `number`; `mediaUrls`: `string`[]; `numReports`: `number`; `parentId`: `string`; `permalink`: `string`; `postId`: `string`; `score`: `number`; `spam`: `boolean`; `subredditId`: `string`; `upvotes`: `number`; &#125;
+
+###### comment.author?
+
+`string`
+
+###### comment.body?
+
+`string`
+
+###### comment.collapsedBecauseCrowdControl?
+
+`boolean`
+
+###### comment.createdAt?
+
+`number`
+
+###### comment.deleted?
+
+`boolean`
+
+###### comment.downvotes?
+
+`number`
+
+###### comment.elementTypes?
+
+`string`[]
+
+###### comment.gilded?
+
+`boolean`
+
+###### comment.hasMedia?
+
+`boolean`
+
+###### comment.id?
+
+`string`
+
+###### comment.languageCode?
+
+`string`
+
+###### comment.lastModifiedAt?
+
+`number`
+
+###### comment.mediaUrls?
+
+`string`[]
+
+###### comment.numReports?
+
+`number`
+
+###### comment.parentId?
+
+`string`
+
+###### comment.permalink?
+
+`string`
+
+###### comment.postId?
+
+`string`
+
+###### comment.score?
+
+`number`
+
+###### comment.spam?
+
+`boolean`
+
+###### comment.subredditId?
+
+`string`
+
+###### comment.upvotes?
+
+`number`
+
+###### reason?
+
+`string`
+
+###### removedAt?
+
+`Date`
+
+###### subreddit?
+
+&#123; `description`: `string`; `id`: `string`; `name`: `string`; `nsfw`: `boolean`; `permalink`: `string`; `quarantined`: `boolean`; `rating`: `SubredditRating`; `spam`: `boolean`; `subscribersCount`: `number`; `title`: `string`; `topics`: `string`[]; `type`: `SubredditType`; &#125;
+
+###### subreddit.description?
+
+`string`
+
+###### subreddit.id?
+
+`string`
+
+###### subreddit.name?
+
+`string`
+
+###### subreddit.nsfw?
+
+`boolean`
+
+###### subreddit.permalink?
+
+`string`
+
+###### subreddit.quarantined?
+
+`boolean`
+
+###### subreddit.rating?
+
+`SubredditRating`
+
+###### subreddit.spam?
+
+`boolean`
+
+###### subreddit.subscribersCount?
+
+`number`
+
+###### subreddit.title?
+
+`string`
+
+###### subreddit.topics?
+
+`string`[]
+
+###### subreddit.type?
+
+`SubredditType`
+
+#### Returns
+
+[`AutomoderatorFilterComment`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/AutomoderatorFilterComment)
+
+
+### toJSON()
+
+#### Parameters
+
+##### message
+
+[`AutomoderatorFilterComment`](/api/public-api/@devvit/namespaces/EventTypes/interfaces/AutomoderatorFilterComment)
+
+#### Returns
+
+`unknown`
